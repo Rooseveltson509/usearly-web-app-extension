@@ -1,0 +1,54 @@
+{
+  "manifest_version": 3,
+  "name": "Usearly Extension React",
+  "version": "1.0",
+  "description": "Une extension de capture de page en React avec TypeScript",
+  "action": {
+    "default_popup": "index.html",
+    "default_icon": {
+      "16": "assets/icons/icon16.svg",
+      "48": "assets/icons/icon48.svg",
+      "64": "assets/icons/icon64.svg",
+      "128": "assets/icons/icon128.svg"
+    }
+  },
+  "icons": {
+    "16": "assets/icons/icon16.svg",
+    "48": "assets/icons/icon48.svg",
+    "64": "assets/icons/icon64.svg",
+    "128": "assets/icons/icon128.svg"
+  },
+  "background": {
+    "service_worker": "background.js"
+  },
+  "permissions": [
+    "storage",
+    "activeTab",
+    "scripting",
+    "tabs"
+  ],
+  "content_scripts": [
+    {
+      "matches": [
+        "<all_urls>"
+      ],
+      "js": [
+        "content.js",
+        "ExtensionContent.js"
+      ],
+      "run_at": "document_idle",
+      "css": [
+        "contentStyles.css"
+      ]
+    }
+  ],
+  "host_permissions": [
+    "<all_urls>",
+    "https://*/*",
+    "https://usearly-api.vercel.app/*",
+    "http://*/*"
+  ],
+  "content_security_policy": {
+    "extension_pages": "script-src 'self'; object-src 'self'"
+  }
+}

@@ -1,0 +1,59 @@
+/* Overlay couvrant toute la page */
+.capture-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5); /* Semi-transparent */
+    z-index: 1000;
+    cursor: crosshair;
+  }
+  
+  /* Texte flottant au centre */
+  .floating-bubble {
+    position: absolute;
+    top: 10%;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 15px 25px;
+    background: #ffffff;
+    border-radius: 25px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    font-size: 18px;
+    font-weight: bold;
+    color: #333;
+  }
+  
+  /* Icône caméra */
+  .camera-icon {
+    width: 24px;
+    height: 24px;
+    /* background: url('path/to/camera-icon.png') no-repeat center center; */
+    background-size: contain;
+  }
+  
+  /* Boîte de sélection */
+  .selection-box {
+    position: fixed;
+    border: 2px dashed #007bff;
+    background-color: rgba(0, 123, 255, 0.2);
+    z-index: 1001;
+  }
+  
+  /* Bouton annuler */
+  .cancel-button {
+    position: absolute;
+    bottom: 20px;
+    right: 20px;
+    background: #ff4d4d;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 20px;
+    cursor: pointer;
+    font-size: 16px;
+  }  

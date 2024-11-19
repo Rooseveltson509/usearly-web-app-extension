@@ -1,0 +1,638 @@
+:host {
+  font-family: Arial, sans-serif;
+  color: #fff;
+  /* Couleur de texte par défaut */
+  background-color: #333;
+  /* Couleur de fond par défaut */
+}
+
+/* Feedback form */
+.blc-span-emojis {
+  position: absolute;
+  top: 40px;
+  right: 0px;
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  padding: 10px;
+  display: flex;
+  gap: 10px;
+}
+
+.txt-area {
+  border-radius: 4px;
+  border: 0.4px solid #AAA;
+  background: #E9E9E9;
+
+
+  width: 100%;
+  margin-bottom: 10px;
+  padding: 10px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  color: #333;
+  font-size: 14px;
+  resize: none;
+  font-family: Arial, sans-serif;
+}
+
+.select-emoji {
+  position: absolute;
+  top: -20px;
+  right: -20px;
+  cursor: pointer;
+  font-size: 60px;
+}
+
+.feedback-style {
+  padding: 20px;
+  background-color: #fff;
+  border-radius: 12px;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 10000;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
+  width: 420px;
+  font-family: 'Arial, sans-serif';
+  color: #333;
+}
+
+
+
+/* contentStyles.css */
+.cursor-crosshair {
+  cursor: crosshair;
+  /* Affiche un "+" comme curseur */
+}
+
+
+.my-extension-form {
+  background-color: white;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  width: 300px;
+  text-align: center;
+}
+
+.my-extension-form>h2 {
+  margin-bottom: 15px;
+}
+
+.my-extension-form>.checkbox-group {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 15px;
+}
+
+.my-extension-form>label {
+  margin: 5px 0;
+}
+
+.my-extension-form>.emoji-picker {
+  margin-bottom: 15px;
+}
+
+.my-extension-form>button {
+  background-color: #007BFF;
+  color: white;
+  border: none;
+  padding: 10px 15px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+.floating-menu {
+  cursor: move;
+}
+
+
+.floating-menu {
+  position: fixed;
+  right: 0;
+  top: 50%;
+  background-color: #f0f0f0;
+  padding: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  z-index: 1000;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+}
+
+.floating-menu {
+  height: auto;
+  width: 40px;
+  background-color: white;
+  border: 1px solid #ddd;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+}
+
+.floating-menu {
+  background: #424B5A;
+  border-radius: 20px 0px;
+}
+
+.floating-menu div {
+  cursor: pointer;
+}
+
+
+.floating-menu>.svg-icon:hover {
+  background-color: #C41E82;
+}
+
+.menu-item {
+  background-color: #007bff;
+  color: white;
+  padding: 10px;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+#popup-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  display: none;
+  justify-content: center;
+  align-items: center;
+}
+
+#popup-content {
+  background: white;
+  padding: 20px;
+  border-radius: 10px;
+}
+
+
+#custom-menu {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background-color: white;
+  border: 1px solid #ccc;
+  padding: 5px;
+  z-index: 10000;
+}
+
+#custom-menu a {
+  text-decoration: none;
+  color: black;
+}
+
+
+
+.form-container {
+  background-color: white;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  width: 300px;
+  position: relative;
+}
+
+.form-title {
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.form-textarea {
+  width: 100%;
+  padding: 10px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  resize: none;
+  font-family: Arial, sans-serif;
+}
+
+.microphone-icon {
+  position: absolute;
+  right: 15px;
+  top: 55px;
+  font-size: 18px;
+  color: gray;
+  cursor: pointer;
+}
+
+.emoji-picker {
+  display: flex;
+  align-items: center;
+  margin-top: 10px;
+}
+
+.emoji-label {
+  display: flex;
+  align-items: center;
+  margin-right: 10px;
+}
+
+.emoji-checkbox {
+  margin-right: 5px;
+}
+
+.emoji-button {
+  background-color: transparent;
+  border: none;
+  font-size: 24px;
+  cursor: pointer;
+  outline: none;
+  position: relative;
+}
+
+.emoji-options {
+  display: none;
+  position: absolute;
+  bottom: -50px;
+  right: 0;
+  background-color: white;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  padding: 5px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.emoji-option {
+  background-color: transparent;
+  border: none;
+  font-size: 24px;
+  cursor: pointer;
+  margin: 0 5px;
+}
+
+.emoji-button:focus+#emoji-options,
+.emoji-options:hover {
+  display: block;
+}
+
+.submit-arrow {
+  background-color: transparent;
+  border: none;
+  font-size: 24px;
+  color: gray;
+  /* Couleur pour l'état désactivé */
+  cursor: not-allowed;
+  /* Indique visuellement que le bouton est désactivé */
+  opacity: 0.5;
+  /* Rendre le bouton semi-transparent pour un effet désactivé */
+  margin-top: 10px;
+  transition: color 0.3s, opacity 0.3s;
+}
+
+.submit-arrow.active {
+  color: #007BFF;
+  /* Couleur activée */
+  cursor: pointer;
+  /* Curseur de clic lorsqu'il est activé */
+  opacity: 1;
+  /* Rendre complètement opaque lorsqu'il est activé */
+}
+
+.image-preview {
+  width: 100%; /* Ajuste la largeur */
+  aspect-ratio: 16 / 9; /* Définit un ratio fixe, par exemple 16:9 */
+  overflow: hidden; /* Coupe l'excès */
+  background: #f0f0f0; /* Optionnel : fond en cas d'image manquante */
+}
+
+.image-preview img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain; /* Conserve les proportions de l'image */
+}
+.image-preview {
+  max-width: 100%; /* Limite la largeur à celle du conteneur parent */
+  max-height: 200px; /* Limite la hauteur maximale */
+  overflow: hidden; /* Coupe l'image si elle dépasse les limites */
+  display: flex; /* Aligne l'image correctement */
+  justify-content: center;
+  align-items: center;
+}
+
+.image-preview img {
+  max-width: 100%; /* Réduit la largeur si nécessaire */
+  max-height: 100%; /* Réduit la hauteur si nécessaire */
+  object-fit: contain; /* Conserve les proportions sans déformation */
+}
+
+.img-preview {
+  width: 100%; /* S'adapte à la largeur du conteneur */
+  height: auto; /* Garde les proportions originales */
+  max-height: 200px; /* Limite la hauteur */
+  display: block; /* Évite les espaces blancs sous l'image */
+}
+
+
+/* Overlay pour obscurcir l'arrière-plan */
+
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+.overlay.active {
+  display: block; /* Affiché uniquement si nécessaire */
+}
+.login-popup {
+  width: 320px;
+  padding: 20px;
+  background: #fff;
+  border-radius: 8px;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+  text-align: center;
+  position: relative;
+  z-index: 1001;
+}
+
+.login-header {
+  display: flex;
+  justify-content: center;
+
+}
+
+.login-logo {
+  width: 70px;
+  height: 70px;
+}
+
+.login-popup>.title-form {
+  font-family: Montserrat;
+  font-size: 1.5em;
+  color: #333;
+  margin-top: 0;
+  margin-bottom: 10px;
+}
+
+.emojis-title {
+  margin-top: 0;
+  color: #A3AAB5;
+  font-family: Inter;
+  font-size: 17px;
+  font-weight: 500;
+}
+
+.align-checkBtn {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+}
+
+.login-form {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.login-form input[type="email"],
+.login-form input[type="password"] {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  font-size: 14px;
+}
+
+.password-field {
+  position: relative;
+}
+
+.password-field .toggle-password {
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.remember-me {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 12px;
+}
+
+.forgot-password {
+  color: #888;
+  text-decoration: none;
+  font-size: 12px;
+}
+
+.forgot-password:hover {
+  text-decoration: underline;
+}
+
+#login-button {
+  color: rgb(255, 255, 255);
+  font-size: 16px;
+  cursor: pointer;
+  padding: 10px;
+  background: linear-gradient(45deg, rgb(225, 0, 255), rgb(127, 0, 255));
+  border-width: initial;
+  border-style: none;
+  border-color: initial;
+  border-image: initial;
+  border-radius: 4px;
+}
+
+.close-button {
+  border-radius: 33px;
+  background: #2A2C3E;
+  width: 33px;
+  height: 32px;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+}
+
+.close-button-form {
+  align-items: center;
+}
+
+.close-button:hover {
+  text-decoration: underline;
+}
+
+/* popup confirmation */
+.popup-confirm {
+  position: fixed;
+  padding-left: 60px;
+  padding-right: 60px;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: #333d55;
+  border-radius: 10px;
+  padding: 20px;
+  color: #FFF;
+  text-align: center;
+  font-family: Montserrat;
+  font-size: 32px;
+  text-align: center;
+  width: 600px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
+  z-index: 1000;
+}
+
+.h1Title {
+  color: #FFF;
+  text-align: center;
+  font-family: Montserrat;
+  font-size: 32px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 109.523%;
+}
+
+.popupParaph {
+  color: #D2D7E0;
+  text-align: center;
+  font-family: Inter;
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+}
+
+.btn-ptn {
+  display: inline;
+  width: 153px;
+  height: 51px;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  flex-shrink: 0;
+  border-radius: 24px;
+  background: #121927;
+
+  color: #FFF;
+  text-align: center;
+  font-family: Inter;
+  font-size: 20px;
+  font-style: normal;
+  line-height: normal;
+  text-decoration-line: underline;
+  text-decoration-style: solid;
+  text-decoration-skip-ink: none;
+  text-decoration-thickness: auto;
+  text-underline-offset: auto;
+}
+
+.closeBtn {
+  background-color: transparent;
+  font-size: 18px;
+  color: #aaa;
+  border: none;
+  margin-top: 10px;
+  cursor: pointer;
+}
+
+.fusee {
+  font-size: 24px;
+  margin-bottom: 10px;
+}
+
+.noDisplay {
+  display: inline;
+  margin-left: 5px;
+  color: #FFF;
+  font-family: Inter;
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+}
+
+
+/* Overlay couvrant toute la page */
+.lens-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.3); /* Overlay semi-transparent */
+  z-index: 1000;
+  cursor: crosshair;
+}
+
+/* Bulle flottante avec l'icône caméra */
+.lens-bubble {
+  position: absolute;
+  width: 50px;
+  height: 50px;
+  background-color: #f0f4ff;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+  pointer-events: none; /* Désactive les interactions avec la bulle */
+  z-index: 1001;
+}
+
+/* Texte centré en haut */
+.centered-text {
+  position: fixed;
+  top: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  padding: 10px 20px;
+  background-color: #333;
+  color: #fff;
+  border-radius: 20px;
+  font-size: 16px;
+  font-weight: bold;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+  z-index: 1002;
+  pointer-events: none; /* Empêche les interactions */
+}
+
+
+.plus-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px; /* Taille du cercle */
+  height: 40px;
+  border-radius: 50%; /* Cercle parfait */
+  background-color: #f0f0f0; /* Couleur de fond */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Légère ombre */
+  font-size: 20px; /* Taille du "+" */
+  font-weight: bold;
+  color: #333; /* Couleur du "+" */
+  cursor: pointer; /* Change le curseur pour indiquer la clicabilité */
+  transition: transform 0.2s ease, background-color 0.2s ease; /* Effet de clic */
+}
+
+.plus-icon:hover {
+  background-color: #e0e0e0; /* Couleur de fond au survol */
+}
+
+.plus-icon:active {
+  transform: scale(0.9); /* Réduction de taille sur clic */
+}
