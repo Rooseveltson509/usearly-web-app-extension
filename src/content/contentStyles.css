@@ -1,9 +1,49 @@
+@font-face {
+  font-family: 'Montserrat';
+  src: url('./fonts/Montserrat-VariableFont_wght.ttf') format('truetype');
+  font-weight: 100 900;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Montserrat';
+  src: url('./fonts/Montserrat-Italic-VariableFont_wght.ttf') format('truetype');
+  font-weight: 100 900;
+  font-style: italic;
+}
+
+@font-face {
+  font-family: 'Geist Mono';
+  src: url('./fonts/GeistMono-VariableFont_wght.ttf') format('truetype');
+  font-weight: 100 900; /* Définit la plage de poids variable */
+  font-style: normal;
+}
+
+/* Optionnel : Style italique, si le fichier le supporte */
+@font-face {
+  font-family: 'Geist Mono';
+  src: url('./fonts/GeistMono-VariableFont_wght.ttf') format('truetype');
+  font-weight: 100 900;
+  font-style: italic;
+}
+
+
+
+body {
+  font-family: 'Geist Mono', monospace;
+}
+
+
 :host {
   font-family: Arial, sans-serif;
   color: #fff;
   /* Couleur de texte par défaut */
   background-color: #333;
   /* Couleur de fond par défaut */
+}
+
+.app-photo {
+  padding-right: 7px;
 }
 
 /* Feedback form */
@@ -17,6 +57,26 @@
   padding: 10px;
   display: flex;
   gap: 10px;
+}
+
+.d-flex {
+  display: flex;
+  justify-content: center;
+}
+
+.bck {
+  background: linear-gradient(0deg, rgba(82, 82, 82, 0.00) 50.95%, rgba(65, 65, 65, 0.43) 99.54%);
+}
+
+.txt-problem {
+  color: #DCDDDE;
+  text-align: center;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 135%;
+  /* 21.6px */
 }
 
 .txt-area {
@@ -38,11 +98,20 @@
 
 .select-emoji {
   position: absolute;
-  top: -20px;
-  right: -20px;
+  top: 89%;
+  right: -48px;
+  width: 42px;
+  height: 42px;
+  background: white;
+  display: flex;
+  align-items: center;
   cursor: pointer;
-  font-size: 60px;
+  border-radius: 50% 50% 50% 0;
+  font-size: 37px;
+  padding: 2px;
+  padding-top: 6px;
 }
+
 
 .feedback-style {
   padding: 20px;
@@ -52,13 +121,76 @@
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  z-index: 10000;
+  z-index: 1000;
+  /* z-index: 10000; */
   box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
   width: 420px;
   font-family: 'Arial, sans-serif';
   color: #333;
 }
 
+.feedbackSubmitDisabled {
+  padding: 10px;
+  position: absolute;
+  top: 282px;
+  right: 20px;
+  cursor: not-allowed; /* Curseur interdit */
+  transform: scale(0.95); /* Légèrement réduit */
+  opacity: 0.6; /* Transparence */
+}
+
+.feedbackSubmiEnabled {
+  padding: 10px;
+  color: rgb(255, 255, 255);
+  border: none;
+  border-radius: 50%;
+  cursor: pointer;
+  font-size: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transform: scale(1); /* Taille normale */
+  opacity: 1; /* Totalement opaque */
+}
+
+.submit-button {
+  font-size: 16px;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  background: none;
+  transition: all 0.3s ease-in-out; /* Animation fluide */
+}
+
+.feedbackSubmiEnabled:hover {
+  transform: scale(1.05); /* Légèrement agrandi au survol */
+}
+
+.checkBoxFeedback {
+  display: flex;
+  align-items: center;
+  margin-bottom: 20px;
+  font-size: 14px;
+  color: #555;
+  opacity: 0; /* Par défaut invisible */
+  max-height: 0; /* Hauteur réduite pour masquer */
+  overflow: hidden; /* Cache le contenu masqué */
+  transform: scale(0.95); /* Taille réduite au départ */
+  transition: all 0.3s ease-in-out; /* Transition fluide */
+}
+
+.checkBoxFeedback.visible {
+  opacity: 1; /* Complètement visible */
+  max-height: 100px; /* Hauteur automatique */
+  transform: scale(1); /* Taille normale */
+}
+
+.checkBoxFeedback.hidden {
+  opacity: 0; /* Invisible */
+  max-height: 0; /* Masqué complètement */
+  transform: scale(0.95); /* Taille légèrement réduite */
+}
 
 
 /* contentStyles.css */
@@ -302,37 +434,54 @@
 }
 
 .image-preview {
-  width: 100%; /* Ajuste la largeur */
-  aspect-ratio: 16 / 9; /* Définit un ratio fixe, par exemple 16:9 */
-  overflow: hidden; /* Coupe l'excès */
-  background: #f0f0f0; /* Optionnel : fond en cas d'image manquante */
+  width: 100%;
+  /* Ajuste la largeur */
+  aspect-ratio: 16 / 9;
+  /* Définit un ratio fixe, par exemple 16:9 */
+  overflow: hidden;
+  /* Coupe l'excès */
+  background: #f0f0f0;
+  /* Optionnel : fond en cas d'image manquante */
 }
 
 .image-preview img {
   width: 100%;
   height: 100%;
-  object-fit: contain; /* Conserve les proportions de l'image */
+  object-fit: contain;
+  /* Conserve les proportions de l'image */
 }
+
 .image-preview {
-  max-width: 100%; /* Limite la largeur à celle du conteneur parent */
-  max-height: 200px; /* Limite la hauteur maximale */
-  overflow: hidden; /* Coupe l'image si elle dépasse les limites */
-  display: flex; /* Aligne l'image correctement */
+  max-width: 100%;
+  /* Limite la largeur à celle du conteneur parent */
+  max-height: 200px;
+  /* Limite la hauteur maximale */
+  overflow: hidden;
+  /* Coupe l'image si elle dépasse les limites */
+  display: flex;
+  /* Aligne l'image correctement */
   justify-content: center;
   align-items: center;
 }
 
 .image-preview img {
-  max-width: 100%; /* Réduit la largeur si nécessaire */
-  max-height: 100%; /* Réduit la hauteur si nécessaire */
-  object-fit: contain; /* Conserve les proportions sans déformation */
+  max-width: 100%;
+  /* Réduit la largeur si nécessaire */
+  max-height: 100%;
+  /* Réduit la hauteur si nécessaire */
+  object-fit: contain;
+  /* Conserve les proportions sans déformation */
 }
 
 .img-preview {
-  width: 100%; /* S'adapte à la largeur du conteneur */
-  height: auto; /* Garde les proportions originales */
-  max-height: 200px; /* Limite la hauteur */
-  display: block; /* Évite les espaces blancs sous l'image */
+  width: 100%;
+  /* S'adapte à la largeur du conteneur */
+  height: auto;
+  /* Garde les proportions originales */
+  max-height: 200px;
+  /* Limite la hauteur */
+  display: block;
+  /* Évite les espaces blancs sous l'image */
 }
 
 
@@ -350,9 +499,12 @@
   align-items: center;
   z-index: 1000;
 }
+
 .overlay.active {
-  display: block; /* Affiché uniquement si nécessaire */
+  display: block;
+  /* Affiché uniquement si nécessaire */
 }
+
 .login-popup {
   width: 320px;
   padding: 20px;
@@ -376,7 +528,7 @@
 }
 
 .login-popup>.title-form {
-  font-family: Montserrat;
+  font-family: 'Montserrat', sans-serif;
   font-size: 1.5em;
   color: #333;
   margin-top: 0;
@@ -386,7 +538,7 @@
 .emojis-title {
   margin-top: 0;
   color: #A3AAB5;
-  font-family: Inter;
+  font-family: 'Inter', sans-serif;
   font-size: 17px;
   font-weight: 500;
 }
@@ -490,7 +642,7 @@
   padding: 20px;
   color: #FFF;
   text-align: center;
-  font-family: Montserrat;
+  font-family: 'Montserrat', sans-serif;
   font-size: 32px;
   text-align: center;
   width: 600px;
@@ -501,17 +653,19 @@
 .h1Title {
   color: #FFF;
   text-align: center;
-  font-family: Montserrat;
+  font-family: 'Geist Mono', monospace;
   font-size: 32px;
+  margin-top: 45px;
+  margin-bottom: 14px;
   font-style: normal;
-  font-weight: 700;
+  font-weight: 300;
   line-height: 109.523%;
 }
 
 .popupParaph {
   color: #D2D7E0;
   text-align: center;
-  font-family: Inter;
+  font-family: 'Inter', sans-serif;
   font-size: 20px;
   font-style: normal;
   font-weight: 400;
@@ -531,7 +685,7 @@
 
   color: #FFF;
   text-align: center;
-  font-family: Inter;
+  font-family: 'Inter', sans-serif;
   font-size: 20px;
   font-style: normal;
   line-height: normal;
@@ -560,7 +714,7 @@
   display: inline;
   margin-left: 5px;
   color: #FFF;
-  font-family: Inter;
+  font-family: 'Inter', sans-serif;
   font-size: 20px;
   font-style: normal;
   font-weight: 400;
@@ -575,7 +729,8 @@
   left: 0;
   width: 100%;
   height: 100%;
-  background: rgba(0, 0, 0, 0.3); /* Overlay semi-transparent */
+  background: rgba(0, 0, 0, 0.3);
+  /* Overlay semi-transparent */
   z-index: 1000;
   cursor: crosshair;
 }
@@ -591,7 +746,8 @@
   align-items: center;
   justify-content: center;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
-  pointer-events: none; /* Désactive les interactions avec la bulle */
+  pointer-events: none;
+  /* Désactive les interactions avec la bulle */
   z-index: 1001;
 }
 
@@ -609,7 +765,8 @@
   font-weight: bold;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
   z-index: 1002;
-  pointer-events: none; /* Empêche les interactions */
+  pointer-events: none;
+  /* Empêche les interactions */
 }
 
 
@@ -617,22 +774,563 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 40px; /* Taille du cercle */
+  width: 40px;
+  /* Taille du cercle */
   height: 40px;
-  border-radius: 50%; /* Cercle parfait */
-  background-color: #f0f0f0; /* Couleur de fond */
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Légère ombre */
-  font-size: 20px; /* Taille du "+" */
+  border-radius: 50%;
+  /* Cercle parfait */
+  background-color: #f0f0f0;
+  /* Couleur de fond */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  /* Légère ombre */
+  font-size: 20px;
+  /* Taille du "+" */
   font-weight: bold;
-  color: #333; /* Couleur du "+" */
-  cursor: pointer; /* Change le curseur pour indiquer la clicabilité */
-  transition: transform 0.2s ease, background-color 0.2s ease; /* Effet de clic */
+  color: #333;
+  /* Couleur du "+" */
+  cursor: pointer;
+  /* Change le curseur pour indiquer la clicabilité */
+  transition: transform 0.2s ease, background-color 0.2s ease;
+  /* Effet de clic */
 }
 
 .plus-icon:hover {
-  background-color: #e0e0e0; /* Couleur de fond au survol */
+  background-color: #e0e0e0;
+  /* Couleur de fond au survol */
 }
 
 .plus-icon:active {
-  transform: scale(0.9); /* Réduction de taille sur clic */
+  transform: scale(0.9);
+  /* Réduction de taille sur clic */
+}
+
+
+/* Style principal de la bulle */
+.capture-bubble {
+  position: absolute;
+  width: 80px;
+  /* Largeur de la bulle */
+  height: 50px;
+  /* Hauteur pour obtenir un effet "goutte d'eau" */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 10001;
+  pointer-events: none;
+  /* Empêche l'interaction avec la bulle */
+  cursor: pointer;
+}
+
+/* Icône principale dans la bulle (par exemple, "U.") */
+.capture-bubble .bubble-icon {
+  font-size: 20px;
+  /* Taille de l'icône principale */
+  color: white;
+  /* Couleur blanche pour le texte ou l'icône */
+  font-weight: bold;
+}
+
+
+
+
+
+
+
+
+
+/* Conteneur principal */
+.emoji-popup-container {
+  width: 400px;
+  background: #ffffff;
+  /* Fond blanc */
+  border-radius: 12px;
+  /* Coins arrondis */
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+  /* Ombre */
+  padding: 20px;
+  position: fixed;
+  margin-top: 222px;
+  top: 50%;
+  /* Centré verticalement */
+  left: 50%;
+  /* Centré horizontalement */
+  transform: translate(-50%, -50%);
+  /* Correction du centrage */
+  z-index: 1000;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+  /* Nécessaire pour positionner la goutte d’eau */
+}
+
+/* Titre */
+.emoji-popup-title {
+  font-size: 16px;
+  font-weight: 500;
+  color: #333;
+  margin-bottom: 20px;
+  /* Espacement en dessous */
+  font-family: 'Montserrat', sans-serif;
+  line-height: 1.4;
+}
+
+/* Conteneur des émojis */
+.emoji-container {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  /* Trois emojis par ligne */
+  gap: 15px;
+  /* Espacement entre les emojis */
+  align-items: center;
+  justify-items: center;
+}
+
+
+
+/* Conteneur pour chaque émoji */
+.emoji-item {
+  position: relative;
+  /* Nécessaire pour positionner le tooltip au-dessus de l'émoji */
+  width: 50px;
+  height: 50px;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  transition: transform 0.2s ease;
+}
+
+/* Style du tooltip */
+.emoji-tooltip {
+  position: absolute;
+  bottom: 60px;
+  /* Place le tooltip au-dessus de l'émoji */
+  left: 50%;
+  /* Centre le tooltip horizontalement */
+  transform: translateX(-50%);
+  background-color: #000000;
+  color: #fff;
+  font-size: 14px;
+  /* font-weight: 500; */
+  padding: 5px 10px;
+  border-radius: 6px;
+  white-space: nowrap;
+  box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.15);
+  pointer-events: none;
+  z-index: 1000;
+  opacity: 0;
+  /* Masqué par défaut */
+  transition: opacity 0.2s ease, transform 0.2s ease;
+}
+
+/* Affichage du tooltip lorsque la souris est sur l'émoji */
+.emoji-item:hover .emoji-tooltip {
+  opacity: 1;
+  /* Rendre le tooltip visible */
+  transform: translateX(-50%) translateY(-5px);
+  /* Légère animation de montée */
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.emoji-item:hover {
+  transform: scale(1.2);
+  background-color: #f7f7f7;
+}
+
+.emoji-item span {
+  font-size: 40px;
+}
+
+/* Bouton Plus (+) */
+.add-more-button {
+  width: 50px;
+  height: 50px;
+  background: #ffffff;
+  border: 2px solid #eaeaea;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.5rem;
+  color: #7d7d7d;
+  cursor: pointer;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.add-more-button:hover {
+  transform: scale(1.1);
+  background-color: #f7f7f7;
+  color: #000;
+}
+
+/* Goutte d’eau */
+.emoji-waterdrop {
+  position: absolute;
+  top: 85%;
+  /* Centré verticalement par rapport au conteneur */
+  right: -60px;
+  /* Décalé vers l’extérieur à droite */
+  transform: translateY(-50%);
+  width: 62px;
+  height: 61px;
+  background-image: url('data:image/svg+xml;charset=UTF-8,<svg xmlns="http://www.w3.org/2000/svg" width="62" height="61" viewBox="0 0 62 61" fill="none"><g filter="url(%23filter0_d_386_2080)"><path d="M9 29C9 16.8497 18.8497 7 31 7H31.5C43.3741 7 53 16.6259 53 28.5C53 40.3741 43.3741 50 31.5 50L11 50C9.89543 50 9 49.1046 9 48L9 29Z" fill="url(%23paint0_linear_386_2080)"/><path d="M10 29C10 17.402 19.402 8 31 8H31.5C42.8218 8 52 17.1782 52 28.5C52 39.8218 42.8218 49 31.5 49L11 49C10.4477 49 10 48.5523 10 48L10 29Z" stroke="white" stroke-width="2"/></g><path d="M32.4831 21H36.6628V31.8122C36.6628 33.0618 36.3554 34.1504 35.7405 35.078C35.1257 36.0002 34.2683 36.715 33.1684 37.2224C32.0685 37.7244 30.7909 37.9754 29.3356 37.9754C27.8634 37.9754 26.5774 37.7244 25.4774 37.2224C24.3775 36.715 23.523 36.0002 22.9138 35.078C22.3046 34.1504 22 33.0618 22 31.8122V21H26.1882V31.4603C26.1882 32.0387 26.3179 32.5543 26.5774 33.0072C26.8425 33.4601 27.2119 33.8148 27.6857 34.0713C28.1595 34.3277 28.7095 34.4559 29.3356 34.4559C29.9617 34.4559 30.5089 34.3277 30.977 34.0713C31.4508 33.8148 31.8203 33.4601 32.0854 33.0072C32.3505 32.5543 32.4831 32.0387 32.4831 31.4603V21Z" fill="white"/><path d="M40.8002 38C40.191 38 39.6692 37.7926 39.2349 37.3779C38.8062 36.9632 38.5947 36.4612 38.6003 35.8719C38.5947 35.2935 38.8062 34.7997 39.2349 34.3905C39.6692 33.9758 40.191 33.7684 40.8002 33.7684C41.3755 33.7684 41.8832 33.9758 42.3231 34.3905C42.7687 34.7997 42.9944 35.2935 43 35.8719C42.9944 36.2648 42.8872 36.6222 42.6785 36.9441C42.4754 37.2661 42.2075 37.5225 41.8747 37.7135C41.5475 37.9045 41.1894 38 40.8002 38Z" fill="white"/><defs><filter id="filter0_d_386_2080" x="0.8" y="0.8" width="60.4" height="59.4" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB"><feFlood flood-opacity="0" result="BackgroundImageFix"/><feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"/><feOffset dy="2"/><feGaussianBlur stdDeviation="4.1"/><feComposite in2="hardAlpha" operator="out"/><feColorMatrix type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.25 0"/><feBlend mode="normal" in2="BackgroundImageFix" result="effect1_dropShadow_386_2080"/><feBlend mode="normal" in="SourceGraphic" in2="effect1_dropShadow_386_2080" result="shape"/></filter><linearGradient id="paint0_linear_386_2080" x1="1.34783" y1="50" x2="59.3575" y2="5.72158" gradientUnits="userSpaceOnUse"><stop stop-color="%235A13A5"/><stop offset="1" stop-color="%23FE2190"/></linearGradient></defs></svg>');
+  background-size: contain;
+}
+
+
+/* Animation du tooltip */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-5px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+
+
+
+
+.category-popup-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 10000;
+}
+
+.category-popup {
+  background: #2C3649;
+  color: #fff;
+  border-radius: 16px;
+  padding: 20px;
+  max-width: 560px;
+  width: 100%;
+  text-align: center;
+}
+
+.popup-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.popup-icon {
+  width: 100px;
+  margin-bottom: 30px;
+  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto;
+}
+
+.popup-close {
+  background: none;
+  border: none;
+  font-size: 18px;
+  color: #fff;
+  cursor: pointer;
+}
+
+.popup-content h2 {
+  color: #FFF;
+  text-align: center;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 32px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 109.523%;
+  margin: 16px 0;
+}
+
+.popup-points {
+  font-size: 16px;
+  margin: 8px 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.popup-points span {
+  margin-right: 8px;
+}
+
+.popup-content p {
+  color: #FFF;
+  text-align: center;
+  font-family: 'Inter', sans-serif;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  margin: 30px;
+}
+
+.popup-categories {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 15px;
+  margin-left: 100px;
+  margin-right: 100px;
+  justify-content: center;
+}
+
+.popup-category {
+  text-align: center;
+  font-family: 'Inter', sans-serif;
+  font-size: 15px;
+  font-style: normal;
+  font-weight: 400;
+  border: 1px solid #ffffff40;
+  color: #fff;
+  border-radius: 25px;
+  padding: 8px 16px;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+.popup-category.selected {
+  background: #ffffff40;
+  border-color: #fff;
+}
+
+.popup-category input {
+  display: none;
+}
+
+.popup-close-button {
+  background: none;
+  border: none;
+  color: #fff;
+  font-size: 14px;
+  margin-top: 16px;
+  cursor: pointer;
+  text-decoration: underline;
+}
+
+
+/* Animation pour l'apparition/disparition du popup */
+@keyframes popupFadeIn {
+  from {
+    opacity: 0;
+    transform: scale(0.9);
+  }
+
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes popupFadeOut {
+  from {
+    opacity: 1;
+    transform: scale(1);
+  }
+
+  to {
+    opacity: 0;
+    transform: scale(0.9);
+  }
+}
+
+.category-popup {
+  animation: popupFadeIn 0.4s ease-out;
+}
+
+
+
+
+
+/* Animation pour les "+10 points" */
+@keyframes pointsFadeIn {
+  0% {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+
+  50% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes starBurst {
+  0% {
+    opacity: 0;
+    transform: scale(0);
+  }
+
+  50% {
+    opacity: 1;
+    transform: scale(1.2);
+  }
+
+  100% {
+    opacity: 0;
+    transform: scale(1.5);
+  }
+}
+
+/* Points section avec étoiles */
+.popup-points {
+  background: rgba(25, 31, 43, 0.69);
+  display: inline;
+  border-radius: 26px;
+  padding: 13px;
+  gap: 8px;
+  font-size: 16px;
+  animation: pointsFadeIn 0.6s ease-out;
+  position: relative;
+}
+
+.popup-points span {
+  position: relative;
+}
+
+.star {
+  position: absolute;
+  width: 12px;
+  height: 12px;
+  background: #ffc107;
+  /* Couleur dorée pour les étoiles */
+  clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%);
+  animation: starBurst 1s ease-out infinite;
+}
+
+/* Positionnement des étoiles */
+.star-1 {
+  top: -15px;
+  left: -15px;
+  animation-delay: 0.2s;
+}
+
+.star-2 {
+  top: -15px;
+  right: -15px;
+  animation-delay: 0.4s;
+}
+
+.star-3 {
+  bottom: -15px;
+  left: -15px;
+  animation-delay: 0.6s;
+}
+
+.star-4 {
+  bottom: -15px;
+  right: -15px;
+  animation-delay: 0.8s;
+}
+
+
+/* Container for points */
+.points-container {
+  position: relative;
+  display: inline-block;
+  text-align: center;
+  margin-top: 10px;
+  font-size: 24px;
+  font-weight: bold;
+  color: white;
+  animation: fadeIn 0.5s ease-in-out;
+}
+
+/* Animation for the points */
+.points-animation {
+  font-size: 1.2rem;
+  color: #ffffff;
+  animation: zoomIn 1s ease-in-out;
+}
+
+@keyframes zoomIn {
+  0% {
+    transform: scale(0.8);
+    opacity: 0;
+  }
+
+  50% {
+    transform: scale(1.2);
+    opacity: 1;
+  }
+
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+/* Star animation */
+.star-animation {
+  position: absolute;
+  top: -20px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 5px;
+  animation: sparkle 1.2s ease-in-out;
+}
+
+.star-animation span {
+  font-size: 18px;
+  animation: moveUp 1.2s ease-in-out;
+}
+
+@keyframes sparkle {
+  0% {
+    opacity: 0;
+  }
+
+  50% {
+    opacity: 1;
+  }
+
+  100% {
+    opacity: 0;
+  }
+}
+
+@keyframes moveUp {
+  0% {
+    transform: translateY(10px);
+    opacity: 0;
+  }
+
+  50% {
+    opacity: 1;
+  }
+
+  100% {
+    transform: translateY(-20px);
+    opacity: 0;
+  }
 }

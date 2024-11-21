@@ -63,8 +63,9 @@ const FeedbackForm: React.FC<FeedbackFormProps> = ({ screenshot, onClose, initia
     const isAuthenticated = await isUserAuthenticated();
 
     if (!isAuthenticated) {
+      console.log("Veuillez-vous connecter...")
       setShowLoginForm(true); // Affiche le formulaire de connexion
-      setIsLoading(false);
+      //setIsLoading(false);
       return;
     }
 
@@ -127,23 +128,20 @@ const FeedbackForm: React.FC<FeedbackFormProps> = ({ screenshot, onClose, initia
   };
 
 
-  // Function to get the title based on the sentiment
-  const getTitle = () => {
-    switch (sentiment) {
-      case '😐':
-        return "Qu'est-ce qui pourrait être amélioré ?";
-      case '😤':
-        return "Qu'est-ce qui vous agace ?";
-      case '😡':
-        return "Qu'est-ce qui vous met en colère ?";
-      default:
-        return "Donnez votre avis";
-    }
-  };
-  const handleClose = () => {
-    setShowFeedbackForm(false); // Ferme le formulaire
-    setShowOverlay(false); // Masque l'overlay
-  };
+  // Map to get the title based on the feeling
+  const sentimentTitles = new Map<string, string>([
+    ['😐', "Qu'est-ce qui pourrait être amélioré ?"],
+    ['😤', "Qu'est-ce qui vous agace ?"],
+    ['😡', "Qu'est-ce qui vous met en colère ?"],
+    ['🤔', "Quel problème rencontrez-vous ?"],
+    ['😭', "Qu’est-ce qui vous déçois ?"],
+    ['😖', "Qu’est-ce qui vous frustre ?"],
+    ['😵', "Qu’est-ce qui vous choque ?"],
+    ['🤣', "Qu’est-ce qui vous vous fait marrer ?"],
+  ]);
+
+  const getTitle = () => sentimentTitles.get(sentiment) || "Donnez votre avis";
+
   // Function to toggle the emoji selector
   const toggleEmojiSelector = () => {
     setShowEmojiSelector(!showEmojiSelector);
@@ -156,7 +154,7 @@ const FeedbackForm: React.FC<FeedbackFormProps> = ({ screenshot, onClose, initia
   };
 
   return (
-    <div>
+    <div className='my-class'>
       {/* Overlay */}
       {(showFeedbackForm || showConfirmation) && <div className="overlay"></div>}
       {/* Selected Emoji and selector (outside the form) */}
@@ -170,6 +168,12 @@ const FeedbackForm: React.FC<FeedbackFormProps> = ({ screenshot, onClose, initia
                 <span style={{ cursor: 'pointer' }} onClick={() => handleEmojiSelect('😐')}>😐</span>
                 <span style={{ cursor: 'pointer' }} onClick={() => handleEmojiSelect('😤')}>😤</span>
                 <span style={{ cursor: 'pointer' }} onClick={() => handleEmojiSelect('😡')}>😡</span>
+
+                <span style={{ cursor: 'pointer' }} onClick={() => handleEmojiSelect('🤔')}>🤔</span>
+                <span style={{ cursor: 'pointer' }} onClick={() => handleEmojiSelect('😭')}>😭</span>
+                <span style={{ cursor: 'pointer' }} onClick={() => handleEmojiSelect('😖')}>😖</span>
+                <span style={{ cursor: 'pointer' }} onClick={() => handleEmojiSelect('😵')}>😵</span>
+                <span style={{ cursor: 'pointer' }} onClick={() => handleEmojiSelect('🤣')}>🤣</span>
               </div>
             )}
           </div>
@@ -193,31 +197,24 @@ const FeedbackForm: React.FC<FeedbackFormProps> = ({ screenshot, onClose, initia
             />
             <input type="hidden" value={brandName} onChange={(e) => setBrandName(e.target.value)} />
             <div className='align-checkBtn'>
-              <div style={{ display: 'flex', alignItems: 'center', marginBottom: '20px', fontSize: '14px', color: '#555' }}>
-                <input
-                  type="checkbox"
-                  checked={isBlocked === 'yes'}
-                  onChange={(e) => setBlocking(e.target.checked ? 'yes' : 'no')}
-                  style={{ marginRight: '8px', width: '16px', height: '16px', accentColor: '#6a1b9a' }}
-                />
-                <label>Je suis bloqué</label>
-              </div>
-              <button
-                disabled={!alertDescription.trim()} // Disable the button if the comment is empty
-                type="submit"
-                style={{
-                  padding: '10px',
-                  color: '#fff',
-                  border: 'none',
-                  borderRadius: '50%',
-                  cursor: 'pointer',
-                  fontSize: '18px',
-                  display: 'flex',
-                  alignItems: 'center',
-                  justifyContent: 'center'
-                }}
-              >
+              {
+                <div className={`checkBoxFeedback ${alertDescription.trim() ? 'visible' : 'hidden'}`} >
+                  <input
+                    type="checkbox"
+                    checked={isBlocked === 'yes'}
+                    onChange={(e) => setBlocking(e.target.checked ? 'yes' : 'no')}
+                    style={{ marginRight: '8px', width: '16px', height: '16px', accentColor: '#6a1b9a' }}
+                  />
+                  <label>Je suis bloqué</label>
+                </div>
+              }
 
+              {/* <button disabled={!alertDescription.trim()} type="submit" > */} {/* Disable the button if the comment is empty */}
+              <button disabled={!alertDescription.trim()} // Désactive le bouton si le champ est vide
+                type="submit"
+                className={`submit-button ${!alertDescription.trim() ? 'feedbackSubmitDisabled' : 'feedbackSubmiEnabled'
+                  }`}
+              >
                 {!alertDescription.trim() ? (
                   <svg xmlns="http://www.w3.org/2000/svg" width="23" height="23" viewBox="0 0 23 23" fill="none">
                     <circle cx="11.4771" cy="11.2048" r="11" transform="rotate(90 11.4771 11.2048)" fill="url(#paint0_linear_319_540)" />

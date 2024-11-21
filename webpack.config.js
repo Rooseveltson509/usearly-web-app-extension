@@ -24,6 +24,14 @@ module.exports = {
         use: 'ts-loader',
         exclude: /node_modules/,
       },
+      // Chargeur pour les fichiers de police
+      {
+        test: /\.(woff|woff2|eot|ttf|otf)$/,
+        type: 'asset/resource',
+        generator: {
+          filename: 'fonts/[name][ext]', // Place les fichiers dans un dossier "fonts" dans le build
+        },
+      },
       {
         test: /\.css$/, // Gestion des fichiers CSS
         use: ['style-loader', 'css-loader'], // Loaders CSS
@@ -50,6 +58,7 @@ module.exports = {
         { from: 'public', to: '.' }, // Copie tout le contenu de 'public' dans 'dist'
         { from: 'src/content/contentStyles.css', to: '.' }, // Copie le fichier CSS vers le dossier dist
         { from: 'src/assets/icons', to: 'assets/icons' }, // Copie les icônes SVG dans le dossier 'dist/assets/icons'
+        { from: 'src/fonts', to: 'fonts' }, // Copie les fonts'
       ],
     }),
   ],

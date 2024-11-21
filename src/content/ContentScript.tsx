@@ -12,6 +12,7 @@ let lensBubble: HTMLDivElement | null = null;
 let selectionEnabled = false; // Indicateur pour activer la sélection après le deuxième clic
 let menuOpen = false;
 let centeredText: HTMLDivElement | null = null;
+let overlay: HTMLDivElement | null = null;
 
 // Élément bulle avec icône pour le mode capture
 let captureBubble: HTMLDivElement | null = null;
@@ -20,6 +21,7 @@ function enableLensMode() {
   console.log("Enable Lens Mode called");
   createLensBubble(); // Afficher la bulle avec l'icône de caméra
   createCenteredText(); // Affiche le texte centré
+  createOverlay(); // Ajoute l'overlay semi-transparent
 
   // Suivre le curseur avec la bulle sans activer la sélection
   document.addEventListener('mousemove', moveLensBubble);
@@ -34,19 +36,30 @@ function createCenteredText() {
   if (!centeredText) {
     centeredText = document.createElement("div");
     centeredText.style.position = "fixed";
-    centeredText.style.top = "20px"; // Positionné en haut de la page
+    centeredText.style.top = "100px"; // Positionné en haut de la page
     centeredText.style.left = "50%"; // Centré horizontalement
     centeredText.style.transform = "translateX(-50%)"; // Correction pour centrer
     centeredText.style.padding = "10px 20px";
-    centeredText.style.backgroundColor = "#333";
+    centeredText.style.backgroundColor = "rgba(5, 10, 21, 0.79)";
     centeredText.style.color = "#fff";
-    centeredText.style.borderRadius = "20px";
+    centeredText.style.borderRadius = "53px";
     centeredText.style.fontSize = "16px";
-    centeredText.style.fontWeight = "bold";
-    centeredText.style.boxShadow = "0 2px 5px rgba(0, 0, 0, 0.2)";
+    //centeredText.style.fontWeight = "400";
+    centeredText.style.boxShadow = "0px 0px 37.7px 0px rgba(0, 0, 0, 0.25)";
     centeredText.style.zIndex = "10002";
     centeredText.style.pointerEvents = "none"; // Empêche les interactions
-    centeredText.textContent = "Sélectionnez la zone du problème"; // Texte à afficher
+    // Contenu avec icône SVG
+    centeredText.innerHTML = `
+    <div class="d-flex">
+    <div class="app-photo">
+        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 18 18" fill="none">
+          <path d="M1 5V3C1 2.46957 1.21071 1.96086 1.58579 1.58579C1.96086 1.21071 2.46957 1 3 1H5M1 13V15C1 15.5304 1.21071 16.0391 1.58579 16.4142C1.96086 16.7893 2.46957 17 3 17H5M13 1H15C15.5304 1 16.0391 1.21071 16.4142 1.58579C16.7893 1.96086 17 2.46957 17 3V5M13 17H15C15.5304 17 16.0391 16.7893 16.4142 16.4142C16.7893 16.0391 17 15.5304 17 15V13M6 9C6 9.79565 6.31607 10.5587 6.87868 11.1213C7.44129 11.6839 8.20435 12 9 12C9.79565 12 10.5587 11.6839 11.1213 11.1213C11.6839 10.5587 12 9.79565 12 9C12 8.20435 11.6839 7.44129 11.1213 6.87868C10.5587 6.31607 9.79565 6 9 6C8.20435 6 7.44129 6.31607 6.87868 6.87868C6.31607 7.44129 6 8.20435 6 9Z" stroke="white" stroke-opacity="0.8" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+    </div>
+        <span class="txt-problem">Sélectionnez la zone du problème</span>
+    </div>
+      `;
+
     document.body.appendChild(centeredText);
   }
 }
@@ -59,37 +72,90 @@ function removeCenteredText() {
 }
 
 
+function createOverlay() {
+  if (!overlay) {
+    overlay = document.createElement("div");
+    overlay.className = "bck";
+    overlay.style.position = "fixed";
+    overlay.style.top = "0";
+    overlay.style.left = "0";
+    overlay.style.width = "100%";
+    overlay.style.height = "100%";
+    overlay.style.backgroundColor = "rgba(0, 0, 0, 0.3)"; // Couleur semi-transparente
+    overlay.style.zIndex = "10000";
+    overlay.style.pointerEvents = "none"; // Empêche les interactions avec l'overlay
+    document.body.appendChild(overlay);
+  }
+}
+
+function removeOverlay() {
+  if (overlay) {
+    overlay.remove();
+    overlay = null;
+  }
+}
 
 
 // Créer et afficher la bulle avec la caméra pour suivre la souris
 function createLensBubble() {
   if (!captureBubble) {
     captureBubble = document.createElement("div");
-    captureBubble.style.position = "absolute";
-    captureBubble.style.width = "50px";
-    captureBubble.style.height = "50px";
-    captureBubble.style.backgroundColor = "#F0F4FF";
-    captureBubble.style.borderRadius = "50%";
-    captureBubble.style.display = "flex";
-    captureBubble.style.alignItems = "center";
-    captureBubble.style.justifyContent = "center";
-    captureBubble.style.boxShadow = "0 2px 5px rgba(0, 0, 0, 0.2)";
-    captureBubble.style.cursor = "pointer";
-    captureBubble.style.zIndex = "10001";
-    captureBubble.style.pointerEvents = "none"; // Empêche l'interaction avec la bulle
+    captureBubble.className = "capture-bubble"; // Classe CSS pour appliquer le style principal
 
-    // Icône d'appareil photo dans la bulle
-    const cameraIcon = document.createElement("span");
-    cameraIcon.style.fontSize = "24px";
-    cameraIcon.textContent = "📷"; // Emoji d'appareil photo
-    captureBubble.appendChild(cameraIcon);
+    // Ajouter le SVG directement dans la bulle
+    captureBubble.innerHTML = `
+      <svg xmlns="http://www.w3.org/2000/svg" width="61" height="62" viewBox="0 0 61 62" fill="none">
+          <g filter="url(#filter0_d_397_1906)">
+          <path d="M30 7C42.1503 7 52 16.8497 52 29L52 29.5C52 41.3741 42.3741 51 30.5 51C18.6259 51 9 41.3741 9 29.5L9 7L30 7Z" fill="url(#paint0_linear_397_1906)"/>
+          <path d="M30 8C41.598 8 51 17.402 51 29L51 29.5C51 40.8218 41.8218 50 30.5 50C19.1782 50 10 40.8218 10 29.5L10 8L30 8Z" stroke="white" stroke-width="2"/>
+          </g>
+          <path d="M34 21L36 21C36.5304 21 37.0391 21.2107 37.4142 21.5858C37.7893 21.9609 38 22.4696 38 23L38 25M26 21L24 21C23.4696 21 22.9609 21.2107 22.5858 21.5858C22.2107 21.9609 22 22.4696 22 23L22 25M38 33L38 35C38 35.5304 37.7893 36.0391 37.4142 36.4142C37.0391 36.7893 36.5304 37 36 37L34 37M22 33L22 35C22 35.5304 22.2107 36.0391 22.5858 36.4142C22.9609 36.7893 23.4696 37 24 37L26 37M30 26C29.2044 26 28.4413 26.3161 27.8787 26.8787C27.3161 27.4413 27 28.2044 27 29C27 29.7956 27.3161 30.5587 27.8787 31.1213C28.4413 31.6839 29.2044 32 30 32C30.7956 32 31.5587 31.6839 32.1213 31.1213C32.6839 30.5587 33 29.7956 33 29C33 28.2044 32.6839 27.4413 32.1213 26.8787C31.5587 26.3161 30.7956 26 30 26Z" stroke="white" stroke-opacity="0.8" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
+          <g filter="url(#filter1_d_397_1906)">
+          <path d="M30 7C42.1503 7 52 16.8497 52 29L52 29.5C52 41.3741 42.3741 51 30.5 51V51C18.6259 51 9 41.3741 9 29.5L9 9C9 7.89543 9.89543 7 11 7L30 7Z" fill="url(#paint1_linear_397_1906)"/>
+          <path d="M51 29L51 29.5C51 40.8218 41.8218 50 30.5 50C19.1782 50 10 40.8218 10 29.5L10 9C10 8.44771 10.4477 8 11 8L30 8C41.598 8 51 17.402 51 29Z" stroke="white" stroke-width="2"/>
+          </g>
+          <path d="M32.4831 21H36.6628V31.8122C36.6628 33.0618 36.3554 34.1504 35.7405 35.078C35.1257 36.0002 34.2683 36.715 33.1684 37.2224C32.0685 37.7244 30.7909 37.9754 29.3356 37.9754C27.8634 37.9754 26.5774 37.7244 25.4774 37.2224C24.3775 36.715 23.523 36.0002 22.9138 35.078C22.3046 34.1504 22 33.0618 22 31.8122V21H26.1882V31.4603C26.1882 32.0387 26.3179 32.5543 26.5774 33.0072C26.8425 33.4601 27.2119 33.8148 27.6857 34.0713C28.1595 34.3277 28.7095 34.4559 29.3356 34.4559C29.9617 34.4559 30.5089 34.3277 30.977 34.0713C31.4508 33.8148 31.8203 33.4601 32.0854 33.0072C32.3505 32.5543 32.4831 32.0387 32.4831 31.4603V21Z" fill="white"/>
+          <path d="M40.8002 38C40.191 38 39.6692 37.7926 39.2349 37.3779C38.8062 36.9632 38.5947 36.4612 38.6003 35.8719C38.5947 35.2935 38.8062 34.7997 39.2349 34.3905C39.6692 33.9758 40.191 33.7684 40.8002 33.7684C41.3755 33.7684 41.8832 33.9758 42.3231 34.3905C42.7687 34.7997 42.9944 35.2935 43 35.8719C42.9944 36.2648 42.8872 36.6222 42.6785 36.9441C42.4754 37.2661 42.2075 37.5225 41.8747 37.7135C41.5475 37.9045 41.1894 38 40.8002 38Z" fill="white"/>
+          <defs>
+          <filter id="filter0_d_397_1906" x="0.8" y="0.8" width="59.4" height="60.4" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+          <feFlood flood-opacity="0" result="BackgroundImageFix"/>
+          <feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"/>
+          <feOffset dy="2"/>
+          <feGaussianBlur stdDeviation="4.1"/>
+          <feComposite in2="hardAlpha" operator="out"/>
+          <feColorMatrix type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.25 0"/>
+          <feBlend mode="normal" in2="BackgroundImageFix" result="effect1_dropShadow_397_1906"/>
+          <feBlend mode="normal" in="SourceGraphic" in2="effect1_dropShadow_397_1906" result="shape"/>
+          </filter>
+          <filter id="filter1_d_397_1906" x="0.8" y="0.8" width="59.4" height="60.4" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+          <feFlood flood-opacity="0" result="BackgroundImageFix"/>
+          <feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"/>
+          <feOffset dy="2"/>
+          <feGaussianBlur stdDeviation="4.1"/>
+          <feComposite in2="hardAlpha" operator="out"/>
+          <feColorMatrix type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.25 0"/>
+          <feBlend mode="normal" in2="BackgroundImageFix" result="effect1_dropShadow_397_1906"/>
+          <feBlend mode="normal" in="SourceGraphic" in2="effect1_dropShadow_397_1906" result="shape"/>
+          </filter>
+          <linearGradient id="paint0_linear_397_1906" x1="9" y1="-0.652177" x2="53.2784" y2="57.3575" gradientUnits="userSpaceOnUse">
+          <stop stop-color="#5A13A5"/>
+          <stop offset="1" stop-color="#FE2190"/>
+          </linearGradient>
+          <linearGradient id="paint1_linear_397_1906" x1="9" y1="-0.652177" x2="53.2784" y2="57.3575" gradientUnits="userSpaceOnUse">
+          <stop stop-color="#5A13A5"/>
+          <stop offset="1" stop-color="#FE2190"/>
+          </linearGradient>
+          </defs>
+</svg>
+    `;
 
     document.body.appendChild(captureBubble);
-    // Suivre le mouvement de la souris pour placer la bulle
-    document.addEventListener("mousemove", updateCaptureBubblePosition);
-
+    document.addEventListener("mousemove", updateCaptureBubblePosition); // Suivre le mouvement de la souris
   }
 }
+
+
+
 
 // Mettre à jour la position de la bulle de capture pour suivre la souris
 function updateCaptureBubblePosition(event: MouseEvent) {
@@ -141,7 +207,7 @@ function initiateSelection(event: MouseEvent) {
 // Démarrer la sélection après le deuxième clic
 function startSelection(event: MouseEvent) {
   if (!selectionEnabled) return;
-
+  removeOverlay(); // Supprime l'overlay semi-transparent
   startX = event.clientX;
   startY = event.clientY;
 
@@ -312,54 +378,6 @@ function captureSelectedArea(x: number, y: number, width: number, height: number
     });
 }
 
-
-/* function captureSelectedArea(x: number, y: number, width: number, height: number) {
-  const externalElements = document.querySelectorAll('img, iframe, video, [style*="background-image"]');
-
-  // Masquer temporairement les éléments externes
-  externalElements.forEach((el) => {
-    if (el instanceof HTMLElement) {
-      //el.style.display = 'none';
-    }
-  });
-  // Capture la page entière avec html2canvas
-  html2canvas(document.body, { useCORS: true, allowTaint: false, backgroundColor: null }).then((canvas) => {
-    // Rendre les éléments visibles après la capture
-    externalElements.forEach((el) => {
-      if (el instanceof HTMLElement) {
-        //el.style.display = '';
-      }
-    });
-    // Créer un canvas temporaire pour recadrer la zone sélectionnée
-    const croppedCanvas = document.createElement('canvas');
-    croppedCanvas.width = width;
-    croppedCanvas.height = height;
-    const croppedCtx = croppedCanvas.getContext('2d');
-
-    if (croppedCtx) {
-      // Utiliser les coordonnées ajustées en fonction de la mise à l'échelle
-      croppedCtx.drawImage(
-        canvas,
-        x,              // Position X ajustée
-        y,              // Position Y ajustée
-        width,          // Largeur ajustée
-        height,         // Hauteur ajustée
-        0,              // Position X dans le canvas de destination
-        0,              // Position Y dans le canvas de destination
-        width,          // Largeur dans le canvas de destination
-        height          // Hauteur dans le canvas de destination
-      );
-
-      const croppedDataUrl = croppedCanvas.toDataURL('image/png');
-      openFeedbackWithEmojiSelection(croppedDataUrl); // Affiche l'image capturée dans le formulaire de feedback
-    }
-  }).catch((error) => {
-    console.error('Erreur lors de la capture de la zone sélectionnée:', error);
-  });
-} */
-
-
-
 // Désactiver le mode sélection et réinitialiser les indicateurs
 function disableSelectionMode() {
   selectionEnabled = false; // Désactiver la sélection
@@ -369,6 +387,7 @@ function disableSelectionMode() {
     //document.body.removeChild(lensBubble);
     //lensBubble = null;
   }
+  removeOverlay(); // Supprime l'overlay semi-transparent
   removeCenteredText(); // Supprime le texte
   document.removeEventListener('mousemove', moveLensBubble);
 }
@@ -397,15 +416,20 @@ function openFeedbackForm(screenshot: string) {
   root.render(<CaptureFeedbackFlow screenshot={screenshot} onClose={closeFeedback} />);
 }
 
+
 // Affichage du menu flottant après trois clics
 function displayFloatingMenu(x: number, y: number) {
+  if (menuOpen) {
+    console.log("Le menu flottant est déjà ouvert !");
+    return; // Si le menu est déjà ouvert, ne rien faire
+  }
   menuOpen = true;
 
   const menuContainer = document.createElement('div');
   document.body.appendChild(menuContainer);
 
   const closeMenu = () => {
-    console.log("close menu...")
+    console.log("Fermeture du menu...");
     document.body.removeChild(menuContainer);
     menuOpen = false;
   };
@@ -418,13 +442,29 @@ function displayFloatingMenu(x: number, y: number) {
       onCommentClick={() => {
         closeMenu();
         openFeedbackForm('');
-      } }
+      }}
       onCaptureClick={() => {
         closeMenu();
         enableLensMode(); // Activer le mode Google Lens avec la bulle
-      } } />
+      }} />
   );
 }
+
+// Gestion du message envoyé par le background script
+chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
+  console.log("Message reçu dans content.js :", message);
+
+  if (message.action === "showFloatingMenu") {
+    console.log("Affichage du menu flottant...");
+    displayFloatingMenu(window.innerWidth / 2, window.innerHeight / 2);
+    sendResponse({ success: true });
+  } else {
+    console.log("Action non reconnue :", message.action);
+    sendResponse({ success: false });
+  }
+});
+
+
 
 
 // Détection des trois clics pour afficher le menu flottant

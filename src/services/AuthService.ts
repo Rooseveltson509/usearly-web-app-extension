@@ -40,8 +40,9 @@ export function logout() {
 import { setToken } from '../utils/storageUtil'; // Mise à jour pour chrome.storage
 
 const API_URL = 'https://usearly-api.vercel.app/api/v1';
-const API_URL_DEV = 'https://1073-2a01-cb08-512-d600-29df-3525-253f-fd48.ngrok-free.app/api/v1';
+const API_URL_DEV = 'https://17d8-2a01-cb08-512-d600-b5e4-a24f-54ce-c58c.ngrok-free.app/api/v1';
 
+//const API_URL_DEV = 'https://17d8-2a01-cb08-512-d600-b5e4-a24f-54ce-c58c.ngrok-free.app/api/v1';
 
 export async function login(email: string, password: string): Promise<boolean> {
   try {
@@ -49,12 +50,13 @@ export async function login(email: string, password: string): Promise<boolean> {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ email, password }),
-      //mode: 'cors'
     });
     const data = await response.json();
     if (data.token) {
-        console.log("data: ", data)
+      console.log("data: ", data);
+
       await setToken(data.token); // Stocke le token avec chrome.storage
+      await setLoginTime(); // Stocke l'heure de connexion
       return true;
     } else {
       throw new Error('Authentification échouée');
@@ -65,46 +67,61 @@ export async function login(email: string, password: string): Promise<boolean> {
   }
 }
 
-export async function isUserAuthenticated(): Promise<boolean> {
-    return new Promise((resolve) => {
-        chrome.runtime.sendMessage({ action: 'isAuthenticated' }, (response) => {
-            if (chrome.runtime.lastError) {
-                console.error("Erreur de communication avec le script de fond :", chrome.runtime.lastError.message);
-                resolve(false); // Considérez l'utilisateur comme non authentifié en cas d'erreur
-            } else {
-                resolve(response?.isAuthenticated ?? false); // Assurez-vous que `response` est défini
-            }
-        });
-    });
+// Stocke l'heure de connexion
+export async function setLoginTime() {
+  const currentTime = Date.now();
+  chrome.storage.local.set({ loginTime: currentTime });
 }
 
-
-/* export function login(email: string, password: string): Promise<boolean> {
-    return new Promise((resolve) => {
-        const timeout = setTimeout(() => {
-            console.error("Timeout pour la réponse du script de fond.");
-            resolve(false); // Forcer la résolution après un délai
-        }, 5000); // Timeout de 5 secondes
-
-        chrome.runtime.sendMessage({ action: 'login', email, password }, (response) => {
-            clearTimeout(timeout); // Annule le timeout si la réponse arrive à temps
-            if (chrome.runtime.lastError) {
-                console.error("Erreur de communication avec le script de fond :", chrome.runtime.lastError.message);
-                resolve(false);
-            } else {
-                resolve(response?.success ?? false);
-            }
-        });
+// Récupère l'heure de connexion
+export async function getLoginTime(): Promise<number | null> {
+  return new Promise((resolve) => {
+    chrome.storage.local.get(['loginTime'], (result) => {
+      resolve(result.loginTime || null);
     });
-} */
+  });
+}
 
+// Vérifie si l'utilisateur est encore authentifié (déconnexion après 20 secondes pour le test)
+export async function isUserAuthenticated(): Promise<boolean> {
+  return new Promise(async (resolve) => {
+    chrome.runtime.sendMessage({ action: 'isAuthenticated' }, async (response) => {
+      if (chrome.runtime.lastError) {
+        console.error("Erreur de communication avec le script de fond :", chrome.runtime.lastError.message);
+        resolve(false);
+      } else {
+        const loginTime = await getLoginTime();
+        if (loginTime) {
+          const elapsedTime = Date.now() - loginTime;
+          //const FIVE_HOURS_IN_MS = 20 * 1000; // 20 secondes pour le test
+          const FIVE_HOURS_IN_MS = 5 * 60 * 60 * 1000;
+          
+          if (elapsedTime >= FIVE_HOURS_IN_MS) {
+            //console.log(`Temps écoulé ::: ${elapsedTime / 1000} secondes. Déconnexion.`);
+            logout(); // Déconnectez si 20 secondes sont écoulées
+            resolve(false);
+          } else {
+            console.log(`Temps restant avant déconnexion ::: ${(FIVE_HOURS_IN_MS - elapsedTime) / 1000} secondes.`);
+            resolve(response?.isAuthenticated ?? false);
+          }
+        } else {
+          resolve(false); // Aucun login enregistré
+        }
+      }
+    });
+  });
+}
 
-
+// Déconnecte l'utilisateur
 export function logout() {
   chrome.runtime.sendMessage({ action: "logout" }, (response) => {
-    if (response.success) {
-        console.log("Déconnexion réussie");
+    if (response?.success) {
+      console.log("Déconnexion réussie");
     }
-});
-    //chrome.runtime.sendMessage({ action: 'logout' });
+  });
+
+  // Supprime les informations de connexion
+  chrome.storage.local.remove(['authToken', 'loginTime'], () => {
+    console.log("Données utilisateur supprimées");
+  });
 }

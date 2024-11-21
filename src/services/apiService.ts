@@ -4,7 +4,8 @@ import { Alert } from '../types/Alert';
 import { getToken } from '../utils/storageUtil';
 
 const API_URL = 'https://usearly-api.vercel.app/api/v1';
-const API_BASE_URL = "https://1073-2a01-cb08-512-d600-29df-3525-253f-fd48.ngrok-free.app/api/v1"
+
+const API_BASE_URL = "https://17d8-2a01-cb08-512-d600-b5e4-a24f-54ce-c58c.ngrok-free.app/api/v1"
 
 export async function callProtectedAPI(endpoint: string) {
   const token = getToken();

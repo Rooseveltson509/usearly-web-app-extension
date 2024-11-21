@@ -3,8 +3,19 @@
   "name": "Usearly Extension React",
   "version": "1.0",
   "description": "Une extension de capture de page en React avec TypeScript",
+  "web_accessible_resources": [
+    {
+      "resources": [
+        "fonts/*.ttf",
+        "fonts/GeistMono-VariableFont_wght.ttf"
+      ],
+      "matches": [
+        "<all_urls>"
+      ]
+    }
+  ],
   "action": {
-    "default_popup": "index.html",
+    "default_title": "Cliquez pour afficher le menu",
     "default_icon": {
       "16": "assets/icons/icon16.svg",
       "48": "assets/icons/icon48.svg",
@@ -36,7 +47,7 @@
         "content.js",
         "ExtensionContent.js"
       ],
-      "run_at": "document_idle",
+      "run_at": "document_start",
       "css": [
         "contentStyles.css"
       ]
@@ -49,6 +60,6 @@
     "http://*/*"
   ],
   "content_security_policy": {
-    "extension_pages": "script-src 'self'; object-src 'self'"
+    "extension_pages": "script-src 'self'; object-src 'self'; style-src 'self' https://fonts.googleapis.com; font-src https://fonts.gstatic.com;"
   }
 }

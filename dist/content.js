@@ -42946,8 +42946,9 @@ var FeedbackForm = function (_a) {
                 case 1:
                     isAuthenticated = _a.sent();
                     if (!isAuthenticated) {
+                        console.log("Veuillez-vous connecter...");
                         setShowLoginForm(true); // Affiche le formulaire de connexion
-                        setIsLoading(false);
+                        //setIsLoading(false);
                         return [2 /*return*/];
                     }
                     alertData = {
@@ -43014,23 +43015,18 @@ var FeedbackForm = function (_a) {
             setPendingAction(null); // Réinitialise l'action en attente
         }
     };
-    // Function to get the title based on the sentiment
-    var getTitle = function () {
-        switch (sentiment) {
-            case '😐':
-                return "Qu'est-ce qui pourrait être amélioré ?";
-            case '😤':
-                return "Qu'est-ce qui vous agace ?";
-            case '😡':
-                return "Qu'est-ce qui vous met en colère ?";
-            default:
-                return "Donnez votre avis";
-        }
-    };
-    var handleClose = function () {
-        setShowFeedbackForm(false); // Ferme le formulaire
-        setShowOverlay(false); // Masque l'overlay
-    };
+    // Map to get the title based on the feeling
+    var sentimentTitles = new Map([
+        ['😐', "Qu'est-ce qui pourrait être amélioré ?"],
+        ['😤', "Qu'est-ce qui vous agace ?"],
+        ['😡', "Qu'est-ce qui vous met en colère ?"],
+        ['🤔', "Quel problème rencontrez-vous ?"],
+        ['😭', "Qu’est-ce qui vous déçois ?"],
+        ['😖', "Qu’est-ce qui vous frustre ?"],
+        ['😵', "Qu’est-ce qui vous choque ?"],
+        ['🤣', "Qu’est-ce qui vous vous fait marrer ?"],
+    ]);
+    var getTitle = function () { return sentimentTitles.get(sentiment) || "Donnez votre avis"; };
     // Function to toggle the emoji selector
     var toggleEmojiSelector = function () {
         setShowEmojiSelector(!showEmojiSelector);
@@ -43040,23 +43036,13 @@ var FeedbackForm = function (_a) {
         setSentiment(emoji);
         setShowEmojiSelector(false); // Hide the emoji selector after selection
     };
-    return ((0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", { children: [(showFeedbackForm || showConfirmation) && (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("div", { className: "overlay" }), showFeedbackForm && ((0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", __assign({ className: 'feedback-style' }, { children: [(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", __assign({ className: 'select-emoji', onClick: toggleEmojiSelector }, { children: [sentiment, showEmojiSelector && ((0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", __assign({ className: 'blc-span-emojis' }, { children: [(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("span", __assign({ style: { cursor: 'pointer' }, onClick: function () { return handleEmojiSelect('😐'); } }, { children: "\uD83D\uDE10" })), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("span", __assign({ style: { cursor: 'pointer' }, onClick: function () { return handleEmojiSelect('😤'); } }, { children: "\uD83D\uDE24" })), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("span", __assign({ style: { cursor: 'pointer' }, onClick: function () { return handleEmojiSelect('😡'); } }, { children: "\uD83D\uDE21" }))] })))] })), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("button", __assign({ onClick: function () {
+    return ((0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", __assign({ className: 'my-class' }, { children: [(showFeedbackForm || showConfirmation) && (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("div", { className: "overlay" }), showFeedbackForm && ((0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", __assign({ className: 'feedback-style' }, { children: [(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", __assign({ className: 'select-emoji', onClick: toggleEmojiSelector }, { children: [sentiment, showEmojiSelector && ((0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", __assign({ className: 'blc-span-emojis' }, { children: [(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("span", __assign({ style: { cursor: 'pointer' }, onClick: function () { return handleEmojiSelect('😐'); } }, { children: "\uD83D\uDE10" })), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("span", __assign({ style: { cursor: 'pointer' }, onClick: function () { return handleEmojiSelect('😤'); } }, { children: "\uD83D\uDE24" })), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("span", __assign({ style: { cursor: 'pointer' }, onClick: function () { return handleEmojiSelect('😡'); } }, { children: "\uD83D\uDE21" })), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("span", __assign({ style: { cursor: 'pointer' }, onClick: function () { return handleEmojiSelect('🤔'); } }, { children: "\uD83E\uDD14" })), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("span", __assign({ style: { cursor: 'pointer' }, onClick: function () { return handleEmojiSelect('😭'); } }, { children: "\uD83D\uDE2D" })), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("span", __assign({ style: { cursor: 'pointer' }, onClick: function () { return handleEmojiSelect('😖'); } }, { children: "\uD83D\uDE16" })), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("span", __assign({ style: { cursor: 'pointer' }, onClick: function () { return handleEmojiSelect('😵'); } }, { children: "\uD83D\uDE35" })), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("span", __assign({ style: { cursor: 'pointer' }, onClick: function () { return handleEmojiSelect('🤣'); } }, { children: "\uD83E\uDD23" }))] })))] })), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("button", __assign({ onClick: function () {
                             setShowFeedbackForm(false);
                             onClose();
-                        }, className: "close-button-form" }, { children: "X" })), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("h2", __assign({ className: 'emojis-title' }, { children: getTitle() })), error && (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("p", __assign({ style: { color: 'red' } }, { children: error[0] })), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("form", __assign({ onSubmit: handleSubmit }, { children: [(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("div", __assign({ className: "image-preview" }, { children: (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("img", { className: 'img-preview', src: screenshot, alt: "screenshot" }) })), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("textarea", { className: 'txt-area', placeholder: "D\u00E9crivez votre probl\u00E8me...", value: alertDescription, onChange: function (e) { return setAlertDescription(e.target.value); } }), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("input", { type: "hidden", value: brandName, onChange: function (e) { return setBrandName(e.target.value); } }), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", __assign({ className: 'align-checkBtn' }, { children: [(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", __assign({ style: { display: 'flex', alignItems: 'center', marginBottom: '20px', fontSize: '14px', color: '#555' } }, { children: [(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("input", { type: "checkbox", checked: isBlocked === 'yes', onChange: function (e) { return setBlocking(e.target.checked ? 'yes' : 'no'); }, style: { marginRight: '8px', width: '16px', height: '16px', accentColor: '#6a1b9a' } }), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("label", { children: "Je suis bloqu\u00E9" })] })), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("button", __assign({ disabled: !alertDescription.trim(), type: "submit", style: {
-                                            padding: '10px',
-                                            color: '#fff',
-                                            border: 'none',
-                                            borderRadius: '50%',
-                                            cursor: 'pointer',
-                                            fontSize: '18px',
-                                            display: 'flex',
-                                            alignItems: 'center',
-                                            justifyContent: 'center'
-                                        } }, { children: !alertDescription.trim() ? ((0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("svg", __assign({ xmlns: "http://www.w3.org/2000/svg", width: "23", height: "23", viewBox: "0 0 23 23", fill: "none" }, { children: [(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("circle", { cx: "11.4771", cy: "11.2048", r: "11", transform: "rotate(90 11.4771 11.2048)", fill: "url(#paint0_linear_319_540)" }), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("path", { d: "M11.4001 6.20483L16.4771 11.312L11.4001 16.4191M15.7719 11.312L5.47705 11.312", stroke: "white", strokeWidth: "1.4", strokeLinecap: "round", strokeLinejoin: "round" }), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("defs", { children: (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("linearGradient", __assign({ id: "paint0_linear_319_540", x1: "-2.47644", y1: "35.6819", x2: "26.1437", y2: "0.204836", gradientUnits: "userSpaceOnUse" }, { children: [(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("stop", { offset: "0.22376", stopColor: "#908f91" }), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("stop", { offset: "0.613341", stopColor: "#9f9f9f" })] })) })] }))) : ((0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("svg", __assign({ xmlns: "http://www.w3.org/2000/svg", width: "23", height: "23", viewBox: "0 0 23 23", fill: "none" }, { children: [(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("circle", { cx: "11.4771", cy: "11.2048", r: "11", transform: "rotate(90 11.4771 11.2048)", fill: "url(#paint0_linear_319_540)" }), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("path", { d: "M11.4001 6.20483L16.4771 11.312L11.4001 16.4191M15.7719 11.312L5.47705 11.312", stroke: "white", strokeWidth: "1.4", strokeLinecap: "round", strokeLinejoin: "round" }), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("defs", { children: (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("linearGradient", __assign({ id: "paint0_linear_319_540", x1: "-2.47644", y1: "35.6819", x2: "26.1437", y2: "0.204836", gradientUnits: "userSpaceOnUse" }, { children: [(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("stop", { offset: "0.22376", stopColor: "#6E36A9" }), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("stop", { offset: "0.613341", stopColor: "#B033AE" })] })) })] }))) }))] }))] }))] }))), showConfirmation && ((0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(_popupConfirm_PopupConfirm__WEBPACK_IMPORTED_MODULE_6__["default"], { onClose: function () {
+                        }, className: "close-button-form" }, { children: "X" })), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("h2", __assign({ className: 'emojis-title' }, { children: getTitle() })), error && (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("p", __assign({ style: { color: 'red' } }, { children: error[0] })), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("form", __assign({ onSubmit: handleSubmit }, { children: [(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("div", __assign({ className: "image-preview" }, { children: (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("img", { className: 'img-preview', src: screenshot, alt: "screenshot" }) })), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("textarea", { className: 'txt-area', placeholder: "D\u00E9crivez votre probl\u00E8me...", value: alertDescription, onChange: function (e) { return setAlertDescription(e.target.value); } }), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("input", { type: "hidden", value: brandName, onChange: function (e) { return setBrandName(e.target.value); } }), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", __assign({ className: 'align-checkBtn' }, { children: [(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", __assign({ className: "checkBoxFeedback ".concat(alertDescription.trim() ? 'visible' : 'hidden') }, { children: [(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("input", { type: "checkbox", checked: isBlocked === 'yes', onChange: function (e) { return setBlocking(e.target.checked ? 'yes' : 'no'); }, style: { marginRight: '8px', width: '16px', height: '16px', accentColor: '#6a1b9a' } }), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("label", { children: "Je suis bloqu\u00E9" })] })), " ", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("button", __assign({ disabled: !alertDescription.trim(), type: "submit", className: "submit-button ".concat(!alertDescription.trim() ? 'feedbackSubmitDisabled' : 'feedbackSubmiEnabled') }, { children: !alertDescription.trim() ? ((0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("svg", __assign({ xmlns: "http://www.w3.org/2000/svg", width: "23", height: "23", viewBox: "0 0 23 23", fill: "none" }, { children: [(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("circle", { cx: "11.4771", cy: "11.2048", r: "11", transform: "rotate(90 11.4771 11.2048)", fill: "url(#paint0_linear_319_540)" }), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("path", { d: "M11.4001 6.20483L16.4771 11.312L11.4001 16.4191M15.7719 11.312L5.47705 11.312", stroke: "white", strokeWidth: "1.4", strokeLinecap: "round", strokeLinejoin: "round" }), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("defs", { children: (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("linearGradient", __assign({ id: "paint0_linear_319_540", x1: "-2.47644", y1: "35.6819", x2: "26.1437", y2: "0.204836", gradientUnits: "userSpaceOnUse" }, { children: [(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("stop", { offset: "0.22376", stopColor: "#908f91" }), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("stop", { offset: "0.613341", stopColor: "#9f9f9f" })] })) })] }))) : ((0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("svg", __assign({ xmlns: "http://www.w3.org/2000/svg", width: "23", height: "23", viewBox: "0 0 23 23", fill: "none" }, { children: [(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("circle", { cx: "11.4771", cy: "11.2048", r: "11", transform: "rotate(90 11.4771 11.2048)", fill: "url(#paint0_linear_319_540)" }), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("path", { d: "M11.4001 6.20483L16.4771 11.312L11.4001 16.4191M15.7719 11.312L5.47705 11.312", stroke: "white", strokeWidth: "1.4", strokeLinecap: "round", strokeLinejoin: "round" }), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("defs", { children: (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("linearGradient", __assign({ id: "paint0_linear_319_540", x1: "-2.47644", y1: "35.6819", x2: "26.1437", y2: "0.204836", gradientUnits: "userSpaceOnUse" }, { children: [(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("stop", { offset: "0.22376", stopColor: "#6E36A9" }), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("stop", { offset: "0.613341", stopColor: "#B033AE" })] })) })] }))) }))] }))] }))] }))), showConfirmation && ((0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(_popupConfirm_PopupConfirm__WEBPACK_IMPORTED_MODULE_6__["default"], { onClose: function () {
                     setShowConfirmation(false);
                     onClose();
-                } })), showLoginForm && ((0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(_LoginForm__WEBPACK_IMPORTED_MODULE_4__["default"], { onClose: function () { return setShowLoginForm(false); }, onLoginSuccess: handleLoginSuccess }))] }));
+                } })), showLoginForm && ((0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(_LoginForm__WEBPACK_IMPORTED_MODULE_4__["default"], { onClose: function () { return setShowLoginForm(false); }, onLoginSuccess: handleLoginSuccess }))] })));
 };
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (FeedbackForm);
 
@@ -43163,6 +43149,62 @@ var LoginForm = function (_a) {
 
 /***/ }),
 
+/***/ "./src/components/animationsPoint/AnimatedPoints.tsx":
+/*!***********************************************************!*\
+  !*** ./src/components/animationsPoint/AnimatedPoints.tsx ***!
+  \***********************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_1__);
+var __assign = (undefined && undefined.__assign) || function () {
+    __assign = Object.assign || function(t) {
+        for (var s, i = 1, n = arguments.length; i < n; i++) {
+            s = arguments[i];
+            for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p))
+                t[p] = s[p];
+        }
+        return t;
+    };
+    return __assign.apply(this, arguments);
+};
+
+
+var AnimatedPoints = function (_a) {
+    var startPoints = _a.startPoints, endPoints = _a.endPoints, _b = _a.duration, duration = _b === void 0 ? 1000 : _b;
+    var _c = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)(startPoints), currentPoints = _c[0], setCurrentPoints = _c[1];
+    (0,react__WEBPACK_IMPORTED_MODULE_1__.useEffect)(function () {
+        var interval = null;
+        var stepTime = Math.ceil(duration / (endPoints - startPoints));
+        if (startPoints < endPoints) {
+            interval = setInterval(function () {
+                setCurrentPoints(function (prev) {
+                    if (prev >= endPoints) {
+                        clearInterval(interval);
+                        return prev;
+                    }
+                    return prev + 1;
+                });
+            }, stepTime);
+        }
+        return function () {
+            if (interval)
+                clearInterval(interval);
+        };
+    }, [startPoints, endPoints, duration]);
+    return ((0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("div", __assign({ className: "points-container" }, { children: (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("span", __assign({ className: "points-animation" }, { children: [currentPoints, " points"] })) })));
+};
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (AnimatedPoints);
+
+
+/***/ }),
+
 /***/ "./src/components/captureFeedbackFlow/CaptureFeedbackFlow.tsx":
 /*!********************************************************************!*\
   !*** ./src/components/captureFeedbackFlow/CaptureFeedbackFlow.tsx ***!
@@ -43224,52 +43266,40 @@ var __assign = (undefined && undefined.__assign) || function () {
     };
     return __assign.apply(this, arguments);
 };
+var __spreadArray = (undefined && undefined.__spreadArray) || function (to, from, pack) {
+    if (pack || arguments.length === 2) for (var i = 0, l = from.length, ar; i < l; i++) {
+        if (ar || !(i in from)) {
+            if (!ar) ar = Array.prototype.slice.call(from, 0, i);
+            ar[i] = from[i];
+        }
+    }
+    return to.concat(ar || Array.prototype.slice.call(from));
+};
 
 
 var EmojiSelector = function (_a) {
     var onSelect = _a.onSelect;
-    var _b = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)(false), showMoreEmojis = _b[0], setShowMoreEmojis = _b[1];
-    var defaultEmojis = ['😐', '😤', '😡'];
-    var moreEmojis = ['😭', '😂', '🤔', '😍']; // Emojis supplémentaires
-    return ((0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", __assign({ style: {
-            display: 'flex',
-            justifyContent: 'center',
-            alignItems: 'center',
-            gap: '15px',
-            padding: '15px',
-            borderRadius: '8px',
-            backgroundColor: '#fff',
-            position: 'fixed',
-            top: '20%',
-            left: '50%',
-            transform: 'translate(-50%, -50%)',
-            boxShadow: '0px 4px 8px rgba(0,0,0,0.2)',
-            zIndex: 1000
-        } }, { children: [defaultEmojis.map(function (emoji, index) { return ((0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("button", __assign({ onClick: function () { return onSelect(emoji); }, style: {
-                    fontSize: '2rem',
-                    cursor: 'pointer',
-                    background: 'none',
-                    border: 'none'
-                } }, { children: emoji }), index)); }), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("div", __assign({ className: "plus-icon", onClick: function () { return setShowMoreEmojis(!showMoreEmojis); }, style: {
-                    display: 'flex',
-                    alignItems: 'center',
-                    justifyContent: 'center',
-                    width: '40px',
-                    height: '40px',
-                    borderRadius: '50%',
-                    backgroundColor: '#f0f0f0',
-                    boxShadow: '0 2px 4px rgba(0, 0, 0, 0.1)',
-                    fontSize: '20px',
-                    fontWeight: 'bold',
-                    color: '#333',
-                    cursor: 'pointer',
-                    transition: 'transform 0.2s ease, background-color 0.2s ease'
-                } }, { children: "+" })), showMoreEmojis && ((0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("div", __assign({ style: { display: 'flex', gap: '15px', marginLeft: '15px' } }, { children: moreEmojis.map(function (emoji, index) { return ((0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("button", __assign({ onClick: function () { return onSelect(emoji); }, style: {
-                        fontSize: '2rem',
-                        cursor: 'pointer',
-                        background: 'none',
-                        border: 'none'
-                    } }, { children: emoji }), index)); }) })))] })));
+    var initialEmojis = [
+        { emoji: "😐", name: "Neutre" },
+        { emoji: "😤", name: "Agacé" },
+        { emoji: "😡", name: "En colère" },
+    ];
+    var additionalEmojis = [
+        { emoji: "🤔", name: "Pensif" },
+        { emoji: "😭", name: "Triste" },
+        { emoji: "😖", name: "Dégouté" },
+        { emoji: "😵", name: "Étourdi" },
+        { emoji: "🤣", name: "Hilarant" },
+    ];
+    var _b = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)(initialEmojis), emojis = _b[0], setEmojis = _b[1];
+    var _c = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)(false), showMore = _c[0], setShowMore = _c[1];
+    var handleShowMore = function () {
+        if (!showMore) {
+            setEmojis(__spreadArray(__spreadArray([], emojis, true), additionalEmojis, true));
+            setShowMore(true);
+        }
+    };
+    return ((0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", __assign({ className: "emoji-popup-container" }, { children: [(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("div", { className: "emoji-waterdrop" }), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("div", __assign({ className: "emoji-popup-title" }, { children: "Quelle \u00E9motion ressentez-vous face \u00E0 ce probl\u00E8me ?" })), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", __assign({ className: "emoji-container" }, { children: [emojis.map(function (emojiObj, index) { return ((0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", __assign({ className: "emoji-item", onClick: function () { return onSelect(emojiObj.emoji); } }, { children: [(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("span", __assign({ className: "emoji-span" }, { children: emojiObj.emoji })), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("div", __assign({ className: "emoji-tooltip" }, { children: emojiObj.name }))] }), index)); }), !showMore && ((0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("div", __assign({ className: "add-more-button", onClick: handleShowMore }, { children: "+" })))] }))] })));
 };
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (EmojiSelector);
 
@@ -43288,6 +43318,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
 /* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _animationsPoint_AnimatedPoints__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../animationsPoint/AnimatedPoints */ "./src/components/animationsPoint/AnimatedPoints.tsx");
 var __assign = (undefined && undefined.__assign) || function () {
     __assign = Object.assign || function(t) {
         for (var s, i = 1, n = arguments.length; i < n; i++) {
@@ -43300,9 +43333,32 @@ var __assign = (undefined && undefined.__assign) || function () {
     return __assign.apply(this, arguments);
 };
 
+
+
 var PopupConfirm = function (_a) {
     var onClose = _a.onClose;
-    return ((0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", __assign({ className: 'popup-confirm' }, { children: [(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("div", __assign({ className: 'close-button', onClick: onClose }, { children: (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("svg", __assign({ xmlns: "http://www.w3.org/2000/svg", width: "15", height: "14", viewBox: "0 0 15 14", fill: "none" }, { children: [(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("path", { d: "M11.2502 3.49982L4.25024 10.4998", stroke: "#D2D7E0", strokeWidth: "1.4", strokeLinecap: "round" }), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("path", { d: "M11.3376 10.4108L4.25034 3.50029", stroke: "#D2D7E0", strokeWidth: "1.4", strokeLinecap: "round" })] })) })), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("div", __assign({ className: 'fusee' }, { children: "\uD83D\uDE80" })), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("h1", __assign({ className: 'h1Title' }, { children: "Signalement re\u00E7u, merci ! On plonge dedans illico \uD83D\uDE80" })), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("p", __assign({ className: 'popupParaph' }, { children: "Bravo pour votre 22e signalement" })), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("button", __assign({ className: 'btn-ptn' }, { children: "+10 points" })), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", __assign({ style: { marginTop: '15px' } }, { children: [(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("input", { type: "checkbox" }), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("label", __assign({ className: "noDisplay" }, { children: "Tenez-moi au jus quand c'est r\u00E9gl\u00E9 !" }))] })), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("button", __assign({ className: 'closeBtn', onClick: onClose }, { children: "Fermer" }))] })));
+    var _b = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)(null), selectedCategory = _b[0], setSelectedCategory = _b[1];
+    var handleCategoryChange = function (category) {
+        setSelectedCategory(category);
+        // Appeler l'API PUT avec la catégorie sélectionnée
+        fetch('/api/update-category', {
+            method: 'PUT',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ category: category }),
+        })
+            .then(function (response) {
+            if (!response.ok) {
+                throw new Error('Erreur lors de la mise à jour de la catégorie');
+            }
+            console.log('Catégorie mise à jour avec succès :', category);
+        })
+            .catch(function (error) {
+            console.error(error);
+        });
+    };
+    return ((0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("div", __assign({ className: "category-popup-overlay" }, { children: (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", __assign({ className: "category-popup" }, { children: [(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", __assign({ className: "popup-header" }, { children: [(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("div", __assign({ className: "popup-icon" }, { children: (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("svg", __assign({ xmlns: "http://www.w3.org/2000/svg", width: "122", height: "120", viewBox: "0 0 122 120", fill: "none" }, { children: [(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("g", __assign({ filter: "url(#filter0_d_400_2238)" }, { children: (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("rect", { x: "34", y: "30", width: "53.0732", height: "51.4146", rx: "8", fill: "url(#paint0_linear_400_2238)" }) })), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("path", { d: "M63.1231 41.6094H70.1059V60.282C70.1059 62.44 69.5923 64.32 68.5652 65.922C67.538 67.5146 66.1056 68.7491 64.268 69.6255C62.4304 70.4924 60.296 70.9259 57.8648 70.9259C55.4052 70.9259 53.2567 70.4924 51.4191 69.6255C49.5815 68.7491 48.1538 67.5146 47.1361 65.922C46.1184 64.32 45.6095 62.44 45.6095 60.282V41.6094H52.6064V59.6742C52.6064 60.6731 52.8232 61.5636 53.2567 62.3458C53.6996 63.1279 54.3168 63.7405 55.1084 64.1834C55.9 64.6263 56.8188 64.8477 57.8648 64.8477C58.9108 64.8477 59.8249 64.6263 60.607 64.1834C61.3986 63.7405 62.0158 63.1279 62.4587 62.3458C62.9016 61.5636 63.1231 60.6731 63.1231 59.6742V41.6094Z", fill: "white" }), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("path", { d: "M77.018 70.9683C76.0003 70.9683 75.1286 70.6102 74.403 69.894C73.6868 69.1778 73.3334 68.3109 73.3429 67.2931C73.3334 66.2942 73.6868 65.4414 74.403 64.7347C75.1286 64.0185 76.0003 63.6604 77.018 63.6604C77.9792 63.6604 78.8273 64.0185 79.5624 64.7347C80.3068 65.4414 80.6838 66.2942 80.6932 67.2931C80.6838 67.9716 80.5047 68.5889 80.1561 69.1449C79.8168 69.7008 79.3692 70.1437 78.8132 70.4736C78.2666 70.8034 77.6683 70.9683 77.018 70.9683Z", fill: "white" }), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("defs", { children: [(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("filter", __assign({ id: "filter0_d_400_2238", x: "0", y: "0", width: "121.073", height: "119.415", filterUnits: "userSpaceOnUse", colorInterpolationFilters: "sRGB" }, { children: [(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("feFlood", { floodOpacity: "0", result: "BackgroundImageFix" }), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("feColorMatrix", { in: "SourceAlpha", type: "matrix", values: "0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0", result: "hardAlpha" }), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("feOffset", { dy: "4" }), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("feGaussianBlur", { stdDeviation: "17" }), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("feComposite", { in2: "hardAlpha", operator: "out" }), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("feColorMatrix", { type: "matrix", values: "0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.1 0" }), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("feBlend", { mode: "normal", in2: "BackgroundImageFix", result: "effect1_dropShadow_400_2238" }), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("feBlend", { mode: "normal", in: "SourceGraphic", in2: "effect1_dropShadow_400_2238", result: "shape" })] })), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("linearGradient", __assign({ id: "paint0_linear_400_2238", x1: "24.7699", y1: "81.4146", x2: "94.2894", y2: "27.884", gradientUnits: "userSpaceOnUse" }, { children: [(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("stop", { stopColor: "#5A13A5" }), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("stop", { offset: "1", stopColor: "#FE2190" })] }))] })] })) })), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("button", __assign({ className: "popup-close", onClick: onClose }, { children: "\u2716" }))] })), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", __assign({ className: "popup-content" }, { children: [(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("h1", __assign({ className: 'h1Title' }, { children: "Signalement re\u00E7u, merci !" })), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", __assign({ className: "popup-points" }, { children: [(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("span", __assign({ role: "img", "aria-label": "thumbs-up" }, { children: "\uD83D\uDC4D" })), ' ', (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(_animationsPoint_AnimatedPoints__WEBPACK_IMPORTED_MODULE_2__["default"], { startPoints: 0, endPoints: 10, duration: 1000 })] })), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("p", { children: ["Nous n'avons pas identifi\u00E9 la cat\u00E9gorie de votre signalement. Pouvez-vous choisir ?", ' ', (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("span", __assign({ role: "img", "aria-label": "smile" }, { children: "\uD83D\uDE0A" }))] }), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("div", __assign({ className: "popup-categories" }, { children: ['Catégorie 1', 'Catégorie 2', 'Catégorie 3', 'Autre'].map(function (category, index) { return ((0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("label", __assign({ className: "popup-category ".concat(selectedCategory === category ? 'selected' : '') }, { children: [(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("input", { type: "radio", name: "category", value: category, checked: selectedCategory === category, onChange: function () { return handleCategoryChange(category); } }), category] }), index)); }) }))] })), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("button", __assign({ className: "popup-close-button", onClick: onClose }, { children: "Fermer" }))] })) })));
 };
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (PopupConfirm);
 
@@ -43318,9 +43374,11 @@ var PopupConfirm = function (_a) {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   getLoginTime: () => (/* binding */ getLoginTime),
 /* harmony export */   isUserAuthenticated: () => (/* binding */ isUserAuthenticated),
 /* harmony export */   login: () => (/* binding */ login),
-/* harmony export */   logout: () => (/* binding */ logout)
+/* harmony export */   logout: () => (/* binding */ logout),
+/* harmony export */   setLoginTime: () => (/* binding */ setLoginTime)
 /* harmony export */ });
 /* harmony import */ var _utils_storageUtil__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../utils/storageUtil */ "./src/utils/storageUtil.ts");
 // authService.ts
@@ -43398,85 +43456,127 @@ export function logout() {
 // AuthService.ts
  // Mise à jour pour chrome.storage
 var API_URL = 'https://usearly-api.vercel.app/api/v1';
-var API_URL_DEV = 'https://1073-2a01-cb08-512-d600-29df-3525-253f-fd48.ngrok-free.app/api/v1';
+var API_URL_DEV = 'https://17d8-2a01-cb08-512-d600-b5e4-a24f-54ce-c58c.ngrok-free.app/api/v1';
+//const API_URL_DEV = 'https://17d8-2a01-cb08-512-d600-b5e4-a24f-54ce-c58c.ngrok-free.app/api/v1';
 function login(email, password) {
     return __awaiter(this, void 0, void 0, function () {
         var response, data, error_1;
         return __generator(this, function (_a) {
             switch (_a.label) {
                 case 0:
-                    _a.trys.push([0, 6, , 7]);
+                    _a.trys.push([0, 7, , 8]);
                     return [4 /*yield*/, fetch("".concat(API_URL_DEV, "/user/login"), {
                             method: 'POST',
                             headers: { 'Content-Type': 'application/json' },
                             body: JSON.stringify({ email: email, password: password }),
-                            //mode: 'cors'
                         })];
                 case 1:
                     response = _a.sent();
                     return [4 /*yield*/, response.json()];
                 case 2:
                     data = _a.sent();
-                    if (!data.token) return [3 /*break*/, 4];
+                    if (!data.token) return [3 /*break*/, 5];
                     console.log("data: ", data);
                     return [4 /*yield*/, (0,_utils_storageUtil__WEBPACK_IMPORTED_MODULE_0__.setToken)(data.token)];
                 case 3:
                     _a.sent(); // Stocke le token avec chrome.storage
+                    return [4 /*yield*/, setLoginTime()];
+                case 4:
+                    _a.sent(); // Stocke l'heure de connexion
                     return [2 /*return*/, true];
-                case 4: throw new Error('Authentification échouée');
-                case 5: return [3 /*break*/, 7];
-                case 6:
+                case 5: throw new Error('Authentification échouée');
+                case 6: return [3 /*break*/, 8];
+                case 7:
                     error_1 = _a.sent();
                     console.error('Erreur de connexion:', error_1);
                     return [2 /*return*/, false];
-                case 7: return [2 /*return*/];
+                case 8: return [2 /*return*/];
             }
         });
     });
 }
-function isUserAuthenticated() {
+// Stocke l'heure de connexion
+function setLoginTime() {
+    return __awaiter(this, void 0, void 0, function () {
+        var currentTime;
+        return __generator(this, function (_a) {
+            currentTime = Date.now();
+            chrome.storage.local.set({ loginTime: currentTime });
+            return [2 /*return*/];
+        });
+    });
+}
+// Récupère l'heure de connexion
+function getLoginTime() {
     return __awaiter(this, void 0, void 0, function () {
         return __generator(this, function (_a) {
             return [2 /*return*/, new Promise(function (resolve) {
-                    chrome.runtime.sendMessage({ action: 'isAuthenticated' }, function (response) {
-                        var _a;
-                        if (chrome.runtime.lastError) {
-                            console.error("Erreur de communication avec le script de fond :", chrome.runtime.lastError.message);
-                            resolve(false); // Considérez l'utilisateur comme non authentifié en cas d'erreur
-                        }
-                        else {
-                            resolve((_a = response === null || response === void 0 ? void 0 : response.isAuthenticated) !== null && _a !== void 0 ? _a : false); // Assurez-vous que `response` est défini
-                        }
+                    chrome.storage.local.get(['loginTime'], function (result) {
+                        resolve(result.loginTime || null);
                     });
                 })];
         });
     });
 }
-/* export function login(email: string, password: string): Promise<boolean> {
-    return new Promise((resolve) => {
-        const timeout = setTimeout(() => {
-            console.error("Timeout pour la réponse du script de fond.");
-            resolve(false); // Forcer la résolution après un délai
-        }, 5000); // Timeout de 5 secondes
-
-        chrome.runtime.sendMessage({ action: 'login', email, password }, (response) => {
-            clearTimeout(timeout); // Annule le timeout si la réponse arrive à temps
-            if (chrome.runtime.lastError) {
-                console.error("Erreur de communication avec le script de fond :", chrome.runtime.lastError.message);
-                resolve(false);
-            } else {
-                resolve(response?.success ?? false);
-            }
+// Vérifie si l'utilisateur est encore authentifié (déconnexion après 20 secondes pour le test)
+function isUserAuthenticated() {
+    return __awaiter(this, void 0, void 0, function () {
+        var _this = this;
+        return __generator(this, function (_a) {
+            return [2 /*return*/, new Promise(function (resolve) { return __awaiter(_this, void 0, void 0, function () {
+                    var _this = this;
+                    return __generator(this, function (_a) {
+                        chrome.runtime.sendMessage({ action: 'isAuthenticated' }, function (response) { return __awaiter(_this, void 0, void 0, function () {
+                            var loginTime, elapsedTime, FIVE_HOURS_IN_MS;
+                            var _a;
+                            return __generator(this, function (_b) {
+                                switch (_b.label) {
+                                    case 0:
+                                        if (!chrome.runtime.lastError) return [3 /*break*/, 1];
+                                        console.error("Erreur de communication avec le script de fond :", chrome.runtime.lastError.message);
+                                        resolve(false);
+                                        return [3 /*break*/, 3];
+                                    case 1: return [4 /*yield*/, getLoginTime()];
+                                    case 2:
+                                        loginTime = _b.sent();
+                                        if (loginTime) {
+                                            elapsedTime = Date.now() - loginTime;
+                                            FIVE_HOURS_IN_MS = 5 * 60 * 60 * 1000;
+                                            if (elapsedTime >= FIVE_HOURS_IN_MS) {
+                                                //console.log(`Temps écoulé ::: ${elapsedTime / 1000} secondes. Déconnexion.`);
+                                                logout(); // Déconnectez si 20 secondes sont écoulées
+                                                resolve(false);
+                                            }
+                                            else {
+                                                console.log("Temps restant avant d\u00E9connexion ::: ".concat((FIVE_HOURS_IN_MS - elapsedTime) / 1000, " secondes."));
+                                                resolve((_a = response === null || response === void 0 ? void 0 : response.isAuthenticated) !== null && _a !== void 0 ? _a : false);
+                                            }
+                                        }
+                                        else {
+                                            resolve(false); // Aucun login enregistré
+                                        }
+                                        _b.label = 3;
+                                    case 3: return [2 /*return*/];
+                                }
+                            });
+                        }); });
+                        return [2 /*return*/];
+                    });
+                }); })];
         });
     });
-} */
+}
+// Déconnecte l'utilisateur
 function logout() {
     chrome.runtime.sendMessage({ action: "logout" }, function (response) {
-        if (response.success) {
+        if (response === null || response === void 0 ? void 0 : response.success) {
             console.log("Déconnexion réussie");
         }
     });
-    //chrome.runtime.sendMessage({ action: 'logout' });
+    // Supprime les informations de connexion
+    chrome.storage.local.remove(['authToken', 'loginTime'], function () {
+        console.log("Données utilisateur supprimées");
+    });
 }
 
 
@@ -43534,7 +43634,7 @@ var __generator = (undefined && undefined.__generator) || function (thisArg, bod
 };
 
 var API_URL = 'https://usearly-api.vercel.app/api/v1';
-var API_BASE_URL = "https://1073-2a01-cb08-512-d600-29df-3525-253f-fd48.ngrok-free.app/api/v1";
+var API_BASE_URL = "https://17d8-2a01-cb08-512-d600-b5e4-a24f-54ce-c58c.ngrok-free.app/api/v1";
 function callProtectedAPI(endpoint) {
     return __awaiter(this, void 0, void 0, function () {
         var token, response;
@@ -43738,6 +43838,7 @@ var lensBubble = null;
 var selectionEnabled = false; // Indicateur pour activer la sélection après le deuxième clic
 var menuOpen = false;
 var centeredText = null;
+var overlay = null;
 // Élément bulle avec icône pour le mode capture
 var captureBubble = null;
 // Activer le mode Google Lens avec la bulle (premier clic)
@@ -43745,6 +43846,7 @@ function enableLensMode() {
     console.log("Enable Lens Mode called");
     createLensBubble(); // Afficher la bulle avec l'icône de caméra
     createCenteredText(); // Affiche le texte centré
+    createOverlay(); // Ajoute l'overlay semi-transparent
     // Suivre le curseur avec la bulle sans activer la sélection
     document.addEventListener('mousemove', moveLensBubble);
     // Préparer pour un clic dans la bulle pour démarrer la sélection
@@ -43754,19 +43856,20 @@ function createCenteredText() {
     if (!centeredText) {
         centeredText = document.createElement("div");
         centeredText.style.position = "fixed";
-        centeredText.style.top = "20px"; // Positionné en haut de la page
+        centeredText.style.top = "100px"; // Positionné en haut de la page
         centeredText.style.left = "50%"; // Centré horizontalement
         centeredText.style.transform = "translateX(-50%)"; // Correction pour centrer
         centeredText.style.padding = "10px 20px";
-        centeredText.style.backgroundColor = "#333";
+        centeredText.style.backgroundColor = "rgba(5, 10, 21, 0.79)";
         centeredText.style.color = "#fff";
-        centeredText.style.borderRadius = "20px";
+        centeredText.style.borderRadius = "53px";
         centeredText.style.fontSize = "16px";
-        centeredText.style.fontWeight = "bold";
-        centeredText.style.boxShadow = "0 2px 5px rgba(0, 0, 0, 0.2)";
+        //centeredText.style.fontWeight = "400";
+        centeredText.style.boxShadow = "0px 0px 37.7px 0px rgba(0, 0, 0, 0.25)";
         centeredText.style.zIndex = "10002";
         centeredText.style.pointerEvents = "none"; // Empêche les interactions
-        centeredText.textContent = "Sélectionnez la zone du problème"; // Texte à afficher
+        // Contenu avec icône SVG
+        centeredText.innerHTML = "\n    <div class=\"d-flex\">\n    <div class=\"app-photo\">\n        <svg xmlns=\"http://www.w3.org/2000/svg\" width=\"18\" height=\"18\" viewBox=\"0 0 18 18\" fill=\"none\">\n          <path d=\"M1 5V3C1 2.46957 1.21071 1.96086 1.58579 1.58579C1.96086 1.21071 2.46957 1 3 1H5M1 13V15C1 15.5304 1.21071 16.0391 1.58579 16.4142C1.96086 16.7893 2.46957 17 3 17H5M13 1H15C15.5304 1 16.0391 1.21071 16.4142 1.58579C16.7893 1.96086 17 2.46957 17 3V5M13 17H15C15.5304 17 16.0391 16.7893 16.4142 16.4142C16.7893 16.0391 17 15.5304 17 15V13M6 9C6 9.79565 6.31607 10.5587 6.87868 11.1213C7.44129 11.6839 8.20435 12 9 12C9.79565 12 10.5587 11.6839 11.1213 11.1213C11.6839 10.5587 12 9.79565 12 9C12 8.20435 11.6839 7.44129 11.1213 6.87868C10.5587 6.31607 9.79565 6 9 6C8.20435 6 7.44129 6.31607 6.87868 6.87868C6.31607 7.44129 6 8.20435 6 9Z\" stroke=\"white\" stroke-opacity=\"0.8\" stroke-width=\"1.4\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/>\n        </svg>\n    </div>\n        <span class=\"txt-problem\">S\u00E9lectionnez la zone du probl\u00E8me</span>\n    </div>\n      ";
         document.body.appendChild(centeredText);
     }
 }
@@ -43776,30 +43879,36 @@ function removeCenteredText() {
         centeredText = null;
     }
 }
+function createOverlay() {
+    if (!overlay) {
+        overlay = document.createElement("div");
+        overlay.className = "bck";
+        overlay.style.position = "fixed";
+        overlay.style.top = "0";
+        overlay.style.left = "0";
+        overlay.style.width = "100%";
+        overlay.style.height = "100%";
+        overlay.style.backgroundColor = "rgba(0, 0, 0, 0.3)"; // Couleur semi-transparente
+        overlay.style.zIndex = "10000";
+        overlay.style.pointerEvents = "none"; // Empêche les interactions avec l'overlay
+        document.body.appendChild(overlay);
+    }
+}
+function removeOverlay() {
+    if (overlay) {
+        overlay.remove();
+        overlay = null;
+    }
+}
 // Créer et afficher la bulle avec la caméra pour suivre la souris
 function createLensBubble() {
     if (!captureBubble) {
         captureBubble = document.createElement("div");
-        captureBubble.style.position = "absolute";
-        captureBubble.style.width = "50px";
-        captureBubble.style.height = "50px";
-        captureBubble.style.backgroundColor = "#F0F4FF";
-        captureBubble.style.borderRadius = "50%";
-        captureBubble.style.display = "flex";
-        captureBubble.style.alignItems = "center";
-        captureBubble.style.justifyContent = "center";
-        captureBubble.style.boxShadow = "0 2px 5px rgba(0, 0, 0, 0.2)";
-        captureBubble.style.cursor = "pointer";
-        captureBubble.style.zIndex = "10001";
-        captureBubble.style.pointerEvents = "none"; // Empêche l'interaction avec la bulle
-        // Icône d'appareil photo dans la bulle
-        var cameraIcon = document.createElement("span");
-        cameraIcon.style.fontSize = "24px";
-        cameraIcon.textContent = "📷"; // Emoji d'appareil photo
-        captureBubble.appendChild(cameraIcon);
+        captureBubble.className = "capture-bubble"; // Classe CSS pour appliquer le style principal
+        // Ajouter le SVG directement dans la bulle
+        captureBubble.innerHTML = "\n      <svg xmlns=\"http://www.w3.org/2000/svg\" width=\"61\" height=\"62\" viewBox=\"0 0 61 62\" fill=\"none\">\n          <g filter=\"url(#filter0_d_397_1906)\">\n          <path d=\"M30 7C42.1503 7 52 16.8497 52 29L52 29.5C52 41.3741 42.3741 51 30.5 51C18.6259 51 9 41.3741 9 29.5L9 7L30 7Z\" fill=\"url(#paint0_linear_397_1906)\"/>\n          <path d=\"M30 8C41.598 8 51 17.402 51 29L51 29.5C51 40.8218 41.8218 50 30.5 50C19.1782 50 10 40.8218 10 29.5L10 8L30 8Z\" stroke=\"white\" stroke-width=\"2\"/>\n          </g>\n          <path d=\"M34 21L36 21C36.5304 21 37.0391 21.2107 37.4142 21.5858C37.7893 21.9609 38 22.4696 38 23L38 25M26 21L24 21C23.4696 21 22.9609 21.2107 22.5858 21.5858C22.2107 21.9609 22 22.4696 22 23L22 25M38 33L38 35C38 35.5304 37.7893 36.0391 37.4142 36.4142C37.0391 36.7893 36.5304 37 36 37L34 37M22 33L22 35C22 35.5304 22.2107 36.0391 22.5858 36.4142C22.9609 36.7893 23.4696 37 24 37L26 37M30 26C29.2044 26 28.4413 26.3161 27.8787 26.8787C27.3161 27.4413 27 28.2044 27 29C27 29.7956 27.3161 30.5587 27.8787 31.1213C28.4413 31.6839 29.2044 32 30 32C30.7956 32 31.5587 31.6839 32.1213 31.1213C32.6839 30.5587 33 29.7956 33 29C33 28.2044 32.6839 27.4413 32.1213 26.8787C31.5587 26.3161 30.7956 26 30 26Z\" stroke=\"white\" stroke-opacity=\"0.8\" stroke-width=\"1.4\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/>\n          <g filter=\"url(#filter1_d_397_1906)\">\n          <path d=\"M30 7C42.1503 7 52 16.8497 52 29L52 29.5C52 41.3741 42.3741 51 30.5 51V51C18.6259 51 9 41.3741 9 29.5L9 9C9 7.89543 9.89543 7 11 7L30 7Z\" fill=\"url(#paint1_linear_397_1906)\"/>\n          <path d=\"M51 29L51 29.5C51 40.8218 41.8218 50 30.5 50C19.1782 50 10 40.8218 10 29.5L10 9C10 8.44771 10.4477 8 11 8L30 8C41.598 8 51 17.402 51 29Z\" stroke=\"white\" stroke-width=\"2\"/>\n          </g>\n          <path d=\"M32.4831 21H36.6628V31.8122C36.6628 33.0618 36.3554 34.1504 35.7405 35.078C35.1257 36.0002 34.2683 36.715 33.1684 37.2224C32.0685 37.7244 30.7909 37.9754 29.3356 37.9754C27.8634 37.9754 26.5774 37.7244 25.4774 37.2224C24.3775 36.715 23.523 36.0002 22.9138 35.078C22.3046 34.1504 22 33.0618 22 31.8122V21H26.1882V31.4603C26.1882 32.0387 26.3179 32.5543 26.5774 33.0072C26.8425 33.4601 27.2119 33.8148 27.6857 34.0713C28.1595 34.3277 28.7095 34.4559 29.3356 34.4559C29.9617 34.4559 30.5089 34.3277 30.977 34.0713C31.4508 33.8148 31.8203 33.4601 32.0854 33.0072C32.3505 32.5543 32.4831 32.0387 32.4831 31.4603V21Z\" fill=\"white\"/>\n          <path d=\"M40.8002 38C40.191 38 39.6692 37.7926 39.2349 37.3779C38.8062 36.9632 38.5947 36.4612 38.6003 35.8719C38.5947 35.2935 38.8062 34.7997 39.2349 34.3905C39.6692 33.9758 40.191 33.7684 40.8002 33.7684C41.3755 33.7684 41.8832 33.9758 42.3231 34.3905C42.7687 34.7997 42.9944 35.2935 43 35.8719C42.9944 36.2648 42.8872 36.6222 42.6785 36.9441C42.4754 37.2661 42.2075 37.5225 41.8747 37.7135C41.5475 37.9045 41.1894 38 40.8002 38Z\" fill=\"white\"/>\n          <defs>\n          <filter id=\"filter0_d_397_1906\" x=\"0.8\" y=\"0.8\" width=\"59.4\" height=\"60.4\" filterUnits=\"userSpaceOnUse\" color-interpolation-filters=\"sRGB\">\n          <feFlood flood-opacity=\"0\" result=\"BackgroundImageFix\"/>\n          <feColorMatrix in=\"SourceAlpha\" type=\"matrix\" values=\"0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0\" result=\"hardAlpha\"/>\n          <feOffset dy=\"2\"/>\n          <feGaussianBlur stdDeviation=\"4.1\"/>\n          <feComposite in2=\"hardAlpha\" operator=\"out\"/>\n          <feColorMatrix type=\"matrix\" values=\"0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.25 0\"/>\n          <feBlend mode=\"normal\" in2=\"BackgroundImageFix\" result=\"effect1_dropShadow_397_1906\"/>\n          <feBlend mode=\"normal\" in=\"SourceGraphic\" in2=\"effect1_dropShadow_397_1906\" result=\"shape\"/>\n          </filter>\n          <filter id=\"filter1_d_397_1906\" x=\"0.8\" y=\"0.8\" width=\"59.4\" height=\"60.4\" filterUnits=\"userSpaceOnUse\" color-interpolation-filters=\"sRGB\">\n          <feFlood flood-opacity=\"0\" result=\"BackgroundImageFix\"/>\n          <feColorMatrix in=\"SourceAlpha\" type=\"matrix\" values=\"0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0\" result=\"hardAlpha\"/>\n          <feOffset dy=\"2\"/>\n          <feGaussianBlur stdDeviation=\"4.1\"/>\n          <feComposite in2=\"hardAlpha\" operator=\"out\"/>\n          <feColorMatrix type=\"matrix\" values=\"0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.25 0\"/>\n          <feBlend mode=\"normal\" in2=\"BackgroundImageFix\" result=\"effect1_dropShadow_397_1906\"/>\n          <feBlend mode=\"normal\" in=\"SourceGraphic\" in2=\"effect1_dropShadow_397_1906\" result=\"shape\"/>\n          </filter>\n          <linearGradient id=\"paint0_linear_397_1906\" x1=\"9\" y1=\"-0.652177\" x2=\"53.2784\" y2=\"57.3575\" gradientUnits=\"userSpaceOnUse\">\n          <stop stop-color=\"#5A13A5\"/>\n          <stop offset=\"1\" stop-color=\"#FE2190\"/>\n          </linearGradient>\n          <linearGradient id=\"paint1_linear_397_1906\" x1=\"9\" y1=\"-0.652177\" x2=\"53.2784\" y2=\"57.3575\" gradientUnits=\"userSpaceOnUse\">\n          <stop stop-color=\"#5A13A5\"/>\n          <stop offset=\"1\" stop-color=\"#FE2190\"/>\n          </linearGradient>\n          </defs>\n</svg>\n    ";
         document.body.appendChild(captureBubble);
-        // Suivre le mouvement de la souris pour placer la bulle
-        document.addEventListener("mousemove", updateCaptureBubblePosition);
+        document.addEventListener("mousemove", updateCaptureBubblePosition); // Suivre le mouvement de la souris
     }
 }
 // Mettre à jour la position de la bulle de capture pour suivre la souris
@@ -43846,6 +43955,7 @@ function initiateSelection(event) {
 function startSelection(event) {
     if (!selectionEnabled)
         return;
+    removeOverlay(); // Supprime l'overlay semi-transparent
     startX = event.clientX;
     startY = event.clientY;
     // Créer la boîte de sélection
@@ -43989,50 +44099,6 @@ function captureSelectedArea(x, y, width, height) {
         console.error('Erreur lors de la capture de la zone sélectionnée:', error);
     });
 }
-/* function captureSelectedArea(x: number, y: number, width: number, height: number) {
-  const externalElements = document.querySelectorAll('img, iframe, video, [style*="background-image"]');
-
-  // Masquer temporairement les éléments externes
-  externalElements.forEach((el) => {
-    if (el instanceof HTMLElement) {
-      //el.style.display = 'none';
-    }
-  });
-  // Capture la page entière avec html2canvas
-  html2canvas(document.body, { useCORS: true, allowTaint: false, backgroundColor: null }).then((canvas) => {
-    // Rendre les éléments visibles après la capture
-    externalElements.forEach((el) => {
-      if (el instanceof HTMLElement) {
-        //el.style.display = '';
-      }
-    });
-    // Créer un canvas temporaire pour recadrer la zone sélectionnée
-    const croppedCanvas = document.createElement('canvas');
-    croppedCanvas.width = width;
-    croppedCanvas.height = height;
-    const croppedCtx = croppedCanvas.getContext('2d');
-
-    if (croppedCtx) {
-      // Utiliser les coordonnées ajustées en fonction de la mise à l'échelle
-      croppedCtx.drawImage(
-        canvas,
-        x,              // Position X ajustée
-        y,              // Position Y ajustée
-        width,          // Largeur ajustée
-        height,         // Hauteur ajustée
-        0,              // Position X dans le canvas de destination
-        0,              // Position Y dans le canvas de destination
-        width,          // Largeur dans le canvas de destination
-        height          // Hauteur dans le canvas de destination
-      );
-
-      const croppedDataUrl = croppedCanvas.toDataURL('image/png');
-      openFeedbackWithEmojiSelection(croppedDataUrl); // Affiche l'image capturée dans le formulaire de feedback
-    }
-  }).catch((error) => {
-    console.error('Erreur lors de la capture de la zone sélectionnée:', error);
-  });
-} */
 // Désactiver le mode sélection et réinitialiser les indicateurs
 function disableSelectionMode() {
     selectionEnabled = false; // Désactiver la sélection
@@ -44042,6 +44108,7 @@ function disableSelectionMode() {
         //document.body.removeChild(lensBubble);
         //lensBubble = null;
     }
+    removeOverlay(); // Supprime l'overlay semi-transparent
     removeCenteredText(); // Supprime le texte
     document.removeEventListener('mousemove', moveLensBubble);
 }
@@ -44067,11 +44134,15 @@ function openFeedbackForm(screenshot) {
 }
 // Affichage du menu flottant après trois clics
 function displayFloatingMenu(x, y) {
+    if (menuOpen) {
+        console.log("Le menu flottant est déjà ouvert !");
+        return; // Si le menu est déjà ouvert, ne rien faire
+    }
     menuOpen = true;
     var menuContainer = document.createElement('div');
     document.body.appendChild(menuContainer);
     var closeMenu = function () {
-        console.log("close menu...");
+        console.log("Fermeture du menu...");
         document.body.removeChild(menuContainer);
         menuOpen = false;
     };
@@ -44084,6 +44155,19 @@ function displayFloatingMenu(x, y) {
             enableLensMode(); // Activer le mode Google Lens avec la bulle
         } }));
 }
+// Gestion du message envoyé par le background script
+chrome.runtime.onMessage.addListener(function (message, sender, sendResponse) {
+    console.log("Message reçu dans content.js :", message);
+    if (message.action === "showFloatingMenu") {
+        console.log("Affichage du menu flottant...");
+        displayFloatingMenu(window.innerWidth / 2, window.innerHeight / 2);
+        sendResponse({ success: true });
+    }
+    else {
+        console.log("Action non reconnue :", message.action);
+        sendResponse({ success: false });
+    }
+});
 // Détection des trois clics pour afficher le menu flottant
 function handleClick(event) {
     if (menuOpen)

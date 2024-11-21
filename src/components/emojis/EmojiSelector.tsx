@@ -1,89 +1,66 @@
-import React, { useState } from 'react';
+import React, { useState } from "react";
 
 interface EmojiSelectorProps {
   onSelect: (emoji: string) => void;
 }
 
 const EmojiSelector: React.FC<EmojiSelectorProps> = ({ onSelect }) => {
-  const [showMoreEmojis, setShowMoreEmojis] = useState(false);
+  const initialEmojis = [
+    { emoji: "😐", name: "Neutre" },
+    { emoji: "😤", name: "Agacé" },
+    { emoji: "😡", name: "En colère" },
+  ];
+  const additionalEmojis = [
+    { emoji: "🤔", name: "Pensif" },
+    { emoji: "😭", name: "Triste" },
+    { emoji: "😖", name: "Dégouté" },
+    { emoji: "😵", name: "Étourdi" },
+    { emoji: "🤣", name: "Hilarant" },
+  ];
 
-  const defaultEmojis = ['😐', '😤', '😡'];
-  const moreEmojis = ['😭', '😂', '🤔', '😍']; // Emojis supplémentaires
+  const [emojis, setEmojis] = useState(initialEmojis);
+  const [showMore, setShowMore] = useState(false);
+
+  const handleShowMore = () => {
+    if (!showMore) {
+      setEmojis([...emojis, ...additionalEmojis]);
+      setShowMore(true);
+    }
+  };
 
   return (
-    <div style={{
-      display: 'flex',
-      justifyContent: 'center',
-      alignItems: 'center',
-      gap: '15px',
-      padding: '15px',
-      borderRadius: '8px',
-      backgroundColor: '#fff',
-      position: 'fixed',
-      top: '20%',
-      left: '50%',
-      transform: 'translate(-50%, -50%)',
-      boxShadow: '0px 4px 8px rgba(0,0,0,0.2)',
-      zIndex: 1000
-    }}>
-      {/* Emojis par défaut */}
-      {defaultEmojis.map((emoji, index) => (
-        <button
-          key={index}
-          onClick={() => onSelect(emoji)}
-          style={{
-            fontSize: '2rem',
-            cursor: 'pointer',
-            background: 'none',
-            border: 'none'
-          }}
-        >
-          {emoji}
-        </button>
-      ))}
+    <div className="emoji-popup-container">
+      {/* Goutte d'eau */}
+      <div className="emoji-waterdrop"></div>
 
-      {/* Bouton "+" */}
-      <div
-        className="plus-icon"
-        onClick={() => setShowMoreEmojis(!showMoreEmojis)} // Toggle l'état
-        style={{
-          display: 'flex',
-          alignItems: 'center',
-          justifyContent: 'center',
-          width: '40px',
-          height: '40px',
-          borderRadius: '50%',
-          backgroundColor: '#f0f0f0',
-          boxShadow: '0 2px 4px rgba(0, 0, 0, 0.1)',
-          fontSize: '20px',
-          fontWeight: 'bold',
-          color: '#333',
-          cursor: 'pointer',
-          transition: 'transform 0.2s ease, background-color 0.2s ease'
-        }}
-      >
-        +
+      {/* Titre */}
+      <div className="emoji-popup-title">
+        Quelle émotion ressentez-vous face à ce problème ?
       </div>
 
-      {/* Emojis supplémentaires */}
-      {showMoreEmojis && (
-        <div style={{ display: 'flex', gap: '15px', marginLeft: '15px' }}>
-          {moreEmojis.map((emoji, index) => (
-            <button
-              key={index}
-              onClick={() => onSelect(emoji)}
-              style={{
-                fontSize: '2rem',
-                cursor: 'pointer',
-                background: 'none',
-                border: 'none'
-              }}
-            >
-              {emoji}
-            </button>
-          ))}
-        </div>
-      )}
+      {/* Conteneur des emojis */}
+      <div className="emoji-container">
+        {emojis.map((emojiObj, index) => (
+          <div
+            key={index}
+            className="emoji-item"
+            onClick={() => onSelect(emojiObj.emoji)}
+          >
+            {/* Émoji */}
+            <span className="emoji-span">{emojiObj.emoji}</span>
+
+            {/* Tooltip pour le nom de l'émotion */}
+            <div className="emoji-tooltip">{emojiObj.name}</div>
+          </div>
+        ))}
+
+        {/* Bouton Plus (+) */}
+        {!showMore && (
+          <div className="add-more-button" onClick={handleShowMore}>
+            +
+          </div>
+        )}
+      </div>
     </div>
   );
 };

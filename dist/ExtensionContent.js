@@ -35051,9 +35051,11 @@ var LoginForm = function (_a) {
 
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   getLoginTime: () => (/* binding */ getLoginTime),
 /* harmony export */   isUserAuthenticated: () => (/* binding */ isUserAuthenticated),
 /* harmony export */   login: () => (/* binding */ login),
-/* harmony export */   logout: () => (/* binding */ logout)
+/* harmony export */   logout: () => (/* binding */ logout),
+/* harmony export */   setLoginTime: () => (/* binding */ setLoginTime)
 /* harmony export */ });
 /* harmony import */ var _utils_storageUtil__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../utils/storageUtil */ "./src/utils/storageUtil.ts");
 // authService.ts
@@ -35131,85 +35133,127 @@ export function logout() {
 // AuthService.ts
  // Mise à jour pour chrome.storage
 var API_URL = 'https://usearly-api.vercel.app/api/v1';
-var API_URL_DEV = 'https://1073-2a01-cb08-512-d600-29df-3525-253f-fd48.ngrok-free.app/api/v1';
+var API_URL_DEV = 'https://17d8-2a01-cb08-512-d600-b5e4-a24f-54ce-c58c.ngrok-free.app/api/v1';
+//const API_URL_DEV = 'https://17d8-2a01-cb08-512-d600-b5e4-a24f-54ce-c58c.ngrok-free.app/api/v1';
 function login(email, password) {
     return __awaiter(this, void 0, void 0, function () {
         var response, data, error_1;
         return __generator(this, function (_a) {
             switch (_a.label) {
                 case 0:
-                    _a.trys.push([0, 6, , 7]);
+                    _a.trys.push([0, 7, , 8]);
                     return [4 /*yield*/, fetch("".concat(API_URL_DEV, "/user/login"), {
                             method: 'POST',
                             headers: { 'Content-Type': 'application/json' },
                             body: JSON.stringify({ email: email, password: password }),
-                            //mode: 'cors'
                         })];
                 case 1:
                     response = _a.sent();
                     return [4 /*yield*/, response.json()];
                 case 2:
                     data = _a.sent();
-                    if (!data.token) return [3 /*break*/, 4];
+                    if (!data.token) return [3 /*break*/, 5];
                     console.log("data: ", data);
                     return [4 /*yield*/, (0,_utils_storageUtil__WEBPACK_IMPORTED_MODULE_0__.setToken)(data.token)];
                 case 3:
                     _a.sent(); // Stocke le token avec chrome.storage
+                    return [4 /*yield*/, setLoginTime()];
+                case 4:
+                    _a.sent(); // Stocke l'heure de connexion
                     return [2 /*return*/, true];
-                case 4: throw new Error('Authentification échouée');
-                case 5: return [3 /*break*/, 7];
-                case 6:
+                case 5: throw new Error('Authentification échouée');
+                case 6: return [3 /*break*/, 8];
+                case 7:
                     error_1 = _a.sent();
                     console.error('Erreur de connexion:', error_1);
                     return [2 /*return*/, false];
-                case 7: return [2 /*return*/];
+                case 8: return [2 /*return*/];
             }
         });
     });
 }
-function isUserAuthenticated() {
+// Stocke l'heure de connexion
+function setLoginTime() {
+    return __awaiter(this, void 0, void 0, function () {
+        var currentTime;
+        return __generator(this, function (_a) {
+            currentTime = Date.now();
+            chrome.storage.local.set({ loginTime: currentTime });
+            return [2 /*return*/];
+        });
+    });
+}
+// Récupère l'heure de connexion
+function getLoginTime() {
     return __awaiter(this, void 0, void 0, function () {
         return __generator(this, function (_a) {
             return [2 /*return*/, new Promise(function (resolve) {
-                    chrome.runtime.sendMessage({ action: 'isAuthenticated' }, function (response) {
-                        var _a;
-                        if (chrome.runtime.lastError) {
-                            console.error("Erreur de communication avec le script de fond :", chrome.runtime.lastError.message);
-                            resolve(false); // Considérez l'utilisateur comme non authentifié en cas d'erreur
-                        }
-                        else {
-                            resolve((_a = response === null || response === void 0 ? void 0 : response.isAuthenticated) !== null && _a !== void 0 ? _a : false); // Assurez-vous que `response` est défini
-                        }
+                    chrome.storage.local.get(['loginTime'], function (result) {
+                        resolve(result.loginTime || null);
                     });
                 })];
         });
     });
 }
-/* export function login(email: string, password: string): Promise<boolean> {
-    return new Promise((resolve) => {
-        const timeout = setTimeout(() => {
-            console.error("Timeout pour la réponse du script de fond.");
-            resolve(false); // Forcer la résolution après un délai
-        }, 5000); // Timeout de 5 secondes
-
-        chrome.runtime.sendMessage({ action: 'login', email, password }, (response) => {
-            clearTimeout(timeout); // Annule le timeout si la réponse arrive à temps
-            if (chrome.runtime.lastError) {
-                console.error("Erreur de communication avec le script de fond :", chrome.runtime.lastError.message);
-                resolve(false);
-            } else {
-                resolve(response?.success ?? false);
-            }
+// Vérifie si l'utilisateur est encore authentifié (déconnexion après 20 secondes pour le test)
+function isUserAuthenticated() {
+    return __awaiter(this, void 0, void 0, function () {
+        var _this = this;
+        return __generator(this, function (_a) {
+            return [2 /*return*/, new Promise(function (resolve) { return __awaiter(_this, void 0, void 0, function () {
+                    var _this = this;
+                    return __generator(this, function (_a) {
+                        chrome.runtime.sendMessage({ action: 'isAuthenticated' }, function (response) { return __awaiter(_this, void 0, void 0, function () {
+                            var loginTime, elapsedTime, FIVE_HOURS_IN_MS;
+                            var _a;
+                            return __generator(this, function (_b) {
+                                switch (_b.label) {
+                                    case 0:
+                                        if (!chrome.runtime.lastError) return [3 /*break*/, 1];
+                                        console.error("Erreur de communication avec le script de fond :", chrome.runtime.lastError.message);
+                                        resolve(false);
+                                        return [3 /*break*/, 3];
+                                    case 1: return [4 /*yield*/, getLoginTime()];
+                                    case 2:
+                                        loginTime = _b.sent();
+                                        if (loginTime) {
+                                            elapsedTime = Date.now() - loginTime;
+                                            FIVE_HOURS_IN_MS = 5 * 60 * 60 * 1000;
+                                            if (elapsedTime >= FIVE_HOURS_IN_MS) {
+                                                //console.log(`Temps écoulé ::: ${elapsedTime / 1000} secondes. Déconnexion.`);
+                                                logout(); // Déconnectez si 20 secondes sont écoulées
+                                                resolve(false);
+                                            }
+                                            else {
+                                                console.log("Temps restant avant d\u00E9connexion ::: ".concat((FIVE_HOURS_IN_MS - elapsedTime) / 1000, " secondes."));
+                                                resolve((_a = response === null || response === void 0 ? void 0 : response.isAuthenticated) !== null && _a !== void 0 ? _a : false);
+                                            }
+                                        }
+                                        else {
+                                            resolve(false); // Aucun login enregistré
+                                        }
+                                        _b.label = 3;
+                                    case 3: return [2 /*return*/];
+                                }
+                            });
+                        }); });
+                        return [2 /*return*/];
+                    });
+                }); })];
         });
     });
-} */
+}
+// Déconnecte l'utilisateur
 function logout() {
     chrome.runtime.sendMessage({ action: "logout" }, function (response) {
-        if (response.success) {
+        if (response === null || response === void 0 ? void 0 : response.success) {
             console.log("Déconnexion réussie");
         }
     });
-    //chrome.runtime.sendMessage({ action: 'logout' });
+    // Supprime les informations de connexion
+    chrome.storage.local.remove(['authToken', 'loginTime'], function () {
+        console.log("Données utilisateur supprimées");
+    });
 }
 
 
