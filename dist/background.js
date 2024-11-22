@@ -2,6 +2,48 @@
 /******/ 	"use strict";
 /******/ 	var __webpack_modules__ = ({
 
+/***/ "./src/utils/blockAdultSites.ts":
+/*!**************************************!*\
+  !*** ./src/utils/blockAdultSites.ts ***!
+  \**************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   isAdultSite: () => (/* binding */ isAdultSite)
+/* harmony export */ });
+// Liste noire de domaines connus pour adultes
+var adultDomains = [
+    "pornhub.com",
+    "xvideos.com",
+    "redtube.com",
+    "xnxx.com",
+    "youporn.com",
+    "brazzers.com",
+    "adultfriendfinder.com",
+    "livejasmin.com"
+];
+// https://www.airbnb.fr/rooms/52621429?adults=2&category_tag=Tag%3A4104&children=0&enable_m3_private_room=true&infants=0&pets=0&photo_id=1667039872&search_mode=flex_destinations_search&check_in=2025-01-03&check_out=2025-01-08&source_impression_id=p3_1732287557_P3IQ3z7DTBGIxxhx&previous_page_section_name=1000
+// Liste de mots-clés sensibles dans les URLs
+var adultKeywords = ["porn", "xxx", "sex", "erotic", "nsfw"];
+/**
+ * Vérifie si le site actuel doit être bloqué.
+ * @param url L'URL complète de la page web.
+ * @returns true si le site est inapproprié, sinon false.
+ */
+function isAdultSite(url) {
+    var domain = new URL(url).hostname.toLowerCase();
+    // Vérifie si le domaine ou l'URL contient des contenus sensibles
+    if (adultDomains.some(function (blockedDomain) { return domain.includes(blockedDomain); }) ||
+        adultKeywords.some(function (keyword) { return url.toLowerCase().includes(keyword); })) {
+        return true;
+    }
+    return false;
+}
+
+
+/***/ }),
+
 /***/ "./src/utils/storageUtil.ts":
 /*!**********************************!*\
   !*** ./src/utils/storageUtil.ts ***!
@@ -103,6 +145,7 @@ var __webpack_exports__ = {};
   \***************************/
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _utils_storageUtil__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./utils/storageUtil */ "./src/utils/storageUtil.ts");
+/* harmony import */ var _utils_blockAdultSites__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./utils/blockAdultSites */ "./src/utils/blockAdultSites.ts");
 var __awaiter = (undefined && undefined.__awaiter) || function (thisArg, _arguments, P, generator) {
     function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
     return new (P || (P = Promise))(function (resolve, reject) {
@@ -140,8 +183,18 @@ var __generator = (undefined && undefined.__generator) || function (thisArg, bod
     }
 };
 
+
 var API_URL = 'https://usearly-api.vercel.app/api/v1';
 var FIVE_HOURS_IN_MS = 5 * 60 * 60 * 1000;
+chrome.tabs.onUpdated.addListener(function (tabId, changeInfo, tab) {
+    if (tab.url && (0,_utils_blockAdultSites__WEBPACK_IMPORTED_MODULE_1__.isAdultSite)(tab.url)) {
+        console.log("Site bloqué : désactivation de l'extension.");
+        chrome.action.disable(tabId); // Désactive l'icône de l'extension
+    }
+    else {
+        chrome.action.enable(tabId); // Active l'icône de l'extension
+    }
+});
 // Fonction de déconnexion
 function handleLogout() {
     console.log("Déconnexion automatique ou manuelle de l'utilisateur.");
@@ -150,7 +203,6 @@ function handleLogout() {
         console.log('Token et heure de connexion supprimés.');
     });
 }
-console.log("Service worker de l'extension démarré !");
 // Vérifie périodiquement si 5 heures se sont écoulées depuis la connexion
 setInterval(function () { return __awaiter(void 0, void 0, void 0, function () {
     return __generator(this, function (_a) {

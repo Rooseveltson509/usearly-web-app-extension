@@ -1,8 +1,21 @@
 import { setToken, removeToken, getToken } from './utils/storageUtil';
-
+import { isAdultSite } from "./utils/blockAdultSites";
 
 const API_URL = 'https://usearly-api.vercel.app/api/v1';
 const FIVE_HOURS_IN_MS = 5 * 60 * 60 * 1000;
+
+
+
+chrome.tabs.onUpdated.addListener((tabId, changeInfo, tab) => {
+  if (tab.url && isAdultSite(tab.url)) {
+    console.log("Site bloqué : désactivation de l'extension.");
+    chrome.action.disable(tabId); // Désactive l'icône de l'extension
+  } else {
+    chrome.action.enable(tabId); // Active l'icône de l'extension
+  }
+});
+
+
 
 
 // Fonction de déconnexion
@@ -13,7 +26,6 @@ function handleLogout() {
         console.log('Token et heure de connexion supprimés.');
     });
 }
-console.log("Service worker de l'extension démarré !");
 
 // Vérifie périodiquement si 5 heures se sont écoulées depuis la connexion
 setInterval(async () => {

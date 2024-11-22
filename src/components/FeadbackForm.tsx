@@ -65,7 +65,7 @@ const FeedbackForm: React.FC<FeedbackFormProps> = ({ screenshot, onClose, initia
     if (!isAuthenticated) {
       console.log("Veuillez-vous connecter...")
       setShowLoginForm(true); // Affiche le formulaire de connexion
-      //setIsLoading(false);
+      setIsLoading(false);
       return;
     }
 
@@ -160,7 +160,8 @@ const FeedbackForm: React.FC<FeedbackFormProps> = ({ screenshot, onClose, initia
       {/* Selected Emoji and selector (outside the form) */}
       {showFeedbackForm && (
         <div className='feedback-style'>
-          <div className='select-emoji'
+          <div id={`${!capture ? 'select-emoji' : 'select-emoji-display-img'
+            }`} className='select-emoji'
             onClick={toggleEmojiSelector}>
             {sentiment}
             {showEmojiSelector && (
@@ -168,7 +169,6 @@ const FeedbackForm: React.FC<FeedbackFormProps> = ({ screenshot, onClose, initia
                 <span style={{ cursor: 'pointer' }} onClick={() => handleEmojiSelect('😐')}>😐</span>
                 <span style={{ cursor: 'pointer' }} onClick={() => handleEmojiSelect('😤')}>😤</span>
                 <span style={{ cursor: 'pointer' }} onClick={() => handleEmojiSelect('😡')}>😡</span>
-
                 <span style={{ cursor: 'pointer' }} onClick={() => handleEmojiSelect('🤔')}>🤔</span>
                 <span style={{ cursor: 'pointer' }} onClick={() => handleEmojiSelect('😭')}>😭</span>
                 <span style={{ cursor: 'pointer' }} onClick={() => handleEmojiSelect('😖')}>😖</span>
@@ -177,70 +177,87 @@ const FeedbackForm: React.FC<FeedbackFormProps> = ({ screenshot, onClose, initia
               </div>
             )}
           </div>
-          <button onClick={() => {
-            setShowFeedbackForm(false);
-            onClose();
-          }} className="close-button-form">X</button>
+          <div className='close-button float-end' id={`${!capture ? 'closeBTN' : 'closeBTN-float'
+            }`} onClick={() => {
+              setShowFeedbackForm(false);
+              onClose();
+            }}>
+            <svg xmlns="http://www.w3.org/2000/svg" width="15" height="14" viewBox="0 0 15 14" fill="none">
+              <path d="M11.2502 3.49982L4.25024 10.4998" stroke="#D2D7E0" strokeWidth="1.4" strokeLinecap="round" />
+              <path d="M11.3376 10.4108L4.25034 3.50029" stroke="#D2D7E0" strokeWidth="1.4" strokeLinecap="round" />
+            </svg>
+          </div>
 
           {/* Feedback form */}
-          <h2 className='emojis-title'>{getTitle()}</h2>
           {error && <p style={{ color: 'red' }}>{error[0]}</p>}
-          <form onSubmit={handleSubmit}>
-            <div className="image-preview">
-              <img className='img-preview' src={screenshot} alt="screenshot" />
-            </div>
-            <textarea
-              className='txt-area'
-              placeholder="Décrivez votre problème..."
-              value={alertDescription}
-              onChange={(e) => setAlertDescription(e.target.value)}
-            />
-            <input type="hidden" value={brandName} onChange={(e) => setBrandName(e.target.value)} />
-            <div className='align-checkBtn'>
-              {
-                <div className={`checkBoxFeedback ${alertDescription.trim() ? 'visible' : 'hidden'}`} >
-                  <input
-                    type="checkbox"
-                    checked={isBlocked === 'yes'}
-                    onChange={(e) => setBlocking(e.target.checked ? 'yes' : 'no')}
-                    style={{ marginRight: '8px', width: '16px', height: '16px', accentColor: '#6a1b9a' }}
-                  />
-                  <label>Je suis bloqué</label>
+          <div className="block-form">
+            <form className='formStyle' onSubmit={handleSubmit}>
+              {capture && (
+                <div className="image-preview">
+                  <img className='img-preview' src={screenshot} alt="screenshot" />
                 </div>
-              }
+              )}
+              <div className="input-container">
+                <input
+                  className="floating-input"
+                  placeholder=" "
+                  value={alertDescription}
+                  onChange={(e) => setAlertDescription(e.target.value)}
+                />
+                <label htmlFor="name" className="floating-label">
+                  {getTitle()}
+                </label>
+              </div>
+              <input type="hidden" value={brandName} onChange={(e) => setBrandName(e.target.value)} />
 
-              {/* <button disabled={!alertDescription.trim()} type="submit" > */} {/* Disable the button if the comment is empty */}
-              <button disabled={!alertDescription.trim()} // Désactive le bouton si le champ est vide
-                type="submit"
-                className={`submit-button ${!alertDescription.trim() ? 'feedbackSubmitDisabled' : 'feedbackSubmiEnabled'
-                  }`}
-              >
-                {!alertDescription.trim() ? (
-                  <svg xmlns="http://www.w3.org/2000/svg" width="23" height="23" viewBox="0 0 23 23" fill="none">
-                    <circle cx="11.4771" cy="11.2048" r="11" transform="rotate(90 11.4771 11.2048)" fill="url(#paint0_linear_319_540)" />
-                    <path d="M11.4001 6.20483L16.4771 11.312L11.4001 16.4191M15.7719 11.312L5.47705 11.312" stroke="white" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round" />
-                    <defs>
-                      <linearGradient id="paint0_linear_319_540" x1="-2.47644" y1="35.6819" x2="26.1437" y2="0.204836" gradientUnits="userSpaceOnUse">
-                        <stop offset="0.22376" stopColor="#908f91" />
-                        <stop offset="0.613341" stopColor="#9f9f9f" />
-                      </linearGradient>
-                    </defs>
-                  </svg>
-                ) : (
-                  <svg xmlns="http://www.w3.org/2000/svg" width="23" height="23" viewBox="0 0 23 23" fill="none">
-                    <circle cx="11.4771" cy="11.2048" r="11" transform="rotate(90 11.4771 11.2048)" fill="url(#paint0_linear_319_540)" />
-                    <path d="M11.4001 6.20483L16.4771 11.312L11.4001 16.4191M15.7719 11.312L5.47705 11.312" stroke="white" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round" />
-                    <defs>
-                      <linearGradient id="paint0_linear_319_540" x1="-2.47644" y1="35.6819" x2="26.1437" y2="0.204836" gradientUnits="userSpaceOnUse">
-                        <stop offset="0.22376" stopColor="#6E36A9" />
-                        <stop offset="0.613341" stopColor="#B033AE" />
-                      </linearGradient>
-                    </defs>
-                  </svg>
-                )}
-              </button>
-            </div>
-          </form>
+              <div className='align-checkBtn'>
+                {
+                  <div className={`checkBoxFeedback ${alertDescription.trim() ? 'visible' : 'hidden'}`} >
+                    <input
+                      type="checkbox"
+                      checked={isBlocked === 'yes'}
+                      onChange={(e) => setBlocking(e.target.checked ? 'yes' : 'no')}
+                      style={{ marginRight: '8px', width: '16px', height: '16px', accentColor: '#6a1b9a' }}
+                    />
+                    <label>Je suis bloqué</label>
+                  </div>
+                }
+
+                {/* <button disabled={!alertDescription.trim()} type="submit" > */} {/* Disable the button if the comment is empty */}
+                <button disabled={!alertDescription.trim()} // Désactive le bouton si le champ est vide
+                  type="submit"
+                  className={`submit-button ${!alertDescription.trim() ? 'feedbackSubmitDisabled' : 'feedbackSubmiEnabled'
+                    }`}
+                  id={`${!capture ? 'feedbackSubmitDisabled' : 'feedbackSubmiEnabled'
+                    }`}
+                >
+                  {!alertDescription.trim() ? (
+                    <svg xmlns="http://www.w3.org/2000/svg" width="23" height="23" viewBox="0 0 23 23" fill="none">
+                      <circle cx="11.4771" cy="11.2048" r="11" transform="rotate(90 11.4771 11.2048)" fill="url(#paint0_linear_319_540)" />
+                      <path d="M11.4001 6.20483L16.4771 11.312L11.4001 16.4191M15.7719 11.312L5.47705 11.312" stroke="white" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round" />
+                      <defs>
+                        <linearGradient id="paint0_linear_319_540" x1="-2.47644" y1="35.6819" x2="26.1437" y2="0.204836" gradientUnits="userSpaceOnUse">
+                          <stop offset="0.22376" stopColor="#908f91" />
+                          <stop offset="0.613341" stopColor="#9f9f9f" />
+                        </linearGradient>
+                      </defs>
+                    </svg>
+                  ) : (
+                    <svg xmlns="http://www.w3.org/2000/svg" width="23" height="23" viewBox="0 0 23 23" fill="none">
+                      <circle cx="11.4771" cy="11.2048" r="11" transform="rotate(90 11.4771 11.2048)" fill="url(#paint0_linear_319_540)" />
+                      <path d="M11.4001 6.20483L16.4771 11.312L11.4001 16.4191M15.7719 11.312L5.47705 11.312" stroke="white" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round" />
+                      <defs>
+                        <linearGradient id="paint0_linear_319_540" x1="-2.47644" y1="35.6819" x2="26.1437" y2="0.204836" gradientUnits="userSpaceOnUse">
+                          <stop offset="0.22376" stopColor="#6E36A9" />
+                          <stop offset="0.613341" stopColor="#B033AE" />
+                        </linearGradient>
+                      </defs>
+                    </svg>
+                  )}
+                </button>
+              </div>
+            </form>
+          </div>
         </div>
       )}
 

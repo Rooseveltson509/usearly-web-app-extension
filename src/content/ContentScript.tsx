@@ -3,7 +3,10 @@ import ReactDOM from 'react-dom/client';
 import CaptureFeedbackFlow from '../components/captureFeedbackFlow/CaptureFeedbackFlow';
 import html2canvas from 'html2canvas';
 import DraggableFloatingMenu from '../components/DraggableFloatingMenu';
+import { isAdultSite } from "../utils/blockAdultSites";
 
+
+const currentURL = window.location.href;
 let clickCount = 0;
 let startX = 0;
 let startY = 0;
@@ -419,6 +422,12 @@ function openFeedbackForm(screenshot: string) {
 
 // Affichage du menu flottant après trois clics
 function displayFloatingMenu(x: number, y: number) {
+  // Vérifie si le site est bloqué
+  if (isAdultSite(currentURL)) {
+    console.log("Ce site est bloqué. L'extension ne sera pas chargée.");
+    return;
+  }
+
   if (menuOpen) {
     console.log("Le menu flottant est déjà ouvert !");
     return; // Si le menu est déjà ouvert, ne rien faire

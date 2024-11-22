@@ -15,7 +15,8 @@
 @font-face {
   font-family: 'Geist Mono';
   src: url('./fonts/GeistMono-VariableFont_wght.ttf') format('truetype');
-  font-weight: 100 900; /* Définit la plage de poids variable */
+  font-weight: 100 900;
+  /* Définit la plage de poids variable */
   font-style: normal;
 }
 
@@ -115,7 +116,7 @@ body {
 
 .feedback-style {
   padding: 20px;
-  background-color: #fff;
+  background: rgb(245, 245, 245);
   border-radius: 12px;
   position: fixed;
   top: 50%;
@@ -129,14 +130,32 @@ body {
   color: #333;
 }
 
+.float-end {
+  float: inline-end;
+}
+
 .feedbackSubmitDisabled {
-  padding: 10px;
   position: absolute;
-  top: 282px;
-  right: 20px;
-  cursor: not-allowed; /* Curseur interdit */
-  transform: scale(0.95); /* Légèrement réduit */
-  opacity: 0.6; /* Transparence */
+  padding: 0;
+  top: 274px;
+  right: 30px;
+  cursor: not-allowed;
+  transform: scale(0.95);
+  opacity: 0.6;
+}
+
+#feedbackSubmitDisabled {
+  padding: 0;
+  top: 103px;
+  right: 30px;
+}
+
+#closeBTN {
+  float: unset;
+}
+
+#feedbackSubmiEnabled {
+  top: 280px;
 }
 
 .feedbackSubmiEnabled {
@@ -149,22 +168,26 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
-  transform: scale(1); /* Taille normale */
-  opacity: 1; /* Totalement opaque */
+  transform: scale(1);
+  /* Taille normale */
+  opacity: 1;
+  /* Totalement opaque */
 }
 
 .submit-button {
   font-size: 16px;
-  padding: 10px 20px;
+  /* padding: 10px 20px; */
   border: none;
   border-radius: 5px;
   cursor: pointer;
   background: none;
-  transition: all 0.3s ease-in-out; /* Animation fluide */
+  transition: all 0.3s ease-in-out;
+  /* Animation fluide */
 }
 
 .feedbackSubmiEnabled:hover {
-  transform: scale(1.05); /* Légèrement agrandi au survol */
+  transform: scale(1.05);
+  /* Légèrement agrandi au survol */
 }
 
 .checkBoxFeedback {
@@ -173,23 +196,34 @@ body {
   margin-bottom: 20px;
   font-size: 14px;
   color: #555;
-  opacity: 0; /* Par défaut invisible */
-  max-height: 0; /* Hauteur réduite pour masquer */
-  overflow: hidden; /* Cache le contenu masqué */
-  transform: scale(0.95); /* Taille réduite au départ */
-  transition: all 0.3s ease-in-out; /* Transition fluide */
+  opacity: 0;
+  /* Par défaut invisible */
+  max-height: 0;
+  /* Hauteur réduite pour masquer */
+  overflow: hidden;
+  /* Cache le contenu masqué */
+  transform: scale(0.95);
+  /* Taille réduite au départ */
+  transition: all 0.3s ease-in-out;
+  /* Transition fluide */
 }
 
 .checkBoxFeedback.visible {
-  opacity: 1; /* Complètement visible */
-  max-height: 100px; /* Hauteur automatique */
-  transform: scale(1); /* Taille normale */
+  opacity: 1;
+  /* Complètement visible */
+  max-height: 100px;
+  /* Hauteur automatique */
+  transform: scale(1);
+  /* Taille normale */
 }
 
 .checkBoxFeedback.hidden {
-  opacity: 0; /* Invisible */
-  max-height: 0; /* Masqué complètement */
-  transform: scale(0.95); /* Taille légèrement réduite */
+  opacity: 0;
+  /* Invisible */
+  max-height: 0;
+  /* Masqué complètement */
+  transform: scale(0.95);
+  /* Taille légèrement réduite */
 }
 
 
@@ -535,15 +569,8 @@ body {
   margin-bottom: 10px;
 }
 
-.emojis-title {
-  margin-top: 0;
-  color: #A3AAB5;
-  font-family: 'Inter', sans-serif;
-  font-size: 17px;
-  font-weight: 500;
-}
-
 .align-checkBtn {
+  margin-top: 20px;
   display: flex;
   align-items: baseline;
   justify-content: space-between;
@@ -1333,4 +1360,145 @@ body {
     transform: translateY(-20px);
     opacity: 0;
   }
+}
+
+/* Conteneur de l'input */
+.input-container {
+  position: relative;
+  width: auto;
+  margin-top: 10px;
+  height: 46px;
+  display: flex;
+}
+
+/* Style de l'input */
+.floating-input {
+  width: 100%;
+  padding: 10px 12px;
+  font-size: 16px;
+  border: 1px solid #b2aeae;
+  border-radius: 16px;
+  background: #F5F5F5;
+  color: rgb(51, 51, 51);
+  outline: none;
+}
+
+#select-emoji {
+  top: 75%;
+}
+
+.formStyle {
+  margin-top: 40px;
+}
+
+.floating-input:focus {
+  border-color: #fa2ea8;
+}
+
+/* Ajoutez un espace réservé invisible */
+.floating-input::placeholder {
+  color: transparent;
+}
+
+/* Style du label */
+.floating-label {
+  position: absolute;
+  top: 50%;
+  left: 12px;
+  transform: translateY(-50%);
+  color: #363F51;
+  font-family: Inter;
+  font-size: 16px;
+  /* Couleur du texte du label */
+  transition: all 0.2s ease-in-out;
+  /* Transition pour un effet fluide */
+  pointer-events: none;
+  background: #f5f5f5;
+}
+
+/* Quand l'input est actif ou contient du texte */
+.floating-input:focus+.floating-label,
+.floating-input:not(:placeholder-shown)+.floating-label {
+  top: 0px;
+  /* Position au-dessus */
+  font-size: 14px;
+  /* Réduit la taille du label */
+  color: #363F51;
+  font-family: Inter;
+
+}
+
+
+
+
+.tooltip-container {
+  position: relative;
+  display: inline-block;
+  margin: 10px;
+  /* Espace entre les icônes si nécessaire */
+}
+
+.tooltip-container .tooltip-text {
+  visibility: hidden;
+  background-color: #1A1A1A;
+  /* Couleur de fond */
+  color: #FFFFFF;
+  /* Couleur du texte */
+  text-align: center;
+  font-size: 12px;
+  border-radius: 4px;
+  padding: 5px 10px;
+  position: absolute;
+  z-index: 100;
+  top: 50%;
+  /* Centre verticalement */
+  transform: translateY(-50%);
+  /* Centre parfaitement verticalement */
+  white-space: nowrap;
+  /* Empêche le texte de passer à la ligne */
+  opacity: 0;
+  transition: opacity 0.2s ease-in-out;
+}
+
+.tooltip-container #u {
+  left: -415%;
+  /* Centre horizontalement par rapport à l'icône */
+  /* Place le tooltip à gauche de l'icône */
+}
+
+.tooltip-container #comment {
+  left: -400%;
+  /* Centre horizontalement par rapport à l'icône */
+  /* Place le tooltip à gauche de l'icône */
+}
+
+.tooltip-container #heartI {
+  left: -430%;
+  /* Centre horizontalement par rapport à l'icône */
+  /* Place le tooltip à gauche de l'icône */
+}
+
+.tooltip-container #magicI {
+  left: -335%;
+  /* Centre horizontalement par rapport à l'icône */
+  /* Place le tooltip à gauche de l'icône */
+}
+
+.tooltip-container .tooltip-arrow {
+  position: absolute;
+  top: 50%;
+  right: -6px;
+  /* Positionne la flèche à droite du tooltip */
+  transform: translateY(-50%);
+  width: 0;
+  height: 0;
+  border-top: 6px solid transparent;
+  border-bottom: 6px solid transparent;
+  border-left: 6px solid #1A1A1A;
+  /* Couleur identique au fond du tooltip */
+}
+
+.tooltip-container:hover .tooltip-text {
+  visibility: visible;
+  opacity: 1;
 }
