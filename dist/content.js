@@ -43365,6 +43365,47 @@ var PopupConfirm = function (_a) {
 
 /***/ }),
 
+/***/ "./src/components/warning/Warning.tsx":
+/*!********************************************!*\
+  !*** ./src/components/warning/Warning.tsx ***!
+  \********************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+var __assign = (undefined && undefined.__assign) || function () {
+    __assign = Object.assign || function(t) {
+        for (var s, i = 1, n = arguments.length; i < n; i++) {
+            s = arguments[i];
+            for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p))
+                t[p] = s[p];
+        }
+        return t;
+    };
+    return __assign.apply(this, arguments);
+};
+
+var Warning = function (_a) {
+    /*  useEffect(() => {
+       // Automatiquement fermer le popup après 3 secondes
+       const timer = setTimeout(() => {
+         onClose();
+       }, 10000);
+   
+       return () => clearTimeout(timer);
+     }, [onClose]); */
+    var onClose = _a.onClose;
+    return ((0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("div", __assign({ className: "overlay" }, { children: (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", __assign({ className: "warning-popup" }, { children: [(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("h1", { children: "\u26A0\uFE0F Contenu inappropri\u00E9 d\u00E9tect\u00E9" }), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("p", { children: "Vous serez redirig\u00E9 hors de cette page dans quelques secondes." }), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("button", __assign({ className: "close-button", onClick: onClose }, { children: "OK" }))] })) })));
+};
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (Warning);
+
+
+/***/ }),
+
 /***/ "./src/services/AuthService.ts":
 /*!*************************************!*\
   !*** ./src/services/AuthService.ts ***!
@@ -43869,6 +43910,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var html2canvas__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(html2canvas__WEBPACK_IMPORTED_MODULE_3__);
 /* harmony import */ var _components_DraggableFloatingMenu__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../components/DraggableFloatingMenu */ "./src/components/DraggableFloatingMenu.tsx");
 /* harmony import */ var _utils_blockAdultSites__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../utils/blockAdultSites */ "./src/utils/blockAdultSites.ts");
+/* harmony import */ var _components_warning_Warning__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../components/warning/Warning */ "./src/components/warning/Warning.tsx");
+
 
 
 
@@ -44178,13 +44221,101 @@ function openFeedbackForm(screenshot) {
     var root = react_dom_client__WEBPACK_IMPORTED_MODULE_1__.createRoot(feedbackContainer);
     root.render((0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(_components_captureFeedbackFlow_CaptureFeedbackFlow__WEBPACK_IMPORTED_MODULE_2__["default"], { screenshot: screenshot, onClose: closeFeedback }));
 }
+function blurInappropriateImages() {
+    // Récupère toutes les images de la page
+    var images = document.querySelectorAll("img");
+    images.forEach(function (img) {
+        // Applique un flou sur chaque image
+        img.style.filter = "blur(20px)";
+        img.style.transition = "filter 0.5s ease-in-out";
+    });
+    // Ajoute un message visible pour indiquer le contenu bloqué
+    var warningBanner = document.createElement("div");
+    warningBanner.style.position = "fixed";
+    warningBanner.style.top = "0";
+    warningBanner.style.left = "0";
+    warningBanner.style.width = "100%";
+    warningBanner.style.padding = "10px";
+    warningBanner.style.backgroundColor = "rgba(255, 0, 0, 0.8)";
+    warningBanner.style.color = "white";
+    warningBanner.style.textAlign = "center";
+    warningBanner.style.zIndex = "10000";
+    warningBanner.style.fontSize = "18px";
+    warningBanner.innerText =
+        "Cette page contient des images inappropriées. Elles ont été floutées.";
+    document.body.appendChild(warningBanner);
+}
+function blurAllInappropriateMedia() {
+    // Floute les images
+    var images = document.querySelectorAll("img");
+    images.forEach(function (img) {
+        img.style.filter = "blur(20px)";
+    });
+    // Floute les vidéos
+    var videos = document.querySelectorAll("video");
+    videos.forEach(function (video) {
+        video.style.filter = "blur(20px)";
+    });
+    // Floute les arrière-plans
+    var elementsWithBackground = document.querySelectorAll("[style*='background-image']");
+    elementsWithBackground.forEach(function (el) {
+        el.style.filter = "blur(20px)";
+    });
+    // Message d'avertissement
+    var warningBanner = document.createElement("div");
+    warningBanner.style.position = "fixed";
+    warningBanner.style.top = "0";
+    warningBanner.style.left = "0";
+    warningBanner.style.width = "100%";
+    warningBanner.style.padding = "10px";
+    warningBanner.style.backgroundColor = "rgba(255, 0, 0, 0.8)";
+    warningBanner.style.color = "white";
+    warningBanner.style.textAlign = "center";
+    warningBanner.style.zIndex = "10000";
+    warningBanner.style.fontSize = "18px";
+    warningBanner.innerText =
+        "Cette page contient des médias inappropriés. Ils ont été floutés.";
+    document.body.appendChild(warningBanner);
+}
 // Affichage du menu flottant après trois clics
 function displayFloatingMenu(x, y) {
+    var currentURL = window.location.href;
     // Vérifie si le site est bloqué
     if ((0,_utils_blockAdultSites__WEBPACK_IMPORTED_MODULE_5__.isAdultSite)(currentURL)) {
-        console.log("Ce site est bloqué. L'extension ne sera pas chargée.");
-        return;
+        var containerId = "warning-container";
+        console.log("Site inapproprié détecté, application du flou...");
+        blurAllInappropriateMedia();
+        var container_1 = document.getElementById(containerId);
+        if (!container_1) {
+            container_1 = document.createElement("div");
+            container_1.id = containerId;
+            document.body.appendChild(container_1);
+        }
+        if (container_1) {
+            var root_1 = react_dom_client__WEBPACK_IMPORTED_MODULE_1__.createRoot(container_1);
+            // Affiche le popup
+            root_1.render((0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(_components_warning_Warning__WEBPACK_IMPORTED_MODULE_6__["default"], { onClose: function () {
+                    root_1.unmount();
+                    container_1 === null || container_1 === void 0 ? void 0 : container_1.remove(); // Supprime le popup lorsqu'il est fermé
+                }, onLoginSuccess: function () {
+                    console.log("Action après connexion réussie");
+                } }));
+            // Ajoute un délai de 3 secondes avant de fermer le site
+            setTimeout(function () {
+                root_1.unmount(); // Supprime le contenu React
+                container_1 === null || container_1 === void 0 ? void 0 : container_1.remove(); // Supprime le conteneur du DOM
+                // Fermer uniquement l'onglet actif
+                chrome.tabs.query({ active: true, currentWindow: true }, function (tabs) {
+                    var _a;
+                    if ((_a = tabs[0]) === null || _a === void 0 ? void 0 : _a.id) {
+                        chrome.tabs.remove(tabs[0].id); // Ferme l'onglet actif
+                    }
+                });
+            }, 10000); // Affiche le popup pendant 3 secondes
+        }
+        return; // Arrête l'exécution si le site est bloqué
     }
+    // Logique pour afficher le menu flottant si le site n'est pas bloqué
     if (menuOpen) {
         console.log("Le menu flottant est déjà ouvert !");
         return; // Si le menu est déjà ouvert, ne rien faire
@@ -44206,6 +44337,27 @@ function displayFloatingMenu(x, y) {
             enableLensMode(); // Activer le mode Google Lens avec la bulle
         } }));
 }
+chrome.runtime.onMessage.addListener(function (message, sender, sendResponse) {
+    if (message.action === "showWarningPopup") {
+        // Créer un conteneur pour afficher le popup
+        var containerId = "warning-popup-container";
+        var container_2 = document.getElementById(containerId);
+        if (!container_2) {
+            container_2 = document.createElement("div");
+            container_2.id = containerId;
+            document.body.appendChild(container_2);
+        }
+        var root_2 = react_dom_client__WEBPACK_IMPORTED_MODULE_1__.createRoot(container_2);
+        // Afficher le popup d'avertissement
+        root_2.render((0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(_components_warning_Warning__WEBPACK_IMPORTED_MODULE_6__["default"], { onClose: function () {
+                root_2.unmount();
+                container_2 === null || container_2 === void 0 ? void 0 : container_2.remove(); // Supprime le popup du DOM
+            }, onLoginSuccess: function () {
+                console.log("Action après confirmation");
+            } }));
+        sendResponse({ success: true });
+    }
+});
 // Gestion du message envoyé par le background script
 chrome.runtime.onMessage.addListener(function (message, sender, sendResponse) {
     console.log("Message reçu dans content.js :", message);

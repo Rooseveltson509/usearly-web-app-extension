@@ -16,6 +16,26 @@ chrome.tabs.onUpdated.addListener((tabId, changeInfo, tab) => {
 });
 
 
+chrome.tabs.onUpdated.addListener((tabId, changeInfo, tab) => {
+    if (changeInfo.status === 'complete' && tab.url) {
+        if (isAdultSite(tab.url)) {
+            // Envoie un message au content script pour afficher le popup
+              // Injecte le content script pour flouter les médias
+              chrome.scripting.executeScript({
+                target: { tabId },
+                files: ["contentScript.js"], // Assurez-vous que le fichier est compilé en JS
+            });
+
+            // Ferme l'onglet après un délai de 3 secondes
+            setTimeout(() => {
+                chrome.tabs.remove(tabId, () => {
+                    console.log(`Onglet fermé pour contenu inapproprié : ${tab.url}`);
+                });
+            }, 10000); // Délai de 3 secondes avant la fermeture
+        }
+    }
+});
+
 
 
 // Fonction de déconnexion

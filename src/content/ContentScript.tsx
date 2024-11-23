@@ -4,6 +4,7 @@ import CaptureFeedbackFlow from '../components/captureFeedbackFlow/CaptureFeedba
 import html2canvas from 'html2canvas';
 import DraggableFloatingMenu from '../components/DraggableFloatingMenu';
 import { isAdultSite } from "../utils/blockAdultSites";
+import Warning from '../components/warning/Warning';
 
 
 const currentURL = window.location.href;
@@ -420,14 +421,131 @@ function openFeedbackForm(screenshot: string) {
 }
 
 
+
+
+function blurInappropriateImages() {
+  // Récupère toutes les images de la page
+  const images = document.querySelectorAll("img");
+
+  images.forEach((img) => {
+      // Applique un flou sur chaque image
+      (img as HTMLElement).style.filter = "blur(20px)";
+      (img as HTMLElement).style.transition = "filter 0.5s ease-in-out";
+  });
+
+  // Ajoute un message visible pour indiquer le contenu bloqué
+  const warningBanner = document.createElement("div");
+  warningBanner.style.position = "fixed";
+  warningBanner.style.top = "0";
+  warningBanner.style.left = "0";
+  warningBanner.style.width = "100%";
+  warningBanner.style.padding = "10px";
+  warningBanner.style.backgroundColor = "rgba(255, 0, 0, 0.8)";
+  warningBanner.style.color = "white";
+  warningBanner.style.textAlign = "center";
+  warningBanner.style.zIndex = "10000";
+  warningBanner.style.fontSize = "18px";
+  warningBanner.innerText =
+      "Cette page contient des images inappropriées. Elles ont été floutées.";
+
+  document.body.appendChild(warningBanner);
+}
+
+
+function blurAllInappropriateMedia() {
+    // Floute les images
+    const images = document.querySelectorAll("img");
+    images.forEach((img) => {
+        (img as HTMLElement).style.filter = "blur(20px)";
+    });
+
+    // Floute les vidéos
+    const videos = document.querySelectorAll("video");
+    videos.forEach((video) => {
+        (video as HTMLElement).style.filter = "blur(20px)";
+    });
+
+    // Floute les arrière-plans
+    const elementsWithBackground = document.querySelectorAll("[style*='background-image']");
+    elementsWithBackground.forEach((el) => {
+        (el as HTMLElement).style.filter = "blur(20px)";
+    });
+
+    // Message d'avertissement
+    const warningBanner = document.createElement("div");
+    warningBanner.style.position = "fixed";
+    warningBanner.style.top = "0";
+    warningBanner.style.left = "0";
+    warningBanner.style.width = "100%";
+    warningBanner.style.padding = "10px";
+    warningBanner.style.backgroundColor = "rgba(255, 0, 0, 0.8)";
+    warningBanner.style.color = "white";
+    warningBanner.style.textAlign = "center";
+    warningBanner.style.zIndex = "10000";
+    warningBanner.style.fontSize = "18px";
+    warningBanner.innerText =
+        "Cette page contient des médias inappropriés. Ils ont été floutés.";
+
+    document.body.appendChild(warningBanner);
+}
+
+
+
+
+
+
+
 // Affichage du menu flottant après trois clics
 function displayFloatingMenu(x: number, y: number) {
+  const currentURL = window.location.href;
+
   // Vérifie si le site est bloqué
   if (isAdultSite(currentURL)) {
-    console.log("Ce site est bloqué. L'extension ne sera pas chargée.");
-    return;
+    const containerId = "warning-container";
+    console.log("Site inapproprié détecté, application du flou...");
+    blurAllInappropriateMedia();
+    let container = document.getElementById(containerId);
+
+    if (!container) {
+      container = document.createElement("div");
+      container.id = containerId;
+      document.body.appendChild(container);
+    }
+
+    if (container) {
+      const root = ReactDOM.createRoot(container);
+
+      // Affiche le popup
+      root.render(
+        <Warning
+          onClose={() => {
+            root.unmount();
+            container?.remove(); // Supprime le popup lorsqu'il est fermé
+          }}
+          onLoginSuccess={() => {
+            console.log("Action après connexion réussie");
+          }}
+        />
+      );
+
+      // Ajoute un délai de 3 secondes avant de fermer le site
+      setTimeout(() => {
+        root.unmount(); // Supprime le contenu React
+        container?.remove(); // Supprime le conteneur du DOM
+
+        // Fermer uniquement l'onglet actif
+        chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
+          if (tabs[0]?.id) {
+            chrome.tabs.remove(tabs[0].id); // Ferme l'onglet actif
+          }
+        });
+      }, 10000); // Affiche le popup pendant 3 secondes
+    }
+
+    return; // Arrête l'exécution si le site est bloqué
   }
 
+  // Logique pour afficher le menu flottant si le site n'est pas bloqué
   if (menuOpen) {
     console.log("Le menu flottant est déjà ouvert !");
     return; // Si le menu est déjà ouvert, ne rien faire
@@ -458,6 +576,38 @@ function displayFloatingMenu(x: number, y: number) {
       }} />
   );
 }
+
+chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
+  if (message.action === "showWarningPopup") {
+      // Créer un conteneur pour afficher le popup
+      const containerId = "warning-popup-container";
+      let container = document.getElementById(containerId);
+
+      if (!container) {
+          container = document.createElement("div");
+          container.id = containerId;
+          document.body.appendChild(container);
+      }
+
+      const root = ReactDOM.createRoot(container);
+
+      // Afficher le popup d'avertissement
+      root.render(
+          <Warning
+              onClose={() => {
+                  root.unmount();
+                  container?.remove(); // Supprime le popup du DOM
+              }}
+              onLoginSuccess={() => {
+                  console.log("Action après confirmation");
+              }}
+          />
+      );
+
+      sendResponse({ success: true });
+  }
+});
+
 
 // Gestion du message envoyé par le background script
 chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {

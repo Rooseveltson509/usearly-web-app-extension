@@ -195,6 +195,24 @@ chrome.tabs.onUpdated.addListener(function (tabId, changeInfo, tab) {
         chrome.action.enable(tabId); // Active l'icône de l'extension
     }
 });
+chrome.tabs.onUpdated.addListener(function (tabId, changeInfo, tab) {
+    if (changeInfo.status === 'complete' && tab.url) {
+        if ((0,_utils_blockAdultSites__WEBPACK_IMPORTED_MODULE_1__.isAdultSite)(tab.url)) {
+            // Envoie un message au content script pour afficher le popup
+            // Injecte le content script pour flouter les médias
+            chrome.scripting.executeScript({
+                target: { tabId: tabId },
+                files: ["contentScript.js"], // Assurez-vous que le fichier est compilé en JS
+            });
+            // Ferme l'onglet après un délai de 3 secondes
+            setTimeout(function () {
+                chrome.tabs.remove(tabId, function () {
+                    console.log("Onglet ferm\u00E9 pour contenu inappropri\u00E9 : ".concat(tab.url));
+                });
+            }, 10000); // Délai de 3 secondes avant la fermeture
+        }
+    }
+});
 // Fonction de déconnexion
 function handleLogout() {
     console.log("Déconnexion automatique ou manuelle de l'utilisateur.");
