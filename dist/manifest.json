@@ -6,8 +6,8 @@
   "web_accessible_resources": [
     {
       "resources": [
-        "fonts/*.ttf",
-        "fonts/GeistMono-VariableFont_wght.ttf"
+        "fonts/*.woff2", "fonts/*.woff",
+        "contentStyles.css"
       ],
       "matches": [
         "<all_urls>"

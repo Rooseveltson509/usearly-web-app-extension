@@ -10,10 +10,14 @@
 
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   isAdultSite: () => (/* binding */ isAdultSite)
+/* harmony export */   shouldBlockUrl: () => (/* binding */ shouldBlockUrl)
 /* harmony export */ });
 // Liste noire de domaines connus pour adultes
-var adultDomains = [
+var forbiddenDomains = [
+    "exampleporn.com",
+    "violentsite.com",
+    "adult-content.com",
+    "badsites.net",
     "pornhub.com",
     "xvideos.com",
     "redtube.com",
@@ -21,25 +25,72 @@ var adultDomains = [
     "youporn.com",
     "brazzers.com",
     "adultfriendfinder.com",
-    "livejasmin.com"
+    "livejasmin.com",
+    "airbnb.fr"
+];
+var forbiddenKeywords = [
+    "porn",
+    "violent",
+    "xxx",
+    "inappropriate",
+    "nsfw",
+    "sex",
+    "erotic"
 ];
 // https://www.airbnb.fr/rooms/52621429?adults=2&category_tag=Tag%3A4104&children=0&enable_m3_private_room=true&infants=0&pets=0&photo_id=1667039872&search_mode=flex_destinations_search&check_in=2025-01-03&check_out=2025-01-08&source_impression_id=p3_1732287557_P3IQ3z7DTBGIxxhx&previous_page_section_name=1000
 // Liste de mots-clés sensibles dans les URLs
-var adultKeywords = ["porn", "xxx", "sex", "erotic", "nsfw"];
 /**
  * Vérifie si le site actuel doit être bloqué.
  * @param url L'URL complète de la page web.
  * @returns true si le site est inapproprié, sinon false.
  */
-function isAdultSite(url) {
-    var domain = new URL(url).hostname.toLowerCase();
+function shouldBlockUrl(url) {
+    try {
+        // Créer une instance d'URL
+        var parsedUrl = new URL(url);
+        // Extraire le domaine (hostname)
+        var domain_1 = parsedUrl.hostname.toLowerCase();
+        // Vérifier si le domaine est dans la liste interdite
+        if (forbiddenDomains.some(function (forbiddenDomain) { return domain_1.includes(forbiddenDomain); })) {
+            console.log("URL bloqu\u00E9e : Domaine interdit (".concat(domain_1, ")"));
+            return true;
+        }
+        // Extraire le chemin complet (path)
+        var path_1 = parsedUrl.pathname.toLowerCase();
+        // Vérifier si un mot-clé interdit est dans le chemin
+        if (forbiddenKeywords.some(function (keyword) { return path_1.includes(keyword); })) {
+            console.log("URL bloqu\u00E9e : Mot-cl\u00E9 interdit dans le chemin (".concat(path_1, ")"));
+            return true;
+        }
+        // Extraire les paramètres de requête (query string)
+        var query_1 = parsedUrl.search.toLowerCase();
+        // Vérifier si un mot-clé interdit est dans les paramètres de requête
+        if (forbiddenKeywords.some(function (keyword) { return query_1.includes(keyword); })) {
+            console.log("URL bloqu\u00E9e : Mot-cl\u00E9 interdit dans les param\u00E8tres (".concat(query_1, ")"));
+            return true;
+        }
+        // Si aucune condition de blocage n'est satisfaite, autoriser l'accès
+        console.log("URL autoris\u00E9e : ".concat(url));
+        return false;
+    }
+    catch (error) {
+        console.error("Erreur lors de l'analyse de l'URL : ".concat(error));
+        return true; // Bloquer par défaut en cas d'erreur
+    }
+}
+/* export function isAdultSite(url: string): boolean {
+    const domain = new URL(url).hostname.toLowerCase();
+
     // Vérifie si le domaine ou l'URL contient des contenus sensibles
-    if (adultDomains.some(function (blockedDomain) { return domain.includes(blockedDomain); }) ||
-        adultKeywords.some(function (keyword) { return url.toLowerCase().includes(keyword); })) {
+    if (
+        forbiddenDomains.some((blockedDomain) => domain.includes(blockedDomain)) ||
+        forbiddenKeywords.some((keyword) => url.toLowerCase().includes(keyword))
+    ) {
         return true;
     }
+
     return false;
-}
+} */
 
 
 /***/ }),
@@ -186,18 +237,17 @@ var __generator = (undefined && undefined.__generator) || function (thisArg, bod
 
 var API_URL = 'https://usearly-api.vercel.app/api/v1';
 var FIVE_HOURS_IN_MS = 5 * 60 * 60 * 1000;
-chrome.tabs.onUpdated.addListener(function (tabId, changeInfo, tab) {
-    if (tab.url && (0,_utils_blockAdultSites__WEBPACK_IMPORTED_MODULE_1__.isAdultSite)(tab.url)) {
-        console.log("Site bloqué : désactivation de l'extension.");
-        chrome.action.disable(tabId); // Désactive l'icône de l'extension
-    }
-    else {
-        chrome.action.enable(tabId); // Active l'icône de l'extension
-    }
-});
+/* chrome.tabs.onUpdated.addListener((tabId, changeInfo, tab) => {
+  if (tab.url && shouldBlockUrl(tab.url)) {
+    console.log("Site bloqué : désactivation de l'extension.");
+    chrome.action.disable(tabId); // Désactive l'icône de l'extension
+  } else {
+    chrome.action.enable(tabId); // Active l'icône de l'extension
+  }
+}); */
 chrome.tabs.onUpdated.addListener(function (tabId, changeInfo, tab) {
     if (changeInfo.status === 'complete' && tab.url) {
-        if ((0,_utils_blockAdultSites__WEBPACK_IMPORTED_MODULE_1__.isAdultSite)(tab.url)) {
+        if ((0,_utils_blockAdultSites__WEBPACK_IMPORTED_MODULE_1__.shouldBlockUrl)(tab.url)) {
             // Envoie un message au content script pour afficher le popup
             // Injecte le content script pour flouter les médias
             chrome.scripting.executeScript({
@@ -205,11 +255,11 @@ chrome.tabs.onUpdated.addListener(function (tabId, changeInfo, tab) {
                 files: ["contentScript.js"], // Assurez-vous que le fichier est compilé en JS
             });
             // Ferme l'onglet après un délai de 3 secondes
-            setTimeout(function () {
-                chrome.tabs.remove(tabId, function () {
-                    console.log("Onglet ferm\u00E9 pour contenu inappropri\u00E9 : ".concat(tab.url));
+            /* setTimeout(() => {
+                chrome.tabs.remove(tabId, () => {
+                    console.log(`Onglet fermé pour contenu inapproprié : ${tab.url}`);
                 });
-            }, 10000); // Délai de 3 secondes avant la fermeture
+            }, 10000);  */ // Délai de 3 secondes avant la fermeture
         }
     }
 });

@@ -40,9 +40,8 @@ export function logout() {
 import { setToken } from '../utils/storageUtil'; // Mise à jour pour chrome.storage
 
 const API_URL = 'https://usearly-api.vercel.app/api/v1';
-const API_URL_DEV = 'https://17d8-2a01-cb08-512-d600-b5e4-a24f-54ce-c58c.ngrok-free.app/api/v1';
+const API_URL_DEV = 'https://5b91-217-128-226-57.ngrok-free.app/api/v1';
 
-//const API_URL_DEV = 'https://17d8-2a01-cb08-512-d600-b5e4-a24f-54ce-c58c.ngrok-free.app/api/v1';
 
 export async function login(email: string, password: string): Promise<boolean> {
   try {

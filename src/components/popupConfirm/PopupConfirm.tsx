@@ -1,36 +1,54 @@
 import React, { useState } from 'react';
 import AnimatedPoints from '../animationsPoint/AnimatedPoints';
+import { updateAlert } from '../../services/apiService';
+import { getToken } from '../../utils/storageUtil';
 
 interface PopupConfirm {
     onClose: () => void;
 }
 const PopupConfirm: React.FC<PopupConfirm> = ({ onClose }: { onClose: () => void }) => {
     const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
+    const [errorMessages, setErrorMessages] = useState<string | null>(null); // Stocke les erreurs
 
-    const handleCategoryChange = (category: string) => {
+
+    const handleCategoryChange = async (category: string) => {
         setSelectedCategory(category);
+        setErrorMessages(null); // Réinitialise les erreurs
 
-        // Appeler l'API PUT avec la catégorie sélectionnée
-        fetch('/api/update-category', {
-            method: 'PUT',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({ category }),
-        })
-            .then((response) => {
-                if (!response.ok) {
-                    throw new Error('Erreur lors de la mise à jour de la catégorie');
-                }
-                console.log('Catégorie mise à jour avec succès :', category);
-            })
-            .catch((error) => {
-                console.error(error);
-            });
+        console.log("catégorie choisie: ", category)
+
+        try {
+            const token = await getToken(); // Récupère le token utilisateur
+            if (!token) {
+                console.error("Erreur : Token manquant ou invalide.");
+                setErrorMessages("Token manquant ou invalide.");
+                return; // Interrompt la fonction si le token est nul
+            }
+
+            const response = await updateAlert(category, token); // Appelle l'API
+
+            if (!response.success) {
+                // Si l'API renvoie une erreur, affichez-la
+                setErrorMessages(response.error || "Une erreur inconnue s'est produite.");
+            } else {
+                console.log("Mise à jour réussie: ", response.message);
+                onClose(); // Ferme la fenêtre ou exécute l'action de fin
+            }
+        } catch (err) {
+            console.error("Erreur lors de la mise à jour :", err);
+            setErrorMessages("Erreur de connexion au serveur. Veuillez réessayer.");
+        }
+
     };
+
 
     return (
         <div className="category-popup-overlay">
+            {errorMessages && (
+                <div style={{ color: "red", marginTop: "10px" }}>
+                    {errorMessages}
+                </div>
+            )}
             <div className="category-popup">
                 <div className="popup-header">
                     <div className="popup-icon"><svg xmlns="http://www.w3.org/2000/svg" width="122" height="120" viewBox="0 0 122 120" fill="none">
@@ -61,7 +79,9 @@ const PopupConfirm: React.FC<PopupConfirm> = ({ onClose }: { onClose: () => void
                     </button>
                 </div>
                 <div className="popup-content">
-                    <h1 className='h1Title'>Signalement reçu, merci !</h1>
+                    <h1 style={{
+                        fontFamily: 'Urbanist sans-serif !important',
+                    }} className='h1Title'>Signalement reçu, merci !</h1>
                     <div className="popup-points">
                         <span role="img" aria-label="thumbs-up">
                             👍
@@ -76,7 +96,7 @@ const PopupConfirm: React.FC<PopupConfirm> = ({ onClose }: { onClose: () => void
                         </span>
                     </p>
                     <div className="popup-categories">
-                        {['Catégorie 1', 'Catégorie 2', 'Catégorie 3', 'Autre'].map((category, index) => (
+                        {['cat1', 'cat2', 'cat3', 'autre'].map((category, index) => (
                             <label key={index} className={`popup-category ${selectedCategory === category ? 'selected' : ''}`}>
                                 <input
                                     type="radio"

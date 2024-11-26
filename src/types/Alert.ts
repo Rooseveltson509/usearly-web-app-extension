@@ -4,7 +4,7 @@ export interface Alert {
     description: string; // Description du bug
     bugLocation: string; // Emplacement du bug
     emojis: string; // Émojis associés
-    capture?: string; // Capture d'écran (optionnelle)
+    capture: string | null; // Capture d'écran (optionnelle)
     tips?: string; // Astuce proposée (optionnelle)
   }
   

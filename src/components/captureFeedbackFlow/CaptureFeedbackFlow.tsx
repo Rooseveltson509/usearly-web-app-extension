@@ -4,7 +4,7 @@ import EmojiSelector from '../emojis/EmojiSelector';
 import FeedbackForm from '../FeadbackForm';
 
 interface CaptureFeedbackFlowProps {
-  screenshot: string;
+  screenshot: string | null; // Screenshot peut être une chaîne ou null
   onClose: () => void;
 }
 

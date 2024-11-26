@@ -6,22 +6,23 @@ const ExtensionContent: React.FC = () => {
   const shadowHostRef = useRef<HTMLDivElement>(null);
   const [shadowRoot, setShadowRoot] = React.useState<ShadowRoot | null>(null);
 
-  // Initialisation du shadow DOM
   useEffect(() => {
+    console.log('Je suis le shadowHostRef ...')
     if (shadowHostRef.current && !shadowRoot) {
       const newShadowRoot = shadowHostRef.current.attachShadow({ mode: 'open' });
 
-      // Ajout de la feuille de style
-      const linkElem = document.createElement('link');
-      linkElem.setAttribute('rel', 'stylesheet');
-      linkElem.setAttribute('href', chrome.runtime.getURL('dist/contentStyles.css'));
-      newShadowRoot.appendChild(linkElem);
+      const styleElem = document.createElement('style');
+      fetch(chrome.runtime.getURL('dist/contentStyles.css'))
+        .then((response) => response.text())
+        .then((css) => {
+          styleElem.textContent = css;
+          newShadowRoot.appendChild(styleElem);
+        });
 
-      setShadowRoot(newShadowRoot); // Mettre à jour le shadow root
+      setShadowRoot(newShadowRoot);
     }
   }, [shadowRoot]);
 
-  // Retourner le portail seulement si le shadow root est défini
   return shadowRoot ? (
     ReactDOM.createPortal(
       <DraggableFloatingMenu

@@ -3,11 +3,12 @@ import ReactDOM from 'react-dom/client';
 import CaptureFeedbackFlow from '../components/captureFeedbackFlow/CaptureFeedbackFlow';
 import html2canvas from 'html2canvas';
 import DraggableFloatingMenu from '../components/DraggableFloatingMenu';
-import { isAdultSite } from "../utils/blockAdultSites";
+import { shouldBlockUrl } from "../utils/blockAdultSites";
 import Warning from '../components/warning/Warning';
+import { blurAllInappropriateMedia } from '../utils/blurAllInappropriateMedia';
+import { unblurAllMedia } from '../utils/unblurAllMedia';
 
 
-const currentURL = window.location.href;
 let clickCount = 0;
 let startX = 0;
 let startY = 0;
@@ -269,7 +270,8 @@ function handleMouseUp() {
 
 
 // Fonction pour ouvrir le flux de feedback avec la sélection d'émoji
-function openFeedbackWithEmojiSelection(screenshot: string) {
+function openFeedbackWithEmojiSelection(screenshot: string | null) {
+  // Crée un conteneur pour le feedback
   const feedbackContainer = document.createElement('div');
   feedbackContainer.style.position = 'fixed';
   feedbackContainer.style.top = '0';
@@ -281,14 +283,22 @@ function openFeedbackWithEmojiSelection(screenshot: string) {
 
   document.body.appendChild(feedbackContainer);
 
+  // Fonction pour fermer le feedback
   const closeFeedback = () => {
     document.body.removeChild(feedbackContainer);
   };
 
   // Créer une racine React pour le flux de feedback avec sélection d'émoji
   const root = ReactDOM.createRoot(feedbackContainer);
-  root.render(<CaptureFeedbackFlow screenshot={screenshot} onClose={closeFeedback} />);
+  root.render(
+    <CaptureFeedbackFlow
+      screenshot={screenshot} // Passez la capture ou null
+      onClose={closeFeedback}
+      
+    />
+  );
 }
+
 
 
 // Fonction pour redimensionner et compresser l'image
@@ -327,6 +337,13 @@ function resizeAndCompressImage(dataUrl: string, maxWidth: number, maxHeight: nu
 // Méthode de capture mise à jour
 function captureSelectedArea(x: number, y: number, width: number, height: number) {
   const externalElements = document.querySelectorAll('img, iframe, video, [style*="background-image"]');
+
+  // Vérifier si la zone sélectionnée est trop petite ou inexistante
+  if (width < 5 || height < 5) {
+    console.log('Zone trop petite ou inexistante. Continuation sans capture.');
+    openFeedbackWithEmojiSelection(null); // Appeler le formulaire sans capture
+    return; // Arrêter l'exécution
+  }
 
   // Masquer temporairement les éléments externes
   externalElements.forEach((el) => {
@@ -379,8 +396,10 @@ function captureSelectedArea(x: number, y: number, width: number, height: number
     })
     .catch((error) => {
       console.error('Erreur lors de la capture de la zone sélectionnée:', error);
+      openFeedbackWithEmojiSelection(null); // Continuer même en cas d'erreur
     });
 }
+
 
 // Désactiver le mode sélection et réinitialiser les indicateurs
 function disableSelectionMode() {
@@ -423,87 +442,16 @@ function openFeedbackForm(screenshot: string) {
 
 
 
-function blurInappropriateImages() {
-  // Récupère toutes les images de la page
-  const images = document.querySelectorAll("img");
-
-  images.forEach((img) => {
-      // Applique un flou sur chaque image
-      (img as HTMLElement).style.filter = "blur(20px)";
-      (img as HTMLElement).style.transition = "filter 0.5s ease-in-out";
-  });
-
-  // Ajoute un message visible pour indiquer le contenu bloqué
-  const warningBanner = document.createElement("div");
-  warningBanner.style.position = "fixed";
-  warningBanner.style.top = "0";
-  warningBanner.style.left = "0";
-  warningBanner.style.width = "100%";
-  warningBanner.style.padding = "10px";
-  warningBanner.style.backgroundColor = "rgba(255, 0, 0, 0.8)";
-  warningBanner.style.color = "white";
-  warningBanner.style.textAlign = "center";
-  warningBanner.style.zIndex = "10000";
-  warningBanner.style.fontSize = "18px";
-  warningBanner.innerText =
-      "Cette page contient des images inappropriées. Elles ont été floutées.";
-
-  document.body.appendChild(warningBanner);
-}
-
-
-function blurAllInappropriateMedia() {
-    // Floute les images
-    const images = document.querySelectorAll("img");
-    images.forEach((img) => {
-        (img as HTMLElement).style.filter = "blur(20px)";
-    });
-
-    // Floute les vidéos
-    const videos = document.querySelectorAll("video");
-    videos.forEach((video) => {
-        (video as HTMLElement).style.filter = "blur(20px)";
-    });
-
-    // Floute les arrière-plans
-    const elementsWithBackground = document.querySelectorAll("[style*='background-image']");
-    elementsWithBackground.forEach((el) => {
-        (el as HTMLElement).style.filter = "blur(20px)";
-    });
-
-    // Message d'avertissement
-    const warningBanner = document.createElement("div");
-    warningBanner.style.position = "fixed";
-    warningBanner.style.top = "0";
-    warningBanner.style.left = "0";
-    warningBanner.style.width = "100%";
-    warningBanner.style.padding = "10px";
-    warningBanner.style.backgroundColor = "rgba(255, 0, 0, 0.8)";
-    warningBanner.style.color = "white";
-    warningBanner.style.textAlign = "center";
-    warningBanner.style.zIndex = "10000";
-    warningBanner.style.fontSize = "18px";
-    warningBanner.innerText =
-        "Cette page contient des médias inappropriés. Ils ont été floutés.";
-
-    document.body.appendChild(warningBanner);
-}
-
-
-
-
-
-
-
 // Affichage du menu flottant après trois clics
 function displayFloatingMenu(x: number, y: number) {
   const currentURL = window.location.href;
 
   // Vérifie si le site est bloqué
-  if (isAdultSite(currentURL)) {
+  if (shouldBlockUrl(currentURL)) {
     const containerId = "warning-container";
     console.log("Site inapproprié détecté, application du flou...");
-    blurAllInappropriateMedia();
+    blurAllInappropriateMedia(); // Flouter les médias
+
     let container = document.getElementById(containerId);
 
     if (!container) {
@@ -521,6 +469,7 @@ function displayFloatingMenu(x: number, y: number) {
           onClose={() => {
             root.unmount();
             container?.remove(); // Supprime le popup lorsqu'il est fermé
+            unblurAllMedia(); // Déflouter les médias
           }}
           onLoginSuccess={() => {
             console.log("Action après connexion réussie");
@@ -528,21 +477,8 @@ function displayFloatingMenu(x: number, y: number) {
         />
       );
 
-      // Ajoute un délai de 3 secondes avant de fermer le site
-      setTimeout(() => {
-        root.unmount(); // Supprime le contenu React
-        container?.remove(); // Supprime le conteneur du DOM
-
-        // Fermer uniquement l'onglet actif
-        chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
-          if (tabs[0]?.id) {
-            chrome.tabs.remove(tabs[0].id); // Ferme l'onglet actif
-          }
-        });
-      }, 10000); // Affiche le popup pendant 3 secondes
+      return; // Arrête l'exécution si le site est bloqué
     }
-
-    return; // Arrête l'exécution si le site est bloqué
   }
 
   // Logique pour afficher le menu flottant si le site n'est pas bloqué
@@ -576,6 +512,7 @@ function displayFloatingMenu(x: number, y: number) {
       }} />
   );
 }
+
 
 chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
   if (message.action === "showWarningPopup") {

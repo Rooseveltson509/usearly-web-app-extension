@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useState, useEffect } from "react";
 
 interface WarningFormProps {
   onClose: () => void;
@@ -6,23 +6,32 @@ interface WarningFormProps {
 }
 
 const Warning: React.FC<WarningFormProps> = ({ onClose }) => {
- /*  useEffect(() => {
-    // Automatiquement fermer le popup après 3 secondes
-    const timer = setTimeout(() => {
-      onClose();
-    }, 10000);
+  const [countdown, setCountdown] = useState(10); // Compte à rebours de 10 secondes
 
-    return () => clearTimeout(timer); 
-  }, [onClose]); */
+  useEffect(() => {
+    // Décrémenter le compte à rebours chaque seconde
+    const timer = setInterval(() => {
+      setCountdown((prev) => prev - 1);
+    }, 1000);
+
+    // Fermer automatiquement après 10 secondes
+    if (countdown <= 0) {
+      clearInterval(timer);
+      onClose(); // Appeler la fonction de fermeture
+    }
+
+    return () => clearInterval(timer); // Nettoyage
+  }, [countdown, onClose]);
 
   return (
     <div className="overlay">
       <div className="warning-popup">
         <h1>⚠️ Contenu inapproprié détecté</h1>
-        <p>Vous serez redirigé hors de cette page dans quelques secondes.</p>
-        <button className="close-button" onClick={onClose}>
-          OK
-        </button>
+        <p>Notre extension Usearly ne sera pas active sur ce site.</p>
+        <p>
+          fermeture dans <strong>{countdown}</strong> secondes.
+        </p>
+        <button onClick={onClose} className="close-button-form">Fermer</button>
       </div>
     </div>
   );

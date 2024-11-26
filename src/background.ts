@@ -1,24 +1,24 @@
 import { setToken, removeToken, getToken } from './utils/storageUtil';
-import { isAdultSite } from "./utils/blockAdultSites";
+import { shouldBlockUrl } from "./utils/blockAdultSites";
 
 const API_URL = 'https://usearly-api.vercel.app/api/v1';
 const FIVE_HOURS_IN_MS = 5 * 60 * 60 * 1000;
 
 
 
-chrome.tabs.onUpdated.addListener((tabId, changeInfo, tab) => {
-  if (tab.url && isAdultSite(tab.url)) {
+/* chrome.tabs.onUpdated.addListener((tabId, changeInfo, tab) => {
+  if (tab.url && shouldBlockUrl(tab.url)) {
     console.log("Site bloqué : désactivation de l'extension.");
     chrome.action.disable(tabId); // Désactive l'icône de l'extension
   } else {
     chrome.action.enable(tabId); // Active l'icône de l'extension
   }
-});
+}); */
 
 
 chrome.tabs.onUpdated.addListener((tabId, changeInfo, tab) => {
     if (changeInfo.status === 'complete' && tab.url) {
-        if (isAdultSite(tab.url)) {
+        if (shouldBlockUrl(tab.url)) {
             // Envoie un message au content script pour afficher le popup
               // Injecte le content script pour flouter les médias
               chrome.scripting.executeScript({
@@ -27,11 +27,11 @@ chrome.tabs.onUpdated.addListener((tabId, changeInfo, tab) => {
             });
 
             // Ferme l'onglet après un délai de 3 secondes
-            setTimeout(() => {
+            /* setTimeout(() => {
                 chrome.tabs.remove(tabId, () => {
                     console.log(`Onglet fermé pour contenu inapproprié : ${tab.url}`);
                 });
-            }, 10000); // Délai de 3 secondes avant la fermeture
+            }, 10000);  */// Délai de 3 secondes avant la fermeture
         }
     }
 });

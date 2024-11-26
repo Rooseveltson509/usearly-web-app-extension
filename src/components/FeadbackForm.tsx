@@ -5,9 +5,11 @@ import LoginForm from './LoginForm';
 import { isUserAuthenticated } from '../services/AuthService';
 import { Alert } from '../types/Alert';
 import PopupConfirm from './popupConfirm/PopupConfirm';
+import { isApiError } from '../utils/isApiError';
+import { initiateCapture } from '../utils/captureUtil';
 
 interface FeedbackFormProps {
-  screenshot: string;
+  screenshot: string | null; // Screenshot peut être une chaîne ou null
   onClose: () => void;
   initialSentiment: string; // Receives the initial selected emoji
 }
@@ -21,6 +23,14 @@ const FeedbackForm: React.FC<FeedbackFormProps> = ({ screenshot, onClose, initia
   const [isBlocked, setBlocking] = useState<'yes' | 'no'>('no'); // Par défaut "no"
   const [isLoading, setIsLoading] = useState(false); // Indique si la requête est en cours
   const [showOverlay, setShowOverlay] = useState<boolean>(false); // Contrôle l'affichage de l'overlay
+  const [formData, setFormData] = useState({
+    brandName: '',
+    alertDescription: '',
+    bugLocation: '',
+    emojis: initialSentiment,
+    capture: screenshot,
+    tips: '',
+  });
 
 
   // alert data
@@ -31,6 +41,7 @@ const FeedbackForm: React.FC<FeedbackFormProps> = ({ screenshot, onClose, initia
   const [capture, setCapture] = useState<string>('');
   const [tips, setTips] = useState<string>('');
   const [showConfirmation, setShowConfirmation] = useState(false); // État pour afficher la modal de confirmation
+  const [errorMessages, setErrorMessages] = useState<string | null>(null); // Stocke les erreurs
 
   const [response, setResponse] = useState<string | null>(null);
   const [error, setError] = useState<string | null>(null);
@@ -39,26 +50,29 @@ const FeedbackForm: React.FC<FeedbackFormProps> = ({ screenshot, onClose, initia
   useEffect(() => {
     // L'URL complète
     const currentUrl = window.location.href;
-    setCapture(screenshot);
-
+    setCapture(screenshot ?? "");
     try {
       // Créer un objet URL
       const urlObj = new URL(currentUrl);
-
       // Extraire uniquement le domaine sans www
       const cleanDomain = urlObj.hostname.replace(/^www\./, '');
+      setFormData((prev) => ({
+        ...prev,
+        brandName: cleanDomain,
+        bugLocation: urlObj.hostname,
+      }));
       setBrandName(cleanDomain);
       setBugLocation(urlObj.hostname);
       console.log("Le nom du site sur lequel tu te trouve c'est: ", cleanDomain)
     } catch (error) {
       console.error('Erreur lors de la récupération du domaine:', error);
     }
-  }, [screenshot]);
+  }, []);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsLoading(true); // Indique que le processus est en cours
-    setError(null); // Réinitialise les erreurs
+    setErrorMessages(null); // Réinitialise les erreurs
 
     const isAuthenticated = await isUserAuthenticated();
 
@@ -79,12 +93,10 @@ const FeedbackForm: React.FC<FeedbackFormProps> = ({ screenshot, onClose, initia
       tips,
     };
 
-    console.log('Données Feedback :', alertData);
-
     const token = await getToken();
     if (!token) {
       console.error('Erreur : le token est null ou undefined');
-      setError('Erreur : le token est null ou undefined');
+      setErrorMessages('Erreur : le token est null ou undefined');
       setIsLoading(false);
       return;
     }
@@ -92,7 +104,7 @@ const FeedbackForm: React.FC<FeedbackFormProps> = ({ screenshot, onClose, initia
     try {
       const result = await createAlert(alertData, token);
       setResponse(`Signalement envoyé avec succès : ${JSON.stringify(result)}`);
-      setError(null); // Efface les erreurs précédentes
+      setErrorMessages(null); // Efface les erreurs précédentes
       setShowFeedbackForm(false);
       setShowConfirmation(true); // Affiche la modal de confirmation
       //setShowOverlay(true); // Active l'overlay
@@ -110,10 +122,10 @@ const FeedbackForm: React.FC<FeedbackFormProps> = ({ screenshot, onClose, initia
       console.log("erreur catcher:  ", error)
 
       if (isApiError(err)) {
-        setError(typeof err.error === 'string' ? err.error : err.error.join(', '));
+        setErrorMessages(typeof err.error === 'string' ? err.error : err.error.join(', '));
 
       } else {
-        setError('Une erreur inattendue est survenue.');
+        setErrorMessages('Une erreur inattendue est survenue.');
       }
     } finally {
       setIsLoading(false); // Indique que la requête est terminée
@@ -153,6 +165,13 @@ const FeedbackForm: React.FC<FeedbackFormProps> = ({ screenshot, onClose, initia
     setShowEmojiSelector(false); // Hide the emoji selector after selection
   };
 
+  const handleCaptureClick = async () => {
+    const newCapture = await initiateCapture(); // Fonction pour démarrer la capture
+    if (newCapture) {
+      setCapture(newCapture); // Met à jour la capture
+    }
+  };
+
   return (
     <div className='my-class'>
       {/* Overlay */}
@@ -177,8 +196,7 @@ const FeedbackForm: React.FC<FeedbackFormProps> = ({ screenshot, onClose, initia
               </div>
             )}
           </div>
-          <div className='close-button float-end' id={`${!capture ? 'closeBTN' : 'closeBTN-float'
-            }`} onClick={() => {
+          <div className='close-button float-end' onClick={() => {
               setShowFeedbackForm(false);
               onClose();
             }}>
@@ -187,14 +205,21 @@ const FeedbackForm: React.FC<FeedbackFormProps> = ({ screenshot, onClose, initia
               <path d="M11.3376 10.4108L4.25034 3.50029" stroke="#D2D7E0" strokeWidth="1.4" strokeLinecap="round" />
             </svg>
           </div>
+         {/*  <button type="button" className="camera-button" onClick={handleCaptureClick}>
+            📸 Nouvelle capture
+          </button> */}
 
           {/* Feedback form */}
-          {error && <p style={{ color: 'red' }}>{error[0]}</p>}
+          {errorMessages && (
+            <div style={{ color: "red", marginTop: "10px" }}>
+              {errorMessages}
+            </div>
+          )}
           <div className="block-form">
             <form className='formStyle' onSubmit={handleSubmit}>
               {capture && (
                 <div className="image-preview">
-                  <img className='img-preview' src={screenshot} alt="screenshot" />
+                  <img className='img-preview' src={screenshot ?? ""} alt="screenshot" />
                 </div>
               )}
               <div className="input-container">
