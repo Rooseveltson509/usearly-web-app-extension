@@ -3,9 +3,8 @@
 import { Alert } from '../types/Alert';
 import { getToken } from '../utils/storageUtil';
 
-const API_URL = 'https://usearly-api.vercel.app/api/v1';
-
-const API_BASE_URL = "https://5b91-217-128-226-57.ngrok-free.app/api/v1"
+const API_URL = 'https://20d2-217-128-226-57.ngrok-free.app/api/v1';
+const API_BASE_URL = 'https://usearly-api.vercel.app/api/v1';
 
 export interface UpdateAlertResponse {
   success: boolean;
@@ -13,8 +12,8 @@ export interface UpdateAlertResponse {
   error?: string;
 }
 
-const url = `${API_BASE_URL}/user/alert/new`;
-
+const url = `${API_URL}/user/alert/new`;
+const url2 = `${API_URL}/test-cors`;
 
 /**
  * Effectue une requête POST pour créer un signalement.
@@ -26,10 +25,13 @@ export const createAlert = async (
   alertData: Alert,
   token: string
 ): Promise<UpdateAlertResponse> => {
+  const currentUrl = window.location.href;
+  const urlObj = new URL(currentUrl);
   const response = await fetch(url, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
+      Origin: currentUrl,
       Authorization: `Bearer ${token}`,
     },
     mode: 'cors',
@@ -45,7 +47,6 @@ export const createAlert = async (
 };
 
 
-
 /**
  * Met à jour la catégorie d'un signalement.
  * @param category - La catégorie du signalement à mettre à jour.
@@ -54,10 +55,11 @@ export const createAlert = async (
  */
 export const updateAlert = async (category: string, token: string): Promise<UpdateAlertResponse> => {
   try {
-    const response = await fetch(`${API_BASE_URL}/user/update-category`, {
+    const response = await fetch(`${API_URL}/user/update-category`, {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",
+        Origin: "chrome-extension://fjcggidednblenggahpkilfidbalhmad",
         Authorization: `Bearer ${token}`,
       },
       mode: 'cors',

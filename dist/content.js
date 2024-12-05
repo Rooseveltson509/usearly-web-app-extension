@@ -42817,7 +42817,7 @@ var DraggableFloatingMenu = function (_a) {
                     borderRadius: '8px', */
             cursor: 'move',
             zIndex: 1000,
-        } }, { children: [(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", __assign({ className: "tooltip-container" }, { children: [(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("svg", __assign({ className: 'svg-icon', onClick: function () { return handleButtonClick(function () { return console.log('Action Commenter: '); }); }, id: "uIcon", width: "22", height: "18", viewBox: "0 0 22 18", fill: "none", xmlns: "http://www.w3.org/2000/svg" }, { children: [(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("path", { d: "M10.56 0H14.77V11.26C14.77 12.56 14.46 13.69 13.84 14.66C13.22 15.62 12.36 16.36 11.25 16.89C10.14 17.41 8.86 17.67 7.39 17.67C5.92 17.67 4.61 17.41 3.5 16.89C2.39 16.36 1.53 15.62 0.92 14.66C0.31 13.69 0 12.56 0 11.26V0H4.22V10.89C4.22 11.49 4.35 12.03 4.61 12.5C4.88 12.97 5.25 13.34 5.73 13.61C6.21 13.88 6.76 14.01 7.39 14.01C8.02 14.01 8.57 13.88 9.04 13.61C9.52 13.34 9.89 12.97 10.16 12.5C10.43 12.03 10.56 11.49 10.56 10.89V0Z", fill: "#D9D9D9" }), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("path", { d: "M18.9402 17.7C18.3302 17.7 17.8002 17.48 17.3602 17.05C16.9302 16.62 16.7202 16.1 16.7202 15.48C16.7202 14.88 16.9302 14.36 17.3602 13.94C17.8002 13.51 18.3202 13.29 18.9402 13.29C19.5202 13.29 20.0302 13.51 20.4702 13.94C20.9202 14.37 21.1502 14.88 21.1502 15.48C21.1502 15.89 21.0402 16.26 20.8302 16.6C20.6302 16.94 20.3602 17.2 20.0202 17.4C19.6902 17.6 19.3302 17.7 18.9402 17.7Z", fill: "#D9D9D9" })] })), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", __assign({ className: "tooltip-text", id: 'u' }, { children: ["Feedback", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("span", { className: "tooltip-arrow" })] }))] })), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", __assign({ className: "tooltip-container" }, { children: [(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("svg", __assign({ className: 'svg-icon', onClick: onCaptureClick, id: "commentIcon", width: "26", height: "26", viewBox: "0 0 26 26", fill: "none", xmlns: "http://www.w3.org/2000/svg" }, { children: (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("path", { d: "M13 5.86C13.26 5.86 13.51 5.96 13.69 6.15C13.87 6.33 13.98 6.58 13.98 6.84V14.96C13.98 15.22 13.88 15.47 13.69 15.65C13.51 15.83 13.26 15.94 13 15.94C12.74 15.94 12.49 15.84 12.31 15.65C12.13 15.47 12.02 15.22 12.02 14.96V6.84C12.02 6.58 12.12 6.33 12.31 6.15C12.49 5.97 12.74 5.86 13 5.86ZM13 20.15C13.34 20.15 13.68 20.01 13.92 19.77C14.16 19.53 14.3 19.2 14.3 18.85C14.3 18.5 14.16 18.17 13.92 17.93C13.68 17.69 13.35 17.55 13 17.55C12.65 17.55 12.32 17.69 12.08 17.93C11.84 18.17 11.7 18.5 11.7 18.85C11.7 19.2 11.84 19.53 12.08 19.77C12.32 20.01 12.65 20.15 13 20.15ZM13 0.00999975C20.18 0.00999975 26 5.83 26 13.01C26 20.19 20.18 26.01 13 26.01C10.93 26.01 8.88 25.52 7.04 24.56L2.07 25.95C1.79 26.03 1.5 26.03 1.22 25.95C0.939997 25.88 0.69 25.73 0.48 25.53C0.28 25.33 0.129998 25.07 0.0599976 24.79C-0.0100024 24.51 -0.0100024 24.22 0.0599976 23.94L1.45 18.97C0.489997 17.13 0 15.08 0 13C0 5.82 5.82 0 13 0V0.00999975ZM13 1.96C10.07 1.96 7.26 3.12 5.19 5.2C3.12 7.27 1.95 10.08 1.95 13.01C1.95 14.92 2.43 16.76 3.34 18.39L3.54 18.74L2.09 23.92L7.27 22.47L7.62 22.67C9.09 23.49 10.74 23.96 12.42 24.05C14.11 24.14 15.79 23.84 17.34 23.17C18.89 22.51 20.27 21.49 21.37 20.22C22.47 18.94 23.26 17.43 23.69 15.79C24.11 14.16 24.16 12.45 23.82 10.8C23.48 9.15 22.77 7.59 21.74 6.26C20.71 4.93 19.38 3.85 17.87 3.1C16.36 2.36 14.69 1.97 13 1.97V1.96Z", fill: "#D9D9D9" }) })), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", __assign({ className: "tooltip-text", id: 'comment' }, { children: ["Signalement", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("span", { className: "tooltip-arrow" })] }))] })), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", __assign({ className: "tooltip-container" }, { children: [(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("svg", __assign({ className: 'svg-icon', onClick: onCommentClick, id: "heartIcon", width: "27", height: "24", viewBox: "0 0 27 24", fill: "none", xmlns: "http://www.w3.org/2000/svg" }, { children: (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("path", { d: "M26.41 4.81C26.01 3.86 25.44 3.01 24.7 2.29C23.21 0.820001 21.24 0.0100021 19.13 0.0100021C17.05 0.0100021 15.08 0.810003 13.58 2.28L13.51 2.35L13.44 2.28C11.95 0.810003 9.98 0 7.87 0C5.79 0 3.82 0.800002 2.33 2.26C1.59 2.98 1.02 3.83 0.610001 4.78C0.210001 5.73 0.01 6.74 0 7.77C0 8.8 0.199998 9.81 0.599998 10.76C0.999998 11.71 1.57 12.56 2.3 13.28L12.87 23.72C13.04 23.89 13.26 23.98 13.5 23.98C13.74 23.98 13.96 23.89 14.13 23.72L24.68 13.32C25.42 12.6 25.99 11.76 26.39 10.8C26.79 9.85 26.99 8.85 27 7.81C27 6.78 26.8 5.77 26.4 4.82L26.41 4.81ZM7.88 1.79C9.49 1.79 11.02 2.42 12.17 3.55L12.87 4.25C13.22 4.59 13.78 4.59 14.13 4.25L14.83 3.56C15.99 2.43 17.51 1.81 19.13 1.81C20.75 1.81 22.27 2.44 23.43 3.58C23.99 4.13 24.43 4.78 24.74 5.51C25.05 6.24 25.2 7.01 25.2 7.8C25.2 8.59 25.04 9.36 24.73 10.09C24.42 10.82 23.98 11.47 23.41 12.02L13.49 21.8L3.55 11.98C2.99 11.43 2.55 10.78 2.24 10.05C1.93 9.32 1.78 8.55 1.78 7.76C1.78 6.97 1.94 6.2 2.25 5.47C2.56 4.74 3 4.09 3.56 3.54C4.72 2.41 6.24 1.79 7.85 1.79", fill: "#D9D9D9" }) })), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", __assign({ className: "tooltip-text", id: 'heartI' }, { children: ["Coup de coeur", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("span", { className: "tooltip-arrow" })] }))] })), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("div", { children: (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", __assign({ className: "tooltip-container" }, { children: [(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("svg", __assign({ className: 'svg-icon', onClick: onCommentClick, id: "magicIcon", width: "29", height: "29", viewBox: "0 0 29 29", fill: "none", xmlns: "http://www.w3.org/2000/svg" }, { children: (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("path", { d: "M28.6025 12.0643L25.7325 7.74426L27.1625 2.72426C27.2525 2.41426 27.1625 2.07426 26.9325 1.84426C26.7025 1.61426 26.3625 1.52426 26.0525 1.61426L21.0625 3.07426L16.7325 0.154257C16.4625 -0.0257434 16.1125 -0.0557434 15.8225 0.104257C15.5325 0.254257 15.3425 0.554257 15.3325 0.874257L15.1825 6.09426L11.0825 9.31426C10.8225 9.51426 10.7025 9.84426 10.7525 10.1643C10.8025 10.4843 11.0225 10.7543 11.3325 10.8643L15.1725 12.2443C15.1725 12.2443 15.1225 12.2843 15.0925 12.3043L0.2625 27.2243C-0.0875 27.5743 -0.0875 28.1443 0.2625 28.4943C0.4325 28.6743 0.6625 28.7543 0.8925 28.7543C1.1225 28.7543 1.3525 28.6643 1.5225 28.4943L16.3625 13.5943C16.4225 13.5343 16.4625 13.4743 16.5025 13.4043L18.0025 17.5443C18.0625 17.6943 18.1525 17.8243 18.2725 17.9343C18.3925 18.0343 18.5425 18.1043 18.7025 18.1243C18.7525 18.1243 18.7925 18.1343 18.8425 18.1343C18.9825 18.1343 19.1125 18.1043 19.2325 18.0443C19.3525 17.9843 19.4625 17.8943 19.5425 17.7843L22.7225 13.6543L27.8625 13.4743C28.1925 13.4643 28.4825 13.2743 28.6325 12.9843C28.7825 12.6943 28.7525 12.3443 28.5725 12.0743L28.6025 12.0643ZM22.2625 11.8643C21.9925 11.8643 21.7525 12.0043 21.5825 12.2143L19.1325 15.3943L17.7625 11.6243C17.6725 11.3743 17.4725 11.1743 17.2225 11.0843L13.4625 9.72426L16.6125 7.25426C16.8225 7.09426 16.9425 6.84426 16.9525 6.57426L17.0725 2.56426L20.3925 4.80426C20.5025 4.87426 20.6225 4.92426 20.7525 4.94426C20.8825 4.96426 21.0125 4.95426 21.1425 4.92426L24.9825 3.79426L23.8825 7.65426C23.8425 7.78426 23.8425 7.91426 23.8625 8.04426C23.8825 8.17426 23.9325 8.29426 24.0025 8.40426L26.2525 11.7243L22.2525 11.8643H22.2625Z", fill: "#D9D9D9" }) })), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", __assign({ className: "tooltip-text", id: 'magicI' }, { children: ["Suggestion", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("span", { className: "tooltip-arrow" })] }))] })) }), showLoginForm && ((0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(_LoginForm__WEBPACK_IMPORTED_MODULE_2__["default"], { onClose: function () { return setShowLoginForm(false); }, onLoginSuccess: handleLoginSuccess })), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("div", __assign({ className: 'close-button', onClick: handleCloseMenu }, { children: (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("svg", __assign({ xmlns: "http://www.w3.org/2000/svg", width: "15", height: "14", viewBox: "0 0 15 14", fill: "none" }, { children: [(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("path", { d: "M11.2502 3.49982L4.25024 10.4998", stroke: "#D2D7E0", strokeWidth: "1.4", strokeLinecap: "round" }), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("path", { d: "M11.3376 10.4108L4.25034 3.50029", stroke: "#D2D7E0", strokeWidth: "1.4", strokeLinecap: "round" })] })) }))] })));
+        } }, { children: [(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", __assign({ className: "tooltip-container" }, { children: [(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("svg", __assign({ className: 'svg-icon', onClick: function () { return handleButtonClick(function () { return console.log('Action Commenter: '); }); }, id: "uIcon", width: "22", height: "18", viewBox: "0 0 22 18", fill: "none", xmlns: "http://www.w3.org/2000/svg" }, { children: [(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("path", { d: "M10.56 0H14.77V11.26C14.77 12.56 14.46 13.69 13.84 14.66C13.22 15.62 12.36 16.36 11.25 16.89C10.14 17.41 8.86 17.67 7.39 17.67C5.92 17.67 4.61 17.41 3.5 16.89C2.39 16.36 1.53 15.62 0.92 14.66C0.31 13.69 0 12.56 0 11.26V0H4.22V10.89C4.22 11.49 4.35 12.03 4.61 12.5C4.88 12.97 5.25 13.34 5.73 13.61C6.21 13.88 6.76 14.01 7.39 14.01C8.02 14.01 8.57 13.88 9.04 13.61C9.52 13.34 9.89 12.97 10.16 12.5C10.43 12.03 10.56 11.49 10.56 10.89V0Z", fill: "#D9D9D9" }), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("path", { d: "M18.9402 17.7C18.3302 17.7 17.8002 17.48 17.3602 17.05C16.9302 16.62 16.7202 16.1 16.7202 15.48C16.7202 14.88 16.9302 14.36 17.3602 13.94C17.8002 13.51 18.3202 13.29 18.9402 13.29C19.5202 13.29 20.0302 13.51 20.4702 13.94C20.9202 14.37 21.1502 14.88 21.1502 15.48C21.1502 15.89 21.0402 16.26 20.8302 16.6C20.6302 16.94 20.3602 17.2 20.0202 17.4C19.6902 17.6 19.3302 17.7 18.9402 17.7Z", fill: "#D9D9D9" })] })), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", __assign({ className: "tooltip-text", id: 'u' }, { children: ["Feedback", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("span", { className: "tooltip-arrow" })] }))] })), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", __assign({ className: "tooltip-container" }, { children: [(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("svg", __assign({ className: 'svg-icon', onClick: onCaptureClick, id: "commentIcon", width: "26", height: "26", viewBox: "0 0 26 26", fill: "none", xmlns: "http://www.w3.org/2000/svg" }, { children: (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("path", { d: "M13 5.86C13.26 5.86 13.51 5.96 13.69 6.15C13.87 6.33 13.98 6.58 13.98 6.84V14.96C13.98 15.22 13.88 15.47 13.69 15.65C13.51 15.83 13.26 15.94 13 15.94C12.74 15.94 12.49 15.84 12.31 15.65C12.13 15.47 12.02 15.22 12.02 14.96V6.84C12.02 6.58 12.12 6.33 12.31 6.15C12.49 5.97 12.74 5.86 13 5.86ZM13 20.15C13.34 20.15 13.68 20.01 13.92 19.77C14.16 19.53 14.3 19.2 14.3 18.85C14.3 18.5 14.16 18.17 13.92 17.93C13.68 17.69 13.35 17.55 13 17.55C12.65 17.55 12.32 17.69 12.08 17.93C11.84 18.17 11.7 18.5 11.7 18.85C11.7 19.2 11.84 19.53 12.08 19.77C12.32 20.01 12.65 20.15 13 20.15ZM13 0.00999975C20.18 0.00999975 26 5.83 26 13.01C26 20.19 20.18 26.01 13 26.01C10.93 26.01 8.88 25.52 7.04 24.56L2.07 25.95C1.79 26.03 1.5 26.03 1.22 25.95C0.939997 25.88 0.69 25.73 0.48 25.53C0.28 25.33 0.129998 25.07 0.0599976 24.79C-0.0100024 24.51 -0.0100024 24.22 0.0599976 23.94L1.45 18.97C0.489997 17.13 0 15.08 0 13C0 5.82 5.82 0 13 0V0.00999975ZM13 1.96C10.07 1.96 7.26 3.12 5.19 5.2C3.12 7.27 1.95 10.08 1.95 13.01C1.95 14.92 2.43 16.76 3.34 18.39L3.54 18.74L2.09 23.92L7.27 22.47L7.62 22.67C9.09 23.49 10.74 23.96 12.42 24.05C14.11 24.14 15.79 23.84 17.34 23.17C18.89 22.51 20.27 21.49 21.37 20.22C22.47 18.94 23.26 17.43 23.69 15.79C24.11 14.16 24.16 12.45 23.82 10.8C23.48 9.15 22.77 7.59 21.74 6.26C20.71 4.93 19.38 3.85 17.87 3.1C16.36 2.36 14.69 1.97 13 1.97V1.96Z", fill: "#D9D9D9" }) })), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", __assign({ className: "tooltip-text", id: 'comment' }, { children: ["Signalement", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("span", { className: "tooltip-arrow" })] }))] })), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", __assign({ className: "tooltip-container" }, { children: [(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("svg", __assign({ className: 'svg-icon', onClick: onCommentClick, id: "heartIcon", width: "27", height: "24", viewBox: "0 0 27 24", fill: "none", xmlns: "http://www.w3.org/2000/svg" }, { children: (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("path", { d: "M26.41 4.81C26.01 3.86 25.44 3.01 24.7 2.29C23.21 0.820001 21.24 0.0100021 19.13 0.0100021C17.05 0.0100021 15.08 0.810003 13.58 2.28L13.51 2.35L13.44 2.28C11.95 0.810003 9.98 0 7.87 0C5.79 0 3.82 0.800002 2.33 2.26C1.59 2.98 1.02 3.83 0.610001 4.78C0.210001 5.73 0.01 6.74 0 7.77C0 8.8 0.199998 9.81 0.599998 10.76C0.999998 11.71 1.57 12.56 2.3 13.28L12.87 23.72C13.04 23.89 13.26 23.98 13.5 23.98C13.74 23.98 13.96 23.89 14.13 23.72L24.68 13.32C25.42 12.6 25.99 11.76 26.39 10.8C26.79 9.85 26.99 8.85 27 7.81C27 6.78 26.8 5.77 26.4 4.82L26.41 4.81ZM7.88 1.79C9.49 1.79 11.02 2.42 12.17 3.55L12.87 4.25C13.22 4.59 13.78 4.59 14.13 4.25L14.83 3.56C15.99 2.43 17.51 1.81 19.13 1.81C20.75 1.81 22.27 2.44 23.43 3.58C23.99 4.13 24.43 4.78 24.74 5.51C25.05 6.24 25.2 7.01 25.2 7.8C25.2 8.59 25.04 9.36 24.73 10.09C24.42 10.82 23.98 11.47 23.41 12.02L13.49 21.8L3.55 11.98C2.99 11.43 2.55 10.78 2.24 10.05C1.93 9.32 1.78 8.55 1.78 7.76C1.78 6.97 1.94 6.2 2.25 5.47C2.56 4.74 3 4.09 3.56 3.54C4.72 2.41 6.24 1.79 7.85 1.79", fill: "#D9D9D9" }) })), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", __assign({ className: "tooltip-text", id: 'heartI' }, { children: ["Coup de coeur", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("span", { className: "tooltip-arrow" })] }))] })), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("div", { children: (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", __assign({ className: "tooltip-container" }, { children: [(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("svg", __assign({ className: 'svg-icon', onClick: onCommentClick, id: "magicIcon", width: "29", height: "29", viewBox: "0 0 29 29", fill: "none", xmlns: "http://www.w3.org/2000/svg" }, { children: (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("path", { d: "M28.6025 12.0643L25.7325 7.74426L27.1625 2.72426C27.2525 2.41426 27.1625 2.07426 26.9325 1.84426C26.7025 1.61426 26.3625 1.52426 26.0525 1.61426L21.0625 3.07426L16.7325 0.154257C16.4625 -0.0257434 16.1125 -0.0557434 15.8225 0.104257C15.5325 0.254257 15.3425 0.554257 15.3325 0.874257L15.1825 6.09426L11.0825 9.31426C10.8225 9.51426 10.7025 9.84426 10.7525 10.1643C10.8025 10.4843 11.0225 10.7543 11.3325 10.8643L15.1725 12.2443C15.1725 12.2443 15.1225 12.2843 15.0925 12.3043L0.2625 27.2243C-0.0875 27.5743 -0.0875 28.1443 0.2625 28.4943C0.4325 28.6743 0.6625 28.7543 0.8925 28.7543C1.1225 28.7543 1.3525 28.6643 1.5225 28.4943L16.3625 13.5943C16.4225 13.5343 16.4625 13.4743 16.5025 13.4043L18.0025 17.5443C18.0625 17.6943 18.1525 17.8243 18.2725 17.9343C18.3925 18.0343 18.5425 18.1043 18.7025 18.1243C18.7525 18.1243 18.7925 18.1343 18.8425 18.1343C18.9825 18.1343 19.1125 18.1043 19.2325 18.0443C19.3525 17.9843 19.4625 17.8943 19.5425 17.7843L22.7225 13.6543L27.8625 13.4743C28.1925 13.4643 28.4825 13.2743 28.6325 12.9843C28.7825 12.6943 28.7525 12.3443 28.5725 12.0743L28.6025 12.0643ZM22.2625 11.8643C21.9925 11.8643 21.7525 12.0043 21.5825 12.2143L19.1325 15.3943L17.7625 11.6243C17.6725 11.3743 17.4725 11.1743 17.2225 11.0843L13.4625 9.72426L16.6125 7.25426C16.8225 7.09426 16.9425 6.84426 16.9525 6.57426L17.0725 2.56426L20.3925 4.80426C20.5025 4.87426 20.6225 4.92426 20.7525 4.94426C20.8825 4.96426 21.0125 4.95426 21.1425 4.92426L24.9825 3.79426L23.8825 7.65426C23.8425 7.78426 23.8425 7.91426 23.8625 8.04426C23.8825 8.17426 23.9325 8.29426 24.0025 8.40426L26.2525 11.7243L22.2525 11.8643H22.2625Z", fill: "#D9D9D9" }) })), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", __assign({ className: "tooltip-text", id: 'magicI' }, { children: ["Suggestion", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("span", { className: "tooltip-arrow" })] }))] })) }), showLoginForm && ((0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(_LoginForm__WEBPACK_IMPORTED_MODULE_2__["default"], { onClose: function () { return setShowLoginForm(false); }, onLoginSuccess: handleLoginSuccess })), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("button", __assign({ onClick: handleLogout }, { children: "Logout" })), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("div", __assign({ className: 'close-button', onClick: handleCloseMenu }, { children: (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("svg", __assign({ xmlns: "http://www.w3.org/2000/svg", width: "15", height: "14", viewBox: "0 0 15 14", fill: "none" }, { children: [(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("path", { d: "M11.2502 3.49982L4.25024 10.4998", stroke: "#D2D7E0", strokeWidth: "1.4", strokeLinecap: "round" }), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("path", { d: "M11.3376 10.4108L4.25034 3.50029", stroke: "#D2D7E0", strokeWidth: "1.4", strokeLinecap: "round" })] })) }))] })));
 };
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (DraggableFloatingMenu);
 
@@ -42844,7 +42844,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _services_AuthService__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../services/AuthService */ "./src/services/AuthService.ts");
 /* harmony import */ var _popupConfirm_PopupConfirm__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./popupConfirm/PopupConfirm */ "./src/components/popupConfirm/PopupConfirm.tsx");
 /* harmony import */ var _utils_isApiError__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../utils/isApiError */ "./src/utils/isApiError.ts");
-/* harmony import */ var _utils_captureUtil__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../utils/captureUtil */ "./src/utils/captureUtil.ts");
 var __assign = (undefined && undefined.__assign) || function () {
     __assign = Object.assign || function(t) {
         for (var s, i = 1, n = arguments.length; i < n; i++) {
@@ -42900,61 +42899,54 @@ var __generator = (undefined && undefined.__generator) || function (thisArg, bod
 
 
 
-
 var FeedbackForm = function (_a) {
-    var screenshot = _a.screenshot, onClose = _a.onClose, initialSentiment = _a.initialSentiment;
-    var _b = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)(false), showLoginForm = _b[0], setShowLoginForm = _b[1];
-    var _c = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)(true), showFeedbackForm = _c[0], setShowFeedbackForm = _c[1]; // Affiche le formulaire initialement
-    var _d = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)(null), pendingAction = _d[0], setPendingAction = _d[1];
-    var _e = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)(initialSentiment), sentiment = _e[0], setSentiment = _e[1]; // Uses the initial emoji
-    var _f = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)(false), showEmojiSelector = _f[0], setShowEmojiSelector = _f[1];
-    var _g = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)('no'), isBlocked = _g[0], setBlocking = _g[1]; // Par défaut "no"
-    var _h = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)(false), isLoading = _h[0], setIsLoading = _h[1]; // Indique si la requête est en cours
-    var _j = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)(false), showOverlay = _j[0], setShowOverlay = _j[1]; // Contrôle l'affichage de l'overlay
-    var _k = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)({
-        brandName: '',
+    var screenshot = _a.screenshot, onClose = _a.onClose, onCaptureClick = _a.onCaptureClick, _b = _a.initialFormData, initialFormData = _b === void 0 ? {
         alertDescription: '',
-        bugLocation: '',
-        emojis: initialSentiment,
-        capture: screenshot,
+        sentiment: '😐',
         tips: '',
-    }), formData = _k[0], setFormData = _k[1];
+        isBlocked: 'no',
+    } : _b;
+    var _c = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)(false), showLoginForm = _c[0], setShowLoginForm = _c[1];
+    var _d = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)(true), showFeedbackForm = _d[0], setShowFeedbackForm = _d[1]; // Affiche le formulaire initialement
+    var _e = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)(null), pendingAction = _e[0], setPendingAction = _e[1];
+    var _f = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)(false), showEmojiSelector = _f[0], setShowEmojiSelector = _f[1];
+    var _g = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)(false), isLoading = _g[0], setIsLoading = _g[1]; // Indique si la requête est en cours
+    var _h = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)(false), showOverlay = _h[0], setShowOverlay = _h[1]; // Contrôle l'affichage de l'overlay
+    var _j = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)(initialFormData.alertDescription), alertDescription = _j[0], setAlertDescription = _j[1];
+    var _k = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)(initialFormData.sentiment), sentiment = _k[0], setSentiment = _k[1];
+    var _l = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)(initialFormData.tips), tips = _l[0], setTips = _l[1];
+    var _m = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)(initialFormData.isBlocked), isBlocked = _m[0], setBlocking = _m[1];
+    var _o = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)(screenshot), capture = _o[0], setCapture = _o[1];
     // alert data
-    var _l = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)(''), brandName = _l[0], setBrandName = _l[1];
-    var _m = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)(''), alertDescription = _m[0], setAlertDescription = _m[1];
-    var _o = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)(''), bugLocation = _o[0], setBugLocation = _o[1];
-    var _p = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)(''), emojis = _p[0], setEmojis = _p[1];
-    var _q = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)(''), capture = _q[0], setCapture = _q[1];
-    var _r = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)(''), tips = _r[0], setTips = _r[1];
-    var _s = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)(false), showConfirmation = _s[0], setShowConfirmation = _s[1]; // État pour afficher la modal de confirmation
-    var _t = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)(null), errorMessages = _t[0], setErrorMessages = _t[1]; // Stocke les erreurs
-    var _u = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)(null), response = _u[0], setResponse = _u[1];
-    var _v = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)(null), error = _v[0], setError = _v[1];
+    var _p = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)(''), brandName = _p[0], setBrandName = _p[1];
+    var _q = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)(''), siteUrl = _q[0], setSitUrl = _q[1];
+    var _r = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)(''), bugLocation = _r[0], setBugLocation = _r[1];
+    var _s = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)(''), emojis = _s[0], setEmojis = _s[1];
+    var _t = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)(false), showConfirmation = _t[0], setShowConfirmation = _t[1]; // État pour afficher la modal de confirmation
+    var _u = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)(null), errorMessages = _u[0], setErrorMessages = _u[1]; // Stocke les erreurs
+    var _v = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)(null), response = _v[0], setResponse = _v[1];
+    var _w = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)(null), error = _w[0], setError = _w[1];
     (0,react__WEBPACK_IMPORTED_MODULE_1__.useEffect)(function () {
-        // L'URL complète
         var currentUrl = window.location.href;
-        setCapture(screenshot !== null && screenshot !== void 0 ? screenshot : "");
+        setCapture(screenshot !== null && screenshot !== void 0 ? screenshot : '');
         try {
-            // Créer un objet URL
-            var urlObj_1 = new URL(currentUrl);
-            // Extraire uniquement le domaine sans www
-            var cleanDomain_1 = urlObj_1.hostname.replace(/^www\./, '');
-            setFormData(function (prev) { return (__assign(__assign({}, prev), { brandName: cleanDomain_1, bugLocation: urlObj_1.hostname })); });
-            setBrandName(cleanDomain_1);
-            setBugLocation(urlObj_1.hostname);
-            console.log("Le nom du site sur lequel tu te trouve c'est: ", cleanDomain_1);
+            var urlObj = new URL(currentUrl);
+            var cleanDomain = urlObj.hostname.replace(/^www\./, '');
+            setBrandName(cleanDomain);
+            setSitUrl(cleanDomain);
+            setBugLocation(urlObj.hostname);
         }
         catch (error) {
             console.error('Erreur lors de la récupération du domaine:', error);
         }
-    }, []);
+    }, [screenshot]);
     var handleSubmit = function (e) { return __awaiter(void 0, void 0, void 0, function () {
         var isAuthenticated, alertData, token, result, err_1;
         return __generator(this, function (_a) {
             switch (_a.label) {
                 case 0:
                     e.preventDefault();
-                    setIsLoading(true); // Indique que le processus est en cours
+                    //setIsLoading(true); // Indique que le processus est en cours
                     setErrorMessages(null); // Réinitialise les erreurs
                     return [4 /*yield*/, (0,_services_AuthService__WEBPACK_IMPORTED_MODULE_5__.isUserAuthenticated)()];
                 case 1:
@@ -42962,11 +42954,12 @@ var FeedbackForm = function (_a) {
                     if (!isAuthenticated) {
                         console.log("Veuillez-vous connecter...");
                         setShowLoginForm(true); // Affiche le formulaire de connexion
-                        setIsLoading(false);
+                        //setIsLoading(false);
                         return [2 /*return*/];
                     }
                     alertData = {
                         marque: brandName,
+                        siteUrl: siteUrl,
                         blocking: isBlocked,
                         description: alertDescription,
                         bugLocation: bugLocation,
@@ -42980,7 +42973,7 @@ var FeedbackForm = function (_a) {
                     if (!token) {
                         console.error('Erreur : le token est null ou undefined');
                         setErrorMessages('Erreur : le token est null ou undefined');
-                        setIsLoading(false);
+                        //setIsLoading(false);
                         return [2 /*return*/];
                     }
                     _a.label = 3;
@@ -42996,6 +42989,7 @@ var FeedbackForm = function (_a) {
                     //setShowOverlay(true); // Active l'overlay
                     // Réinitialise les champs du formulaire
                     setBrandName('');
+                    setSitUrl(''); // Réinitialise le champ du site
                     setBlocking('no');
                     setAlertDescription('');
                     setBugLocation('');
@@ -43011,6 +43005,7 @@ var FeedbackForm = function (_a) {
                         setErrorMessages(typeof err_1.error === 'string' ? err_1.error : err_1.error.join(', '));
                     }
                     else {
+                        console.log('Une erreur inattendue est survenue.', err_1);
                         setErrorMessages('Une erreur inattendue est survenue.');
                     }
                     return [3 /*break*/, 7];
@@ -43027,6 +43022,16 @@ var FeedbackForm = function (_a) {
             pendingAction(); // Exécute l'action en attente
             setPendingAction(null); // Réinitialise l'action en attente
         }
+    };
+    var handleCaptureClick = function () {
+        var currentFormData = {
+            alertDescription: alertDescription,
+            sentiment: sentiment,
+            tips: tips,
+            isBlocked: isBlocked,
+        };
+        console.log('Sauvegarde des données avant capture:', currentFormData);
+        onCaptureClick(currentFormData);
     };
     // Map to get the title based on the feeling
     var sentimentTitles = new Map([
@@ -43049,24 +43054,10 @@ var FeedbackForm = function (_a) {
         setSentiment(emoji);
         setShowEmojiSelector(false); // Hide the emoji selector after selection
     };
-    var handleCaptureClick = function () { return __awaiter(void 0, void 0, void 0, function () {
-        var newCapture;
-        return __generator(this, function (_a) {
-            switch (_a.label) {
-                case 0: return [4 /*yield*/, (0,_utils_captureUtil__WEBPACK_IMPORTED_MODULE_8__.initiateCapture)()];
-                case 1:
-                    newCapture = _a.sent();
-                    if (newCapture) {
-                        setCapture(newCapture); // Met à jour la capture
-                    }
-                    return [2 /*return*/];
-            }
-        });
-    }); };
     return ((0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", __assign({ className: 'my-class' }, { children: [(showFeedbackForm || showConfirmation) && (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("div", { className: "overlay" }), showFeedbackForm && ((0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", __assign({ className: 'feedback-style' }, { children: [(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", __assign({ id: "".concat(!capture ? 'select-emoji' : 'select-emoji-display-img'), className: 'select-emoji', onClick: toggleEmojiSelector }, { children: [sentiment, showEmojiSelector && ((0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", __assign({ className: 'blc-span-emojis' }, { children: [(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("span", __assign({ style: { cursor: 'pointer' }, onClick: function () { return handleEmojiSelect('😐'); } }, { children: "\uD83D\uDE10" })), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("span", __assign({ style: { cursor: 'pointer' }, onClick: function () { return handleEmojiSelect('😤'); } }, { children: "\uD83D\uDE24" })), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("span", __assign({ style: { cursor: 'pointer' }, onClick: function () { return handleEmojiSelect('😡'); } }, { children: "\uD83D\uDE21" })), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("span", __assign({ style: { cursor: 'pointer' }, onClick: function () { return handleEmojiSelect('🤔'); } }, { children: "\uD83E\uDD14" })), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("span", __assign({ style: { cursor: 'pointer' }, onClick: function () { return handleEmojiSelect('😭'); } }, { children: "\uD83D\uDE2D" })), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("span", __assign({ style: { cursor: 'pointer' }, onClick: function () { return handleEmojiSelect('😖'); } }, { children: "\uD83D\uDE16" })), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("span", __assign({ style: { cursor: 'pointer' }, onClick: function () { return handleEmojiSelect('😵'); } }, { children: "\uD83D\uDE35" })), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("span", __assign({ style: { cursor: 'pointer' }, onClick: function () { return handleEmojiSelect('🤣'); } }, { children: "\uD83E\uDD23" }))] })))] })), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("div", __assign({ className: 'close-button float-end', onClick: function () {
                             setShowFeedbackForm(false);
                             onClose();
-                        } }, { children: (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("svg", __assign({ xmlns: "http://www.w3.org/2000/svg", width: "15", height: "14", viewBox: "0 0 15 14", fill: "none" }, { children: [(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("path", { d: "M11.2502 3.49982L4.25024 10.4998", stroke: "#D2D7E0", strokeWidth: "1.4", strokeLinecap: "round" }), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("path", { d: "M11.3376 10.4108L4.25034 3.50029", stroke: "#D2D7E0", strokeWidth: "1.4", strokeLinecap: "round" })] })) })), errorMessages && ((0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("div", __assign({ style: { color: "red", marginTop: "10px" } }, { children: errorMessages }))), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("div", __assign({ className: "block-form" }, { children: (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("form", __assign({ className: 'formStyle', onSubmit: handleSubmit }, { children: [capture && ((0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("div", __assign({ className: "image-preview" }, { children: (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("img", { className: 'img-preview', src: screenshot !== null && screenshot !== void 0 ? screenshot : "", alt: "screenshot" }) }))), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", __assign({ className: "input-container" }, { children: [(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("input", { className: "floating-input", placeholder: " ", value: alertDescription, onChange: function (e) { return setAlertDescription(e.target.value); } }), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("label", __assign({ htmlFor: "name", className: "floating-label" }, { children: getTitle() }))] })), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("input", { type: "hidden", value: brandName, onChange: function (e) { return setBrandName(e.target.value); } }), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", __assign({ className: 'align-checkBtn' }, { children: [(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", __assign({ className: "checkBoxFeedback ".concat(alertDescription.trim() ? 'visible' : 'hidden') }, { children: [(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("input", { type: "checkbox", checked: isBlocked === 'yes', onChange: function (e) { return setBlocking(e.target.checked ? 'yes' : 'no'); }, style: { marginRight: '8px', width: '16px', height: '16px', accentColor: '#6a1b9a' } }), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("label", { children: "Je suis bloqu\u00E9" })] })), " ", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("button", __assign({ disabled: !alertDescription.trim(), type: "submit", className: "submit-button ".concat(!alertDescription.trim() ? 'feedbackSubmitDisabled' : 'feedbackSubmiEnabled'), id: "".concat(!capture ? 'feedbackSubmitDisabled' : 'feedbackSubmiEnabled') }, { children: !alertDescription.trim() ? ((0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("svg", __assign({ xmlns: "http://www.w3.org/2000/svg", width: "23", height: "23", viewBox: "0 0 23 23", fill: "none" }, { children: [(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("circle", { cx: "11.4771", cy: "11.2048", r: "11", transform: "rotate(90 11.4771 11.2048)", fill: "url(#paint0_linear_319_540)" }), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("path", { d: "M11.4001 6.20483L16.4771 11.312L11.4001 16.4191M15.7719 11.312L5.47705 11.312", stroke: "white", strokeWidth: "1.4", strokeLinecap: "round", strokeLinejoin: "round" }), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("defs", { children: (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("linearGradient", __assign({ id: "paint0_linear_319_540", x1: "-2.47644", y1: "35.6819", x2: "26.1437", y2: "0.204836", gradientUnits: "userSpaceOnUse" }, { children: [(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("stop", { offset: "0.22376", stopColor: "#908f91" }), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("stop", { offset: "0.613341", stopColor: "#9f9f9f" })] })) })] }))) : ((0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("svg", __assign({ xmlns: "http://www.w3.org/2000/svg", width: "23", height: "23", viewBox: "0 0 23 23", fill: "none" }, { children: [(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("circle", { cx: "11.4771", cy: "11.2048", r: "11", transform: "rotate(90 11.4771 11.2048)", fill: "url(#paint0_linear_319_540)" }), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("path", { d: "M11.4001 6.20483L16.4771 11.312L11.4001 16.4191M15.7719 11.312L5.47705 11.312", stroke: "white", strokeWidth: "1.4", strokeLinecap: "round", strokeLinejoin: "round" }), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("defs", { children: (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("linearGradient", __assign({ id: "paint0_linear_319_540", x1: "-2.47644", y1: "35.6819", x2: "26.1437", y2: "0.204836", gradientUnits: "userSpaceOnUse" }, { children: [(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("stop", { offset: "0.22376", stopColor: "#6E36A9" }), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("stop", { offset: "0.613341", stopColor: "#B033AE" })] })) })] }))) }))] }))] })) }))] }))), showConfirmation && ((0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(_popupConfirm_PopupConfirm__WEBPACK_IMPORTED_MODULE_6__["default"], { onClose: function () {
+                        } }, { children: (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("svg", __assign({ xmlns: "http://www.w3.org/2000/svg", width: "15", height: "14", viewBox: "0 0 15 14", fill: "none" }, { children: [(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("path", { d: "M11.2502 3.49982L4.25024 10.4998", stroke: "#D2D7E0", strokeWidth: "1.4", strokeLinecap: "round" }), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("path", { d: "M11.3376 10.4108L4.25034 3.50029", stroke: "#D2D7E0", strokeWidth: "1.4", strokeLinecap: "round" })] })) })), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("button", __assign({ type: "button", className: "camera-button", onClick: handleCaptureClick }, { children: "\uD83D\uDCF8 Nouvelle capture" })), errorMessages && ((0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("div", __assign({ style: { color: "red", marginTop: "10px" } }, { children: errorMessages }))), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("div", __assign({ className: "block-form" }, { children: (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("form", __assign({ className: 'formStyle', onSubmit: handleSubmit }, { children: [capture && ((0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("div", __assign({ className: "image-preview" }, { children: (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("img", { className: 'img-preview', src: screenshot !== null && screenshot !== void 0 ? screenshot : "", alt: "screenshot" }) }))), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", __assign({ className: "input-container" }, { children: [(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("input", { className: "floating-input", placeholder: " ", value: alertDescription, onChange: function (e) { return setAlertDescription(e.target.value); } }), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("label", __assign({ htmlFor: "name", className: "floating-label" }, { children: getTitle() }))] })), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("input", { type: "hidden", value: brandName, onChange: function (e) { return setBrandName(e.target.value); } }), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", __assign({ className: 'align-checkBtn' }, { children: [(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", __assign({ className: "checkBoxFeedback ".concat(alertDescription.trim() ? 'visible' : 'hidden') }, { children: [(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("input", { type: "checkbox", checked: isBlocked === 'yes', onChange: function (e) { return setBlocking(e.target.checked ? 'yes' : 'no'); }, style: { marginRight: '8px', width: '16px', height: '16px', accentColor: '#6a1b9a' } }), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("label", { children: "Je suis bloqu\u00E9" })] })), " ", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("button", __assign({ disabled: !alertDescription.trim(), type: "submit", className: "submit-button ".concat(!alertDescription.trim() ? 'feedbackSubmitDisabled' : 'feedbackSubmiEnabled'), id: "".concat(!capture ? 'feedbackSubmitDisabled' : 'feedbackSubmiEnabled') }, { children: !alertDescription.trim() ? ((0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("svg", __assign({ xmlns: "http://www.w3.org/2000/svg", width: "23", height: "23", viewBox: "0 0 23 23", fill: "none" }, { children: [(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("circle", { cx: "11.4771", cy: "11.2048", r: "11", transform: "rotate(90 11.4771 11.2048)", fill: "url(#paint0_linear_319_540)" }), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("path", { d: "M11.4001 6.20483L16.4771 11.312L11.4001 16.4191M15.7719 11.312L5.47705 11.312", stroke: "white", strokeWidth: "1.4", strokeLinecap: "round", strokeLinejoin: "round" }), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("defs", { children: (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("linearGradient", __assign({ id: "paint0_linear_319_540", x1: "-2.47644", y1: "35.6819", x2: "26.1437", y2: "0.204836", gradientUnits: "userSpaceOnUse" }, { children: [(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("stop", { offset: "0.22376", stopColor: "#908f91" }), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("stop", { offset: "0.613341", stopColor: "#9f9f9f" })] })) })] }))) : ((0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("svg", __assign({ xmlns: "http://www.w3.org/2000/svg", width: "23", height: "23", viewBox: "0 0 23 23", fill: "none" }, { children: [(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("circle", { cx: "11.4771", cy: "11.2048", r: "11", transform: "rotate(90 11.4771 11.2048)", fill: "url(#paint0_linear_319_540)" }), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("path", { d: "M11.4001 6.20483L16.4771 11.312L11.4001 16.4191M15.7719 11.312L5.47705 11.312", stroke: "white", strokeWidth: "1.4", strokeLinecap: "round", strokeLinejoin: "round" }), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("defs", { children: (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("linearGradient", __assign({ id: "paint0_linear_319_540", x1: "-2.47644", y1: "35.6819", x2: "26.1437", y2: "0.204836", gradientUnits: "userSpaceOnUse" }, { children: [(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("stop", { offset: "0.22376", stopColor: "#6E36A9" }), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("stop", { offset: "0.613341", stopColor: "#B033AE" })] })) })] }))) }))] }))] })) }))] }))), showConfirmation && ((0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(_popupConfirm_PopupConfirm__WEBPACK_IMPORTED_MODULE_6__["default"], { onClose: function () {
                     setShowConfirmation(false);
                     onClose();
                 } })), showLoginForm && ((0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(_LoginForm__WEBPACK_IMPORTED_MODULE_4__["default"], { onClose: function () { return setShowLoginForm(false); }, onLoginSuccess: handleLoginSuccess }))] })));
@@ -43248,20 +43239,53 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_1__);
 /* harmony import */ var _emojis_EmojiSelector__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../emojis/EmojiSelector */ "./src/components/emojis/EmojiSelector.tsx");
 /* harmony import */ var _FeadbackForm__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../FeadbackForm */ "./src/components/FeadbackForm.tsx");
+var __assign = (undefined && undefined.__assign) || function () {
+    __assign = Object.assign || function(t) {
+        for (var s, i = 1, n = arguments.length; i < n; i++) {
+            s = arguments[i];
+            for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p))
+                t[p] = s[p];
+        }
+        return t;
+    };
+    return __assign.apply(this, arguments);
+};
 
-// CaptureFeedbackFlow.tsx
 
 
 
 var CaptureFeedbackFlow = function (_a) {
-    var screenshot = _a.screenshot, onClose = _a.onClose;
-    var _b = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)('emoji'), step = _b[0], setStep = _b[1];
-    var _c = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)(null), selectedEmoji = _c[0], setSelectedEmoji = _c[1];
+    var screenshot = _a.screenshot, onClose = _a.onClose, onCaptureClick = _a.onCaptureClick, _b = _a.initialFormData, initialFormData = _b === void 0 ? {
+        alertDescription: '',
+        sentiment: '😐',
+        tips: '',
+        isBlocked: 'no',
+    } : _b;
+    var _c = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)('emoji'), step = _c[0], setStep = _c[1];
+    var _d = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)(initialFormData.sentiment), selectedEmoji = _d[0], setSelectedEmoji = _d[1];
+    var _e = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)(screenshot), currentScreenshot = _e[0], setCurrentScreenshot = _e[1];
+    var _f = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)(initialFormData), formData = _f[0], setFormData = _f[1];
+    // Mise à jour des données en fonction de l'initialisation ou du retour après capture
+    (0,react__WEBPACK_IMPORTED_MODULE_1__.useEffect)(function () {
+        if (initialFormData) {
+            setFormData(function (prev) { return (__assign(__assign({}, prev), initialFormData)); });
+        }
+    }, [initialFormData]);
     var handleEmojiSelect = function (emoji) {
         setSelectedEmoji(emoji);
-        setStep('form'); // Passer à l'étape du formulaire après sélection de l'émoji
+        setFormData(function (prev) { return (__assign(__assign({}, prev), { sentiment: emoji })); }); // Mise à jour de l'émoji sélectionné
+        setStep('form'); // Transition vers le formulaire
     };
-    return ((0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("div", { children: !selectedEmoji ? ((0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(_emojis_EmojiSelector__WEBPACK_IMPORTED_MODULE_2__["default"], { onSelect: handleEmojiSelect })) : ((0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(_FeadbackForm__WEBPACK_IMPORTED_MODULE_3__["default"], { screenshot: screenshot, initialSentiment: selectedEmoji, onClose: onClose })) }));
+    var handleCaptureClick = function () {
+        console.log('Sauvegarde des données avant capture:', formData);
+        // Préserver les données actuelles avant la capture
+        var updatedFormData = __assign({}, formData);
+        // Réinitialiser l'image capturée
+        setCurrentScreenshot(null);
+        // Passer les données sauvegardées pour la prochaine ouverture
+        onCaptureClick(updatedFormData);
+    };
+    return ((0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("div", { children: step === 'emoji' ? ((0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(_emojis_EmojiSelector__WEBPACK_IMPORTED_MODULE_2__["default"], { onSelect: handleEmojiSelect })) : ((0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(_FeadbackForm__WEBPACK_IMPORTED_MODULE_3__["default"], { screenshot: currentScreenshot, onClose: onClose, onCaptureClick: handleCaptureClick, initialFormData: formData })) }));
 };
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (CaptureFeedbackFlow);
 
@@ -43594,8 +43618,8 @@ export function logout() {
 } */
 // AuthService.ts
  // Mise à jour pour chrome.storage
-var API_URL = 'https://usearly-api.vercel.app/api/v1';
-var API_URL_DEV = 'https://5b91-217-128-226-57.ngrok-free.app/api/v1';
+var API_URL = 'https://20d2-217-128-226-57.ngrok-free.app/api/v1';
+//const API_URL_DEV = 'https://5b91-217-128-226-57.ngrok-free.app/api/v1';
 function login(email, password) {
     return __awaiter(this, void 0, void 0, function () {
         var response, data, error_1;
@@ -43603,9 +43627,9 @@ function login(email, password) {
             switch (_a.label) {
                 case 0:
                     _a.trys.push([0, 7, , 8]);
-                    return [4 /*yield*/, fetch("".concat(API_URL_DEV, "/user/login"), {
+                    return [4 /*yield*/, fetch("".concat(API_URL, "/user/login"), {
                             method: 'POST',
-                            headers: { 'Content-Type': 'application/json' },
+                            headers: { 'Content-Type': 'application/json', Origin: "chrome-extension://fjcggidednblenggahpkilfidbalhmad" },
                             body: JSON.stringify({ email: email, password: password }),
                         })];
                 case 1:
@@ -43769,9 +43793,10 @@ var __generator = (undefined && undefined.__generator) || function (thisArg, bod
         if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
     }
 };
-var API_URL = 'https://usearly-api.vercel.app/api/v1';
-var API_BASE_URL = "https://5b91-217-128-226-57.ngrok-free.app/api/v1";
-var url = "".concat(API_BASE_URL, "/user/alert/new");
+var API_URL = 'https://20d2-217-128-226-57.ngrok-free.app/api/v1';
+var API_BASE_URL = 'https://usearly-api.vercel.app/api/v1';
+var url = "".concat(API_URL, "/user/alert/new");
+var url2 = "".concat(API_URL, "/test-cors");
 /**
  * Effectue une requête POST pour créer un signalement.
  * @param alertData - Les données du signalement à envoyer au serveur.
@@ -43779,18 +43804,22 @@ var url = "".concat(API_BASE_URL, "/user/alert/new");
  * @returns La réponse JSON du serveur ou une erreur si la requête échoue.
  */
 var createAlert = function (alertData, token) { return __awaiter(void 0, void 0, void 0, function () {
-    var response, errorData;
+    var currentUrl, urlObj, response, errorData;
     return __generator(this, function (_a) {
         switch (_a.label) {
-            case 0: return [4 /*yield*/, fetch(url, {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                        Authorization: "Bearer ".concat(token),
-                    },
-                    mode: 'cors',
-                    body: JSON.stringify(alertData),
-                })];
+            case 0:
+                currentUrl = window.location.href;
+                urlObj = new URL(currentUrl);
+                return [4 /*yield*/, fetch(url, {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                            Origin: currentUrl,
+                            Authorization: "Bearer ".concat(token),
+                        },
+                        mode: 'cors',
+                        body: JSON.stringify(alertData),
+                    })];
             case 1:
                 response = _a.sent();
                 if (!!response.ok) return [3 /*break*/, 3];
@@ -43815,10 +43844,11 @@ var updateAlert = function (category, token) { return __awaiter(void 0, void 0, 
         switch (_a.label) {
             case 0:
                 _a.trys.push([0, 3, , 4]);
-                return [4 /*yield*/, fetch("".concat(API_BASE_URL, "/user/update-category"), {
+                return [4 /*yield*/, fetch("".concat(API_URL, "/user/update-category"), {
                         method: "PUT",
                         headers: {
                             "Content-Type": "application/json",
+                            Origin: "chrome-extension://fjcggidednblenggahpkilfidbalhmad",
                             Authorization: "Bearer ".concat(token),
                         },
                         mode: 'cors',
@@ -43876,6 +43906,17 @@ var forbiddenKeywords = [
     "porn",
     "violent",
     "xxx",
+    "murder",
+    "meurtre",
+    "sexual",
+    "assasin",
+    "assassination",
+    "pédophile",
+    "pedophilia",
+    "pedo",
+    "tuer",
+    "tuerie",
+    "tue",
     "inappropriate",
     "nsfw",
     "sex",
@@ -43982,83 +44023,6 @@ function blurAllInappropriateMedia() {
     warningBanner.innerText = "Cette page contient des médias inappropriés. Ils ont été floutés.";
     document.body.appendChild(warningBanner);
 }
-
-
-/***/ }),
-
-/***/ "./src/utils/captureUtil.ts":
-/*!**********************************!*\
-  !*** ./src/utils/captureUtil.ts ***!
-  \**********************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   initiateCapture: () => (/* binding */ initiateCapture)
-/* harmony export */ });
-/* harmony import */ var html2canvas__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! html2canvas */ "./node_modules/html2canvas/dist/html2canvas.js");
-/* harmony import */ var html2canvas__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(html2canvas__WEBPACK_IMPORTED_MODULE_0__);
-var __awaiter = (undefined && undefined.__awaiter) || function (thisArg, _arguments, P, generator) {
-    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
-    return new (P || (P = Promise))(function (resolve, reject) {
-        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
-        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
-        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
-        step((generator = generator.apply(thisArg, _arguments || [])).next());
-    });
-};
-var __generator = (undefined && undefined.__generator) || function (thisArg, body) {
-    var _ = { label: 0, sent: function() { if (t[0] & 1) throw t[1]; return t[1]; }, trys: [], ops: [] }, f, y, t, g;
-    return g = { next: verb(0), "throw": verb(1), "return": verb(2) }, typeof Symbol === "function" && (g[Symbol.iterator] = function() { return this; }), g;
-    function verb(n) { return function (v) { return step([n, v]); }; }
-    function step(op) {
-        if (f) throw new TypeError("Generator is already executing.");
-        while (g && (g = 0, op[0] && (_ = 0)), _) try {
-            if (f = 1, y && (t = op[0] & 2 ? y["return"] : op[0] ? y["throw"] || ((t = y["return"]) && t.call(y), 0) : y.next) && !(t = t.call(y, op[1])).done) return t;
-            if (y = 0, t) op = [op[0] & 2, t.value];
-            switch (op[0]) {
-                case 0: case 1: t = op; break;
-                case 4: _.label++; return { value: op[1], done: false };
-                case 5: _.label++; y = op[1]; op = [0]; continue;
-                case 7: op = _.ops.pop(); _.trys.pop(); continue;
-                default:
-                    if (!(t = _.trys, t = t.length > 0 && t[t.length - 1]) && (op[0] === 6 || op[0] === 2)) { _ = 0; continue; }
-                    if (op[0] === 3 && (!t || (op[1] > t[0] && op[1] < t[3]))) { _.label = op[1]; break; }
-                    if (op[0] === 6 && _.label < t[1]) { _.label = t[1]; t = op; break; }
-                    if (t && _.label < t[2]) { _.label = t[2]; _.ops.push(op); break; }
-                    if (t[2]) _.ops.pop();
-                    _.trys.pop(); continue;
-            }
-            op = body.call(thisArg, _);
-        } catch (e) { op = [6, e]; y = 0; } finally { f = t = 0; }
-        if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
-    }
-};
-
-/**
- * Démarre une capture d'écran en permettant à l'utilisateur de sélectionner une zone.
- * @returns {Promise<string | null>} - L'URL de la capture ou null si la capture est annulée.
- */
-var initiateCapture = function () { return __awaiter(void 0, void 0, void 0, function () {
-    var canvas, dataUrl, error_1;
-    return __generator(this, function (_a) {
-        switch (_a.label) {
-            case 0:
-                _a.trys.push([0, 2, , 3]);
-                return [4 /*yield*/, html2canvas__WEBPACK_IMPORTED_MODULE_0___default()(document.body, { useCORS: true, allowTaint: false })];
-            case 1:
-                canvas = _a.sent();
-                dataUrl = canvas.toDataURL('image/png');
-                return [2 /*return*/, dataUrl];
-            case 2:
-                error_1 = _a.sent();
-                console.error('Erreur lors de la capture :', error_1);
-                return [2 /*return*/, null];
-            case 3: return [2 /*return*/];
-        }
-    });
-}); };
 
 
 /***/ }),
@@ -44435,9 +44399,21 @@ function handleMouseUp() {
     disableSelectionMode(); // Désactiver le mode de sélection
 }
 // Fonction pour ouvrir le flux de feedback avec la sélection d'émoji
-function openFeedbackWithEmojiSelection(screenshot) {
-    // Crée un conteneur pour le feedback
+function openFeedbackWithEmojiSelection(screenshot, initialFormData) {
+    if (initialFormData === void 0) { initialFormData = {
+        alertDescription: '',
+        sentiment: '😐',
+        tips: '',
+        isBlocked: 'no',
+    }; }
+    // Vérifie si un conteneur existe déjà pour éviter les doublons
+    var existingContainer = document.querySelector('#feedback-container');
+    if (existingContainer) {
+        existingContainer.remove(); // Supprime tout conteneur existant
+    }
+    // Crée un nouveau conteneur pour le feedback
     var feedbackContainer = document.createElement('div');
+    feedbackContainer.id = 'feedback-container';
     feedbackContainer.style.position = 'fixed';
     feedbackContainer.style.top = '0';
     feedbackContainer.style.left = '0';
@@ -44448,11 +44424,21 @@ function openFeedbackWithEmojiSelection(screenshot) {
     document.body.appendChild(feedbackContainer);
     // Fonction pour fermer le feedback
     var closeFeedback = function () {
-        document.body.removeChild(feedbackContainer);
+        var container = document.getElementById('feedback-container');
+        if (container) {
+            container.remove(); // Supprime le conteneur
+        }
     };
     // Créer une racine React pour le flux de feedback avec sélection d'émoji
     var root = react_dom_client__WEBPACK_IMPORTED_MODULE_1__.createRoot(feedbackContainer);
-    root.render((0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(_components_captureFeedbackFlow_CaptureFeedbackFlow__WEBPACK_IMPORTED_MODULE_2__["default"], { screenshot: screenshot, onClose: closeFeedback }));
+    root.render((0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(_components_captureFeedbackFlow_CaptureFeedbackFlow__WEBPACK_IMPORTED_MODULE_2__["default"], { screenshot: screenshot, onClose: closeFeedback, onCaptureClick: function () {
+            closeFeedback(); // Ferme le formulaire avant d'activer le mode sélection
+            enableLensMode(); // Activer le mode Google Lens avec la bulle
+        }, initialFormData: initialFormData }));
+}
+// Fonction appelée après une nouvelle capture
+function handleNewCapture(screenshot, formData) {
+    openFeedbackWithEmojiSelection(screenshot, formData);
 }
 // Fonction pour redimensionner et compresser l'image
 function resizeAndCompressImage(dataUrl, maxWidth, maxHeight, quality) {
@@ -44572,7 +44558,10 @@ function openFeedbackForm(screenshot) {
     };
     // Créer une racine React pour le formulaire de feedback
     var root = react_dom_client__WEBPACK_IMPORTED_MODULE_1__.createRoot(feedbackContainer);
-    root.render((0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(_components_captureFeedbackFlow_CaptureFeedbackFlow__WEBPACK_IMPORTED_MODULE_2__["default"], { screenshot: screenshot, onClose: closeFeedback }));
+    root.render((0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(_components_captureFeedbackFlow_CaptureFeedbackFlow__WEBPACK_IMPORTED_MODULE_2__["default"], { screenshot: screenshot, onClose: closeFeedback, onCaptureClick: function () {
+            closeFeedback(); // Ferme le formulaire avant d'activer le mode sélection
+            enableLensMode(); // Activer le mode Google Lens avec la bulle
+        } }));
 }
 // Affichage du menu flottant après trois clics
 function displayFloatingMenu(x, y) {

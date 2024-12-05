@@ -270,9 +270,29 @@ function handleMouseUp() {
 
 
 // Fonction pour ouvrir le flux de feedback avec la sélection d'émoji
-function openFeedbackWithEmojiSelection(screenshot: string | null) {
-  // Crée un conteneur pour le feedback
+function openFeedbackWithEmojiSelection(
+  screenshot: string | null,
+  initialFormData: {
+    alertDescription: string;
+    sentiment: string;
+    tips: string;
+    isBlocked: 'yes' | 'no';
+  } = {
+    alertDescription: '',
+    sentiment: '😐',
+    tips: '',
+    isBlocked: 'no',
+  }
+) {
+  // Vérifie si un conteneur existe déjà pour éviter les doublons
+  const existingContainer = document.querySelector('#feedback-container');
+  if (existingContainer) {
+    existingContainer.remove(); // Supprime tout conteneur existant
+  }
+
+  // Crée un nouveau conteneur pour le feedback
   const feedbackContainer = document.createElement('div');
+  feedbackContainer.id = 'feedback-container';
   feedbackContainer.style.position = 'fixed';
   feedbackContainer.style.top = '0';
   feedbackContainer.style.left = '0';
@@ -285,18 +305,31 @@ function openFeedbackWithEmojiSelection(screenshot: string | null) {
 
   // Fonction pour fermer le feedback
   const closeFeedback = () => {
-    document.body.removeChild(feedbackContainer);
+    const container = document.getElementById('feedback-container');
+    if (container) {
+      container.remove(); // Supprime le conteneur
+    }
   };
 
   // Créer une racine React pour le flux de feedback avec sélection d'émoji
   const root = ReactDOM.createRoot(feedbackContainer);
   root.render(
     <CaptureFeedbackFlow
-      screenshot={screenshot} // Passez la capture ou null
+      screenshot={screenshot} // Passe la capture ou null
       onClose={closeFeedback}
-      
+      onCaptureClick={() => {
+        closeFeedback(); // Ferme le formulaire avant d'activer le mode sélection
+        enableLensMode(); // Activer le mode Google Lens avec la bulle
+      }}
+      initialFormData={initialFormData} // Passe les données actuelles au flux
     />
   );
+}
+
+
+// Fonction appelée après une nouvelle capture
+function handleNewCapture(screenshot: string | null, formData: any) {
+  openFeedbackWithEmojiSelection(screenshot, formData);
 }
 
 
@@ -436,7 +469,10 @@ function openFeedbackForm(screenshot: string) {
 
   // Créer une racine React pour le formulaire de feedback
   const root = ReactDOM.createRoot(feedbackContainer);
-  root.render(<CaptureFeedbackFlow screenshot={screenshot} onClose={closeFeedback} />);
+  root.render(<CaptureFeedbackFlow screenshot={screenshot} onClose={closeFeedback} onCaptureClick={() => {
+    closeFeedback(); // Ferme le formulaire avant d'activer le mode sélection
+    enableLensMode(); // Activer le mode Google Lens avec la bulle
+  }}/>);
 }
 
 
