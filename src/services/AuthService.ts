@@ -39,22 +39,22 @@ export function logout() {
 
 import { setToken } from '../utils/storageUtil'; // Mise à jour pour chrome.storage
 
-const API_URL = 'https://usearly-api.vercel.app/api/v1';
-const API_URL_DEV = 'https://5b91-217-128-226-57.ngrok-free.app/api/v1';
+const API_URL = 'https://20d2-217-128-226-57.ngrok-free.app/api/v1';
+//const API_URL_DEV = 'https://5b91-217-128-226-57.ngrok-free.app/api/v1';
 
 
 export async function login(email: string, password: string): Promise<boolean> {
   try {
-    const response = await fetch(`${API_URL_DEV}/user/login`, {
+    const response = await fetch(`${API_URL}/user/login`, {
       method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
+      headers: { 'Content-Type': 'application/json', Origin: "chrome-extension://fjcggidednblenggahpkilfidbalhmad" },
       body: JSON.stringify({ email, password }),
     });
     const data = await response.json();
     if (data.token) {
       console.log("data: ", data);
 
-      await setToken(data.token); // Stocke le token avec chrome.storage
+      setToken(data.token); // Stocke le token avec chrome.storage
       await setLoginTime(); // Stocke l'heure de connexion
       return true;
     } else {
@@ -94,7 +94,7 @@ export async function isUserAuthenticated(): Promise<boolean> {
           const elapsedTime = Date.now() - loginTime;
           //const FIVE_HOURS_IN_MS = 20 * 1000; // 20 secondes pour le test
           const FIVE_HOURS_IN_MS = 5 * 60 * 60 * 1000;
-          
+
           if (elapsedTime >= FIVE_HOURS_IN_MS) {
             //console.log(`Temps écoulé ::: ${elapsedTime / 1000} secondes. Déconnexion.`);
             logout(); // Déconnectez si 20 secondes sont écoulées

@@ -181,7 +181,7 @@ const DraggableFloatingMenu: React.FC<FloatingMenuProps> = ({ x, y, onCommentCli
                     onLoginSuccess={handleLoginSuccess}
                 />
             )}
-            {/* <button onClick={handleLogout}>Logout</button> */}
+            <button onClick={handleLogout}>Logout</button>
             <div className='close-button' onClick={handleCloseMenu}>
                 <svg xmlns="http://www.w3.org/2000/svg" width="15" height="14" viewBox="0 0 15 14" fill="none">
                     <path d="M11.2502 3.49982L4.25024 10.4998" stroke="#D2D7E0" strokeWidth="1.4" strokeLinecap="round" />

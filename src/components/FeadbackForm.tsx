@@ -8,38 +8,52 @@ import PopupConfirm from './popupConfirm/PopupConfirm';
 import { isApiError } from '../utils/isApiError';
 import { initiateCapture } from '../utils/captureUtil';
 
+
 interface FeedbackFormProps {
   screenshot: string | null; // Screenshot peut être une chaîne ou null
   onClose: () => void;
-  initialSentiment: string; // Receives the initial selected emoji
+  onCaptureClick: (formData: {
+    alertDescription: string;
+    sentiment: string;
+    tips: string;
+    isBlocked: 'yes' | 'no';
+  }) => void; // Accepte les données actuelles
+  initialFormData?: {
+    alertDescription: string;
+    sentiment: string; // Emoji ou sentiment actuel
+    tips: string;
+    isBlocked: 'yes' | 'no'; // Indicateur si bloqué
+  };
 }
 
-const FeedbackForm: React.FC<FeedbackFormProps> = ({ screenshot, onClose, initialSentiment }) => {
+
+const FeedbackForm: React.FC<FeedbackFormProps> = ({
+  screenshot,
+  onClose,
+  onCaptureClick,
+  initialFormData = {
+    alertDescription: '',
+    sentiment: '😐',
+    tips: '',
+    isBlocked: 'no',
+  },
+}) => {
   const [showLoginForm, setShowLoginForm] = useState(false);
   const [showFeedbackForm, setShowFeedbackForm] = useState(true); // Affiche le formulaire initialement
   const [pendingAction, setPendingAction] = useState<(() => void) | null>(null);
-  const [sentiment, setSentiment] = useState<string>(initialSentiment); // Uses the initial emoji
   const [showEmojiSelector, setShowEmojiSelector] = useState<boolean>(false);
-  const [isBlocked, setBlocking] = useState<'yes' | 'no'>('no'); // Par défaut "no"
   const [isLoading, setIsLoading] = useState(false); // Indique si la requête est en cours
   const [showOverlay, setShowOverlay] = useState<boolean>(false); // Contrôle l'affichage de l'overlay
-  const [formData, setFormData] = useState({
-    brandName: '',
-    alertDescription: '',
-    bugLocation: '',
-    emojis: initialSentiment,
-    capture: screenshot,
-    tips: '',
-  });
-
-
+  const [alertDescription, setAlertDescription] = useState(initialFormData.alertDescription);
+  const [sentiment, setSentiment] = useState(initialFormData.sentiment);
+  const [tips, setTips] = useState(initialFormData.tips);
+  const [isBlocked, setBlocking] = useState<'yes' | 'no'>(initialFormData.isBlocked);
+  const [capture, setCapture] = useState<string | null>(screenshot);
   // alert data
   const [brandName, setBrandName] = useState<string>('');
-  const [alertDescription, setAlertDescription] = useState<string>('');
+  const [siteUrl, setSitUrl] = useState<string>('');
   const [bugLocation, setBugLocation] = useState<string>('');
   const [emojis, setEmojis] = useState<string>('');
-  const [capture, setCapture] = useState<string>('');
-  const [tips, setTips] = useState<string>('');
   const [showConfirmation, setShowConfirmation] = useState(false); // État pour afficher la modal de confirmation
   const [errorMessages, setErrorMessages] = useState<string | null>(null); // Stocke les erreurs
 
@@ -47,31 +61,24 @@ const FeedbackForm: React.FC<FeedbackFormProps> = ({ screenshot, onClose, initia
   const [error, setError] = useState<string | null>(null);
 
 
+
   useEffect(() => {
-    // L'URL complète
     const currentUrl = window.location.href;
-    setCapture(screenshot ?? "");
+    setCapture(screenshot ?? '');
     try {
-      // Créer un objet URL
       const urlObj = new URL(currentUrl);
-      // Extraire uniquement le domaine sans www
       const cleanDomain = urlObj.hostname.replace(/^www\./, '');
-      setFormData((prev) => ({
-        ...prev,
-        brandName: cleanDomain,
-        bugLocation: urlObj.hostname,
-      }));
       setBrandName(cleanDomain);
+      setSitUrl(cleanDomain);
       setBugLocation(urlObj.hostname);
-      console.log("Le nom du site sur lequel tu te trouve c'est: ", cleanDomain)
     } catch (error) {
       console.error('Erreur lors de la récupération du domaine:', error);
     }
-  }, []);
+  }, [screenshot]);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    setIsLoading(true); // Indique que le processus est en cours
+    //setIsLoading(true); // Indique que le processus est en cours
     setErrorMessages(null); // Réinitialise les erreurs
 
     const isAuthenticated = await isUserAuthenticated();
@@ -79,12 +86,13 @@ const FeedbackForm: React.FC<FeedbackFormProps> = ({ screenshot, onClose, initia
     if (!isAuthenticated) {
       console.log("Veuillez-vous connecter...")
       setShowLoginForm(true); // Affiche le formulaire de connexion
-      setIsLoading(false);
+      //setIsLoading(false);
       return;
     }
 
     const alertData: Alert = {
       marque: brandName,
+      siteUrl: siteUrl,
       blocking: isBlocked,
       description: alertDescription,
       bugLocation: bugLocation,
@@ -97,7 +105,7 @@ const FeedbackForm: React.FC<FeedbackFormProps> = ({ screenshot, onClose, initia
     if (!token) {
       console.error('Erreur : le token est null ou undefined');
       setErrorMessages('Erreur : le token est null ou undefined');
-      setIsLoading(false);
+      //setIsLoading(false);
       return;
     }
 
@@ -111,6 +119,7 @@ const FeedbackForm: React.FC<FeedbackFormProps> = ({ screenshot, onClose, initia
 
       // Réinitialise les champs du formulaire
       setBrandName('');
+      setSitUrl(''); // Réinitialise le champ du site
       setBlocking('no');
       setAlertDescription('');
       setBugLocation('');
@@ -125,6 +134,7 @@ const FeedbackForm: React.FC<FeedbackFormProps> = ({ screenshot, onClose, initia
         setErrorMessages(typeof err.error === 'string' ? err.error : err.error.join(', '));
 
       } else {
+        console.log('Une erreur inattendue est survenue.', err);
         setErrorMessages('Une erreur inattendue est survenue.');
       }
     } finally {
@@ -139,6 +149,18 @@ const FeedbackForm: React.FC<FeedbackFormProps> = ({ screenshot, onClose, initia
     }
   };
 
+  const handleCaptureClick = () => {
+    const currentFormData = {
+      alertDescription,
+      sentiment,
+      tips,
+      isBlocked,
+    };
+
+    console.log('Sauvegarde des données avant capture:', currentFormData);
+    onCaptureClick(currentFormData);
+  };
+  
 
   // Map to get the title based on the feeling
   const sentimentTitles = new Map<string, string>([
@@ -165,12 +187,6 @@ const FeedbackForm: React.FC<FeedbackFormProps> = ({ screenshot, onClose, initia
     setShowEmojiSelector(false); // Hide the emoji selector after selection
   };
 
-  const handleCaptureClick = async () => {
-    const newCapture = await initiateCapture(); // Fonction pour démarrer la capture
-    if (newCapture) {
-      setCapture(newCapture); // Met à jour la capture
-    }
-  };
 
   return (
     <div className='my-class'>
@@ -197,17 +213,17 @@ const FeedbackForm: React.FC<FeedbackFormProps> = ({ screenshot, onClose, initia
             )}
           </div>
           <div className='close-button float-end' onClick={() => {
-              setShowFeedbackForm(false);
-              onClose();
-            }}>
+            setShowFeedbackForm(false);
+            onClose();
+          }}>
             <svg xmlns="http://www.w3.org/2000/svg" width="15" height="14" viewBox="0 0 15 14" fill="none">
               <path d="M11.2502 3.49982L4.25024 10.4998" stroke="#D2D7E0" strokeWidth="1.4" strokeLinecap="round" />
               <path d="M11.3376 10.4108L4.25034 3.50029" stroke="#D2D7E0" strokeWidth="1.4" strokeLinecap="round" />
             </svg>
           </div>
-         {/*  <button type="button" className="camera-button" onClick={handleCaptureClick}>
+          <button type="button" className="camera-button" onClick={handleCaptureClick}>
             📸 Nouvelle capture
-          </button> */}
+          </button>
 
           {/* Feedback form */}
           {errorMessages && (
