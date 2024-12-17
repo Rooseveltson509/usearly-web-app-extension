@@ -1,55 +1,38 @@
 import React, { useState } from 'react';
 import AnimatedPoints from '../animationsPoint/AnimatedPoints';
-import { updateAlert } from '../../services/apiService';
-import { getToken } from '../../utils/storageUtil';
 
 interface PopupConfirm {
     onClose: () => void;
+    message?: string | null;
+    userRank: number; // Rang de l'utilisateur
+    statusCode?: number; // Code de statut de la requête
 }
-const PopupConfirm: React.FC<PopupConfirm> = ({ onClose }: { onClose: () => void }) => {
-    const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
-    const [errorMessages, setErrorMessages] = useState<string | null>(null); // Stocke les erreurs
+const PopupConfirm: React.FC<PopupConfirm> = ({
+    userRank,
+    message,
+    statusCode,
+    onClose }) => {
+    const [accordionOpen, setAccordionOpen] = useState<Record<string, boolean>>({
+        solutions: false,
+        response: false,
+        followUp: false,
+    });
 
-
-    const handleCategoryChange = async (category: string) => {
-        setSelectedCategory(category);
-        setErrorMessages(null); // Réinitialise les erreurs
-
-        console.log("catégorie choisie: ", category)
-
-        try {
-            const token = await getToken(); // Récupère le token utilisateur
-            if (!token) {
-                console.error("Erreur : Token manquant ou invalide.");
-                setErrorMessages("Token manquant ou invalide.");
-                return; // Interrompt la fonction si le token est nul
-            }
-
-            const response = await updateAlert(category, token); // Appelle l'API
-
-            if (!response.success) {
-                // Si l'API renvoie une erreur, affichez-la
-                setErrorMessages(response.error || "Une erreur inconnue s'est produite.");
-            } else {
-                console.log("Mise à jour réussie: ", response.message);
-                onClose(); // Ferme la fenêtre ou exécute l'action de fin
-            }
-        } catch (err) {
-            console.error("Erreur lors de la mise à jour :", err);
-            setErrorMessages("Erreur de connexion au serveur. Veuillez réessayer.");
-        }
-
+    const toggleAccordion = (key: string) => {
+        setAccordionOpen((prev) => ({
+            ...prev,
+            [key]: !prev[key],
+        }));
     };
-
-
     return (
         <div className="category-popup-overlay">
-            {errorMessages && (
-                <div style={{ color: "red", marginTop: "10px" }}>
-                    {errorMessages}
-                </div>
-            )}
             <div className="category-popup">
+                <div className='close-button' onClick={onClose}>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="15" height="14" viewBox="0 0 15 14" fill="none">
+                        <path d="M11.2502 3.49982L4.25024 10.4998" stroke="#D2D7E0" strokeWidth="1.4" strokeLinecap="round" />
+                        <path d="M11.3376 10.4108L4.25034 3.50029" stroke="#D2D7E0" strokeWidth="1.4" strokeLinecap="round" />
+                    </svg>
+                </div>
                 <div className="popup-header">
                     <div className="popup-icon"><svg xmlns="http://www.w3.org/2000/svg" width="122" height="120" viewBox="0 0 122 120" fill="none">
                         <g filter="url(#filter0_d_400_2238)">
@@ -74,42 +57,79 @@ const PopupConfirm: React.FC<PopupConfirm> = ({ onClose }: { onClose: () => void
                             </linearGradient>
                         </defs>
                     </svg></div>
-                    <button className="popup-close" onClick={onClose}>
-                        ✖
-                    </button>
                 </div>
-                <div className="popup-content">
-                    <h1 style={{
-                        fontFamily: 'Urbanist sans-serif !important',
-                    }} className='h1Title'>Signalement reçu, merci !</h1>
-                    <div className="popup-points">
-                        <span role="img" aria-label="thumbs-up">
-                            👍
-                        </span>{' '}
-                        <AnimatedPoints startPoints={0} endPoints={10} duration={1000} />
+                {statusCode === 200 ? (
+                    <div className="popup-content">
+
+                        <h1 className='h1Title'>Merci pour votre signalement !</h1>
+                        <p>
+                            Vous êtes le <strong>{userRank}ᵉ utilisateur</strong> à signaler ce
+                            problème.
+                        </p>
+                        <div className="popup-points">
+                            <span role="img" aria-label="thumbs-up"> 👍 </span>{' '}
+                            <AnimatedPoints startPoints={0} endPoints={10} duration={1000} />
+                        </div>
+                        <p> Pour votre contribution précieuse !</p>
+
+                        {/* Accordéon */}
+                        <div className="accordion">
+                            <div className={`accordion-item ${accordionOpen.solutions ? 'open' : ''}`} >
+                                <div className="accordion-header" onClick={() => toggleAccordion('solutions')} >
+                                    Deux solutions proposées
+                                    <span className="accordion-icon">
+                                        {accordionOpen.solutions ? '-' : '+'}
+                                    </span>
+                                </div>
+                                {accordionOpen.solutions && (
+                                    <div className="accordion-content">
+                                        <p>Solution 1: Lorem ipsum dolor sit amet.</p>
+                                        <p>Solution 2: Consectetur adipiscing elit.</p>
+                                    </div>
+                                )}
+                            </div>
+                            <div className={`accordion-item ${accordionOpen.response ? 'open' : ''}`} >
+                                <div className="accordion-header" onClick={() => toggleAccordion('response')} >
+                                    La réponse de Veepee
+                                    <span className="accordion-icon">
+                                        {accordionOpen.response ? '-' : '+'}
+                                    </span>
+                                </div>
+                                {accordionOpen.response && (
+                                    <div className="accordion-content">
+                                        <p>Nous vous remercions pour votre signalement.</p>
+                                        <p>Notre équipe analyse le problème.</p>
+                                    </div>
+                                )}
+                            </div>
+
+                            <div className={`accordion-item ${accordionOpen.followUp ? 'open' : ''}`} >
+                                <div className="accordion-header" onClick={() => toggleAccordion('followUp')} >
+                                    Suivi du problème
+                                    <span className="accordion-icon">
+                                        {accordionOpen.followUp ? '-' : '+'}
+                                    </span>
+                                </div>
+                                {accordionOpen.followUp && (
+                                    <div className="accordion-content">
+                                        <p>Un suivi sera partagé dans les prochaines semaines.</p>
+                                    </div>
+                                )}
+                            </div>
+                        </div>
                     </div>
-                    <p>
-                        Nous n'avons pas identifié la catégorie de votre signalement.
-                        Pouvez-vous choisir ?{' '}
-                        <span role="img" aria-label="smile">
-                            😊
-                        </span>
-                    </p>
-                    <div className="popup-categories">
-                        {['cat1', 'cat2', 'cat3', 'autre'].map((category, index) => (
-                            <label key={index} className={`popup-category ${selectedCategory === category ? 'selected' : ''}`}>
-                                <input
-                                    type="radio"
-                                    name="category"
-                                    value={category}
-                                    checked={selectedCategory === category}
-                                    onChange={() => handleCategoryChange(category)}
-                                />
-                                {category}
-                            </label>
-                        ))}
+                ) : (
+                    <div className="popup-content">
+                        <h1 className='h1Title'>merci pour votre signalement, On plonge dedans illico 🚀</h1>
+                        <div className="popup-points">
+                            <span role="img" aria-label="thumbs-up">
+                                👍
+                            </span>{' '}
+                            <AnimatedPoints startPoints={0} endPoints={10} duration={1000} />
+                        </div>
+                        <p className='desc-animation'> Bravo pour votre signalement !</p>
                     </div>
-                </div>
+                )}
                 <button className="popup-close-button" onClick={onClose}>
                     Fermer
                 </button>

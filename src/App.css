@@ -1,6 +1,5 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
-
-
+/* @import url('https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,100..900;1,100..900&display=swap');
+ */
 .App {
   text-align: center;
 }
@@ -35,7 +34,1565 @@
   from {
     transform: rotate(0deg);
   }
+
   to {
     transform: rotate(360deg);
   }
+}
+
+
+.txt-area {
+  border-radius: 4px;
+  border: 0.4px solid #AAA;
+  background: #E9E9E9;
+  width: 100%;
+  margin-bottom: 10px;
+  padding: 10px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  color: #333;
+  font-size: 14px;
+  resize: none;
+  font-family: "Raleway";
+}
+
+.select-emoji {
+  position: absolute;
+  top: 89%;
+  right: -48px;
+  width: 42px;
+  height: 42px;
+  background: white;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  border-radius: 50% 50% 50% 0;
+  font-size: 37px;
+  padding: 2px;
+  padding-top: 6px;
+}
+
+
+.feedback-style {
+  padding: 20px;
+  background: rgb(245, 245, 245);
+  border-radius: 12px;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 1000;
+  /* z-index: 10000; */
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
+  width: 420px;
+  font-family: "Raleway";
+  color: #333;
+}
+
+.float-end {
+  position: absolute;
+  right: 3%;
+  top: 10px;
+}
+
+.feedbackSubmitDisabled {
+  position: absolute;
+  padding: 0;
+  top: 274px;
+  right: 30px;
+  cursor: not-allowed;
+  transform: scale(0.95);
+  opacity: 0.6;
+}
+
+#feedbackSubmitDisabled {
+  padding: 0;
+  top: 103px;
+  right: 30px;
+}
+
+#closeBTN {
+  float: unset;
+}
+
+#feedbackSubmiEnabled {
+  top: 280px;
+}
+
+.feedbackSubmiEnabled {
+  padding: 10px;
+  color: rgb(255, 255, 255);
+  border: none;
+  border-radius: 50%;
+  cursor: pointer;
+  font-size: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transform: scale(1);
+  /* Taille normale */
+  opacity: 1;
+  /* Totalement opaque */
+}
+
+.submit-button {
+  font-size: 16px;
+  /* padding: 10px 20px; */
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  background: none;
+  transition: all 0.3s ease-in-out;
+  /* Animation fluide */
+}
+
+.feedbackSubmiEnabled:hover {
+  transform: scale(1.05);
+  /* Légèrement agrandi au survol */
+}
+
+.checkBoxFeedback {
+  display: flex;
+  align-items: center;
+  margin-bottom: 20px;
+  font-size: 14px;
+  color: #555;
+  opacity: 0;
+  /* Par défaut invisible */
+  max-height: 0;
+  /* Hauteur réduite pour masquer */
+  overflow: hidden;
+  /* Cache le contenu masqué */
+  transform: scale(0.95);
+  /* Taille réduite au départ */
+  transition: all 0.3s ease-in-out;
+  /* Transition fluide */
+}
+
+.checkBoxFeedback.visible {
+  opacity: 1;
+  /* Complètement visible */
+  max-height: 100px;
+  /* Hauteur automatique */
+  transform: scale(1);
+  /* Taille normale */
+}
+
+.checkBoxFeedback.hidden {
+  opacity: 0;
+  /* Invisible */
+  max-height: 0;
+  /* Masqué complètement */
+  transform: scale(0.95);
+  /* Taille légèrement réduite */
+}
+
+
+/* contentStyles.css */
+.cursor-crosshair {
+  cursor: crosshair;
+  /* Affiche un "+" comme curseur */
+}
+
+
+.my-extension-form {
+  background-color: white;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  width: 300px;
+  text-align: center;
+}
+
+.my-extension-form>h2 {
+  margin-bottom: 15px;
+}
+
+.my-extension-form>.checkbox-group {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 15px;
+}
+
+.my-extension-form>label {
+  margin: 5px 0;
+}
+
+.my-extension-form>.emoji-picker {
+  margin-bottom: 15px;
+}
+
+.my-extension-form>button {
+  background-color: #007BFF;
+  color: white;
+  border: none;
+  padding: 10px 15px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+.floating-menu {
+  cursor: move;
+}
+
+
+.floating-menu {
+  position: fixed;
+  right: 0;
+  top: 50%;
+  background-color: #f0f0f0;
+  padding: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  z-index: 1000;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+}
+
+.floating-menu {
+  height: auto;
+  width: 40px;
+  background-color: white;
+  border: 1px solid #ddd;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+}
+
+.floating-menu {
+  background: #424B5A;
+  border-radius: 20px 0px;
+}
+
+.floating-menu div {
+  cursor: pointer;
+}
+
+
+.floating-menu>.svg-icon:hover {
+  background-color: #C41E82;
+}
+
+.menu-item {
+  background-color: #007bff;
+  color: white;
+  padding: 10px;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+#popup-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  display: none;
+  justify-content: center;
+  align-items: center;
+}
+
+#popup-content {
+  background: white;
+  padding: 20px;
+  border-radius: 10px;
+}
+
+
+#custom-menu {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background-color: white;
+  border: 1px solid #ccc;
+  padding: 5px;
+  z-index: 10000;
+}
+
+#custom-menu a {
+  text-decoration: none;
+  color: black;
+}
+
+
+
+.form-container {
+  background-color: white;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  width: 300px;
+  position: relative;
+}
+
+.form-title {
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.form-textarea {
+  width: 100%;
+  padding: 10px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  resize: none;
+  font-family: "Raleway";
+}
+
+.microphone-icon {
+  position: absolute;
+  right: 15px;
+  top: 55px;
+  font-size: 18px;
+  color: gray;
+  cursor: pointer;
+}
+
+.emoji-picker {
+  display: flex;
+  align-items: center;
+  margin-top: 10px;
+}
+
+.emoji-label {
+  display: flex;
+  align-items: center;
+  margin-right: 10px;
+}
+
+.emoji-checkbox {
+  margin-right: 5px;
+}
+
+.emoji-button {
+  background-color: transparent;
+  border: none;
+  font-size: 24px;
+  cursor: pointer;
+  outline: none;
+  position: relative;
+}
+
+.emoji-options {
+  display: none;
+  position: absolute;
+  bottom: -50px;
+  right: 0;
+  background-color: white;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  padding: 5px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.emoji-option {
+  background-color: transparent;
+  border: none;
+  font-size: 24px;
+  cursor: pointer;
+  margin: 0 5px;
+}
+
+.emoji-button:focus+#emoji-options,
+.emoji-options:hover {
+  display: block;
+}
+
+.submit-arrow {
+  background-color: transparent;
+  border: none;
+  font-size: 24px;
+  color: gray;
+  /* Couleur pour l'état désactivé */
+  cursor: not-allowed;
+  /* Indique visuellement que le bouton est désactivé */
+  opacity: 0.5;
+  /* Rendre le bouton semi-transparent pour un effet désactivé */
+  margin-top: 10px;
+  transition: color 0.3s, opacity 0.3s;
+}
+
+.submit-arrow.active {
+  color: #007BFF;
+  /* Couleur activée */
+  cursor: pointer;
+  /* Curseur de clic lorsqu'il est activé */
+  opacity: 1;
+  /* Rendre complètement opaque lorsqu'il est activé */
+}
+
+.image-preview {
+  width: 100%;
+  /* Ajuste la largeur */
+  aspect-ratio: 16 / 9;
+  /* Définit un ratio fixe, par exemple 16:9 */
+  overflow: hidden;
+  /* Coupe l'excès */
+  background: #f0f0f0;
+  /* Optionnel : fond en cas d'image manquante */
+}
+
+.image-preview img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  /* Conserve les proportions de l'image */
+}
+
+.image-preview {
+  max-width: 100%;
+  /* Limite la largeur à celle du conteneur parent */
+  max-height: 200px;
+  /* Limite la hauteur maximale */
+  overflow: hidden;
+  /* Coupe l'image si elle dépasse les limites */
+  display: flex;
+  /* Aligne l'image correctement */
+  justify-content: center;
+  align-items: center;
+}
+
+.image-preview img {
+  max-width: 100%;
+  /* Réduit la largeur si nécessaire */
+  max-height: 100%;
+  /* Réduit la hauteur si nécessaire */
+  object-fit: contain;
+  /* Conserve les proportions sans déformation */
+}
+
+.img-preview {
+  width: 100%;
+  /* S'adapte à la largeur du conteneur */
+  height: auto;
+  /* Garde les proportions originales */
+  max-height: 200px;
+  /* Limite la hauteur */
+  display: block;
+  /* Évite les espaces blancs sous l'image */
+}
+
+
+/* Overlay pour obscurcir l'arrière-plan */
+
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.overlay.active {
+  display: block;
+  /* Affiché uniquement si nécessaire */
+}
+
+.login-popup {
+  width: 320px;
+  padding: 20px;
+  background: #fff;
+  border-radius: 8px;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+  text-align: center;
+  position: relative;
+  z-index: 1001;
+}
+
+.login-header {
+  display: flex;
+  justify-content: center;
+
+}
+
+.login-logo {
+  width: 70px;
+  height: 70px;
+}
+
+.login-popup>.title-form {
+  font-family: "Raleway";
+  font-size: 1.5em;
+  color: #333;
+  margin-top: 0;
+  margin-bottom: 10px;
+}
+
+.align-checkBtn {
+  margin-top: 20px;
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+}
+
+.login-form {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.login-form input[type="email"],
+.login-form input[type="password"] {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  font-size: 14px;
+}
+
+.password-field {
+  position: relative;
+}
+
+.password-field .toggle-password {
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.remember-me {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 12px;
+}
+
+.forgot-password {
+  color: #888;
+  text-decoration: none;
+  font-size: 12px;
+}
+
+.forgot-password:hover {
+  text-decoration: underline;
+}
+
+#login-button {
+  color: rgb(255, 255, 255);
+  font-size: 16px;
+  cursor: pointer;
+  padding: 10px;
+  background: linear-gradient(45deg, rgb(225, 0, 255), rgb(127, 0, 255));
+  border-width: initial;
+  border-style: none;
+  border-color: initial;
+  border-image: initial;
+  border-radius: 4px;
+}
+
+.close-button {
+  border-radius: 33px;
+  background: #2A2C3E;
+  display: flex;
+  margin-inline-end: 11px;
+  justify-content: center;
+  align-items: center;
+  inline-size: 33px;
+  block-size: 32px;
+  cursor: pointer;
+  float: inline-end;
+  margin-block-start: -17px;
+}
+
+.close-button-form {
+  align-items: center;
+}
+
+.close-button:hover {
+  text-decoration: underline;
+}
+
+/* popup confirmation */
+.popup-confirm {
+  position: fixed;
+  padding-left: 60px;
+  padding-right: 60px;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: #333d55;
+  border-radius: 10px;
+  padding: 20px;
+  color: #FFF;
+  text-align: center;
+  font-family: "Raleway";
+  font-size: 32px;
+  text-align: center;
+  width: 600px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
+  z-index: 1000;
+}
+
+.h1Title {
+  color: #FFF;
+  text-align: center;
+  font-family: 'Roboto' !important;
+  font-weight: 400;
+  font-size: 32px;
+  margin: 36px 64px 46px 64px;
+  font-style: normal;
+  line-height: 109.523%;
+}
+
+.popupParaph {
+  color: #D2D7E0;
+  text-align: center;
+  font-family: "Raleway";
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+}
+
+.btn-ptn {
+  display: inline;
+  width: 153px;
+  height: 51px;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  flex-shrink: 0;
+  border-radius: 24px;
+  background: #121927;
+
+  color: #FFF;
+  text-align: center;
+  font-family: "Raleway";
+  font-size: 20px;
+  font-style: normal;
+  line-height: normal;
+  text-decoration-line: underline;
+  text-decoration-style: solid;
+  text-decoration-skip-ink: none;
+  text-decoration-thickness: auto;
+  text-underline-offset: auto;
+}
+
+.closeBtn {
+  background-color: transparent;
+  font-size: 18px;
+  color: #aaa;
+  border: none;
+  margin-top: 10px;
+  cursor: pointer;
+}
+
+.fusee {
+  font-size: 24px;
+  margin-bottom: 10px;
+}
+
+.noDisplay {
+  display: inline;
+  margin-left: 5px;
+  color: #FFF;
+  font-family: "Raleway";
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+}
+
+
+/* Overlay couvrant toute la page */
+.lens-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.3);
+  /* Overlay semi-transparent */
+  z-index: 1000;
+  cursor: crosshair;
+}
+
+/* Bulle flottante avec l'icône caméra */
+.lens-bubble {
+  position: absolute;
+  width: 50px;
+  height: 50px;
+  background-color: #f0f4ff;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+  pointer-events: none;
+  /* Désactive les interactions avec la bulle */
+  z-index: 1001;
+}
+
+/* Texte centré en haut */
+.centered-text {
+  position: fixed;
+  top: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  padding: 10px 20px;
+  background-color: #333;
+  color: #fff;
+  border-radius: 20px;
+  font-size: 16px;
+  font-weight: bold;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+  z-index: 1002;
+  pointer-events: none;
+  /* Empêche les interactions */
+}
+
+
+.plus-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  /* Taille du cercle */
+  height: 40px;
+  border-radius: 50%;
+  /* Cercle parfait */
+  background-color: #f0f0f0;
+  /* Couleur de fond */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  /* Légère ombre */
+  font-size: 20px;
+  /* Taille du "+" */
+  font-weight: bold;
+  color: #333;
+  /* Couleur du "+" */
+  cursor: pointer;
+  /* Change le curseur pour indiquer la clicabilité */
+  transition: transform 0.2s ease, background-color 0.2s ease;
+  /* Effet de clic */
+}
+
+.plus-icon:hover {
+  background-color: #e0e0e0;
+  /* Couleur de fond au survol */
+}
+
+.plus-icon:active {
+  transform: scale(0.9);
+  /* Réduction de taille sur clic */
+}
+
+
+/* Style principal de la bulle */
+.capture-bubble {
+  position: absolute;
+  width: 80px;
+  /* Largeur de la bulle */
+  height: 50px;
+  /* Hauteur pour obtenir un effet "goutte d'eau" */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 10001;
+  pointer-events: none;
+  /* Empêche l'interaction avec la bulle */
+  cursor: pointer;
+}
+
+/* Icône principale dans la bulle (par exemple, "U.") */
+.capture-bubble .bubble-icon {
+  font-size: 20px;
+  /* Taille de l'icône principale */
+  color: white;
+  /* Couleur blanche pour le texte ou l'icône */
+  font-weight: bold;
+}
+
+
+
+
+
+
+
+
+
+/* Conteneur principal */
+.emoji-popup-container {
+  width: 400px;
+  background: #ffffff;
+  /* Fond blanc */
+  border-radius: 12px;
+  /* Coins arrondis */
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+  /* Ombre */
+  padding: 20px;
+  position: fixed;
+  margin-top: 222px;
+  top: 50%;
+  /* Centré verticalement */
+  left: 50%;
+  /* Centré horizontalement */
+  transform: translate(-50%, -50%);
+  /* Correction du centrage */
+  z-index: 1000;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+  /* Nécessaire pour positionner la goutte d’eau */
+}
+
+/* Titre */
+.emoji-popup-title {
+  font-size: 16px;
+  font-weight: 500;
+  color: #333;
+  margin-bottom: 20px;
+  /* Espacement en dessous */
+  font-family: "Raleway";
+  line-height: 1.4;
+}
+
+/* Conteneur des émojis */
+.emoji-container {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  /* Trois emojis par ligne */
+  gap: 15px;
+  /* Espacement entre les emojis */
+  align-items: center;
+  justify-items: center;
+}
+
+
+
+/* Conteneur pour chaque émoji */
+.emoji-item {
+  position: relative;
+  /* Nécessaire pour positionner le tooltip au-dessus de l'émoji */
+  width: 50px;
+  height: 50px;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  transition: transform 0.2s ease;
+}
+
+/* Style du tooltip */
+.emoji-tooltip {
+  position: absolute;
+  bottom: 60px;
+  /* Place le tooltip au-dessus de l'émoji */
+  left: 50%;
+  /* Centre le tooltip horizontalement */
+  transform: translateX(-50%);
+  background-color: #000000;
+  color: #fff;
+  font-size: 14px;
+  /* font-weight: 500; */
+  padding: 5px 10px;
+  border-radius: 6px;
+  white-space: nowrap;
+  box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.15);
+  pointer-events: none;
+  z-index: 1000;
+  opacity: 0;
+  /* Masqué par défaut */
+  transition: opacity 0.2s ease, transform 0.2s ease;
+}
+
+/* Affichage du tooltip lorsque la souris est sur l'émoji */
+.emoji-item:hover .emoji-tooltip {
+  opacity: 1;
+  /* Rendre le tooltip visible */
+  transform: translateX(-50%) translateY(-5px);
+  /* Légère animation de montée */
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.emoji-item:hover {
+  transform: scale(1.2);
+  background-color: #f7f7f7;
+}
+
+.emoji-item span {
+  font-size: 40px;
+}
+
+/* Bouton Plus (+) */
+.add-more-button {
+  width: 50px;
+  height: 50px;
+  background: #ffffff;
+  border: 2px solid #eaeaea;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.5rem;
+  color: #7d7d7d;
+  cursor: pointer;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.add-more-button:hover {
+  transform: scale(1.1);
+  background-color: #f7f7f7;
+  color: #000;
+}
+
+/* Goutte d’eau */
+.emoji-waterdrop {
+  position: absolute;
+  top: 85%;
+  /* Centré verticalement par rapport au conteneur */
+  right: -60px;
+  /* Décalé vers l’extérieur à droite */
+  transform: translateY(-50%);
+  width: 62px;
+  height: 61px;
+  background-image: url('data:image/svg+xml;charset=UTF-8,<svg xmlns="http://www.w3.org/2000/svg" width="62" height="61" viewBox="0 0 62 61" fill="none"><g filter="url(%23filter0_d_386_2080)"><path d="M9 29C9 16.8497 18.8497 7 31 7H31.5C43.3741 7 53 16.6259 53 28.5C53 40.3741 43.3741 50 31.5 50L11 50C9.89543 50 9 49.1046 9 48L9 29Z" fill="url(%23paint0_linear_386_2080)"/><path d="M10 29C10 17.402 19.402 8 31 8H31.5C42.8218 8 52 17.1782 52 28.5C52 39.8218 42.8218 49 31.5 49L11 49C10.4477 49 10 48.5523 10 48L10 29Z" stroke="white" stroke-width="2"/></g><path d="M32.4831 21H36.6628V31.8122C36.6628 33.0618 36.3554 34.1504 35.7405 35.078C35.1257 36.0002 34.2683 36.715 33.1684 37.2224C32.0685 37.7244 30.7909 37.9754 29.3356 37.9754C27.8634 37.9754 26.5774 37.7244 25.4774 37.2224C24.3775 36.715 23.523 36.0002 22.9138 35.078C22.3046 34.1504 22 33.0618 22 31.8122V21H26.1882V31.4603C26.1882 32.0387 26.3179 32.5543 26.5774 33.0072C26.8425 33.4601 27.2119 33.8148 27.6857 34.0713C28.1595 34.3277 28.7095 34.4559 29.3356 34.4559C29.9617 34.4559 30.5089 34.3277 30.977 34.0713C31.4508 33.8148 31.8203 33.4601 32.0854 33.0072C32.3505 32.5543 32.4831 32.0387 32.4831 31.4603V21Z" fill="white"/><path d="M40.8002 38C40.191 38 39.6692 37.7926 39.2349 37.3779C38.8062 36.9632 38.5947 36.4612 38.6003 35.8719C38.5947 35.2935 38.8062 34.7997 39.2349 34.3905C39.6692 33.9758 40.191 33.7684 40.8002 33.7684C41.3755 33.7684 41.8832 33.9758 42.3231 34.3905C42.7687 34.7997 42.9944 35.2935 43 35.8719C42.9944 36.2648 42.8872 36.6222 42.6785 36.9441C42.4754 37.2661 42.2075 37.5225 41.8747 37.7135C41.5475 37.9045 41.1894 38 40.8002 38Z" fill="white"/><defs><filter id="filter0_d_386_2080" x="0.8" y="0.8" width="60.4" height="59.4" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB"><feFlood flood-opacity="0" result="BackgroundImageFix"/><feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"/><feOffset dy="2"/><feGaussianBlur stdDeviation="4.1"/><feComposite in2="hardAlpha" operator="out"/><feColorMatrix type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.25 0"/><feBlend mode="normal" in2="BackgroundImageFix" result="effect1_dropShadow_386_2080"/><feBlend mode="normal" in="SourceGraphic" in2="effect1_dropShadow_386_2080" result="shape"/></filter><linearGradient id="paint0_linear_386_2080" x1="1.34783" y1="50" x2="59.3575" y2="5.72158" gradientUnits="userSpaceOnUse"><stop stop-color="%235A13A5"/><stop offset="1" stop-color="%23FE2190"/></linearGradient></defs></svg>');
+  background-size: contain;
+}
+
+
+/* Animation du tooltip */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-5px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+
+
+
+
+.category-popup-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 10000;
+}
+
+.category-popup {
+  background: #2C3649;
+  color: #fff;
+  border-radius: 16px;
+  padding-block-start: 28px;
+  max-inline-size: 560px;
+  inline-size: 100%;
+  text-align: center;
+}
+
+.popup-header {
+  clear: both;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.popup-icon {
+  inline-size: 100px;
+  margin-block-end: 30px;
+  block-size: 50px;
+  display: flex;
+  margin-block-start: -4px;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto;
+}
+
+.popup-close {
+  background: none;
+  border: none;
+  font-size: 18px;
+  color: #fff;
+  cursor: pointer;
+}
+
+.popup-content h2 {
+  color: #FFF;
+  text-align: center;
+  font-family: "Raleway";
+  font-size: 32px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 109.523%;
+  margin: 16px 0;
+}
+
+.popup-points {
+  font-size: 16px;
+  margin: 8px 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.popup-points span {
+  margin-right: 8px;
+}
+
+.popup-content p {
+  color: #FFF;
+  text-align: center;
+  font-family: "Raleway";
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  margin: 36px;
+}
+
+.popup-categories {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 15px;
+  margin-left: 100px;
+  margin-right: 100px;
+  justify-content: center;
+}
+
+.popup-category {
+  text-align: center;
+  font-family: "Raleway";
+  font-size: 15px;
+  font-style: normal;
+  font-weight: 400;
+  border: 1px solid #ffffff40;
+  color: #fff;
+  border-radius: 25px;
+  padding: 8px 16px;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+.popup-category.selected {
+  background: #ffffff40;
+  border-color: #fff;
+}
+
+.popup-category input {
+  display: none;
+}
+
+.popup-close-button {
+  background: none;
+  border: none;
+  font-family: 'Roboto' !important;
+  color: #768196;
+  margin-block-end: 40px;
+  font-size: 14px;
+  margin: 20px;
+  cursor: pointer;
+  text-decoration: underline;
+}
+
+
+/* Animation pour l'apparition/disparition du popup */
+@keyframes popupFadeIn {
+  from {
+    opacity: 0;
+    transform: scale(0.9);
+  }
+
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes popupFadeOut {
+  from {
+    opacity: 1;
+    transform: scale(1);
+  }
+
+  to {
+    opacity: 0;
+    transform: scale(0.9);
+  }
+}
+
+.category-popup {
+  animation: popupFadeIn 0.4s ease-out;
+}
+
+
+
+
+
+/* Animation pour les "+10 points" */
+@keyframes pointsFadeIn {
+  0% {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+
+  50% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes starBurst {
+  0% {
+    opacity: 0;
+    transform: scale(0);
+  }
+
+  50% {
+    opacity: 1;
+    transform: scale(1.2);
+  }
+
+  100% {
+    opacity: 0;
+    transform: scale(1.5);
+  }
+}
+
+/* Points section avec étoiles */
+.popup-points {
+  background: rgba(25, 31, 43, 0.69);
+  display: inline;
+  border-radius: 26px;
+  padding: 13px;
+  gap: 8px;
+  font-size: 16px;
+  animation: pointsFadeIn 0.6s ease-out;
+  position: relative;
+}
+
+.popup-points span {
+  position: relative;
+}
+
+.star {
+  position: absolute;
+  width: 12px;
+  height: 12px;
+  background: #ffc107;
+  /* Couleur dorée pour les étoiles */
+  clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%);
+  animation: starBurst 1s ease-out infinite;
+}
+
+/* Positionnement des étoiles */
+.star-1 {
+  top: -15px;
+  left: -15px;
+  animation-delay: 0.2s;
+}
+
+.star-2 {
+  top: -15px;
+  right: -15px;
+  animation-delay: 0.4s;
+}
+
+.star-3 {
+  bottom: -15px;
+  left: -15px;
+  animation-delay: 0.6s;
+}
+
+.star-4 {
+  bottom: -15px;
+  right: -15px;
+  animation-delay: 0.8s;
+}
+
+
+/* Container for points */
+.points-container {
+  position: relative;
+  display: inline-block;
+  text-align: center;
+  margin-block-start: 10px;
+  font-size: 24px;
+  font-weight: bold;
+  color: white;
+  animation: fadeIn 0.5s ease-in-out;
+}
+
+.desc-animation {
+  margin: 35px;
+  font-family: sans-serif !important;
+  margin-block-end: 48px;
+  margin-block-start: 30px;
+  font-weight: 300;
+}
+
+/* Animation for the points */
+.points-animation {
+  font-family: sans-serif !important;
+  font-size: 17px;
+  font-weight: 400;
+  color: #ffffff;
+  animation: zoomIn 1s ease-in-out;
+}
+
+@keyframes zoomIn {
+  0% {
+    transform: scale(0.8);
+    opacity: 0;
+  }
+
+  50% {
+    transform: scale(1.2);
+    opacity: 1;
+  }
+
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+/* Star animation */
+.star-animation {
+  position: absolute;
+  top: -20px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 5px;
+  animation: sparkle 1.2s ease-in-out;
+}
+
+.star-animation span {
+  font-size: 18px;
+  animation: moveUp 1.2s ease-in-out;
+}
+
+@keyframes sparkle {
+  0% {
+    opacity: 0;
+  }
+
+  50% {
+    opacity: 1;
+  }
+
+  100% {
+    opacity: 0;
+  }
+}
+
+@keyframes moveUp {
+  0% {
+    transform: translateY(10px);
+    opacity: 0;
+  }
+
+  50% {
+    opacity: 1;
+  }
+
+  100% {
+    transform: translateY(-20px);
+    opacity: 0;
+  }
+}
+
+/* Conteneur de l'input */
+.input-container {
+  position: relative;
+  width: auto;
+  margin-top: 10px;
+  height: 46px;
+  display: flex;
+}
+
+/* Style de l'input */
+.floating-input {
+  width: 100%;
+  padding: 10px 12px;
+  font-size: 16px;
+  border: 1px solid #b2aeae;
+  border-radius: 16px;
+  background: #F5F5F5;
+  color: rgb(51, 51, 51);
+  outline: none;
+}
+
+#select-emoji {
+  top: 75%;
+}
+
+.formStyle {
+  margin-top: 40px;
+}
+
+.floating-input:focus {
+  border-color: #fa2ea8;
+}
+
+/* Ajoutez un espace réservé invisible */
+.floating-input::placeholder {
+  color: transparent;
+}
+
+/* Style du label */
+.floating-label {
+  position: absolute;
+  top: 50%;
+  left: 12px;
+  transform: translateY(-50%);
+  color: #363F51;
+  font-family: "Raleway";
+  font-size: 16px;
+  /* Couleur du texte du label */
+  transition: all 0.2s ease-in-out;
+  /* Transition pour un effet fluide */
+  pointer-events: none;
+  background: #f5f5f5;
+}
+
+/* Quand l'input est actif ou contient du texte */
+.floating-input:focus+.floating-label,
+.floating-input:not(:placeholder-shown)+.floating-label {
+  top: 0px;
+  /* Position au-dessus */
+  font-size: 14px;
+  /* Réduit la taille du label */
+  color: #363F51;
+  font-family: "Raleway";
+
+}
+
+
+
+
+.tooltip-container {
+  position: relative;
+  display: inline-block;
+  margin: 10px;
+  /* Espace entre les icônes si nécessaire */
+}
+
+.tooltip-container .tooltip-text {
+  visibility: hidden;
+  background-color: #1A1A1A;
+  /* Couleur de fond */
+  color: #FFFFFF;
+  /* Couleur du texte */
+  text-align: center;
+  font-size: 12px;
+  border-radius: 4px;
+  padding: 5px 10px;
+  position: absolute;
+  z-index: 100;
+  top: 50%;
+  /* Centre verticalement */
+  transform: translateY(-50%);
+  /* Centre parfaitement verticalement */
+  white-space: nowrap;
+  /* Empêche le texte de passer à la ligne */
+  opacity: 0;
+  transition: opacity 0.2s ease-in-out;
+}
+
+.tooltip-container #u {
+  left: -415%;
+  /* Centre horizontalement par rapport à l'icône */
+  /* Place le tooltip à gauche de l'icône */
+}
+
+.tooltip-container #comment {
+  left: -400%;
+  /* Centre horizontalement par rapport à l'icône */
+  /* Place le tooltip à gauche de l'icône */
+}
+
+.tooltip-container #heartI {
+  left: -430%;
+  /* Centre horizontalement par rapport à l'icône */
+  /* Place le tooltip à gauche de l'icône */
+}
+
+.tooltip-container #magicI {
+  left: -335%;
+  /* Centre horizontalement par rapport à l'icône */
+  /* Place le tooltip à gauche de l'icône */
+}
+
+.tooltip-container .tooltip-arrow {
+  position: absolute;
+  top: 50%;
+  right: -6px;
+  /* Positionne la flèche à droite du tooltip */
+  transform: translateY(-50%);
+  width: 0;
+  height: 0;
+  border-top: 6px solid transparent;
+  border-bottom: 6px solid transparent;
+  border-left: 6px solid #1A1A1A;
+  /* Couleur identique au fond du tooltip */
+}
+
+.tooltip-container:hover .tooltip-text {
+  visibility: visible;
+  opacity: 1;
+}
+
+.warning-popup {
+  background: #fff;
+  padding: 20px 30px;
+  border-radius: 10px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+  text-align: center;
+  width: 90%;
+  max-width: 400px;
+}
+
+.warning-popup h1 {
+  margin-top: 0;
+  font-size: 24px;
+  color: #ff0000;
+}
+
+.warning-popup p {
+  margin: 10px 0 20px;
+  font-size: 16px;
+  color: #333;
+}
+
+.close-button:hover {
+  background-color: #0056b3;
+}
+
+.camera-button {
+  background-color: #6a1b9a;
+  color: white;
+  border: none;
+  padding: 10px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 14px;
+  display: flex;
+  align-items: center;
+}
+
+.camera-button:hover {
+  background-color: #5a1591;
+}
+
+.image-preview img {
+  max-width: 100%;
+  border: 2px solid #ddd;
+  border-radius: 5px;
+  margin-bottom: 10px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+.popup-overlay {
+  position: fixed;
+  inset-block-start: 0;
+  inset-inline-start: 0;
+  inline-size: 100vw;
+  block-size: 100vh;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 10000;
+}
+
+
+
+.accordion {
+  margin-inline-start: 100px;
+  margin-inline-end: 100px;
+}
+
+.accordion-item {
+  margin-block-end: 10px;
+  overflow: hidden;
+  border-block-end: 1px solid #ffffff42;
+  margin-block-end: 20px;
+  overflow: hidden;
+}
+
+.accordion-icon {
+  font-size: 24px;
+  font-weight: 300;
+}
+
+.accordion-header {
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+}
+
+.accordion-content {
+  background-color: #253246;
+  color: #fff;
+}
+
+.popup-footer {
+  text-align: center;
+  margin-block-start: 20px;
+}
+
+.popup-footer button {
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
 }

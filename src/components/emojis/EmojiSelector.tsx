@@ -1,15 +1,18 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 
 interface EmojiSelectorProps {
   onSelect: (emoji: string) => void;
+  action: string; // Argument pour distinguer les actions
 }
 
-const EmojiSelector: React.FC<EmojiSelectorProps> = ({ onSelect }) => {
-  const initialEmojis = [
+const EmojiSelector: React.FC<EmojiSelectorProps> = ({ onSelect, action }) => {
+  // Jeux d'émojis
+  const defaultEmojis = [
     { emoji: "😐", name: "Neutre" },
     { emoji: "😤", name: "Agacé" },
     { emoji: "😡", name: "En colère" },
   ];
+
   const additionalEmojis = [
     { emoji: "🤔", name: "Pensif" },
     { emoji: "😭", name: "Triste" },
@@ -18,12 +21,38 @@ const EmojiSelector: React.FC<EmojiSelectorProps> = ({ onSelect }) => {
     { emoji: "🤣", name: "Hilarant" },
   ];
 
-  const [emojis, setEmojis] = useState(initialEmojis);
+  const heartEmojis = [
+    { emoji: "❤️", name: "Passion" },
+    { emoji: "👍", name: "Satisfaction" },
+    { emoji: "👏", name: "Félicitations" },
+  ];
+
+  const additionalHeartEmojis = [
+    { emoji: "🤩", name: "Enthousiasme" },
+    { emoji: "🤣", name: "Hilarant" },
+  ];
+
+  const [emojis, setEmojis] = useState(defaultEmojis);
   const [showMore, setShowMore] = useState(false);
 
+  // Mettre à jour les émojis affichés en fonction de l'action
+  useEffect(() => {
+    if (action === "cheart") {
+      setEmojis(heartEmojis);
+    } else {
+      setEmojis(defaultEmojis);
+    }
+    setShowMore(false); // Réinitialiser l'état de "plus"
+  }, [action]);
+
+  // Ajouter les émojis supplémentaires
   const handleShowMore = () => {
     if (!showMore) {
-      setEmojis([...emojis, ...additionalEmojis]);
+      if (action === "cheart") {
+        setEmojis((prev) => [...prev, ...additionalHeartEmojis]);
+      } else {
+        setEmojis((prev) => [...prev, ...additionalEmojis]);
+      }
       setShowMore(true);
     }
   };
@@ -33,9 +62,11 @@ const EmojiSelector: React.FC<EmojiSelectorProps> = ({ onSelect }) => {
       {/* Goutte d'eau */}
       <div className="emoji-waterdrop"></div>
 
-      {/* Titre */}
+      {/* Titre dynamique */}
       <div className="emoji-popup-title">
-        Quelle émotion ressentez-vous face à ce problème ?
+        {action === "cheart"
+          ? "Quelle émotion exprime votre coup de cœur ?"
+          : "Quelle émotion ressentez-vous face à ce problème ?"}
       </div>
 
       {/* Conteneur des emojis */}
@@ -46,15 +77,12 @@ const EmojiSelector: React.FC<EmojiSelectorProps> = ({ onSelect }) => {
             className="emoji-item"
             onClick={() => onSelect(emojiObj.emoji)}
           >
-            {/* Émoji */}
             <span className="emoji-span">{emojiObj.emoji}</span>
-
-            {/* Tooltip pour le nom de l'émotion */}
             <div className="emoji-tooltip">{emojiObj.name}</div>
           </div>
         ))}
 
-        {/* Bouton Plus (+) */}
+        {/* Bouton "Plus (+)" */}
         {!showMore && (
           <div className="add-more-button" onClick={handleShowMore}>
             +

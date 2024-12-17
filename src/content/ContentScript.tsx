@@ -7,6 +7,7 @@ import { shouldBlockUrl } from "../utils/blockAdultSites";
 import Warning from '../components/warning/Warning';
 import { blurAllInappropriateMedia } from '../utils/blurAllInappropriateMedia';
 import { unblurAllMedia } from '../utils/unblurAllMedia';
+//import { handleAction } from '../components/handleAction';
 
 
 let clickCount = 0;
@@ -22,22 +23,17 @@ let overlay: HTMLDivElement | null = null;
 // Élément bulle avec icône pour le mode capture
 let captureBubble: HTMLDivElement | null = null;
 // Activer le mode Google Lens avec la bulle (premier clic)
-function enableLensMode() {
-  console.log("Enable Lens Mode called");
-  createLensBubble(); // Afficher la bulle avec l'icône de caméra
-  createCenteredText(); // Affiche le texte centré
-  createOverlay(); // Ajoute l'overlay semi-transparent
+// Mode de sélection activé
+export function enableLensMode(onCaptureComplete?: (screenshot: string) => void): void {
+  createLensBubble();
+  createCenteredText();
+  createOverlay();
 
-  // Suivre le curseur avec la bulle sans activer la sélection
-  document.addEventListener('mousemove', moveLensBubble);
-
-  // Préparer pour un clic dans la bulle pour démarrer la sélection
+  document.addEventListener('mousemove', updateCaptureBubblePosition);
   document.addEventListener('click', initiateSelection, { once: true });
 }
 
-
-
-function createCenteredText() {
+function createCenteredText():void {
   if (!centeredText) {
     centeredText = document.createElement("div");
     centeredText.style.position = "fixed";
@@ -69,31 +65,29 @@ function createCenteredText() {
   }
 }
 
-function removeCenteredText() {
+function removeCenteredText(): void {
   if (centeredText) {
     centeredText.remove();
     centeredText = null;
   }
 }
 
-
-function createOverlay() {
+function createOverlay(): void {
   if (!overlay) {
-    overlay = document.createElement("div");
-    overlay.className = "bck";
-    overlay.style.position = "fixed";
-    overlay.style.top = "0";
-    overlay.style.left = "0";
-    overlay.style.width = "100%";
-    overlay.style.height = "100%";
-    overlay.style.backgroundColor = "rgba(0, 0, 0, 0.3)"; // Couleur semi-transparente
-    overlay.style.zIndex = "10000";
-    overlay.style.pointerEvents = "none"; // Empêche les interactions avec l'overlay
+    overlay = document.createElement('div');
+    overlay.style.position = 'fixed';
+    overlay.style.top = '0';
+    overlay.style.left = '0';
+    overlay.style.width = '100%';
+    overlay.style.height = '100%';
+    overlay.style.backgroundColor = 'rgba(0, 0, 0, 0.3)';
+    overlay.style.zIndex = '10000';
+    overlay.style.pointerEvents = 'none';
     document.body.appendChild(overlay);
   }
 }
 
-function removeOverlay() {
+function removeOverlay(): void {
   if (overlay) {
     overlay.remove();
     overlay = null;
@@ -102,7 +96,7 @@ function removeOverlay() {
 
 
 // Créer et afficher la bulle avec la caméra pour suivre la souris
-function createLensBubble() {
+function createLensBubble(): void {
   if (!captureBubble) {
     captureBubble = document.createElement("div");
     captureBubble.className = "capture-bubble"; // Classe CSS pour appliquer le style principal
@@ -210,9 +204,17 @@ function initiateSelection(event: MouseEvent) {
 }
 
 // Démarrer la sélection après le deuxième clic
-function startSelection(event: MouseEvent) {
+/**
+ * Initiates the selection process for capturing a screen area.
+ * This function creates a selection box and sets up event listeners for resizing and finalizing the selection.
+ * 
+ * @param event - The MouseEvent that triggered the selection start.
+ * @returns void
+ */
+function startSelection(event: MouseEvent): void {
   if (!selectionEnabled) return;
   removeOverlay(); // Supprime l'overlay semi-transparent
+  console.log('Vous êtes en train de sélectionner une zone à capturer...'); //
   startX = event.clientX;
   startY = event.clientY;
 
@@ -268,71 +270,57 @@ function handleMouseUp() {
   disableSelectionMode(); // Désactiver le mode de sélection
 }
 
-
-// Fonction pour ouvrir le flux de feedback avec la sélection d'émoji
-function openFeedbackWithEmojiSelection(
-  screenshot: string | null,
-  initialFormData: {
-    alertDescription: string;
-    sentiment: string;
-    tips: string;
-    isBlocked: 'yes' | 'no';
-  } = {
-    alertDescription: '',
-    sentiment: '😐',
-    tips: '',
-    isBlocked: 'no',
+  export function openFeedbackWithEmojiSelection(
+    screenshot: string | null,
+    action: string,
+    extraData?: {
+      initialFormData?: {
+        alertDescription: string;
+        sentiment: string;
+        tips: string;
+        isBlocked: "yes" | "no";
+        screenshot: string | null;
+      };
+      initialStep?: "emoji" | "form" | "capture";
+    },
+    initialStep?: "emoji" | "form" | "capture", // initialStep est inclus ici
+  ): void {
+    const feedbackContainer = document.createElement('div');
+    feedbackContainer.id = 'feedback-container';
+    feedbackContainer.style.position = 'fixed';
+    feedbackContainer.style.top = '0';
+    feedbackContainer.style.left = '0';
+    feedbackContainer.style.width = '100vw';
+    feedbackContainer.style.height = '100vh';
+    feedbackContainer.style.zIndex = '10004';
+    document.body.appendChild(feedbackContainer);
+  
+    const closeFeedback = (): void => {
+      feedbackContainer.remove();
+    };
+  
+    const root = ReactDOM.createRoot(feedbackContainer);
+    root.render(
+      <CaptureFeedbackFlow
+        screenshot={screenshot}
+        action={action}
+        onClose={closeFeedback}
+        onCaptureClick={(formData, selectedAction) => {
+          closeFeedback();
+          enableLensMode();
+        }}
+        selectedAction={action}
+        initialFormData={extraData?.initialFormData || {
+          alertDescription: '',
+          sentiment: '😐',
+          tips: '',
+          isBlocked: 'no',
+          screenshot: null,
+        }}
+        initialStep={initialStep || 'emoji'}  // Passer initialStep ici
+      />
+    );
   }
-) {
-  // Vérifie si un conteneur existe déjà pour éviter les doublons
-  const existingContainer = document.querySelector('#feedback-container');
-  if (existingContainer) {
-    existingContainer.remove(); // Supprime tout conteneur existant
-  }
-
-  // Crée un nouveau conteneur pour le feedback
-  const feedbackContainer = document.createElement('div');
-  feedbackContainer.id = 'feedback-container';
-  feedbackContainer.style.position = 'fixed';
-  feedbackContainer.style.top = '0';
-  feedbackContainer.style.left = '0';
-  feedbackContainer.style.width = '100vw';
-  feedbackContainer.style.height = '100vh';
-  feedbackContainer.style.backgroundColor = 'rgba(0, 0, 0, 0.5)';
-  feedbackContainer.style.zIndex = '9999';
-
-  document.body.appendChild(feedbackContainer);
-
-  // Fonction pour fermer le feedback
-  const closeFeedback = () => {
-    const container = document.getElementById('feedback-container');
-    if (container) {
-      container.remove(); // Supprime le conteneur
-    }
-  };
-
-  // Créer une racine React pour le flux de feedback avec sélection d'émoji
-  const root = ReactDOM.createRoot(feedbackContainer);
-  root.render(
-    <CaptureFeedbackFlow
-      screenshot={screenshot} // Passe la capture ou null
-      onClose={closeFeedback}
-      onCaptureClick={() => {
-        closeFeedback(); // Ferme le formulaire avant d'activer le mode sélection
-        enableLensMode(); // Activer le mode Google Lens avec la bulle
-      }}
-      initialFormData={initialFormData} // Passe les données actuelles au flux
-    />
-  );
-}
-
-
-// Fonction appelée après une nouvelle capture
-function handleNewCapture(screenshot: string | null, formData: any) {
-  openFeedbackWithEmojiSelection(screenshot, formData);
-}
-
-
 
 // Fonction pour redimensionner et compresser l'image
 function resizeAndCompressImage(dataUrl: string, maxWidth: number, maxHeight: number, quality: number): Promise<string> {
@@ -374,7 +362,7 @@ function captureSelectedArea(x: number, y: number, width: number, height: number
   // Vérifier si la zone sélectionnée est trop petite ou inexistante
   if (width < 5 || height < 5) {
     console.log('Zone trop petite ou inexistante. Continuation sans capture.');
-    openFeedbackWithEmojiSelection(null); // Appeler le formulaire sans capture
+    openFeedbackWithEmojiSelection(null, 'capture'); // Appeler le formulaire sans capture
     return; // Arrêter l'exécution
   }
 
@@ -420,7 +408,7 @@ function captureSelectedArea(x: number, y: number, width: number, height: number
         // Redimensionner et compresser l'image capturée
         resizeAndCompressImage(croppedDataUrl, 800, 800, 0.7) // Dimensions max et qualité
           .then((compressedDataUrl) => {
-            openFeedbackWithEmojiSelection(compressedDataUrl); // Appeler le formulaire de feedback
+            openFeedbackWithEmojiSelection(compressedDataUrl, 'capture'); // Appeler le formulaire de feedback
           })
           .catch((error) => {
             console.error('Erreur lors de la compression de l\'image:', error);
@@ -429,7 +417,7 @@ function captureSelectedArea(x: number, y: number, width: number, height: number
     })
     .catch((error) => {
       console.error('Erreur lors de la capture de la zone sélectionnée:', error);
-      openFeedbackWithEmojiSelection(null); // Continuer même en cas d'erreur
+      openFeedbackWithEmojiSelection(null, 'capture'); // Continuer même en cas d'erreur
     });
 }
 
@@ -449,7 +437,7 @@ function disableSelectionMode() {
 }
 
 // Fonction pour afficher le flux de feedback avec sélection d'émoji et formulaire
-function openFeedbackForm(screenshot: string) {
+export function openFeedbackForm(screenshot: string, action: string) {
   // Créer un conteneur pour le feedback
   const feedbackContainer = document.createElement('div');
   feedbackContainer.style.position = 'fixed';
@@ -469,17 +457,18 @@ function openFeedbackForm(screenshot: string) {
 
   // Créer une racine React pour le formulaire de feedback
   const root = ReactDOM.createRoot(feedbackContainer);
-  root.render(<CaptureFeedbackFlow screenshot={screenshot} onClose={closeFeedback} onCaptureClick={() => {
-    closeFeedback(); // Ferme le formulaire avant d'activer le mode sélection
-    enableLensMode(); // Activer le mode Google Lens avec la bulle
-  }}/>);
+  root.render(<CaptureFeedbackFlow action={action} screenshot={screenshot} onClose={closeFeedback} onCaptureClick={(formData, selectedAction) => {
+    closeFeedback();
+    enableLensMode();
+    console.log('Action sélectionnée :', selectedAction);
+  }} selectedAction={action} />);
 }
 
 
 
 
 // Affichage du menu flottant après trois clics
-function displayFloatingMenu(x: number, y: number) {
+function displayFloatingMenu(x: number, y: number): void {
   const currentURL = window.location.href;
 
   // Vérifie si le site est bloqué
@@ -527,7 +516,7 @@ function displayFloatingMenu(x: number, y: number) {
   const menuContainer = document.createElement('div');
   document.body.appendChild(menuContainer);
 
-  const closeMenu = () => {
+  const closeMenu = (): void => {
     console.log("Fermeture du menu...");
     document.body.removeChild(menuContainer);
     menuOpen = false;
@@ -538,46 +527,83 @@ function displayFloatingMenu(x: number, y: number) {
     <DraggableFloatingMenu
       x={x}
       y={y}
-      onCommentClick={() => {
-        closeMenu();
-        openFeedbackForm('');
+      onActionClick={(action: string) => {
+        if (action === 'capture') {
+          closeMenu();
+          enableLensMode((screenshot: string) => {
+            openFeedbackWithEmojiSelection(screenshot, 'capture', {
+              initialFormData: undefined,
+              initialStep: 'emoji', // Inclus correctement ici
+            });
+          });
+        } else if (action === 'cheart') {
+          closeMenu();
+          openFeedbackWithEmojiSelection(null, 'cheart', {
+            initialFormData: undefined,
+            initialStep: 'emoji', // Inclus correctement ici
+          });
+        } else if (action === 'suggestion') {
+          closeMenu();
+          openFeedbackForm('', 'suggestion');
+/*           openFeedbackWithEmojiSelection(null, 'suggestion', {
+            initialFormData: undefined,
+            initialStep: 'form', // Inclus correctement ici
+          }); */
+        }
       }}
-      onCaptureClick={() => {
-        closeMenu();
-        enableLensMode(); // Activer le mode Google Lens avec la bulle
-      }} />
+
+/*       onActionClick={(action) => handleAction(action, () => {
+        if (action === 'cheart') {
+          closeMenu();
+          openFeedbackForm('', 'default');
+        } else if (action === 'capture') {
+          closeMenu();
+          enableLensMode();
+        } else if (action === 'signal') {
+          console.log('Signalement action déclenchée');
+        }
+      })} */
+    /*       onCommentClick={() => {
+            closeMenu();
+            openFeedbackForm('');
+          }}
+          onCaptureClick={() => {
+            closeMenu();
+            enableLensMode(); // Activer le mode Google Lens avec la bulle
+          }} */
+    />
   );
 }
 
 
 chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
   if (message.action === "showWarningPopup") {
-      // Créer un conteneur pour afficher le popup
-      const containerId = "warning-popup-container";
-      let container = document.getElementById(containerId);
+    // Créer un conteneur pour afficher le popup
+    const containerId = "warning-popup-container";
+    let container = document.getElementById(containerId);
 
-      if (!container) {
-          container = document.createElement("div");
-          container.id = containerId;
-          document.body.appendChild(container);
-      }
+    if (!container) {
+      container = document.createElement("div");
+      container.id = containerId;
+      document.body.appendChild(container);
+    }
 
-      const root = ReactDOM.createRoot(container);
+    const root = ReactDOM.createRoot(container);
 
-      // Afficher le popup d'avertissement
-      root.render(
-          <Warning
-              onClose={() => {
-                  root.unmount();
-                  container?.remove(); // Supprime le popup du DOM
-              }}
-              onLoginSuccess={() => {
-                  console.log("Action après confirmation");
-              }}
-          />
-      );
+    // Afficher le popup d'avertissement
+    root.render(
+      <Warning
+        onClose={() => {
+          root.unmount();
+          container?.remove(); // Supprime le popup du DOM
+        }}
+        onLoginSuccess={() => {
+          console.log("Action après confirmation");
+        }}
+      />
+    );
 
-      sendResponse({ success: true });
+    sendResponse({ success: true });
   }
 });
 
@@ -595,9 +621,6 @@ chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
     sendResponse({ success: false });
   }
 });
-
-
-
 
 // Détection des trois clics pour afficher le menu flottant
 function handleClick(event: MouseEvent) {

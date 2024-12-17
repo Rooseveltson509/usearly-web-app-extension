@@ -1,19 +1,92 @@
 // apiService.ts
 
 import { Alert } from '../types/Alert';
-import { getToken } from '../utils/storageUtil';
+import { CoupdeCoeur } from '../types/CoupdeCoeur';
+import { Suggest } from '../types/Suggest';
 
-const API_URL = 'https://20d2-217-128-226-57.ngrok-free.app/api/v1';
+//const API_URL = 'https://716f-2a01-cb08-512-d600-e406-7bbb-7bff-9fa0.ngrok-free.app/api/v1';
 const API_BASE_URL = 'https://usearly-api.vercel.app/api/v1';
 
-export interface UpdateAlertResponse {
+export interface ApiResponse {
   success: boolean;
-  message?: string;
+  message: string;
   error?: string;
+  status?: number;
+  totalReports: number;
 }
 
-const url = `${API_URL}/user/alert/new`;
-const url2 = `${API_URL}/test-cors`;
+const URL_ALERT = `${API_BASE_URL}/user/alert/new`;
+const URL_CDC = `${API_BASE_URL}/user/coupdecoeur/new`;
+const URL_SUGGEST = `${API_BASE_URL}/user/suggestion/new`;
+
+
+/**
+ * Effectue une requête POST pour créer une suggestion.
+ * @param data - Les données de l'alerte à envoyer au serveur.
+ * @param token - Le token d'authentification Bearer.
+ * @returns - La réponse JSON du serveur ou une erreur si la requête échoue.
+ */
+export const createSuggest = async (data: Suggest, token: string): Promise<ApiResponse> => {
+  const response = await fetch(URL_SUGGEST, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+      Origin: window.location.href,
+      Authorization: `Bearer ${token}`,
+    },
+    mode: 'cors',
+    body: JSON.stringify(data),
+  });
+
+  // Gérer les erreurs HTTP
+  if (!response.ok) {
+    const errorData: ApiError = await response.json();
+    throw errorData; // Lance une erreur avec ApiError
+  }
+
+  // Parse la réponse et ajoute le statut HTTP
+  const responseData = await response.json();
+  return {
+    ...responseData,
+    status: response.status, // Ajoute le statut HTTP à l'objet renvoyé
+  };
+};
+
+
+
+
+/**
+ * Effectue une requête POST pour créer un coup de coeur.
+ * @param data - Les données du coup de coeur à envoyer au serveur.
+ * @param token - Le token d'authentification Bearer.
+ * @returns La réponse JSON du serveur ou une erreur si la requête échoue.
+ * */
+export const createCoupdeCoeur = async (data: CoupdeCoeur, token: string): Promise<ApiResponse> => {
+  const response = await fetch(URL_CDC, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+      Origin: window.location.href,
+      Authorization: `Bearer ${token}`,
+    },
+    mode: 'cors',
+    body: JSON.stringify(data),
+  });
+
+  if (!response.ok) {
+    const errorData: ApiError = await response.json();
+    throw errorData; // Lance une erreur avec ApiError
+  }
+
+    // Parse la réponse et ajoute le statut HTTP
+    const responseData = await response.json();
+    return {
+      ...responseData,
+      status: response.status, // Ajoute le statut HTTP à l'objet renvoyé
+    };
+
+};
+
 
 /**
  * Effectue une requête POST pour créer un signalement.
@@ -24,10 +97,10 @@ const url2 = `${API_URL}/test-cors`;
 export const createAlert = async (
   alertData: Alert,
   token: string
-): Promise<UpdateAlertResponse> => {
+): Promise<ApiResponse> => {
   const currentUrl = window.location.href;
-  const urlObj = new URL(currentUrl);
-  const response = await fetch(url, {
+  //const urlObj = new URL(currentUrl);
+  const response = await fetch(URL_ALERT, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
@@ -38,43 +111,15 @@ export const createAlert = async (
     body: JSON.stringify(alertData),
   });
 
+  const result = await response.json();
+
   if (!response.ok) {
     const errorData: ApiError = await response.json();
     throw errorData; // Lance une erreur avec ApiError
   }
 
-  return await response.json();
-};
-
-
-/**
- * Met à jour la catégorie d'un signalement.
- * @param category - La catégorie du signalement à mettre à jour.
- * @param token - Le token d'authentification Bearer.
- * @returns La réponse JSON du serveur ou une erreur si la requête échoue.
- */
-export const updateAlert = async (category: string, token: string): Promise<UpdateAlertResponse> => {
-  try {
-    const response = await fetch(`${API_URL}/user/update-category`, {
-      method: "PUT",
-      headers: {
-        "Content-Type": "application/json",
-        Origin: "chrome-extension://fjcggidednblenggahpkilfidbalhmad",
-        Authorization: `Bearer ${token}`,
-      },
-      mode: 'cors',
-      body: JSON.stringify({ category }),
-    });
-
-    const data = await response.json();
-
-    if (!response.ok) {
-      return { success: false, error: data.error || "Erreur inconnue." };
-    }
-
-    return { success: true, message: data.message };
-  } catch (err) {
-    console.error("Erreur lors de la requête :", err);
-    return { success: false, error: "Erreur réseau. Veuillez réessayer." };
-  }
+    return {
+    ...result,
+    status: response.status, // Incluez le code de statut HTTP
+  };
 };

@@ -1,4 +1,4 @@
-import { setToken, removeToken, getToken } from './utils/storageUtil';
+import { getTokens, removeTokens, setTokens } from './utils/storageUtil';
 import { shouldBlockUrl } from "./utils/blockAdultSites";
 
 const API_URL = 'https://usearly-api.vercel.app/api/v1';
@@ -20,8 +20,8 @@ chrome.tabs.onUpdated.addListener((tabId, changeInfo, tab) => {
     if (changeInfo.status === 'complete' && tab.url) {
         if (shouldBlockUrl(tab.url)) {
             // Envoie un message au content script pour afficher le popup
-              // Injecte le content script pour flouter les médias
-              chrome.scripting.executeScript({
+            // Injecte le content script pour flouter les médias
+            chrome.scripting.executeScript({
                 target: { tabId },
                 files: ["contentScript.js"], // Assurez-vous que le fichier est compilé en JS
             });
@@ -41,14 +41,14 @@ chrome.tabs.onUpdated.addListener((tabId, changeInfo, tab) => {
 // Fonction de déconnexion
 function handleLogout() {
     console.log("Déconnexion automatique ou manuelle de l'utilisateur.");
-    removeToken();
+    removeTokens();
     chrome.storage.local.remove(['authToken', 'loginTime'], () => {
         console.log('Token et heure de connexion supprimés.');
     });
 }
 
 // Vérifie périodiquement si 5 heures se sont écoulées depuis la connexion
-setInterval(async () => {
+/* setInterval(async () => {
     chrome.storage.local.get(['loginTime'], (result) => {
         const loginTime = result.loginTime || null;
 
@@ -60,31 +60,31 @@ setInterval(async () => {
             }
         }
     });
-}, 300000); // Vérifie toutes les 5 minutes
+}, 300000);  */// Vérifie toutes les 5 minutes
 
 
 chrome.action.onClicked.addListener((tab) => {
     console.log("Icône de l'extension cliquée.", tab);
     console.log("Envoi du message à content.js...");
-  
+
     if (tab.id) {
-      chrome.tabs.sendMessage(tab.id, { action: "showFloatingMenu" }, (response) => {
-        if (chrome.runtime.lastError) {
-          console.error("Erreur de communication avec content.js :", chrome.runtime.lastError.message);
-        } else {
-          console.log("Réponse de content.js :", response);
-        }
-      });
+        chrome.tabs.sendMessage(tab.id, { action: "showFloatingMenu" }, (response) => {
+            if (chrome.runtime.lastError) {
+                console.error("Erreur de communication avec content.js :", chrome.runtime.lastError.message);
+            } else {
+                console.log("Réponse de content.js :", response);
+            }
+        });
     } else {
-      console.error("Aucun onglet actif trouvé !");
+        console.error("Aucun onglet actif trouvé !");
     }
-  });
-  
-  
-  
-  
-  
-  
+});
+
+
+
+
+
+
 
 // Gestion des messages entrants
 chrome.runtime.onMessage.addListener(
@@ -130,15 +130,16 @@ chrome.runtime.onMessage.addListener(
                         .then((data) => {
                             console.log("data: ", data);
                             clearTimeout(timeout); // Annule le timeout si la réponse arrive
-                            if (data.token) {
-                                setToken(data.token);
+                            if (data.token && data.refreshToken) {
+                                setTokens(data.token, data.refreshToken);
                                 chrome.storage.local.set({ loginTime: Date.now() }); // Enregistre l'heure de connexion
-                                console.log("Connexion réussie. Token stocké.");
+                                console.log("Connexion réussie. Tokens stockés.");
                                 sendResponse({ success: true });
                             } else {
                                 console.log("Échec de l'authentification : aucun token reçu.");
                                 sendResponse({ success: false, error: 'Authentification échouée' });
                             }
+
                         })
                         .catch((error) => {
                             clearTimeout(timeout);
@@ -159,8 +160,8 @@ chrome.runtime.onMessage.addListener(
 
             case "isAuthenticated":
                 console.log("Vérification de l'authentification de l'utilisateur.");
-                getToken().then((token) => {
-                    sendResponse({ isAuthenticated: !!token });
+                getTokens().then((tokens) => {
+                    sendResponse({ isAuthenticated: !!tokens.accessToken });
                 });
                 return true; // Permet la réponse asynchrone
 

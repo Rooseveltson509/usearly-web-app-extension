@@ -42651,7 +42651,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_1__);
 /* harmony import */ var _LoginForm__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./LoginForm */ "./src/components/LoginForm.tsx");
 /* harmony import */ var _services_AuthService__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../services/AuthService */ "./src/services/AuthService.ts");
-/* harmony import */ var _utils_storageUtil__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../utils/storageUtil */ "./src/utils/storageUtil.ts");
 var __assign = (undefined && undefined.__assign) || function () {
     __assign = Object.assign || function(t) {
         for (var s, i = 1, n = arguments.length; i < n; i++) {
@@ -42703,9 +42702,8 @@ var __generator = (undefined && undefined.__generator) || function (thisArg, bod
 
 
 
-
 var DraggableFloatingMenu = function (_a) {
-    var x = _a.x, y = _a.y, onCommentClick = _a.onCommentClick, onCaptureClick = _a.onCaptureClick, onClose = _a.onClose;
+    var x = _a.x, y = _a.y, onActionClick = _a.onActionClick, onClose = _a.onClose;
     var _b = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)(false), showLoginForm = _b[0], setShowLoginForm = _b[1];
     var _c = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)(null), pendingAction = _c[0], setPendingAction = _c[1];
     var _d = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)(''), domain = _d[0], setDomain = _d[1];
@@ -42744,7 +42742,6 @@ var DraggableFloatingMenu = function (_a) {
                     isAuthenticated = _a.sent();
                     if (isAuthenticated) {
                         console.log("isUserAuthenticated: ", isAuthenticated);
-                        console.log("token: : ", (0,_utils_storageUtil__WEBPACK_IMPORTED_MODULE_4__.getToken)());
                         action(); // Si l'utilisateur est connecté, exécute l'action
                     }
                     else {
@@ -42817,7 +42814,7 @@ var DraggableFloatingMenu = function (_a) {
                     borderRadius: '8px', */
             cursor: 'move',
             zIndex: 1000,
-        } }, { children: [(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", __assign({ className: "tooltip-container" }, { children: [(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("svg", __assign({ className: 'svg-icon', onClick: function () { return handleButtonClick(function () { return console.log('Action Commenter: '); }); }, id: "uIcon", width: "22", height: "18", viewBox: "0 0 22 18", fill: "none", xmlns: "http://www.w3.org/2000/svg" }, { children: [(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("path", { d: "M10.56 0H14.77V11.26C14.77 12.56 14.46 13.69 13.84 14.66C13.22 15.62 12.36 16.36 11.25 16.89C10.14 17.41 8.86 17.67 7.39 17.67C5.92 17.67 4.61 17.41 3.5 16.89C2.39 16.36 1.53 15.62 0.92 14.66C0.31 13.69 0 12.56 0 11.26V0H4.22V10.89C4.22 11.49 4.35 12.03 4.61 12.5C4.88 12.97 5.25 13.34 5.73 13.61C6.21 13.88 6.76 14.01 7.39 14.01C8.02 14.01 8.57 13.88 9.04 13.61C9.52 13.34 9.89 12.97 10.16 12.5C10.43 12.03 10.56 11.49 10.56 10.89V0Z", fill: "#D9D9D9" }), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("path", { d: "M18.9402 17.7C18.3302 17.7 17.8002 17.48 17.3602 17.05C16.9302 16.62 16.7202 16.1 16.7202 15.48C16.7202 14.88 16.9302 14.36 17.3602 13.94C17.8002 13.51 18.3202 13.29 18.9402 13.29C19.5202 13.29 20.0302 13.51 20.4702 13.94C20.9202 14.37 21.1502 14.88 21.1502 15.48C21.1502 15.89 21.0402 16.26 20.8302 16.6C20.6302 16.94 20.3602 17.2 20.0202 17.4C19.6902 17.6 19.3302 17.7 18.9402 17.7Z", fill: "#D9D9D9" })] })), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", __assign({ className: "tooltip-text", id: 'u' }, { children: ["Feedback", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("span", { className: "tooltip-arrow" })] }))] })), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", __assign({ className: "tooltip-container" }, { children: [(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("svg", __assign({ className: 'svg-icon', onClick: onCaptureClick, id: "commentIcon", width: "26", height: "26", viewBox: "0 0 26 26", fill: "none", xmlns: "http://www.w3.org/2000/svg" }, { children: (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("path", { d: "M13 5.86C13.26 5.86 13.51 5.96 13.69 6.15C13.87 6.33 13.98 6.58 13.98 6.84V14.96C13.98 15.22 13.88 15.47 13.69 15.65C13.51 15.83 13.26 15.94 13 15.94C12.74 15.94 12.49 15.84 12.31 15.65C12.13 15.47 12.02 15.22 12.02 14.96V6.84C12.02 6.58 12.12 6.33 12.31 6.15C12.49 5.97 12.74 5.86 13 5.86ZM13 20.15C13.34 20.15 13.68 20.01 13.92 19.77C14.16 19.53 14.3 19.2 14.3 18.85C14.3 18.5 14.16 18.17 13.92 17.93C13.68 17.69 13.35 17.55 13 17.55C12.65 17.55 12.32 17.69 12.08 17.93C11.84 18.17 11.7 18.5 11.7 18.85C11.7 19.2 11.84 19.53 12.08 19.77C12.32 20.01 12.65 20.15 13 20.15ZM13 0.00999975C20.18 0.00999975 26 5.83 26 13.01C26 20.19 20.18 26.01 13 26.01C10.93 26.01 8.88 25.52 7.04 24.56L2.07 25.95C1.79 26.03 1.5 26.03 1.22 25.95C0.939997 25.88 0.69 25.73 0.48 25.53C0.28 25.33 0.129998 25.07 0.0599976 24.79C-0.0100024 24.51 -0.0100024 24.22 0.0599976 23.94L1.45 18.97C0.489997 17.13 0 15.08 0 13C0 5.82 5.82 0 13 0V0.00999975ZM13 1.96C10.07 1.96 7.26 3.12 5.19 5.2C3.12 7.27 1.95 10.08 1.95 13.01C1.95 14.92 2.43 16.76 3.34 18.39L3.54 18.74L2.09 23.92L7.27 22.47L7.62 22.67C9.09 23.49 10.74 23.96 12.42 24.05C14.11 24.14 15.79 23.84 17.34 23.17C18.89 22.51 20.27 21.49 21.37 20.22C22.47 18.94 23.26 17.43 23.69 15.79C24.11 14.16 24.16 12.45 23.82 10.8C23.48 9.15 22.77 7.59 21.74 6.26C20.71 4.93 19.38 3.85 17.87 3.1C16.36 2.36 14.69 1.97 13 1.97V1.96Z", fill: "#D9D9D9" }) })), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", __assign({ className: "tooltip-text", id: 'comment' }, { children: ["Signalement", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("span", { className: "tooltip-arrow" })] }))] })), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", __assign({ className: "tooltip-container" }, { children: [(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("svg", __assign({ className: 'svg-icon', onClick: onCommentClick, id: "heartIcon", width: "27", height: "24", viewBox: "0 0 27 24", fill: "none", xmlns: "http://www.w3.org/2000/svg" }, { children: (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("path", { d: "M26.41 4.81C26.01 3.86 25.44 3.01 24.7 2.29C23.21 0.820001 21.24 0.0100021 19.13 0.0100021C17.05 0.0100021 15.08 0.810003 13.58 2.28L13.51 2.35L13.44 2.28C11.95 0.810003 9.98 0 7.87 0C5.79 0 3.82 0.800002 2.33 2.26C1.59 2.98 1.02 3.83 0.610001 4.78C0.210001 5.73 0.01 6.74 0 7.77C0 8.8 0.199998 9.81 0.599998 10.76C0.999998 11.71 1.57 12.56 2.3 13.28L12.87 23.72C13.04 23.89 13.26 23.98 13.5 23.98C13.74 23.98 13.96 23.89 14.13 23.72L24.68 13.32C25.42 12.6 25.99 11.76 26.39 10.8C26.79 9.85 26.99 8.85 27 7.81C27 6.78 26.8 5.77 26.4 4.82L26.41 4.81ZM7.88 1.79C9.49 1.79 11.02 2.42 12.17 3.55L12.87 4.25C13.22 4.59 13.78 4.59 14.13 4.25L14.83 3.56C15.99 2.43 17.51 1.81 19.13 1.81C20.75 1.81 22.27 2.44 23.43 3.58C23.99 4.13 24.43 4.78 24.74 5.51C25.05 6.24 25.2 7.01 25.2 7.8C25.2 8.59 25.04 9.36 24.73 10.09C24.42 10.82 23.98 11.47 23.41 12.02L13.49 21.8L3.55 11.98C2.99 11.43 2.55 10.78 2.24 10.05C1.93 9.32 1.78 8.55 1.78 7.76C1.78 6.97 1.94 6.2 2.25 5.47C2.56 4.74 3 4.09 3.56 3.54C4.72 2.41 6.24 1.79 7.85 1.79", fill: "#D9D9D9" }) })), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", __assign({ className: "tooltip-text", id: 'heartI' }, { children: ["Coup de coeur", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("span", { className: "tooltip-arrow" })] }))] })), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("div", { children: (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", __assign({ className: "tooltip-container" }, { children: [(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("svg", __assign({ className: 'svg-icon', onClick: onCommentClick, id: "magicIcon", width: "29", height: "29", viewBox: "0 0 29 29", fill: "none", xmlns: "http://www.w3.org/2000/svg" }, { children: (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("path", { d: "M28.6025 12.0643L25.7325 7.74426L27.1625 2.72426C27.2525 2.41426 27.1625 2.07426 26.9325 1.84426C26.7025 1.61426 26.3625 1.52426 26.0525 1.61426L21.0625 3.07426L16.7325 0.154257C16.4625 -0.0257434 16.1125 -0.0557434 15.8225 0.104257C15.5325 0.254257 15.3425 0.554257 15.3325 0.874257L15.1825 6.09426L11.0825 9.31426C10.8225 9.51426 10.7025 9.84426 10.7525 10.1643C10.8025 10.4843 11.0225 10.7543 11.3325 10.8643L15.1725 12.2443C15.1725 12.2443 15.1225 12.2843 15.0925 12.3043L0.2625 27.2243C-0.0875 27.5743 -0.0875 28.1443 0.2625 28.4943C0.4325 28.6743 0.6625 28.7543 0.8925 28.7543C1.1225 28.7543 1.3525 28.6643 1.5225 28.4943L16.3625 13.5943C16.4225 13.5343 16.4625 13.4743 16.5025 13.4043L18.0025 17.5443C18.0625 17.6943 18.1525 17.8243 18.2725 17.9343C18.3925 18.0343 18.5425 18.1043 18.7025 18.1243C18.7525 18.1243 18.7925 18.1343 18.8425 18.1343C18.9825 18.1343 19.1125 18.1043 19.2325 18.0443C19.3525 17.9843 19.4625 17.8943 19.5425 17.7843L22.7225 13.6543L27.8625 13.4743C28.1925 13.4643 28.4825 13.2743 28.6325 12.9843C28.7825 12.6943 28.7525 12.3443 28.5725 12.0743L28.6025 12.0643ZM22.2625 11.8643C21.9925 11.8643 21.7525 12.0043 21.5825 12.2143L19.1325 15.3943L17.7625 11.6243C17.6725 11.3743 17.4725 11.1743 17.2225 11.0843L13.4625 9.72426L16.6125 7.25426C16.8225 7.09426 16.9425 6.84426 16.9525 6.57426L17.0725 2.56426L20.3925 4.80426C20.5025 4.87426 20.6225 4.92426 20.7525 4.94426C20.8825 4.96426 21.0125 4.95426 21.1425 4.92426L24.9825 3.79426L23.8825 7.65426C23.8425 7.78426 23.8425 7.91426 23.8625 8.04426C23.8825 8.17426 23.9325 8.29426 24.0025 8.40426L26.2525 11.7243L22.2525 11.8643H22.2625Z", fill: "#D9D9D9" }) })), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", __assign({ className: "tooltip-text", id: 'magicI' }, { children: ["Suggestion", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("span", { className: "tooltip-arrow" })] }))] })) }), showLoginForm && ((0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(_LoginForm__WEBPACK_IMPORTED_MODULE_2__["default"], { onClose: function () { return setShowLoginForm(false); }, onLoginSuccess: handleLoginSuccess })), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("button", __assign({ onClick: handleLogout }, { children: "Logout" })), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("div", __assign({ className: 'close-button', onClick: handleCloseMenu }, { children: (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("svg", __assign({ xmlns: "http://www.w3.org/2000/svg", width: "15", height: "14", viewBox: "0 0 15 14", fill: "none" }, { children: [(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("path", { d: "M11.2502 3.49982L4.25024 10.4998", stroke: "#D2D7E0", strokeWidth: "1.4", strokeLinecap: "round" }), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("path", { d: "M11.3376 10.4108L4.25034 3.50029", stroke: "#D2D7E0", strokeWidth: "1.4", strokeLinecap: "round" })] })) }))] })));
+        } }, { children: [(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", __assign({ className: "tooltip-container" }, { children: [(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("svg", __assign({ className: 'svg-icon', onClick: function () { return handleButtonClick(function () { return console.log('Action Commenter: '); }); }, id: "uIcon", width: "22", height: "18", viewBox: "0 0 22 18", fill: "none", xmlns: "http://www.w3.org/2000/svg" }, { children: [(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("path", { d: "M10.56 0H14.77V11.26C14.77 12.56 14.46 13.69 13.84 14.66C13.22 15.62 12.36 16.36 11.25 16.89C10.14 17.41 8.86 17.67 7.39 17.67C5.92 17.67 4.61 17.41 3.5 16.89C2.39 16.36 1.53 15.62 0.92 14.66C0.31 13.69 0 12.56 0 11.26V0H4.22V10.89C4.22 11.49 4.35 12.03 4.61 12.5C4.88 12.97 5.25 13.34 5.73 13.61C6.21 13.88 6.76 14.01 7.39 14.01C8.02 14.01 8.57 13.88 9.04 13.61C9.52 13.34 9.89 12.97 10.16 12.5C10.43 12.03 10.56 11.49 10.56 10.89V0Z", fill: "#D9D9D9" }), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("path", { d: "M18.9402 17.7C18.3302 17.7 17.8002 17.48 17.3602 17.05C16.9302 16.62 16.7202 16.1 16.7202 15.48C16.7202 14.88 16.9302 14.36 17.3602 13.94C17.8002 13.51 18.3202 13.29 18.9402 13.29C19.5202 13.29 20.0302 13.51 20.4702 13.94C20.9202 14.37 21.1502 14.88 21.1502 15.48C21.1502 15.89 21.0402 16.26 20.8302 16.6C20.6302 16.94 20.3602 17.2 20.0202 17.4C19.6902 17.6 19.3302 17.7 18.9402 17.7Z", fill: "#D9D9D9" })] })), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", __assign({ className: "tooltip-text", id: 'u' }, { children: ["Feedback", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("span", { className: "tooltip-arrow" })] }))] })), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", __assign({ className: "tooltip-container" }, { children: [(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("svg", __assign({ className: 'svg-icon', onClick: function () { return onActionClick('capture'); }, id: "commentIcon", width: "26", height: "26", viewBox: "0 0 26 26", fill: "none", xmlns: "http://www.w3.org/2000/svg" }, { children: (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("path", { d: "M13 5.86C13.26 5.86 13.51 5.96 13.69 6.15C13.87 6.33 13.98 6.58 13.98 6.84V14.96C13.98 15.22 13.88 15.47 13.69 15.65C13.51 15.83 13.26 15.94 13 15.94C12.74 15.94 12.49 15.84 12.31 15.65C12.13 15.47 12.02 15.22 12.02 14.96V6.84C12.02 6.58 12.12 6.33 12.31 6.15C12.49 5.97 12.74 5.86 13 5.86ZM13 20.15C13.34 20.15 13.68 20.01 13.92 19.77C14.16 19.53 14.3 19.2 14.3 18.85C14.3 18.5 14.16 18.17 13.92 17.93C13.68 17.69 13.35 17.55 13 17.55C12.65 17.55 12.32 17.69 12.08 17.93C11.84 18.17 11.7 18.5 11.7 18.85C11.7 19.2 11.84 19.53 12.08 19.77C12.32 20.01 12.65 20.15 13 20.15ZM13 0.00999975C20.18 0.00999975 26 5.83 26 13.01C26 20.19 20.18 26.01 13 26.01C10.93 26.01 8.88 25.52 7.04 24.56L2.07 25.95C1.79 26.03 1.5 26.03 1.22 25.95C0.939997 25.88 0.69 25.73 0.48 25.53C0.28 25.33 0.129998 25.07 0.0599976 24.79C-0.0100024 24.51 -0.0100024 24.22 0.0599976 23.94L1.45 18.97C0.489997 17.13 0 15.08 0 13C0 5.82 5.82 0 13 0V0.00999975ZM13 1.96C10.07 1.96 7.26 3.12 5.19 5.2C3.12 7.27 1.95 10.08 1.95 13.01C1.95 14.92 2.43 16.76 3.34 18.39L3.54 18.74L2.09 23.92L7.27 22.47L7.62 22.67C9.09 23.49 10.74 23.96 12.42 24.05C14.11 24.14 15.79 23.84 17.34 23.17C18.89 22.51 20.27 21.49 21.37 20.22C22.47 18.94 23.26 17.43 23.69 15.79C24.11 14.16 24.16 12.45 23.82 10.8C23.48 9.15 22.77 7.59 21.74 6.26C20.71 4.93 19.38 3.85 17.87 3.1C16.36 2.36 14.69 1.97 13 1.97V1.96Z", fill: "#D9D9D9" }) })), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", __assign({ className: "tooltip-text", id: 'comment' }, { children: ["Signalement", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("span", { className: "tooltip-arrow" })] }))] })), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", __assign({ className: "tooltip-container" }, { children: [(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("svg", __assign({ className: 'svg-icon', onClick: function () { return onActionClick('cheart'); }, id: "heartIcon", width: "27", height: "24", viewBox: "0 0 27 24", fill: "none", xmlns: "http://www.w3.org/2000/svg" }, { children: (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("path", { d: "M26.41 4.81C26.01 3.86 25.44 3.01 24.7 2.29C23.21 0.820001 21.24 0.0100021 19.13 0.0100021C17.05 0.0100021 15.08 0.810003 13.58 2.28L13.51 2.35L13.44 2.28C11.95 0.810003 9.98 0 7.87 0C5.79 0 3.82 0.800002 2.33 2.26C1.59 2.98 1.02 3.83 0.610001 4.78C0.210001 5.73 0.01 6.74 0 7.77C0 8.8 0.199998 9.81 0.599998 10.76C0.999998 11.71 1.57 12.56 2.3 13.28L12.87 23.72C13.04 23.89 13.26 23.98 13.5 23.98C13.74 23.98 13.96 23.89 14.13 23.72L24.68 13.32C25.42 12.6 25.99 11.76 26.39 10.8C26.79 9.85 26.99 8.85 27 7.81C27 6.78 26.8 5.77 26.4 4.82L26.41 4.81ZM7.88 1.79C9.49 1.79 11.02 2.42 12.17 3.55L12.87 4.25C13.22 4.59 13.78 4.59 14.13 4.25L14.83 3.56C15.99 2.43 17.51 1.81 19.13 1.81C20.75 1.81 22.27 2.44 23.43 3.58C23.99 4.13 24.43 4.78 24.74 5.51C25.05 6.24 25.2 7.01 25.2 7.8C25.2 8.59 25.04 9.36 24.73 10.09C24.42 10.82 23.98 11.47 23.41 12.02L13.49 21.8L3.55 11.98C2.99 11.43 2.55 10.78 2.24 10.05C1.93 9.32 1.78 8.55 1.78 7.76C1.78 6.97 1.94 6.2 2.25 5.47C2.56 4.74 3 4.09 3.56 3.54C4.72 2.41 6.24 1.79 7.85 1.79", fill: "#D9D9D9" }) })), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", __assign({ className: "tooltip-text", id: 'heartI' }, { children: ["Coup de coeur", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("span", { className: "tooltip-arrow" })] }))] })), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("div", { children: (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", __assign({ className: "tooltip-container" }, { children: [(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("svg", __assign({ className: 'svg-icon', onClick: function () { return onActionClick('suggestion'); }, id: "magicIcon", width: "29", height: "29", viewBox: "0 0 29 29", fill: "none", xmlns: "http://www.w3.org/2000/svg" }, { children: (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("path", { d: "M28.6025 12.0643L25.7325 7.74426L27.1625 2.72426C27.2525 2.41426 27.1625 2.07426 26.9325 1.84426C26.7025 1.61426 26.3625 1.52426 26.0525 1.61426L21.0625 3.07426L16.7325 0.154257C16.4625 -0.0257434 16.1125 -0.0557434 15.8225 0.104257C15.5325 0.254257 15.3425 0.554257 15.3325 0.874257L15.1825 6.09426L11.0825 9.31426C10.8225 9.51426 10.7025 9.84426 10.7525 10.1643C10.8025 10.4843 11.0225 10.7543 11.3325 10.8643L15.1725 12.2443C15.1725 12.2443 15.1225 12.2843 15.0925 12.3043L0.2625 27.2243C-0.0875 27.5743 -0.0875 28.1443 0.2625 28.4943C0.4325 28.6743 0.6625 28.7543 0.8925 28.7543C1.1225 28.7543 1.3525 28.6643 1.5225 28.4943L16.3625 13.5943C16.4225 13.5343 16.4625 13.4743 16.5025 13.4043L18.0025 17.5443C18.0625 17.6943 18.1525 17.8243 18.2725 17.9343C18.3925 18.0343 18.5425 18.1043 18.7025 18.1243C18.7525 18.1243 18.7925 18.1343 18.8425 18.1343C18.9825 18.1343 19.1125 18.1043 19.2325 18.0443C19.3525 17.9843 19.4625 17.8943 19.5425 17.7843L22.7225 13.6543L27.8625 13.4743C28.1925 13.4643 28.4825 13.2743 28.6325 12.9843C28.7825 12.6943 28.7525 12.3443 28.5725 12.0743L28.6025 12.0643ZM22.2625 11.8643C21.9925 11.8643 21.7525 12.0043 21.5825 12.2143L19.1325 15.3943L17.7625 11.6243C17.6725 11.3743 17.4725 11.1743 17.2225 11.0843L13.4625 9.72426L16.6125 7.25426C16.8225 7.09426 16.9425 6.84426 16.9525 6.57426L17.0725 2.56426L20.3925 4.80426C20.5025 4.87426 20.6225 4.92426 20.7525 4.94426C20.8825 4.96426 21.0125 4.95426 21.1425 4.92426L24.9825 3.79426L23.8825 7.65426C23.8425 7.78426 23.8425 7.91426 23.8625 8.04426C23.8825 8.17426 23.9325 8.29426 24.0025 8.40426L26.2525 11.7243L22.2525 11.8643H22.2625Z", fill: "#D9D9D9" }) })), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", __assign({ className: "tooltip-text", id: 'magicI' }, { children: ["Suggestion", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("span", { className: "tooltip-arrow" })] }))] })) }), showLoginForm && ((0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(_LoginForm__WEBPACK_IMPORTED_MODULE_2__["default"], { onClose: function () { return setShowLoginForm(false); }, onLoginSuccess: handleLoginSuccess })), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("button", __assign({ onClick: handleLogout }, { children: "Logout" })), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("div", __assign({ className: 'close-button', onClick: handleCloseMenu }, { children: (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("svg", __assign({ xmlns: "http://www.w3.org/2000/svg", width: "15", height: "14", viewBox: "0 0 15 14", fill: "none" }, { children: [(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("path", { d: "M11.2502 3.49982L4.25024 10.4998", stroke: "#D2D7E0", strokeWidth: "1.4", strokeLinecap: "round" }), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("path", { d: "M11.3376 10.4108L4.25034 3.50029", stroke: "#D2D7E0", strokeWidth: "1.4", strokeLinecap: "round" })] })) }))] })));
 };
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (DraggableFloatingMenu);
 
@@ -42839,11 +42836,14 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_1__);
 /* harmony import */ var _services_apiService__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../services/apiService */ "./src/services/apiService.ts");
-/* harmony import */ var _utils_storageUtil__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../utils/storageUtil */ "./src/utils/storageUtil.ts");
-/* harmony import */ var _LoginForm__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./LoginForm */ "./src/components/LoginForm.tsx");
-/* harmony import */ var _services_AuthService__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../services/AuthService */ "./src/services/AuthService.ts");
-/* harmony import */ var _popupConfirm_PopupConfirm__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./popupConfirm/PopupConfirm */ "./src/components/popupConfirm/PopupConfirm.tsx");
-/* harmony import */ var _utils_isApiError__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../utils/isApiError */ "./src/utils/isApiError.ts");
+/* harmony import */ var _LoginForm__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./LoginForm */ "./src/components/LoginForm.tsx");
+/* harmony import */ var _services_AuthService__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../services/AuthService */ "./src/services/AuthService.ts");
+/* harmony import */ var _popupConfirm_PopupConfirm__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./popupConfirm/PopupConfirm */ "./src/components/popupConfirm/PopupConfirm.tsx");
+/* harmony import */ var _utils_isApiError__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../utils/isApiError */ "./src/utils/isApiError.ts");
+/* harmony import */ var _utils_emojiUtils__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../utils/emojiUtils */ "./src/utils/emojiUtils.ts");
+/* harmony import */ var _popupConfirm_SuggestConfirm__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./popupConfirm/SuggestConfirm */ "./src/components/popupConfirm/SuggestConfirm.tsx");
+/* harmony import */ var _popupConfirm_CoupdeCoeurConfirm__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./popupConfirm/CoupdeCoeurConfirm */ "./src/components/popupConfirm/CoupdeCoeurConfirm.tsx");
+/* harmony import */ var _flashMessage_FlashMessage__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./flashMessage/FlashMessage */ "./src/components/flashMessage/FlashMessage.tsx");
 var __assign = (undefined && undefined.__assign) || function () {
     __assign = Object.assign || function(t) {
         for (var s, i = 1, n = arguments.length; i < n; i++) {
@@ -42899,12 +42899,27 @@ var __generator = (undefined && undefined.__generator) || function (thisArg, bod
 
 
 
+
+
+
+var apiActions = {
+    default: function (data, token) { return __awaiter(void 0, void 0, void 0, function () { return __generator(this, function (_a) {
+        return [2 /*return*/, (0,_services_apiService__WEBPACK_IMPORTED_MODULE_2__.createAlert)(data, token)];
+    }); }); },
+    coupDeCoeur: function (data, token) { return __awaiter(void 0, void 0, void 0, function () { return __generator(this, function (_a) {
+        return [2 /*return*/, (0,_services_apiService__WEBPACK_IMPORTED_MODULE_2__.createCoupdeCoeur)(data, token)];
+    }); }); },
+    suggest: function (data, token) { return __awaiter(void 0, void 0, void 0, function () { return __generator(this, function (_a) {
+        return [2 /*return*/, (0,_services_apiService__WEBPACK_IMPORTED_MODULE_2__.createSuggest)(data, token)];
+    }); }); },
+};
 var FeedbackForm = function (_a) {
-    var screenshot = _a.screenshot, onClose = _a.onClose, onCaptureClick = _a.onCaptureClick, _b = _a.initialFormData, initialFormData = _b === void 0 ? {
+    var screenshot = _a.screenshot, onClose = _a.onClose, onCaptureClick = _a.onCaptureClick, selectedAction = _a.selectedAction, _b = _a.initialFormData, initialFormData = _b === void 0 ? {
         alertDescription: '',
         sentiment: '😐',
         tips: '',
         isBlocked: 'no',
+        screenshot: null,
     } : _b;
     var _c = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)(false), showLoginForm = _c[0], setShowLoginForm = _c[1];
     var _d = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)(true), showFeedbackForm = _d[0], setShowFeedbackForm = _d[1]; // Affiche le formulaire initialement
@@ -42924,10 +42939,16 @@ var FeedbackForm = function (_a) {
     var _s = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)(''), emojis = _s[0], setEmojis = _s[1];
     var _t = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)(false), showConfirmation = _t[0], setShowConfirmation = _t[1]; // État pour afficher la modal de confirmation
     var _u = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)(null), errorMessages = _u[0], setErrorMessages = _u[1]; // Stocke les erreurs
-    var _v = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)(null), response = _v[0], setResponse = _v[1];
-    var _w = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)(null), error = _w[0], setError = _w[1];
+    var _v = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)(false), isSubmitting = _v[0], setIsSubmitting = _v[1]; // Indique si le formulaire est en cours de soumission
+    var _w = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)(null), flashMessage = _w[0], setFlashMessage = _w[1];
+    var _x = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)(0), totalReports = _x[0], setTotalReports = _x[1];
+    var _y = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)(), codeStatus = _y[0], setCodeStatus = _y[1];
+    var _z = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)(null), response = _z[0], setResponse = _z[1];
+    var _0 = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)(null), error = _0[0], setError = _0[1];
+    var _1 = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)(selectedAction), localAction = _1[0], setLocalAction = _1[1];
     (0,react__WEBPACK_IMPORTED_MODULE_1__.useEffect)(function () {
         var currentUrl = window.location.href;
+        setLocalAction(selectedAction); // Synchronise uniquement lors de l'initialisation
         setCapture(screenshot !== null && screenshot !== void 0 ? screenshot : '');
         try {
             var urlObj = new URL(currentUrl);
@@ -42939,22 +42960,25 @@ var FeedbackForm = function (_a) {
         catch (error) {
             console.error('Erreur lors de la récupération du domaine:', error);
         }
-    }, [screenshot]);
+    }, [selectedAction]);
     var handleSubmit = function (e) { return __awaiter(void 0, void 0, void 0, function () {
-        var isAuthenticated, alertData, token, result, err_1;
+        var accessToken, alertData, result, coupDeCoeurData, suggest, err_1;
         return __generator(this, function (_a) {
             switch (_a.label) {
                 case 0:
                     e.preventDefault();
-                    //setIsLoading(true); // Indique que le processus est en cours
+                    setIsSubmitting(true); // Indique que le processus est en cours
                     setErrorMessages(null); // Réinitialise les erreurs
-                    return [4 /*yield*/, (0,_services_AuthService__WEBPACK_IMPORTED_MODULE_5__.isUserAuthenticated)()];
+                    return [4 /*yield*/, (0,_services_AuthService__WEBPACK_IMPORTED_MODULE_4__.getValidToken)()];
                 case 1:
-                    isAuthenticated = _a.sent();
-                    if (!isAuthenticated) {
-                        console.log("Veuillez-vous connecter...");
+                    accessToken = _a.sent();
+                    //const isAuthenticated = await isUserAuthenticated();
+                    console.log("access token :", accessToken); //
+                    if (!accessToken) {
+                        console.error('L’utilisateur n’est pas authentifié ou le token est invalide.');
+                        setErrorMessages('Veuillez vous connecter pour soumettre ce formulaire.');
                         setShowLoginForm(true); // Affiche le formulaire de connexion
-                        //setIsLoading(false);
+                        setIsSubmitting(false); // Réinitialise l'état de soumission
                         return [2 /*return*/];
                     }
                     alertData = {
@@ -42967,26 +42991,82 @@ var FeedbackForm = function (_a) {
                         capture: capture,
                         tips: tips,
                     };
-                    return [4 /*yield*/, (0,_utils_storageUtil__WEBPACK_IMPORTED_MODULE_3__.getToken)()];
+                    _a.label = 2;
                 case 2:
-                    token = _a.sent();
-                    if (!token) {
-                        console.error('Erreur : le token est null ou undefined');
-                        setErrorMessages('Erreur : le token est null ou undefined');
-                        //setIsLoading(false);
-                        return [2 /*return*/];
-                    }
-                    _a.label = 3;
+                    _a.trys.push([2, 10, 11, 12]);
+                    console.log('Action sélectionnée.... :', selectedAction);
+                    console.log("access token :", accessToken);
+                    result = void 0;
+                    if (!(selectedAction === 'cheart')) return [3 /*break*/, 4];
+                    coupDeCoeurData = {
+                        marque: brandName,
+                        description: alertDescription,
+                        emplacement: bugLocation,
+                        emoji: sentiment,
+                    };
+                    return [4 /*yield*/, apiActions.coupDeCoeur(coupDeCoeurData, accessToken)];
                 case 3:
-                    _a.trys.push([3, 5, 6, 7]);
-                    return [4 /*yield*/, (0,_services_apiService__WEBPACK_IMPORTED_MODULE_2__.createAlert)(alertData, token)];
-                case 4:
                     result = _a.sent();
-                    setResponse("Signalement envoy\u00E9 avec succ\u00E8s : ".concat(JSON.stringify(result)));
-                    setErrorMessages(null); // Efface les erreurs précédentes
-                    setShowFeedbackForm(false);
-                    setShowConfirmation(true); // Affiche la modal de confirmation
-                    //setShowOverlay(true); // Active l'overlay
+                    return [3 /*break*/, 9];
+                case 4:
+                    if (!(selectedAction === 'capture')) return [3 /*break*/, 6];
+                    return [4 /*yield*/, apiActions.default(alertData, accessToken)];
+                case 5:
+                    // Préparer les données pour `createAlert`
+                    result = _a.sent();
+                    return [3 /*break*/, 9];
+                case 6:
+                    if (!(selectedAction === 'suggestion')) return [3 /*break*/, 8];
+                    suggest = {
+                        marque: brandName,
+                        description: alertDescription,
+                        emplacement: bugLocation,
+                    };
+                    return [4 /*yield*/, apiActions.suggest(suggest, accessToken)];
+                case 7:
+                    result = _a.sent();
+                    console.log('Réponse API (suggestion) avec statut :', result);
+                    return [3 /*break*/, 9];
+                case 8: throw new Error('Action inconnue.');
+                case 9:
+                    // Gérer les réponses en fonction du code de statut
+                    if (result.status === 201) {
+                        // Signalement créé avec succès
+                        console.log('Réponse API (suggestion) :', result);
+                        setResponse(result.message || "Signalement créé avec succès.");
+                        setErrorMessages(null);
+                        setShowFeedbackForm(false);
+                        setShowConfirmation(true); // Affiche la modal de confirmation
+                        setFlashMessage({
+                            message: result.message || 'Signalement créé avec succès.',
+                            type: 'success',
+                            duration: 10000,
+                        });
+                    }
+                    else if (result.status === 200) {
+                        // Signalement déjà existant
+                        setCodeStatus(result.status);
+                        setResponse(result.message || "Un problème similaire a déjà été signalé."); // Affiche uniquement le message
+                        setErrorMessages(result.message || "Un problème similaire a déjà été signalé.");
+                        setTotalReports(result.totalReports); //
+                        console.log('Total reports :', result.totalReports);
+                        setShowFeedbackForm(false);
+                        setShowConfirmation(true); // Pas de popup de confirmation
+                        setFlashMessage({
+                            message: result.message || 'Signalement déjà existant.',
+                            type: 'info',
+                            duration: 10000,
+                        });
+                    }
+                    else {
+                        console.error('Code de statut inattendu:', result);
+                        setFlashMessage({
+                            message: 'Une erreur inattendue est survenue.',
+                            type: 'error',
+                            duration: 7000,
+                        });
+                        setErrorMessages('Une erreur inattendue est survenue.');
+                    }
                     // Réinitialise les champs du formulaire
                     setBrandName('');
                     setSitUrl(''); // Réinitialise le champ du site
@@ -42996,23 +43076,23 @@ var FeedbackForm = function (_a) {
                     setEmojis('');
                     setCapture('');
                     setTips('');
-                    return [3 /*break*/, 7];
-                case 5:
+                    return [3 /*break*/, 12];
+                case 10:
                     err_1 = _a.sent();
                     console.error('Erreur détectée :', err_1);
                     console.log("erreur catcher:  ", error);
-                    if ((0,_utils_isApiError__WEBPACK_IMPORTED_MODULE_7__.isApiError)(err_1)) {
+                    if ((0,_utils_isApiError__WEBPACK_IMPORTED_MODULE_6__.isApiError)(err_1)) {
                         setErrorMessages(typeof err_1.error === 'string' ? err_1.error : err_1.error.join(', '));
                     }
                     else {
                         console.log('Une erreur inattendue est survenue.', err_1);
                         setErrorMessages('Une erreur inattendue est survenue.');
                     }
-                    return [3 /*break*/, 7];
-                case 6:
-                    setIsLoading(false); // Indique que la requête est terminée
+                    return [3 /*break*/, 12];
+                case 11:
+                    setIsSubmitting(false); // Indique que la requête est terminée
                     return [7 /*endfinally*/];
-                case 7: return [2 /*return*/];
+                case 12: return [2 /*return*/];
             }
         });
     }); };
@@ -43023,44 +43103,44 @@ var FeedbackForm = function (_a) {
             setPendingAction(null); // Réinitialise l'action en attente
         }
     };
-    var handleCaptureClick = function () {
-        var currentFormData = {
-            alertDescription: alertDescription,
-            sentiment: sentiment,
-            tips: tips,
-            isBlocked: isBlocked,
-        };
-        console.log('Sauvegarde des données avant capture:', currentFormData);
-        onCaptureClick(currentFormData);
-    };
-    // Map to get the title based on the feeling
-    var sentimentTitles = new Map([
-        ['😐', "Qu'est-ce qui pourrait être amélioré ?"],
-        ['😤', "Qu'est-ce qui vous agace ?"],
-        ['😡', "Qu'est-ce qui vous met en colère ?"],
-        ['🤔', "Quel problème rencontrez-vous ?"],
-        ['😭', "Qu’est-ce qui vous déçois ?"],
-        ['😖', "Qu’est-ce qui vous frustre ?"],
-        ['😵', "Qu’est-ce qui vous choque ?"],
-        ['🤣', "Qu’est-ce qui vous vous fait marrer ?"],
-    ]);
-    var getTitle = function () { return sentimentTitles.get(sentiment) || "Donnez votre avis"; };
     // Function to toggle the emoji selector
     var toggleEmojiSelector = function () {
         setShowEmojiSelector(!showEmojiSelector);
     };
-    // Function to handle selection of a new emoji
     var handleEmojiSelect = function (emoji) {
         setSentiment(emoji);
-        setShowEmojiSelector(false); // Hide the emoji selector after selection
+        console.log('emoji selected:', sentiment);
     };
-    return ((0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", __assign({ className: 'my-class' }, { children: [(showFeedbackForm || showConfirmation) && (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("div", { className: "overlay" }), showFeedbackForm && ((0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", __assign({ className: 'feedback-style' }, { children: [(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", __assign({ id: "".concat(!capture ? 'select-emoji' : 'select-emoji-display-img'), className: 'select-emoji', onClick: toggleEmojiSelector }, { children: [sentiment, showEmojiSelector && ((0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", __assign({ className: 'blc-span-emojis' }, { children: [(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("span", __assign({ style: { cursor: 'pointer' }, onClick: function () { return handleEmojiSelect('😐'); } }, { children: "\uD83D\uDE10" })), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("span", __assign({ style: { cursor: 'pointer' }, onClick: function () { return handleEmojiSelect('😤'); } }, { children: "\uD83D\uDE24" })), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("span", __assign({ style: { cursor: 'pointer' }, onClick: function () { return handleEmojiSelect('😡'); } }, { children: "\uD83D\uDE21" })), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("span", __assign({ style: { cursor: 'pointer' }, onClick: function () { return handleEmojiSelect('🤔'); } }, { children: "\uD83E\uDD14" })), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("span", __assign({ style: { cursor: 'pointer' }, onClick: function () { return handleEmojiSelect('😭'); } }, { children: "\uD83D\uDE2D" })), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("span", __assign({ style: { cursor: 'pointer' }, onClick: function () { return handleEmojiSelect('😖'); } }, { children: "\uD83D\uDE16" })), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("span", __assign({ style: { cursor: 'pointer' }, onClick: function () { return handleEmojiSelect('😵'); } }, { children: "\uD83D\uDE35" })), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("span", __assign({ style: { cursor: 'pointer' }, onClick: function () { return handleEmojiSelect('🤣'); } }, { children: "\uD83E\uDD23" }))] })))] })), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("div", __assign({ className: 'close-button float-end', onClick: function () {
+    return ((0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", __assign({ className: 'my-class' }, { children: [(showFeedbackForm || showConfirmation) && (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("div", { className: "overlay" }), showFeedbackForm && ((0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", __assign({ className: 'feedback-style' }, { children: [selectedAction === 'suggestion' && ((0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("div", { className: "emoji-waterdrop" })), selectedAction !== 'suggestion' && ((0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", __assign({ id: "".concat(!capture ? 'select-emoji' : 'select-emoji-display-img'), className: 'select-emoji', onClick: toggleEmojiSelector }, { children: [showEmojiSelector && ((0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", __assign({ className: 'blc-span-emojis' }, { children: [selectedAction === 'cheart' && (_utils_emojiUtils__WEBPACK_IMPORTED_MODULE_7__.heartEmojis.map(function (_a) {
+                                        var emoji = _a.emoji;
+                                        return ((0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("span", __assign({ style: { cursor: 'pointer', margin: '0 5px' }, onClick: function () { return handleEmojiSelect(emoji); } }, { children: emoji }), emoji));
+                                    })), selectedAction !== 'cheart' && (_utils_emojiUtils__WEBPACK_IMPORTED_MODULE_7__.emojiSentiments.map(function (_a) {
+                                        var emoji = _a.emoji;
+                                        return ((0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("span", __assign({ style: { cursor: 'pointer', margin: '0 5px' }, onClick: function () { return handleEmojiSelect(emoji); } }, { children: emoji }), emoji));
+                                    }))] }))), sentiment] }))), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("div", __assign({ className: 'close-button float-end closeForm', onClick: function () {
                             setShowFeedbackForm(false);
                             onClose();
-                        } }, { children: (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("svg", __assign({ xmlns: "http://www.w3.org/2000/svg", width: "15", height: "14", viewBox: "0 0 15 14", fill: "none" }, { children: [(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("path", { d: "M11.2502 3.49982L4.25024 10.4998", stroke: "#D2D7E0", strokeWidth: "1.4", strokeLinecap: "round" }), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("path", { d: "M11.3376 10.4108L4.25034 3.50029", stroke: "#D2D7E0", strokeWidth: "1.4", strokeLinecap: "round" })] })) })), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("button", __assign({ type: "button", className: "camera-button", onClick: handleCaptureClick }, { children: "\uD83D\uDCF8 Nouvelle capture" })), errorMessages && ((0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("div", __assign({ style: { color: "red", marginTop: "10px" } }, { children: errorMessages }))), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("div", __assign({ className: "block-form" }, { children: (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("form", __assign({ className: 'formStyle', onSubmit: handleSubmit }, { children: [capture && ((0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("div", __assign({ className: "image-preview" }, { children: (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("img", { className: 'img-preview', src: screenshot !== null && screenshot !== void 0 ? screenshot : "", alt: "screenshot" }) }))), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", __assign({ className: "input-container" }, { children: [(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("input", { className: "floating-input", placeholder: " ", value: alertDescription, onChange: function (e) { return setAlertDescription(e.target.value); } }), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("label", __assign({ htmlFor: "name", className: "floating-label" }, { children: getTitle() }))] })), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("input", { type: "hidden", value: brandName, onChange: function (e) { return setBrandName(e.target.value); } }), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", __assign({ className: 'align-checkBtn' }, { children: [(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", __assign({ className: "checkBoxFeedback ".concat(alertDescription.trim() ? 'visible' : 'hidden') }, { children: [(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("input", { type: "checkbox", checked: isBlocked === 'yes', onChange: function (e) { return setBlocking(e.target.checked ? 'yes' : 'no'); }, style: { marginRight: '8px', width: '16px', height: '16px', accentColor: '#6a1b9a' } }), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("label", { children: "Je suis bloqu\u00E9" })] })), " ", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("button", __assign({ disabled: !alertDescription.trim(), type: "submit", className: "submit-button ".concat(!alertDescription.trim() ? 'feedbackSubmitDisabled' : 'feedbackSubmiEnabled'), id: "".concat(!capture ? 'feedbackSubmitDisabled' : 'feedbackSubmiEnabled') }, { children: !alertDescription.trim() ? ((0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("svg", __assign({ xmlns: "http://www.w3.org/2000/svg", width: "23", height: "23", viewBox: "0 0 23 23", fill: "none" }, { children: [(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("circle", { cx: "11.4771", cy: "11.2048", r: "11", transform: "rotate(90 11.4771 11.2048)", fill: "url(#paint0_linear_319_540)" }), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("path", { d: "M11.4001 6.20483L16.4771 11.312L11.4001 16.4191M15.7719 11.312L5.47705 11.312", stroke: "white", strokeWidth: "1.4", strokeLinecap: "round", strokeLinejoin: "round" }), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("defs", { children: (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("linearGradient", __assign({ id: "paint0_linear_319_540", x1: "-2.47644", y1: "35.6819", x2: "26.1437", y2: "0.204836", gradientUnits: "userSpaceOnUse" }, { children: [(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("stop", { offset: "0.22376", stopColor: "#908f91" }), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("stop", { offset: "0.613341", stopColor: "#9f9f9f" })] })) })] }))) : ((0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("svg", __assign({ xmlns: "http://www.w3.org/2000/svg", width: "23", height: "23", viewBox: "0 0 23 23", fill: "none" }, { children: [(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("circle", { cx: "11.4771", cy: "11.2048", r: "11", transform: "rotate(90 11.4771 11.2048)", fill: "url(#paint0_linear_319_540)" }), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("path", { d: "M11.4001 6.20483L16.4771 11.312L11.4001 16.4191M15.7719 11.312L5.47705 11.312", stroke: "white", strokeWidth: "1.4", strokeLinecap: "round", strokeLinejoin: "round" }), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("defs", { children: (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("linearGradient", __assign({ id: "paint0_linear_319_540", x1: "-2.47644", y1: "35.6819", x2: "26.1437", y2: "0.204836", gradientUnits: "userSpaceOnUse" }, { children: [(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("stop", { offset: "0.22376", stopColor: "#6E36A9" }), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("stop", { offset: "0.613341", stopColor: "#B033AE" })] })) })] }))) }))] }))] })) }))] }))), showConfirmation && ((0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(_popupConfirm_PopupConfirm__WEBPACK_IMPORTED_MODULE_6__["default"], { onClose: function () {
-                    setShowConfirmation(false);
-                    onClose();
-                } })), showLoginForm && ((0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(_LoginForm__WEBPACK_IMPORTED_MODULE_4__["default"], { onClose: function () { return setShowLoginForm(false); }, onLoginSuccess: handleLoginSuccess }))] })));
+                        } }, { children: (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("svg", __assign({ xmlns: "http://www.w3.org/2000/svg", width: "15", height: "14", viewBox: "0 0 15 14", fill: "none" }, { children: [(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("path", { d: "M11.2502 3.49982L4.25024 10.4998", stroke: "#D2D7E0", strokeWidth: "1.4", strokeLinecap: "round" }), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("path", { d: "M11.3376 10.4108L4.25034 3.50029", stroke: "#D2D7E0", strokeWidth: "1.4", strokeLinecap: "round" })] })) })), selectedAction === 'capture' && ((0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("button", __assign({ className: "camera-button", type: 'button', onClick: function () {
+                            var currentFormData = {
+                                alertDescription: alertDescription,
+                                sentiment: sentiment,
+                                tips: tips,
+                                isBlocked: isBlocked,
+                                screenshot: capture, // Ajoutez la capture si elle existe
+                            };
+                            console.log('[FeedbackForm] Nouvelle capture déclenchée avec :', currentFormData, 'Action actuelle :', selectedAction);
+                            // Passez toujours `selectedAction` pour ne pas changer d'action
+                            onCaptureClick(currentFormData, selectedAction);
+                        } }, { children: "\uD83D\uDCF8 Reprendre une capture" }))), errorMessages && ((0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("div", __assign({ style: { color: "red", marginTop: "10px" } }, { children: errorMessages }))), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", __assign({ className: "block-form" }, { children: [isSubmitting && ((0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", __assign({ className: "loader-container" }, { children: [(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("div", { className: "loader" }), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("span", { children: "Veuillez patienter..." })] }))), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("form", __assign({ className: 'formStyle', onSubmit: handleSubmit }, { children: [capture && ((0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("div", __assign({ className: "image-preview" }, { children: (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("img", { className: 'img-preview', src: screenshot !== null && screenshot !== void 0 ? screenshot : "", alt: "screenshot" }) }))), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", __assign({ className: "input-container" }, { children: [(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("input", { className: "floating-input", placeholder: " ", value: alertDescription, onChange: function (e) { return setAlertDescription(e.target.value); } }), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("label", __assign({ htmlFor: "name", className: "floating-label" }, { children: (0,_utils_emojiUtils__WEBPACK_IMPORTED_MODULE_7__.getTitleForEmoji)(sentiment, selectedAction) }))] })), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("input", { type: "hidden", value: brandName, onChange: function (e) { return setBrandName(e.target.value); } }), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", __assign({ className: 'align-checkBtn' }, { children: [(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", __assign({ className: "checkBoxFeedback ".concat(alertDescription.trim() ? 'visible' : 'hidden') }, { children: [(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("input", { type: "checkbox", checked: isBlocked === 'yes', onChange: function (e) { return setBlocking(e.target.checked ? 'yes' : 'no'); }, style: { marginRight: '8px', width: '16px', height: '16px', accentColor: '#6a1b9a' } }), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("label", { children: "Je suis bloqu\u00E9" })] })), " ", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("button", __assign({ disabled: !alertDescription.trim(), type: "submit", className: "submit-button ".concat(!alertDescription.trim() ? 'feedbackSubmitDisabled' : 'feedbackSubmiEnabled'), id: "".concat(!capture ? 'feedbackSubmitDisabled' : 'feedbackSubmiEnabled') }, { children: !alertDescription.trim() ? ((0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("svg", __assign({ xmlns: "http://www.w3.org/2000/svg", width: "23", height: "23", viewBox: "0 0 23 23", fill: "none" }, { children: [(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("circle", { cx: "11.4771", cy: "11.2048", r: "11", transform: "rotate(90 11.4771 11.2048)", fill: "url(#paint0_linear_319_540)" }), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("path", { d: "M11.4001 6.20483L16.4771 11.312L11.4001 16.4191M15.7719 11.312L5.47705 11.312", stroke: "white", strokeWidth: "1.4", strokeLinecap: "round", strokeLinejoin: "round" }), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("defs", { children: (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("linearGradient", __assign({ id: "paint0_linear_319_540", x1: "-2.47644", y1: "35.6819", x2: "26.1437", y2: "0.204836", gradientUnits: "userSpaceOnUse" }, { children: [(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("stop", { offset: "0.22376", stopColor: "#908f91" }), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("stop", { offset: "0.613341", stopColor: "#9f9f9f" })] })) })] }))) : ((0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("svg", __assign({ xmlns: "http://www.w3.org/2000/svg", width: "23", height: "23", viewBox: "0 0 23 23", fill: "none" }, { children: [(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("circle", { cx: "11.4771", cy: "11.2048", r: "11", transform: "rotate(90 11.4771 11.2048)", fill: "url(#paint0_linear_319_540)" }), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("path", { d: "M11.4001 6.20483L16.4771 11.312L11.4001 16.4191M15.7719 11.312L5.47705 11.312", stroke: "white", strokeWidth: "1.4", strokeLinecap: "round", strokeLinejoin: "round" }), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("defs", { children: (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("linearGradient", __assign({ id: "paint0_linear_319_540", x1: "-2.47644", y1: "35.6819", x2: "26.1437", y2: "0.204836", gradientUnits: "userSpaceOnUse" }, { children: [(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("stop", { offset: "0.22376", stopColor: "#6E36A9" }), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("stop", { offset: "0.613341", stopColor: "#B033AE" })] })) })] }))) }))] }))] }))] }))] }))), flashMessage && ((0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(_flashMessage_FlashMessage__WEBPACK_IMPORTED_MODULE_10__["default"], { message: flashMessage.message, type: flashMessage.type, duration: flashMessage.duration, onClose: function () { return setFlashMessage(null); } })), showConfirmation && ((0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.Fragment, { children: [selectedAction === 'cheart' && ((0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(_popupConfirm_CoupdeCoeurConfirm__WEBPACK_IMPORTED_MODULE_9__["default"], { onClose: function () {
+                            setShowConfirmation(false);
+                            onClose();
+                        } })), selectedAction === 'suggestion' && ((0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(_popupConfirm_SuggestConfirm__WEBPACK_IMPORTED_MODULE_8__["default"], { onClose: function () {
+                            setShowConfirmation(false);
+                            onClose();
+                        } })), selectedAction !== 'cheart' && selectedAction !== 'suggestion' && ((0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(_popupConfirm_PopupConfirm__WEBPACK_IMPORTED_MODULE_5__["default"], { onClose: function () {
+                            setShowConfirmation(false);
+                            onClose();
+                        }, message: response, userRank: totalReports, statusCode: codeStatus }))] })), showLoginForm && ((0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(_LoginForm__WEBPACK_IMPORTED_MODULE_3__["default"], { onLoginSuccess: handleLoginSuccess, onClose: function () { return setShowLoginForm(false); } }))] })));
 };
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (FeedbackForm);
 
@@ -43082,6 +43162,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_1__);
 /* harmony import */ var _services_AuthService__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../services/AuthService */ "./src/services/AuthService.ts");
+/* harmony import */ var _flashMessage_FlashMessage__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./flashMessage/FlashMessage */ "./src/components/flashMessage/FlashMessage.tsx");
+/* harmony import */ var _hooks_useFlashMessage__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../hooks/useFlashMessage */ "./src/hooks/useFlashMessage.tsx");
 var __assign = (undefined && undefined.__assign) || function () {
     __assign = Object.assign || function(t) {
         for (var s, i = 1, n = arguments.length; i < n; i++) {
@@ -43132,35 +43214,58 @@ var __generator = (undefined && undefined.__generator) || function (thisArg, bod
 
 
 
+
+
+var FLASH_DURATION = 5000; // Défini une durée par défaut
 var LoginForm = function (_a) {
     var onClose = _a.onClose, onLoginSuccess = _a.onLoginSuccess;
     var _b = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)(''), email = _b[0], setEmail = _b[1];
     var _c = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)(''), password = _c[0], setPassword = _c[1];
-    var _d = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)(''), error = _d[0], setError = _d[1];
+    var _d = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)(false), rememberMe = _d[0], setRememberMe = _d[1]; // Nouveau state pour "Se souvenir de moi"
+    var _e = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)(''), error = _e[0], setError = _e[1];
+    var _f = (0,_hooks_useFlashMessage__WEBPACK_IMPORTED_MODULE_4__.useFlashMessage)(), flashMessage = _f.flashMessage, showFlashMessage = _f.showFlashMessage;
+    var _g = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)(false), isSubmitting = _g[0], setIsSubmitting = _g[1]; // Indique si le formulaire est en cours de soumission
+    (0,react__WEBPACK_IMPORTED_MODULE_1__.useEffect)(function () {
+        console.log('État flashMessage mis à jour :', flashMessage);
+    }, [flashMessage]);
     var handleLogin = function (event) { return __awaiter(void 0, void 0, void 0, function () {
-        var success;
+        var success, error_1;
         return __generator(this, function (_a) {
             switch (_a.label) {
                 case 0:
-                    event.preventDefault(); // Empêche le rechargement de la page par défaut
-                    console.log("Le formulaire a été soumis avec l'email:", email);
-                    return [4 /*yield*/, (0,_services_AuthService__WEBPACK_IMPORTED_MODULE_2__.login)(email, password)];
+                    event.preventDefault();
+                    setIsSubmitting(true);
+                    _a.label = 1;
                 case 1:
+                    _a.trys.push([1, 3, 4, 5]);
+                    return [4 /*yield*/, (0,_services_AuthService__WEBPACK_IMPORTED_MODULE_2__.login)(email, password, rememberMe)];
+                case 2:
                     success = _a.sent();
+                    console.log('Résultat du login :', success);
                     if (success) {
-                        console.log("Connexion réussie");
-                        onLoginSuccess();
-                        onClose();
+                        showFlashMessage('Connexion réussie !', 'success', FLASH_DURATION);
+                        setTimeout(function () {
+                            onLoginSuccess(); // Redirection ou autre action
+                        }, FLASH_DURATION);
                     }
                     else {
-                        console.error("Échec de la connexion : Nom d’utilisateur ou mot de passe incorrect.");
-                        setError("Nom d’utilisateur ou mot de passe incorrect...");
+                        showFlashMessage('Nom d’utilisateur ou mot de passe incorrect.', 'error', FLASH_DURATION);
                     }
-                    return [2 /*return*/];
+                    return [3 /*break*/, 5];
+                case 3:
+                    error_1 = _a.sent();
+                    // Affiche un message d'erreur basé sur l'erreur levée
+                    console.error('Erreur de connexion :', error_1.message);
+                    showFlashMessage(error_1.message || 'Erreur de connexion.', 'error', FLASH_DURATION);
+                    return [3 /*break*/, 5];
+                case 4:
+                    setIsSubmitting(false);
+                    return [7 /*endfinally*/];
+                case 5: return [2 /*return*/];
             }
         });
     }); };
-    return ((0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("div", __assign({ className: "overlay" }, { children: (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", __assign({ className: "login-popup" }, { children: [(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("div", __assign({ className: "login-header" }, { children: (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("svg", __assign({ xmlns: "http://www.w3.org/2000/svg", className: 'login-logo', width: "80", height: "80", viewBox: "0 0 109 108", fill: "none" }, { children: [(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("g", __assign({ filter: "url(#filter0_d_329_887)" }, { children: (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("rect", { x: "34", y: "30", width: "41", height: "39.7188", rx: "4", fill: "url(#paint0_linear_329_887)" }) })), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("path", { d: "M57.4056 39.2617H63.0013V53.4176C63.0013 55.0535 62.5897 56.4788 61.7666 57.6932C60.9435 58.9006 59.7956 59.8364 58.3231 60.5008C56.8505 61.1581 55.1401 61.4867 53.1918 61.4867C51.2209 61.4867 49.4991 61.1581 48.0266 60.5008C46.5541 59.8364 45.41 58.9006 44.5944 57.6932C43.7789 56.4788 43.3711 55.0535 43.3711 53.4176V39.2617H48.9781V52.9568C48.9781 53.714 49.1518 54.3891 49.4991 54.9821C49.8541 55.575 50.3487 56.0394 50.983 56.3752C51.6173 56.7109 52.3536 56.8788 53.1918 56.8788C54.0301 56.8788 54.7626 56.7109 55.3893 56.3752C56.0237 56.0394 56.5183 55.575 56.8732 54.9821C57.2281 54.3891 57.4056 53.714 57.4056 52.9568V39.2617Z", fill: "white" }), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("path", { d: "M68.5403 61.5189C67.7247 61.5189 67.0262 61.2474 66.4447 60.7044C65.8708 60.1615 65.5876 59.5043 65.5952 58.7327C65.5876 57.9754 65.8708 57.3289 66.4447 56.7931C67.0262 56.2502 67.7247 55.9787 68.5403 55.9787C69.3105 55.9787 69.9902 56.2502 70.5792 56.7931C71.1758 57.3289 71.4778 57.9754 71.4854 58.7327C71.4778 59.2471 71.3343 59.715 71.0549 60.1365C70.7831 60.558 70.4244 60.8938 69.9789 61.1438C69.5409 61.3938 69.0613 61.5189 68.5403 61.5189Z", fill: "white" }), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("defs", { children: [(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("filter", __assign({ id: "filter0_d_329_887", x: "0", y: "0", width: "109", height: "107.719", filterUnits: "userSpaceOnUse", colorInterpolationFilters: "sRGB" }, { children: [(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("feFlood", { floodOpacity: "0", result: "BackgroundImageFix" }), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("feColorMatrix", { in: "SourceAlpha", type: "matrix", values: "0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0", result: "hardAlpha" }), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("feOffset", { dy: "4" }), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("feGaussianBlur", { stdDeviation: "17" }), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("feComposite", { in2: "hardAlpha", operator: "out" }), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("feColorMatrix", { type: "matrix", values: "0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.1 0" }), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("feBlend", { mode: "normal", in2: "BackgroundImageFix", result: "effect1_dropShadow_329_887" }), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("feBlend", { mode: "normal", in: "SourceGraphic", in2: "effect1_dropShadow_329_887", result: "shape" })] })), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("linearGradient", __assign({ id: "paint0_linear_329_887", x1: "26.8696", y1: "69.7187", x2: "80.5746", y2: "28.3654", gradientUnits: "userSpaceOnUse" }, { children: [(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("stop", { stopColor: "#5A13A5" }), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("stop", { offset: "1", stopColor: "#FE2190" })] }))] })] })) })), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("h3", __assign({ className: 'title-form' }, { children: "Connectez-vous !" })), error && (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("p", __assign({ style: { color: 'red' } }, { children: error })), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("form", __assign({ className: 'login-form', onSubmit: handleLogin, onClick: function (e) { return e.stopPropagation(); } }, { children: [(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("input", { type: "email", placeholder: "Adresse email", value: email, onChange: function (e) { return setEmail(e.target.value); }, required: true }), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", __assign({ className: "password-field" }, { children: [(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("input", { type: "password", value: password, onChange: function (e) { return setPassword(e.target.value); }, placeholder: "Mot de passe", required: true }), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("button", __assign({ type: "button", className: "toggle-password" }, { children: (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("svg", __assign({ xmlns: "http://www.w3.org/2000/svg", width: "24", height: "22", viewBox: "0 0 24 22", fill: "none" }, { children: (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("path", { d: "M4.00498 12.8237C4.81192 9.09561 8.18523 6.44669 11.9798 6.44669C15.7731 6.44669 19.1464 9.09561 19.9545 12.8237C19.9865 12.9716 20.0783 13.1013 20.2097 13.1841C20.341 13.2669 20.5012 13.2962 20.655 13.2654C20.8088 13.2346 20.9435 13.1463 21.0296 13.0199C21.1157 12.8935 21.1461 12.7394 21.1141 12.5915C20.1947 8.35114 16.3493 5.30835 11.9798 5.30835C7.61019 5.30835 3.76479 8.35114 2.84544 12.5915C2.81343 12.7394 2.84382 12.8935 2.92991 13.0199C3.016 13.1463 3.15076 13.2346 3.30452 13.2654C3.45828 13.2962 3.61847 13.2669 3.74983 13.1841C3.88119 13.1013 3.97297 12.9716 4.00498 12.8237ZM11.9679 8.72338C13.0662 8.72338 14.1196 9.14314 14.8962 9.89032C15.6728 10.6375 16.1091 11.6509 16.1091 12.7076C16.1091 13.7642 15.6728 14.7776 14.8962 15.5248C14.1196 16.272 13.0662 16.6918 11.9679 16.6918C10.8696 16.6918 9.81628 16.272 9.03965 15.5248C8.26302 14.7776 7.82672 13.7642 7.82672 12.7076C7.82672 11.6509 8.26302 10.6375 9.03965 9.89032C9.81628 9.14314 10.8696 8.72338 11.9679 8.72338Z", fill: "#6A707C" }) })) }))] })), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", __assign({ className: "remember-me" }, { children: [(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("input", { type: "checkbox", id: "remember" }), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("label", __assign({ htmlFor: "remember" }, { children: "Se souvenir de moi" })), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("a", __assign({ href: "#", className: "forgot-password" }, { children: "Mot de passe oubli\u00E9 ?" }))] })), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("button", __assign({ id: "login-button", type: "submit" }, { children: "Se connecter" }))] })), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("button", __assign({ onClick: onClose, className: "close-button-form" }, { children: "Fermer" }))] })) })));
+    return ((0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", __assign({ className: 'my-class' }, { children: [(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("div", __assign({ className: "overlay" }, { children: (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", __assign({ className: "login-popup" }, { children: [(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("div", __assign({ className: "login-header" }, { children: (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("svg", __assign({ xmlns: "http://www.w3.org/2000/svg", className: 'login-logo', width: "80", height: "80", viewBox: "0 0 109 108", fill: "none" }, { children: [(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("g", __assign({ filter: "url(#filter0_d_329_887)" }, { children: (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("rect", { x: "34", y: "30", width: "41", height: "39.7188", rx: "4", fill: "url(#paint0_linear_329_887)" }) })), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("path", { d: "M57.4056 39.2617H63.0013V53.4176C63.0013 55.0535 62.5897 56.4788 61.7666 57.6932C60.9435 58.9006 59.7956 59.8364 58.3231 60.5008C56.8505 61.1581 55.1401 61.4867 53.1918 61.4867C51.2209 61.4867 49.4991 61.1581 48.0266 60.5008C46.5541 59.8364 45.41 58.9006 44.5944 57.6932C43.7789 56.4788 43.3711 55.0535 43.3711 53.4176V39.2617H48.9781V52.9568C48.9781 53.714 49.1518 54.3891 49.4991 54.9821C49.8541 55.575 50.3487 56.0394 50.983 56.3752C51.6173 56.7109 52.3536 56.8788 53.1918 56.8788C54.0301 56.8788 54.7626 56.7109 55.3893 56.3752C56.0237 56.0394 56.5183 55.575 56.8732 54.9821C57.2281 54.3891 57.4056 53.714 57.4056 52.9568V39.2617Z", fill: "white" }), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("path", { d: "M68.5403 61.5189C67.7247 61.5189 67.0262 61.2474 66.4447 60.7044C65.8708 60.1615 65.5876 59.5043 65.5952 58.7327C65.5876 57.9754 65.8708 57.3289 66.4447 56.7931C67.0262 56.2502 67.7247 55.9787 68.5403 55.9787C69.3105 55.9787 69.9902 56.2502 70.5792 56.7931C71.1758 57.3289 71.4778 57.9754 71.4854 58.7327C71.4778 59.2471 71.3343 59.715 71.0549 60.1365C70.7831 60.558 70.4244 60.8938 69.9789 61.1438C69.5409 61.3938 69.0613 61.5189 68.5403 61.5189Z", fill: "white" }), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("defs", { children: [(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("filter", __assign({ id: "filter0_d_329_887", x: "0", y: "0", width: "109", height: "107.719", filterUnits: "userSpaceOnUse", colorInterpolationFilters: "sRGB" }, { children: [(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("feFlood", { floodOpacity: "0", result: "BackgroundImageFix" }), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("feColorMatrix", { in: "SourceAlpha", type: "matrix", values: "0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0", result: "hardAlpha" }), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("feOffset", { dy: "4" }), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("feGaussianBlur", { stdDeviation: "17" }), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("feComposite", { in2: "hardAlpha", operator: "out" }), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("feColorMatrix", { type: "matrix", values: "0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.1 0" }), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("feBlend", { mode: "normal", in2: "BackgroundImageFix", result: "effect1_dropShadow_329_887" }), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("feBlend", { mode: "normal", in: "SourceGraphic", in2: "effect1_dropShadow_329_887", result: "shape" })] })), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("linearGradient", __assign({ id: "paint0_linear_329_887", x1: "26.8696", y1: "69.7187", x2: "80.5746", y2: "28.3654", gradientUnits: "userSpaceOnUse" }, { children: [(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("stop", { stopColor: "#5A13A5" }), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("stop", { offset: "1", stopColor: "#FE2190" })] }))] })] })) })), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("h3", __assign({ className: 'title-form' }, { children: "Connectez-vous !" })), error && (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("p", __assign({ style: { color: 'red' } }, { children: error })), isSubmitting && ((0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", __assign({ className: "loader-container" }, { children: [(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("div", { className: "loader" }), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("span", { children: "Veuillez patienter..." })] }))), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("form", __assign({ className: 'login-form', onSubmit: handleLogin, onClick: function (e) { return e.stopPropagation(); } }, { children: [(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("input", { type: "email", placeholder: "Adresse email", value: email, onChange: function (e) { return setEmail(e.target.value); }, required: true }), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", __assign({ className: "password-field" }, { children: [(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("input", { type: "password", value: password, onChange: function (e) { return setPassword(e.target.value); }, placeholder: "Mot de passe", required: true }), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("button", __assign({ type: "button", className: "toggle-password" }, { children: (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("svg", __assign({ xmlns: "http://www.w3.org/2000/svg", width: "24", height: "22", viewBox: "0 0 24 22", fill: "none" }, { children: (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("path", { d: "M4.00498 12.8237C4.81192 9.09561 8.18523 6.44669 11.9798 6.44669C15.7731 6.44669 19.1464 9.09561 19.9545 12.8237C19.9865 12.9716 20.0783 13.1013 20.2097 13.1841C20.341 13.2669 20.5012 13.2962 20.655 13.2654C20.8088 13.2346 20.9435 13.1463 21.0296 13.0199C21.1157 12.8935 21.1461 12.7394 21.1141 12.5915C20.1947 8.35114 16.3493 5.30835 11.9798 5.30835C7.61019 5.30835 3.76479 8.35114 2.84544 12.5915C2.81343 12.7394 2.84382 12.8935 2.92991 13.0199C3.016 13.1463 3.15076 13.2346 3.30452 13.2654C3.45828 13.2962 3.61847 13.2669 3.74983 13.1841C3.88119 13.1013 3.97297 12.9716 4.00498 12.8237ZM11.9679 8.72338C13.0662 8.72338 14.1196 9.14314 14.8962 9.89032C15.6728 10.6375 16.1091 11.6509 16.1091 12.7076C16.1091 13.7642 15.6728 14.7776 14.8962 15.5248C14.1196 16.272 13.0662 16.6918 11.9679 16.6918C10.8696 16.6918 9.81628 16.272 9.03965 15.5248C8.26302 14.7776 7.82672 13.7642 7.82672 12.7076C7.82672 11.6509 8.26302 10.6375 9.03965 9.89032C9.81628 9.14314 10.8696 8.72338 11.9679 8.72338Z", fill: "#6A707C" }) })) }))] })), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", __assign({ className: "remember-me" }, { children: [(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("input", { type: "checkbox", id: "remember", checked: rememberMe, onChange: function () { return setRememberMe(!rememberMe); } }), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("label", __assign({ htmlFor: "remember" }, { children: "Se souvenir de moi" })), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("a", __assign({ href: "#", className: "forgot-password" }, { children: "Mot de passe oubli\u00E9 ?" }))] })), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("button", __assign({ id: "login-button", type: "submit" }, { children: "Se connecter" }))] })), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("button", __assign({ onClick: onClose, className: "close-button-form", disabled: isSubmitting }, { children: "Fermer" }))] })) })), flashMessage && ((0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.Fragment, { children: [console.log('FlashMessage prêt à être affiché :', flashMessage), console.log('FlashMessage prêt à être affiché dans le DOM :', flashMessage), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(_flashMessage_FlashMessage__WEBPACK_IMPORTED_MODULE_3__["default"], { message: flashMessage.message, type: flashMessage.type, duration: flashMessage.duration, onClose: function () { return console.log('Message fermé'); } })] }))] })));
 };
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (LoginForm);
 
@@ -43239,6 +43344,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_1__);
 /* harmony import */ var _emojis_EmojiSelector__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../emojis/EmojiSelector */ "./src/components/emojis/EmojiSelector.tsx");
 /* harmony import */ var _FeadbackForm__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../FeadbackForm */ "./src/components/FeadbackForm.tsx");
+/* harmony import */ var _content_ContentScript__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../content/ContentScript */ "./src/content/ContentScript.tsx");
 var __assign = (undefined && undefined.__assign) || function () {
     __assign = Object.assign || function(t) {
         for (var s, i = 1, n = arguments.length; i < n; i++) {
@@ -43254,38 +43360,68 @@ var __assign = (undefined && undefined.__assign) || function () {
 
 
 
+
 var CaptureFeedbackFlow = function (_a) {
-    var screenshot = _a.screenshot, onClose = _a.onClose, onCaptureClick = _a.onCaptureClick, _b = _a.initialFormData, initialFormData = _b === void 0 ? {
+    var action = _a.action, screenshot = _a.screenshot, onClose = _a.onClose, onCaptureClick = _a.onCaptureClick, _b = _a.initialFormData, initialFormData = _b === void 0 ? {
         alertDescription: '',
-        sentiment: '😐',
+        sentiment: '',
         tips: '',
         isBlocked: 'no',
-    } : _b;
-    var _c = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)('emoji'), step = _c[0], setStep = _c[1];
-    var _d = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)(initialFormData.sentiment), selectedEmoji = _d[0], setSelectedEmoji = _d[1];
-    var _e = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)(screenshot), currentScreenshot = _e[0], setCurrentScreenshot = _e[1];
-    var _f = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)(initialFormData), formData = _f[0], setFormData = _f[1];
-    // Mise à jour des données en fonction de l'initialisation ou du retour après capture
+        screenshot: null,
+    } : _b, selectedAction = _a.selectedAction, _c = _a.initialStep, initialStep = _c === void 0 ? 'emoji' : _c;
+    //const [selectedEmoji, setSelectedEmoji] = useState<string | null>(initialFormData.sentiment);
+    //const [step, setStep] = useState<'emoji' | 'form' | 'capture'>(initialStep);
+    var _d = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)(screenshot), currentScreenshot = _d[0], setCurrentScreenshot = _d[1];
+    var _e = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)(initialFormData), formData = _e[0], setFormData = _e[1];
+    var _f = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)(initialFormData.sentiment), selectedEmoji = _f[0], setSelectedEmoji = _f[1];
+    var _g = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)(selectedAction), localAction = _g[0], setLocalAction = _g[1];
+    var _h = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)(selectedAction === 'suggestion' ? 'form' : initialStep), step = _h[0], setStep = _h[1];
+    // Initialiser `localAction` uniquement au montage
     (0,react__WEBPACK_IMPORTED_MODULE_1__.useEffect)(function () {
-        if (initialFormData) {
-            setFormData(function (prev) { return (__assign(__assign({}, prev), initialFormData)); });
+        if (selectedAction === 'suggestion') {
+            setStep('form');
         }
-    }, [initialFormData]);
+        console.log('[CaptureFeedbackFlow] Initialisation');
+        console.log('[CaptureFeedbackFlow] selectedAction :', selectedAction);
+        console.log('[CaptureFeedbackFlow] initialFormData :', initialFormData);
+        console.log('[CaptureFeedbackFlow] Initial step:', initialStep);
+        console.log('[CaptureFeedbackFlow] Action actuelle après capture :', localAction);
+        if (!localAction) {
+            setLocalAction(selectedAction);
+            console.log('[CaptureFeedbackFlow] Mise à jour de localAction :', selectedAction);
+        }
+    }, [selectedAction]);
     var handleEmojiSelect = function (emoji) {
+        console.log('Emoji sélectionné :', emoji);
         setSelectedEmoji(emoji);
-        setFormData(function (prev) { return (__assign(__assign({}, prev), { sentiment: emoji })); }); // Mise à jour de l'émoji sélectionné
-        setStep('form'); // Transition vers le formulaire
+        setFormData(function (prev) { return (__assign(__assign({}, prev), { sentiment: emoji })); }); // Met à jour le sentiment
+        setStep('form'); // Passe au formulaire
     };
-    var handleCaptureClick = function () {
-        console.log('Sauvegarde des données avant capture:', formData);
-        // Préserver les données actuelles avant la capture
-        var updatedFormData = __assign({}, formData);
-        // Réinitialiser l'image capturée
-        setCurrentScreenshot(null);
-        // Passer les données sauvegardées pour la prochaine ouverture
-        onCaptureClick(updatedFormData);
+    var handleCaptureClick = function (formData, action) {
+        console.log('[CaptureFeedbackFlow] Début de capture avec action :', action);
+        // Vérifier si l'action est "suggestion"
+        if (action === 'suggestion') {
+            console.log('[CaptureFeedbackFlow] L’action est "suggestion", affichage direct du formulaire.');
+            setStep('form'); // Passe directement au formulaire
+            return;
+        }
+        onClose();
+        (0,_content_ContentScript__WEBPACK_IMPORTED_MODULE_4__.enableLensMode)(function (newScreenshot) {
+            console.log('[CaptureFeedbackFlow] Capture terminée avec screenshot');
+            // Rouvrez le formulaire avec la capture et l'action originale
+            (0,_content_ContentScript__WEBPACK_IMPORTED_MODULE_4__.openFeedbackWithEmojiSelection)(newScreenshot, action, // Passez l'action originale
+            { initialFormData: formData }, // FormData inclus
+            'form' // Étape initiale
+            );
+        });
     };
-    return ((0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("div", { children: step === 'emoji' ? ((0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(_emojis_EmojiSelector__WEBPACK_IMPORTED_MODULE_2__["default"], { onSelect: handleEmojiSelect })) : ((0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(_FeadbackForm__WEBPACK_IMPORTED_MODULE_3__["default"], { screenshot: currentScreenshot, onClose: onClose, onCaptureClick: handleCaptureClick, initialFormData: formData })) }));
+    return ((0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", { children: [step === 'emoji' && ((0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(_emojis_EmojiSelector__WEBPACK_IMPORTED_MODULE_2__["default"], { onSelect: handleEmojiSelect, action: action })), step === 'form' && ((0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(_FeadbackForm__WEBPACK_IMPORTED_MODULE_3__["default"], { screenshot: currentScreenshot, onClose: onClose, onCaptureClick: function (formData, action) {
+                    console.log('[CaptureFeedbackFlow] Form data reçu :', formData);
+                    console.log('[CaptureFeedbackFlow] Action reçue :', action);
+                    handleCaptureClick(formData, action); // Passe au mode capture
+                }, 
+                //onEmojiSelect={handleEmojiSelect}
+                initialFormData: __assign(__assign({}, formData), { sentiment: selectedEmoji }), selectedAction: localAction }))] }));
 };
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (CaptureFeedbackFlow);
 
@@ -43329,8 +43465,9 @@ var __spreadArray = (undefined && undefined.__spreadArray) || function (to, from
 
 
 var EmojiSelector = function (_a) {
-    var onSelect = _a.onSelect;
-    var initialEmojis = [
+    var onSelect = _a.onSelect, action = _a.action;
+    // Jeux d'émojis
+    var defaultEmojis = [
         { emoji: "😐", name: "Neutre" },
         { emoji: "😤", name: "Agacé" },
         { emoji: "😡", name: "En colère" },
@@ -43342,17 +43479,165 @@ var EmojiSelector = function (_a) {
         { emoji: "😵", name: "Étourdi" },
         { emoji: "🤣", name: "Hilarant" },
     ];
-    var _b = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)(initialEmojis), emojis = _b[0], setEmojis = _b[1];
+    var heartEmojis = [
+        { emoji: "❤️", name: "Passion" },
+        { emoji: "👍", name: "Satisfaction" },
+        { emoji: "👏", name: "Félicitations" },
+    ];
+    var additionalHeartEmojis = [
+        { emoji: "🤩", name: "Enthousiasme" },
+        { emoji: "🤣", name: "Hilarant" },
+    ];
+    var _b = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)(defaultEmojis), emojis = _b[0], setEmojis = _b[1];
     var _c = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)(false), showMore = _c[0], setShowMore = _c[1];
+    // Mettre à jour les émojis affichés en fonction de l'action
+    (0,react__WEBPACK_IMPORTED_MODULE_1__.useEffect)(function () {
+        if (action === "cheart") {
+            setEmojis(heartEmojis);
+        }
+        else {
+            setEmojis(defaultEmojis);
+        }
+        setShowMore(false); // Réinitialiser l'état de "plus"
+    }, [action]);
+    // Ajouter les émojis supplémentaires
     var handleShowMore = function () {
         if (!showMore) {
-            setEmojis(__spreadArray(__spreadArray([], emojis, true), additionalEmojis, true));
+            if (action === "cheart") {
+                setEmojis(function (prev) { return __spreadArray(__spreadArray([], prev, true), additionalHeartEmojis, true); });
+            }
+            else {
+                setEmojis(function (prev) { return __spreadArray(__spreadArray([], prev, true), additionalEmojis, true); });
+            }
             setShowMore(true);
         }
     };
-    return ((0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", __assign({ className: "emoji-popup-container" }, { children: [(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("div", { className: "emoji-waterdrop" }), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("div", __assign({ className: "emoji-popup-title" }, { children: "Quelle \u00E9motion ressentez-vous face \u00E0 ce probl\u00E8me ?" })), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", __assign({ className: "emoji-container" }, { children: [emojis.map(function (emojiObj, index) { return ((0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", __assign({ className: "emoji-item", onClick: function () { return onSelect(emojiObj.emoji); } }, { children: [(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("span", __assign({ className: "emoji-span" }, { children: emojiObj.emoji })), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("div", __assign({ className: "emoji-tooltip" }, { children: emojiObj.name }))] }), index)); }), !showMore && ((0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("div", __assign({ className: "add-more-button", onClick: handleShowMore }, { children: "+" })))] }))] })));
+    return ((0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", __assign({ className: "emoji-popup-container" }, { children: [(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("div", { className: "emoji-waterdrop" }), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("div", __assign({ className: "emoji-popup-title" }, { children: action === "cheart"
+                    ? "Quelle émotion exprime votre coup de cœur ?"
+                    : "Quelle émotion ressentez-vous face à ce problème ?" })), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", __assign({ className: "emoji-container" }, { children: [emojis.map(function (emojiObj, index) { return ((0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", __assign({ className: "emoji-item", onClick: function () { return onSelect(emojiObj.emoji); } }, { children: [(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("span", __assign({ className: "emoji-span" }, { children: emojiObj.emoji })), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("div", __assign({ className: "emoji-tooltip" }, { children: emojiObj.name }))] }), index)); }), !showMore && ((0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("div", __assign({ className: "add-more-button", onClick: handleShowMore }, { children: "+" })))] }))] })));
 };
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (EmojiSelector);
+
+
+/***/ }),
+
+/***/ "./src/components/flashMessage/FlashMessage.tsx":
+/*!******************************************************!*\
+  !*** ./src/components/flashMessage/FlashMessage.tsx ***!
+  \******************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_1__);
+var __assign = (undefined && undefined.__assign) || function () {
+    __assign = Object.assign || function(t) {
+        for (var s, i = 1, n = arguments.length; i < n; i++) {
+            s = arguments[i];
+            for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p))
+                t[p] = s[p];
+        }
+        return t;
+    };
+    return __assign.apply(this, arguments);
+};
+
+
+var FlashMessage = function (_a) {
+    var message = _a.message, _b = _a.type, type = _b === void 0 ? 'info' : _b, _c = _a.duration, duration = _c === void 0 ? 10000 : _c, onClose = _a.onClose;
+    var _d = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)(100), progress = _d[0], setProgress = _d[1];
+    var getBackgroundColor = function () {
+        switch (type) {
+            case 'success': return '#4caf50';
+            case 'error': return '#f44336';
+            case 'info': return '#2196f3';
+            default: return '#333';
+        }
+    };
+    (0,react__WEBPACK_IMPORTED_MODULE_1__.useEffect)(function () {
+        var interval = setInterval(function () {
+            setProgress(function (prev) { return Math.max(prev - (100 / (duration / 100)), 0); });
+        }, 100);
+        var timeout = setTimeout(function () {
+            onClose();
+        }, duration);
+        return function () {
+            clearInterval(interval);
+            clearTimeout(timeout);
+        };
+    }, [duration, onClose]);
+    return ((0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", __assign({ style: {
+            position: 'fixed',
+            top: '10px',
+            right: '10px',
+            backgroundColor: getBackgroundColor(),
+            color: '#fff',
+            padding: '10px 20px',
+            borderRadius: '5px',
+            boxShadow: '0 2px 10px rgba(0,0,0,0.2)',
+            zIndex: 10005,
+            width: '300px',
+            animation: "fadeIn 0.5s ease-in, fadeOut 0.5s ease-out ".concat(duration - 500, "ms"),
+        } }, { children: [(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", __assign({ style: { display: 'flex', justifyContent: 'space-between', alignItems: 'center' } }, { children: [(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("span", { children: message }), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("button", __assign({ onClick: onClose, style: {
+                            background: 'none',
+                            border: 'none',
+                            color: '#fff',
+                            cursor: 'pointer',
+                            fontSize: '16px',
+                        } }, { children: "\u2715" }))] })), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("div", __assign({ style: {
+                    height: '5px',
+                    backgroundColor: '#555',
+                    borderRadius: '2px',
+                    overflow: 'hidden',
+                    marginTop: '8px',
+                } }, { children: (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("div", { style: {
+                        height: '100%',
+                        width: "".concat(progress, "%"),
+                        backgroundColor: '#fff',
+                        transition: 'width 0.1s linear',
+                    } }) }))] })));
+};
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (FlashMessage);
+
+
+/***/ }),
+
+/***/ "./src/components/popupConfirm/CoupdeCoeurConfirm.tsx":
+/*!************************************************************!*\
+  !*** ./src/components/popupConfirm/CoupdeCoeurConfirm.tsx ***!
+  \************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+/* harmony import */ var _animationsPoint_AnimatedPoints__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../animationsPoint/AnimatedPoints */ "./src/components/animationsPoint/AnimatedPoints.tsx");
+var __assign = (undefined && undefined.__assign) || function () {
+    __assign = Object.assign || function(t) {
+        for (var s, i = 1, n = arguments.length; i < n; i++) {
+            s = arguments[i];
+            for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p))
+                t[p] = s[p];
+        }
+        return t;
+    };
+    return __assign.apply(this, arguments);
+};
+
+
+var CoupdeCoeurConfirm = function (_a) {
+    var onClose = _a.onClose;
+    return ((0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("div", __assign({ className: "category-popup-overlay" }, { children: (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", __assign({ className: "category-popup" }, { children: [(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("div", __assign({ className: 'close-button', onClick: onClose }, { children: (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("svg", __assign({ xmlns: "http://www.w3.org/2000/svg", width: "15", height: "14", viewBox: "0 0 15 14", fill: "none" }, { children: [(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("path", { d: "M11.2502 3.49982L4.25024 10.4998", stroke: "#D2D7E0", strokeWidth: "1.4", strokeLinecap: "round" }), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("path", { d: "M11.3376 10.4108L4.25034 3.50029", stroke: "#D2D7E0", strokeWidth: "1.4", strokeLinecap: "round" })] })) })), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("div", __assign({ className: "popup-header" }, { children: (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("div", __assign({ className: "popup-icon" }, { children: (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("svg", __assign({ xmlns: "http://www.w3.org/2000/svg", width: "122", height: "120", viewBox: "0 0 122 120", fill: "none" }, { children: [(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("g", __assign({ filter: "url(#filter0_d_400_2238)" }, { children: (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("rect", { x: "34", y: "30", width: "53.0732", height: "51.4146", rx: "8", fill: "url(#paint0_linear_400_2238)" }) })), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("path", { d: "M63.1231 41.6094H70.1059V60.282C70.1059 62.44 69.5923 64.32 68.5652 65.922C67.538 67.5146 66.1056 68.7491 64.268 69.6255C62.4304 70.4924 60.296 70.9259 57.8648 70.9259C55.4052 70.9259 53.2567 70.4924 51.4191 69.6255C49.5815 68.7491 48.1538 67.5146 47.1361 65.922C46.1184 64.32 45.6095 62.44 45.6095 60.282V41.6094H52.6064V59.6742C52.6064 60.6731 52.8232 61.5636 53.2567 62.3458C53.6996 63.1279 54.3168 63.7405 55.1084 64.1834C55.9 64.6263 56.8188 64.8477 57.8648 64.8477C58.9108 64.8477 59.8249 64.6263 60.607 64.1834C61.3986 63.7405 62.0158 63.1279 62.4587 62.3458C62.9016 61.5636 63.1231 60.6731 63.1231 59.6742V41.6094Z", fill: "white" }), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("path", { d: "M77.018 70.9683C76.0003 70.9683 75.1286 70.6102 74.403 69.894C73.6868 69.1778 73.3334 68.3109 73.3429 67.2931C73.3334 66.2942 73.6868 65.4414 74.403 64.7347C75.1286 64.0185 76.0003 63.6604 77.018 63.6604C77.9792 63.6604 78.8273 64.0185 79.5624 64.7347C80.3068 65.4414 80.6838 66.2942 80.6932 67.2931C80.6838 67.9716 80.5047 68.5889 80.1561 69.1449C79.8168 69.7008 79.3692 70.1437 78.8132 70.4736C78.2666 70.8034 77.6683 70.9683 77.018 70.9683Z", fill: "white" }), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("defs", { children: [(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("filter", __assign({ id: "filter0_d_400_2238", x: "0", y: "0", width: "121.073", height: "119.415", filterUnits: "userSpaceOnUse", colorInterpolationFilters: "sRGB" }, { children: [(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("feFlood", { floodOpacity: "0", result: "BackgroundImageFix" }), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("feColorMatrix", { in: "SourceAlpha", type: "matrix", values: "0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0", result: "hardAlpha" }), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("feOffset", { dy: "4" }), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("feGaussianBlur", { stdDeviation: "17" }), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("feComposite", { in2: "hardAlpha", operator: "out" }), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("feColorMatrix", { type: "matrix", values: "0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.1 0" }), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("feBlend", { mode: "normal", in2: "BackgroundImageFix", result: "effect1_dropShadow_400_2238" }), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("feBlend", { mode: "normal", in: "SourceGraphic", in2: "effect1_dropShadow_400_2238", result: "shape" })] })), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("linearGradient", __assign({ id: "paint0_linear_400_2238", x1: "24.7699", y1: "81.4146", x2: "94.2894", y2: "27.884", gradientUnits: "userSpaceOnUse" }, { children: [(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("stop", { stopColor: "#5A13A5" }), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("stop", { offset: "1", stopColor: "#FE2190" })] }))] })] })) })) })), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", __assign({ className: "popup-content" }, { children: [(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("h1", __assign({ className: 'h1Title' }, { children: "F\u00E9licitations pour votre 11\u1D49 coup de coeur !" })), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", __assign({ className: "popup-points" }, { children: [(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("span", __assign({ role: "img", "aria-label": "thumbs-up" }, { children: "\uD83D\uDC4D" })), ' ', (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(_animationsPoint_AnimatedPoints__WEBPACK_IMPORTED_MODULE_1__["default"], { startPoints: 0, endPoints: 10, duration: 1000 })] })), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("p", __assign({ className: 'desc-animation' }, { children: " Pour votre contribution pr\u00E9cieuse !" }))] })), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("button", __assign({ className: "popup-close-button", onClick: onClose }, { children: "Fermer" }))] })) })));
+};
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (CoupdeCoeurConfirm);
 
 
 /***/ }),
@@ -43372,8 +43657,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_1__);
 /* harmony import */ var _animationsPoint_AnimatedPoints__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../animationsPoint/AnimatedPoints */ "./src/components/animationsPoint/AnimatedPoints.tsx");
-/* harmony import */ var _services_apiService__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../services/apiService */ "./src/services/apiService.ts");
-/* harmony import */ var _utils_storageUtil__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../utils/storageUtil */ "./src/utils/storageUtil.ts");
 var __assign = (undefined && undefined.__assign) || function () {
     __assign = Object.assign || function(t) {
         for (var s, i = 1, n = arguments.length; i < n; i++) {
@@ -43385,96 +43668,60 @@ var __assign = (undefined && undefined.__assign) || function () {
     };
     return __assign.apply(this, arguments);
 };
-var __awaiter = (undefined && undefined.__awaiter) || function (thisArg, _arguments, P, generator) {
-    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
-    return new (P || (P = Promise))(function (resolve, reject) {
-        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
-        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
-        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
-        step((generator = generator.apply(thisArg, _arguments || [])).next());
-    });
-};
-var __generator = (undefined && undefined.__generator) || function (thisArg, body) {
-    var _ = { label: 0, sent: function() { if (t[0] & 1) throw t[1]; return t[1]; }, trys: [], ops: [] }, f, y, t, g;
-    return g = { next: verb(0), "throw": verb(1), "return": verb(2) }, typeof Symbol === "function" && (g[Symbol.iterator] = function() { return this; }), g;
-    function verb(n) { return function (v) { return step([n, v]); }; }
-    function step(op) {
-        if (f) throw new TypeError("Generator is already executing.");
-        while (g && (g = 0, op[0] && (_ = 0)), _) try {
-            if (f = 1, y && (t = op[0] & 2 ? y["return"] : op[0] ? y["throw"] || ((t = y["return"]) && t.call(y), 0) : y.next) && !(t = t.call(y, op[1])).done) return t;
-            if (y = 0, t) op = [op[0] & 2, t.value];
-            switch (op[0]) {
-                case 0: case 1: t = op; break;
-                case 4: _.label++; return { value: op[1], done: false };
-                case 5: _.label++; y = op[1]; op = [0]; continue;
-                case 7: op = _.ops.pop(); _.trys.pop(); continue;
-                default:
-                    if (!(t = _.trys, t = t.length > 0 && t[t.length - 1]) && (op[0] === 6 || op[0] === 2)) { _ = 0; continue; }
-                    if (op[0] === 3 && (!t || (op[1] > t[0] && op[1] < t[3]))) { _.label = op[1]; break; }
-                    if (op[0] === 6 && _.label < t[1]) { _.label = t[1]; t = op; break; }
-                    if (t && _.label < t[2]) { _.label = t[2]; _.ops.push(op); break; }
-                    if (t[2]) _.ops.pop();
-                    _.trys.pop(); continue;
-            }
-            op = body.call(thisArg, _);
-        } catch (e) { op = [6, e]; y = 0; } finally { f = t = 0; }
-        if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
-    }
-};
-
-
 
 
 
 var PopupConfirm = function (_a) {
-    var onClose = _a.onClose;
-    var _b = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)(null), selectedCategory = _b[0], setSelectedCategory = _b[1];
-    var _c = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)(null), errorMessages = _c[0], setErrorMessages = _c[1]; // Stocke les erreurs
-    var handleCategoryChange = function (category) { return __awaiter(void 0, void 0, void 0, function () {
-        var token, response, err_1;
-        return __generator(this, function (_a) {
-            switch (_a.label) {
-                case 0:
-                    setSelectedCategory(category);
-                    setErrorMessages(null); // Réinitialise les erreurs
-                    console.log("catégorie choisie: ", category);
-                    _a.label = 1;
-                case 1:
-                    _a.trys.push([1, 4, , 5]);
-                    return [4 /*yield*/, (0,_utils_storageUtil__WEBPACK_IMPORTED_MODULE_4__.getToken)()];
-                case 2:
-                    token = _a.sent();
-                    if (!token) {
-                        console.error("Erreur : Token manquant ou invalide.");
-                        setErrorMessages("Token manquant ou invalide.");
-                        return [2 /*return*/]; // Interrompt la fonction si le token est nul
-                    }
-                    return [4 /*yield*/, (0,_services_apiService__WEBPACK_IMPORTED_MODULE_3__.updateAlert)(category, token)];
-                case 3:
-                    response = _a.sent();
-                    if (!response.success) {
-                        // Si l'API renvoie une erreur, affichez-la
-                        setErrorMessages(response.error || "Une erreur inconnue s'est produite.");
-                    }
-                    else {
-                        console.log("Mise à jour réussie: ", response.message);
-                        onClose(); // Ferme la fenêtre ou exécute l'action de fin
-                    }
-                    return [3 /*break*/, 5];
-                case 4:
-                    err_1 = _a.sent();
-                    console.error("Erreur lors de la mise à jour :", err_1);
-                    setErrorMessages("Erreur de connexion au serveur. Veuillez réessayer.");
-                    return [3 /*break*/, 5];
-                case 5: return [2 /*return*/];
-            }
+    var userRank = _a.userRank, message = _a.message, statusCode = _a.statusCode, onClose = _a.onClose;
+    var _b = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)({
+        solutions: false,
+        response: false,
+        followUp: false,
+    }), accordionOpen = _b[0], setAccordionOpen = _b[1];
+    var toggleAccordion = function (key) {
+        setAccordionOpen(function (prev) {
+            var _a;
+            return (__assign(__assign({}, prev), (_a = {}, _a[key] = !prev[key], _a)));
         });
-    }); };
-    return ((0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", __assign({ className: "category-popup-overlay" }, { children: [errorMessages && ((0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("div", __assign({ style: { color: "red", marginTop: "10px" } }, { children: errorMessages }))), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", __assign({ className: "category-popup" }, { children: [(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", __assign({ className: "popup-header" }, { children: [(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("div", __assign({ className: "popup-icon" }, { children: (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("svg", __assign({ xmlns: "http://www.w3.org/2000/svg", width: "122", height: "120", viewBox: "0 0 122 120", fill: "none" }, { children: [(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("g", __assign({ filter: "url(#filter0_d_400_2238)" }, { children: (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("rect", { x: "34", y: "30", width: "53.0732", height: "51.4146", rx: "8", fill: "url(#paint0_linear_400_2238)" }) })), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("path", { d: "M63.1231 41.6094H70.1059V60.282C70.1059 62.44 69.5923 64.32 68.5652 65.922C67.538 67.5146 66.1056 68.7491 64.268 69.6255C62.4304 70.4924 60.296 70.9259 57.8648 70.9259C55.4052 70.9259 53.2567 70.4924 51.4191 69.6255C49.5815 68.7491 48.1538 67.5146 47.1361 65.922C46.1184 64.32 45.6095 62.44 45.6095 60.282V41.6094H52.6064V59.6742C52.6064 60.6731 52.8232 61.5636 53.2567 62.3458C53.6996 63.1279 54.3168 63.7405 55.1084 64.1834C55.9 64.6263 56.8188 64.8477 57.8648 64.8477C58.9108 64.8477 59.8249 64.6263 60.607 64.1834C61.3986 63.7405 62.0158 63.1279 62.4587 62.3458C62.9016 61.5636 63.1231 60.6731 63.1231 59.6742V41.6094Z", fill: "white" }), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("path", { d: "M77.018 70.9683C76.0003 70.9683 75.1286 70.6102 74.403 69.894C73.6868 69.1778 73.3334 68.3109 73.3429 67.2931C73.3334 66.2942 73.6868 65.4414 74.403 64.7347C75.1286 64.0185 76.0003 63.6604 77.018 63.6604C77.9792 63.6604 78.8273 64.0185 79.5624 64.7347C80.3068 65.4414 80.6838 66.2942 80.6932 67.2931C80.6838 67.9716 80.5047 68.5889 80.1561 69.1449C79.8168 69.7008 79.3692 70.1437 78.8132 70.4736C78.2666 70.8034 77.6683 70.9683 77.018 70.9683Z", fill: "white" }), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("defs", { children: [(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("filter", __assign({ id: "filter0_d_400_2238", x: "0", y: "0", width: "121.073", height: "119.415", filterUnits: "userSpaceOnUse", colorInterpolationFilters: "sRGB" }, { children: [(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("feFlood", { floodOpacity: "0", result: "BackgroundImageFix" }), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("feColorMatrix", { in: "SourceAlpha", type: "matrix", values: "0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0", result: "hardAlpha" }), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("feOffset", { dy: "4" }), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("feGaussianBlur", { stdDeviation: "17" }), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("feComposite", { in2: "hardAlpha", operator: "out" }), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("feColorMatrix", { type: "matrix", values: "0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.1 0" }), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("feBlend", { mode: "normal", in2: "BackgroundImageFix", result: "effect1_dropShadow_400_2238" }), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("feBlend", { mode: "normal", in: "SourceGraphic", in2: "effect1_dropShadow_400_2238", result: "shape" })] })), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("linearGradient", __assign({ id: "paint0_linear_400_2238", x1: "24.7699", y1: "81.4146", x2: "94.2894", y2: "27.884", gradientUnits: "userSpaceOnUse" }, { children: [(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("stop", { stopColor: "#5A13A5" }), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("stop", { offset: "1", stopColor: "#FE2190" })] }))] })] })) })), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("button", __assign({ className: "popup-close", onClick: onClose }, { children: "\u2716" }))] })), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", __assign({ className: "popup-content" }, { children: [(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("h1", __assign({ style: {
-                                    fontFamily: 'Urbanist sans-serif !important',
-                                }, className: 'h1Title' }, { children: "Signalement re\u00E7u, merci !" })), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", __assign({ className: "popup-points" }, { children: [(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("span", __assign({ role: "img", "aria-label": "thumbs-up" }, { children: "\uD83D\uDC4D" })), ' ', (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(_animationsPoint_AnimatedPoints__WEBPACK_IMPORTED_MODULE_2__["default"], { startPoints: 0, endPoints: 10, duration: 1000 })] })), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("p", { children: ["Nous n'avons pas identifi\u00E9 la cat\u00E9gorie de votre signalement. Pouvez-vous choisir ?", ' ', (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("span", __assign({ role: "img", "aria-label": "smile" }, { children: "\uD83D\uDE0A" }))] }), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("div", __assign({ className: "popup-categories" }, { children: ['cat1', 'cat2', 'cat3', 'autre'].map(function (category, index) { return ((0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("label", __assign({ className: "popup-category ".concat(selectedCategory === category ? 'selected' : '') }, { children: [(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("input", { type: "radio", name: "category", value: category, checked: selectedCategory === category, onChange: function () { return handleCategoryChange(category); } }), category] }), index)); }) }))] })), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("button", __assign({ className: "popup-close-button", onClick: onClose }, { children: "Fermer" }))] }))] })));
+    };
+    return ((0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("div", __assign({ className: "category-popup-overlay" }, { children: (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", __assign({ className: "category-popup" }, { children: [(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("div", __assign({ className: 'close-button', onClick: onClose }, { children: (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("svg", __assign({ xmlns: "http://www.w3.org/2000/svg", width: "15", height: "14", viewBox: "0 0 15 14", fill: "none" }, { children: [(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("path", { d: "M11.2502 3.49982L4.25024 10.4998", stroke: "#D2D7E0", strokeWidth: "1.4", strokeLinecap: "round" }), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("path", { d: "M11.3376 10.4108L4.25034 3.50029", stroke: "#D2D7E0", strokeWidth: "1.4", strokeLinecap: "round" })] })) })), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("div", __assign({ className: "popup-header" }, { children: (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("div", __assign({ className: "popup-icon" }, { children: (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("svg", __assign({ xmlns: "http://www.w3.org/2000/svg", width: "122", height: "120", viewBox: "0 0 122 120", fill: "none" }, { children: [(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("g", __assign({ filter: "url(#filter0_d_400_2238)" }, { children: (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("rect", { x: "34", y: "30", width: "53.0732", height: "51.4146", rx: "8", fill: "url(#paint0_linear_400_2238)" }) })), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("path", { d: "M63.1231 41.6094H70.1059V60.282C70.1059 62.44 69.5923 64.32 68.5652 65.922C67.538 67.5146 66.1056 68.7491 64.268 69.6255C62.4304 70.4924 60.296 70.9259 57.8648 70.9259C55.4052 70.9259 53.2567 70.4924 51.4191 69.6255C49.5815 68.7491 48.1538 67.5146 47.1361 65.922C46.1184 64.32 45.6095 62.44 45.6095 60.282V41.6094H52.6064V59.6742C52.6064 60.6731 52.8232 61.5636 53.2567 62.3458C53.6996 63.1279 54.3168 63.7405 55.1084 64.1834C55.9 64.6263 56.8188 64.8477 57.8648 64.8477C58.9108 64.8477 59.8249 64.6263 60.607 64.1834C61.3986 63.7405 62.0158 63.1279 62.4587 62.3458C62.9016 61.5636 63.1231 60.6731 63.1231 59.6742V41.6094Z", fill: "white" }), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("path", { d: "M77.018 70.9683C76.0003 70.9683 75.1286 70.6102 74.403 69.894C73.6868 69.1778 73.3334 68.3109 73.3429 67.2931C73.3334 66.2942 73.6868 65.4414 74.403 64.7347C75.1286 64.0185 76.0003 63.6604 77.018 63.6604C77.9792 63.6604 78.8273 64.0185 79.5624 64.7347C80.3068 65.4414 80.6838 66.2942 80.6932 67.2931C80.6838 67.9716 80.5047 68.5889 80.1561 69.1449C79.8168 69.7008 79.3692 70.1437 78.8132 70.4736C78.2666 70.8034 77.6683 70.9683 77.018 70.9683Z", fill: "white" }), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("defs", { children: [(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("filter", __assign({ id: "filter0_d_400_2238", x: "0", y: "0", width: "121.073", height: "119.415", filterUnits: "userSpaceOnUse", colorInterpolationFilters: "sRGB" }, { children: [(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("feFlood", { floodOpacity: "0", result: "BackgroundImageFix" }), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("feColorMatrix", { in: "SourceAlpha", type: "matrix", values: "0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0", result: "hardAlpha" }), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("feOffset", { dy: "4" }), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("feGaussianBlur", { stdDeviation: "17" }), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("feComposite", { in2: "hardAlpha", operator: "out" }), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("feColorMatrix", { type: "matrix", values: "0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.1 0" }), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("feBlend", { mode: "normal", in2: "BackgroundImageFix", result: "effect1_dropShadow_400_2238" }), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("feBlend", { mode: "normal", in: "SourceGraphic", in2: "effect1_dropShadow_400_2238", result: "shape" })] })), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("linearGradient", __assign({ id: "paint0_linear_400_2238", x1: "24.7699", y1: "81.4146", x2: "94.2894", y2: "27.884", gradientUnits: "userSpaceOnUse" }, { children: [(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("stop", { stopColor: "#5A13A5" }), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("stop", { offset: "1", stopColor: "#FE2190" })] }))] })] })) })) })), statusCode === 200 ? ((0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", __assign({ className: "popup-content" }, { children: [(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("h1", __assign({ className: 'h1Title' }, { children: "Merci pour votre signalement !" })), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("p", { children: ["Vous \u00EAtes le ", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("strong", { children: [userRank, "\u1D49 utilisateur"] }), " \u00E0 signaler ce probl\u00E8me."] }), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", __assign({ className: "popup-points" }, { children: [(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("span", __assign({ role: "img", "aria-label": "thumbs-up" }, { children: " \uD83D\uDC4D " })), ' ', (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(_animationsPoint_AnimatedPoints__WEBPACK_IMPORTED_MODULE_2__["default"], { startPoints: 0, endPoints: 10, duration: 1000 })] })), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("p", { children: " Pour votre contribution pr\u00E9cieuse !" }), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", __assign({ className: "accordion" }, { children: [(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", __assign({ className: "accordion-item ".concat(accordionOpen.solutions ? 'open' : '') }, { children: [(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", __assign({ className: "accordion-header", onClick: function () { return toggleAccordion('solutions'); } }, { children: ["Deux solutions propos\u00E9es", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("span", __assign({ className: "accordion-icon" }, { children: accordionOpen.solutions ? '-' : '+' }))] })), accordionOpen.solutions && ((0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", __assign({ className: "accordion-content" }, { children: [(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("p", { children: "Solution 1: Lorem ipsum dolor sit amet." }), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("p", { children: "Solution 2: Consectetur adipiscing elit." })] })))] })), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", __assign({ className: "accordion-item ".concat(accordionOpen.response ? 'open' : '') }, { children: [(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", __assign({ className: "accordion-header", onClick: function () { return toggleAccordion('response'); } }, { children: ["La r\u00E9ponse de Veepee", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("span", __assign({ className: "accordion-icon" }, { children: accordionOpen.response ? '-' : '+' }))] })), accordionOpen.response && ((0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", __assign({ className: "accordion-content" }, { children: [(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("p", { children: "Nous vous remercions pour votre signalement." }), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("p", { children: "Notre \u00E9quipe analyse le probl\u00E8me." })] })))] })), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", __assign({ className: "accordion-item ".concat(accordionOpen.followUp ? 'open' : '') }, { children: [(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", __assign({ className: "accordion-header", onClick: function () { return toggleAccordion('followUp'); } }, { children: ["Suivi du probl\u00E8me", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("span", __assign({ className: "accordion-icon" }, { children: accordionOpen.followUp ? '-' : '+' }))] })), accordionOpen.followUp && ((0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("div", __assign({ className: "accordion-content" }, { children: (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("p", { children: "Un suivi sera partag\u00E9 dans les prochaines semaines." }) })))] }))] }))] }))) : ((0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", __assign({ className: "popup-content" }, { children: [(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("h1", __assign({ className: 'h1Title' }, { children: "merci pour votre signalement, On plonge dedans illico \uD83D\uDE80" })), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", __assign({ className: "popup-points" }, { children: [(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("span", __assign({ role: "img", "aria-label": "thumbs-up" }, { children: "\uD83D\uDC4D" })), ' ', (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(_animationsPoint_AnimatedPoints__WEBPACK_IMPORTED_MODULE_2__["default"], { startPoints: 0, endPoints: 10, duration: 1000 })] })), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("p", __assign({ className: 'desc-animation' }, { children: " Bravo pour votre signalement !" }))] }))), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("button", __assign({ className: "popup-close-button", onClick: onClose }, { children: "Fermer" }))] })) })));
 };
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (PopupConfirm);
+
+
+/***/ }),
+
+/***/ "./src/components/popupConfirm/SuggestConfirm.tsx":
+/*!********************************************************!*\
+  !*** ./src/components/popupConfirm/SuggestConfirm.tsx ***!
+  \********************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+/* harmony import */ var _animationsPoint_AnimatedPoints__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../animationsPoint/AnimatedPoints */ "./src/components/animationsPoint/AnimatedPoints.tsx");
+var __assign = (undefined && undefined.__assign) || function () {
+    __assign = Object.assign || function(t) {
+        for (var s, i = 1, n = arguments.length; i < n; i++) {
+            s = arguments[i];
+            for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p))
+                t[p] = s[p];
+        }
+        return t;
+    };
+    return __assign.apply(this, arguments);
+};
+
+
+var SuggestConfirm = function (_a) {
+    var onClose = _a.onClose;
+    return ((0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("div", __assign({ className: "category-popup-overlay" }, { children: (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", __assign({ className: "category-popup" }, { children: [(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("div", __assign({ className: 'close-button', onClick: onClose }, { children: (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("svg", __assign({ xmlns: "http://www.w3.org/2000/svg", width: "15", height: "14", viewBox: "0 0 15 14", fill: "none" }, { children: [(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("path", { d: "M11.2502 3.49982L4.25024 10.4998", stroke: "#D2D7E0", strokeWidth: "1.4", strokeLinecap: "round" }), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("path", { d: "M11.3376 10.4108L4.25034 3.50029", stroke: "#D2D7E0", strokeWidth: "1.4", strokeLinecap: "round" })] })) })), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("div", __assign({ className: "popup-header" }, { children: (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("div", __assign({ className: "popup-icon" }, { children: (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("svg", __assign({ xmlns: "http://www.w3.org/2000/svg", width: "122", height: "120", viewBox: "0 0 122 120", fill: "none" }, { children: [(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("g", __assign({ filter: "url(#filter0_d_400_2238)" }, { children: (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("rect", { x: "34", y: "30", width: "53.0732", height: "51.4146", rx: "8", fill: "url(#paint0_linear_400_2238)" }) })), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("path", { d: "M63.1231 41.6094H70.1059V60.282C70.1059 62.44 69.5923 64.32 68.5652 65.922C67.538 67.5146 66.1056 68.7491 64.268 69.6255C62.4304 70.4924 60.296 70.9259 57.8648 70.9259C55.4052 70.9259 53.2567 70.4924 51.4191 69.6255C49.5815 68.7491 48.1538 67.5146 47.1361 65.922C46.1184 64.32 45.6095 62.44 45.6095 60.282V41.6094H52.6064V59.6742C52.6064 60.6731 52.8232 61.5636 53.2567 62.3458C53.6996 63.1279 54.3168 63.7405 55.1084 64.1834C55.9 64.6263 56.8188 64.8477 57.8648 64.8477C58.9108 64.8477 59.8249 64.6263 60.607 64.1834C61.3986 63.7405 62.0158 63.1279 62.4587 62.3458C62.9016 61.5636 63.1231 60.6731 63.1231 59.6742V41.6094Z", fill: "white" }), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("path", { d: "M77.018 70.9683C76.0003 70.9683 75.1286 70.6102 74.403 69.894C73.6868 69.1778 73.3334 68.3109 73.3429 67.2931C73.3334 66.2942 73.6868 65.4414 74.403 64.7347C75.1286 64.0185 76.0003 63.6604 77.018 63.6604C77.9792 63.6604 78.8273 64.0185 79.5624 64.7347C80.3068 65.4414 80.6838 66.2942 80.6932 67.2931C80.6838 67.9716 80.5047 68.5889 80.1561 69.1449C79.8168 69.7008 79.3692 70.1437 78.8132 70.4736C78.2666 70.8034 77.6683 70.9683 77.018 70.9683Z", fill: "white" }), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("defs", { children: [(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("filter", __assign({ id: "filter0_d_400_2238", x: "0", y: "0", width: "121.073", height: "119.415", filterUnits: "userSpaceOnUse", colorInterpolationFilters: "sRGB" }, { children: [(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("feFlood", { floodOpacity: "0", result: "BackgroundImageFix" }), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("feColorMatrix", { in: "SourceAlpha", type: "matrix", values: "0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0", result: "hardAlpha" }), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("feOffset", { dy: "4" }), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("feGaussianBlur", { stdDeviation: "17" }), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("feComposite", { in2: "hardAlpha", operator: "out" }), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("feColorMatrix", { type: "matrix", values: "0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.1 0" }), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("feBlend", { mode: "normal", in2: "BackgroundImageFix", result: "effect1_dropShadow_400_2238" }), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("feBlend", { mode: "normal", in: "SourceGraphic", in2: "effect1_dropShadow_400_2238", result: "shape" })] })), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("linearGradient", __assign({ id: "paint0_linear_400_2238", x1: "24.7699", y1: "81.4146", x2: "94.2894", y2: "27.884", gradientUnits: "userSpaceOnUse" }, { children: [(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("stop", { stopColor: "#5A13A5" }), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("stop", { offset: "1", stopColor: "#FE2190" })] }))] })] })) })) })), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", __assign({ className: "popup-content" }, { children: [(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("h1", __assign({ className: 'h1Title' }, { children: "Suggestion d'id\u00E9e envoy\u00E9e avec succ\u00E8s, merci! " })), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", __assign({ className: "popup-points" }, { children: [(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("span", __assign({ role: "img", "aria-label": "thumbs-up" }, { children: "\uD83D\uDC4D" })), ' ', (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(_animationsPoint_AnimatedPoints__WEBPACK_IMPORTED_MODULE_1__["default"], { startPoints: 0, endPoints: 10, duration: 1000 })] })), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("p", __assign({ className: 'desc-animation' }, { children: " Pour cr\u00E9ativit\u00E9 !" }))] })), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("button", __assign({ className: "popup-close-button", onClick: onClose }, { children: "Fermer" }))] })) })));
+};
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (SuggestConfirm);
 
 
 /***/ }),
@@ -43528,6 +43775,522 @@ var Warning = function (_a) {
 
 /***/ }),
 
+/***/ "./src/content/ContentScript.tsx":
+/*!***************************************!*\
+  !*** ./src/content/ContentScript.tsx ***!
+  \***************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   enableLensMode: () => (/* binding */ enableLensMode),
+/* harmony export */   openFeedbackForm: () => (/* binding */ openFeedbackForm),
+/* harmony export */   openFeedbackWithEmojiSelection: () => (/* binding */ openFeedbackWithEmojiSelection)
+/* harmony export */ });
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+/* harmony import */ var react_dom_client__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-dom/client */ "./node_modules/react-dom/client.js");
+/* harmony import */ var _components_captureFeedbackFlow_CaptureFeedbackFlow__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../components/captureFeedbackFlow/CaptureFeedbackFlow */ "./src/components/captureFeedbackFlow/CaptureFeedbackFlow.tsx");
+/* harmony import */ var html2canvas__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! html2canvas */ "./node_modules/html2canvas/dist/html2canvas.js");
+/* harmony import */ var html2canvas__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(html2canvas__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var _components_DraggableFloatingMenu__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../components/DraggableFloatingMenu */ "./src/components/DraggableFloatingMenu.tsx");
+/* harmony import */ var _utils_blockAdultSites__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../utils/blockAdultSites */ "./src/utils/blockAdultSites.ts");
+/* harmony import */ var _components_warning_Warning__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../components/warning/Warning */ "./src/components/warning/Warning.tsx");
+/* harmony import */ var _utils_blurAllInappropriateMedia__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../utils/blurAllInappropriateMedia */ "./src/utils/blurAllInappropriateMedia.ts");
+/* harmony import */ var _utils_unblurAllMedia__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../utils/unblurAllMedia */ "./src/utils/unblurAllMedia.ts");
+
+
+
+
+
+
+
+
+
+//import { handleAction } from '../components/handleAction';
+var clickCount = 0;
+var startX = 0;
+var startY = 0;
+var selectionBox = null;
+var lensBubble = null;
+var selectionEnabled = false; // Indicateur pour activer la sélection après le deuxième clic
+var menuOpen = false;
+var centeredText = null;
+var overlay = null;
+// Élément bulle avec icône pour le mode capture
+var captureBubble = null;
+// Activer le mode Google Lens avec la bulle (premier clic)
+// Mode de sélection activé
+function enableLensMode(onCaptureComplete) {
+    createLensBubble();
+    createCenteredText();
+    createOverlay();
+    document.addEventListener('mousemove', updateCaptureBubblePosition);
+    document.addEventListener('click', initiateSelection, { once: true });
+}
+function createCenteredText() {
+    if (!centeredText) {
+        centeredText = document.createElement("div");
+        centeredText.style.position = "fixed";
+        centeredText.style.top = "100px"; // Positionné en haut de la page
+        centeredText.style.left = "50%"; // Centré horizontalement
+        centeredText.style.transform = "translateX(-50%)"; // Correction pour centrer
+        centeredText.style.padding = "10px 20px";
+        centeredText.style.backgroundColor = "rgba(5, 10, 21, 0.79)";
+        centeredText.style.color = "#fff";
+        centeredText.style.borderRadius = "53px";
+        centeredText.style.fontSize = "16px";
+        //centeredText.style.fontWeight = "400";
+        centeredText.style.boxShadow = "0px 0px 37.7px 0px rgba(0, 0, 0, 0.25)";
+        centeredText.style.zIndex = "10002";
+        centeredText.style.pointerEvents = "none"; // Empêche les interactions
+        // Contenu avec icône SVG
+        centeredText.innerHTML = "\n    <div class=\"d-flex\">\n    <div class=\"app-photo\">\n        <svg xmlns=\"http://www.w3.org/2000/svg\" width=\"18\" height=\"18\" viewBox=\"0 0 18 18\" fill=\"none\">\n          <path d=\"M1 5V3C1 2.46957 1.21071 1.96086 1.58579 1.58579C1.96086 1.21071 2.46957 1 3 1H5M1 13V15C1 15.5304 1.21071 16.0391 1.58579 16.4142C1.96086 16.7893 2.46957 17 3 17H5M13 1H15C15.5304 1 16.0391 1.21071 16.4142 1.58579C16.7893 1.96086 17 2.46957 17 3V5M13 17H15C15.5304 17 16.0391 16.7893 16.4142 16.4142C16.7893 16.0391 17 15.5304 17 15V13M6 9C6 9.79565 6.31607 10.5587 6.87868 11.1213C7.44129 11.6839 8.20435 12 9 12C9.79565 12 10.5587 11.6839 11.1213 11.1213C11.6839 10.5587 12 9.79565 12 9C12 8.20435 11.6839 7.44129 11.1213 6.87868C10.5587 6.31607 9.79565 6 9 6C8.20435 6 7.44129 6.31607 6.87868 6.87868C6.31607 7.44129 6 8.20435 6 9Z\" stroke=\"white\" stroke-opacity=\"0.8\" stroke-width=\"1.4\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/>\n        </svg>\n    </div>\n        <span class=\"txt-problem\">S\u00E9lectionnez la zone du probl\u00E8me</span>\n    </div>\n      ";
+        document.body.appendChild(centeredText);
+    }
+}
+function removeCenteredText() {
+    if (centeredText) {
+        centeredText.remove();
+        centeredText = null;
+    }
+}
+function createOverlay() {
+    if (!overlay) {
+        overlay = document.createElement('div');
+        overlay.style.position = 'fixed';
+        overlay.style.top = '0';
+        overlay.style.left = '0';
+        overlay.style.width = '100%';
+        overlay.style.height = '100%';
+        overlay.style.backgroundColor = 'rgba(0, 0, 0, 0.3)';
+        overlay.style.zIndex = '10000';
+        overlay.style.pointerEvents = 'none';
+        document.body.appendChild(overlay);
+    }
+}
+function removeOverlay() {
+    if (overlay) {
+        overlay.remove();
+        overlay = null;
+    }
+}
+// Créer et afficher la bulle avec la caméra pour suivre la souris
+function createLensBubble() {
+    if (!captureBubble) {
+        captureBubble = document.createElement("div");
+        captureBubble.className = "capture-bubble"; // Classe CSS pour appliquer le style principal
+        // Ajouter le SVG directement dans la bulle
+        captureBubble.innerHTML = "\n      <svg xmlns=\"http://www.w3.org/2000/svg\" width=\"61\" height=\"62\" viewBox=\"0 0 61 62\" fill=\"none\">\n          <g filter=\"url(#filter0_d_397_1906)\">\n          <path d=\"M30 7C42.1503 7 52 16.8497 52 29L52 29.5C52 41.3741 42.3741 51 30.5 51C18.6259 51 9 41.3741 9 29.5L9 7L30 7Z\" fill=\"url(#paint0_linear_397_1906)\"/>\n          <path d=\"M30 8C41.598 8 51 17.402 51 29L51 29.5C51 40.8218 41.8218 50 30.5 50C19.1782 50 10 40.8218 10 29.5L10 8L30 8Z\" stroke=\"white\" stroke-width=\"2\"/>\n          </g>\n          <path d=\"M34 21L36 21C36.5304 21 37.0391 21.2107 37.4142 21.5858C37.7893 21.9609 38 22.4696 38 23L38 25M26 21L24 21C23.4696 21 22.9609 21.2107 22.5858 21.5858C22.2107 21.9609 22 22.4696 22 23L22 25M38 33L38 35C38 35.5304 37.7893 36.0391 37.4142 36.4142C37.0391 36.7893 36.5304 37 36 37L34 37M22 33L22 35C22 35.5304 22.2107 36.0391 22.5858 36.4142C22.9609 36.7893 23.4696 37 24 37L26 37M30 26C29.2044 26 28.4413 26.3161 27.8787 26.8787C27.3161 27.4413 27 28.2044 27 29C27 29.7956 27.3161 30.5587 27.8787 31.1213C28.4413 31.6839 29.2044 32 30 32C30.7956 32 31.5587 31.6839 32.1213 31.1213C32.6839 30.5587 33 29.7956 33 29C33 28.2044 32.6839 27.4413 32.1213 26.8787C31.5587 26.3161 30.7956 26 30 26Z\" stroke=\"white\" stroke-opacity=\"0.8\" stroke-width=\"1.4\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/>\n          <g filter=\"url(#filter1_d_397_1906)\">\n          <path d=\"M30 7C42.1503 7 52 16.8497 52 29L52 29.5C52 41.3741 42.3741 51 30.5 51V51C18.6259 51 9 41.3741 9 29.5L9 9C9 7.89543 9.89543 7 11 7L30 7Z\" fill=\"url(#paint1_linear_397_1906)\"/>\n          <path d=\"M51 29L51 29.5C51 40.8218 41.8218 50 30.5 50C19.1782 50 10 40.8218 10 29.5L10 9C10 8.44771 10.4477 8 11 8L30 8C41.598 8 51 17.402 51 29Z\" stroke=\"white\" stroke-width=\"2\"/>\n          </g>\n          <path d=\"M32.4831 21H36.6628V31.8122C36.6628 33.0618 36.3554 34.1504 35.7405 35.078C35.1257 36.0002 34.2683 36.715 33.1684 37.2224C32.0685 37.7244 30.7909 37.9754 29.3356 37.9754C27.8634 37.9754 26.5774 37.7244 25.4774 37.2224C24.3775 36.715 23.523 36.0002 22.9138 35.078C22.3046 34.1504 22 33.0618 22 31.8122V21H26.1882V31.4603C26.1882 32.0387 26.3179 32.5543 26.5774 33.0072C26.8425 33.4601 27.2119 33.8148 27.6857 34.0713C28.1595 34.3277 28.7095 34.4559 29.3356 34.4559C29.9617 34.4559 30.5089 34.3277 30.977 34.0713C31.4508 33.8148 31.8203 33.4601 32.0854 33.0072C32.3505 32.5543 32.4831 32.0387 32.4831 31.4603V21Z\" fill=\"white\"/>\n          <path d=\"M40.8002 38C40.191 38 39.6692 37.7926 39.2349 37.3779C38.8062 36.9632 38.5947 36.4612 38.6003 35.8719C38.5947 35.2935 38.8062 34.7997 39.2349 34.3905C39.6692 33.9758 40.191 33.7684 40.8002 33.7684C41.3755 33.7684 41.8832 33.9758 42.3231 34.3905C42.7687 34.7997 42.9944 35.2935 43 35.8719C42.9944 36.2648 42.8872 36.6222 42.6785 36.9441C42.4754 37.2661 42.2075 37.5225 41.8747 37.7135C41.5475 37.9045 41.1894 38 40.8002 38Z\" fill=\"white\"/>\n          <defs>\n          <filter id=\"filter0_d_397_1906\" x=\"0.8\" y=\"0.8\" width=\"59.4\" height=\"60.4\" filterUnits=\"userSpaceOnUse\" color-interpolation-filters=\"sRGB\">\n          <feFlood flood-opacity=\"0\" result=\"BackgroundImageFix\"/>\n          <feColorMatrix in=\"SourceAlpha\" type=\"matrix\" values=\"0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0\" result=\"hardAlpha\"/>\n          <feOffset dy=\"2\"/>\n          <feGaussianBlur stdDeviation=\"4.1\"/>\n          <feComposite in2=\"hardAlpha\" operator=\"out\"/>\n          <feColorMatrix type=\"matrix\" values=\"0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.25 0\"/>\n          <feBlend mode=\"normal\" in2=\"BackgroundImageFix\" result=\"effect1_dropShadow_397_1906\"/>\n          <feBlend mode=\"normal\" in=\"SourceGraphic\" in2=\"effect1_dropShadow_397_1906\" result=\"shape\"/>\n          </filter>\n          <filter id=\"filter1_d_397_1906\" x=\"0.8\" y=\"0.8\" width=\"59.4\" height=\"60.4\" filterUnits=\"userSpaceOnUse\" color-interpolation-filters=\"sRGB\">\n          <feFlood flood-opacity=\"0\" result=\"BackgroundImageFix\"/>\n          <feColorMatrix in=\"SourceAlpha\" type=\"matrix\" values=\"0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0\" result=\"hardAlpha\"/>\n          <feOffset dy=\"2\"/>\n          <feGaussianBlur stdDeviation=\"4.1\"/>\n          <feComposite in2=\"hardAlpha\" operator=\"out\"/>\n          <feColorMatrix type=\"matrix\" values=\"0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.25 0\"/>\n          <feBlend mode=\"normal\" in2=\"BackgroundImageFix\" result=\"effect1_dropShadow_397_1906\"/>\n          <feBlend mode=\"normal\" in=\"SourceGraphic\" in2=\"effect1_dropShadow_397_1906\" result=\"shape\"/>\n          </filter>\n          <linearGradient id=\"paint0_linear_397_1906\" x1=\"9\" y1=\"-0.652177\" x2=\"53.2784\" y2=\"57.3575\" gradientUnits=\"userSpaceOnUse\">\n          <stop stop-color=\"#5A13A5\"/>\n          <stop offset=\"1\" stop-color=\"#FE2190\"/>\n          </linearGradient>\n          <linearGradient id=\"paint1_linear_397_1906\" x1=\"9\" y1=\"-0.652177\" x2=\"53.2784\" y2=\"57.3575\" gradientUnits=\"userSpaceOnUse\">\n          <stop stop-color=\"#5A13A5\"/>\n          <stop offset=\"1\" stop-color=\"#FE2190\"/>\n          </linearGradient>\n          </defs>\n</svg>\n    ";
+        document.body.appendChild(captureBubble);
+        document.addEventListener("mousemove", updateCaptureBubblePosition); // Suivre le mouvement de la souris
+    }
+}
+// Mettre à jour la position de la bulle de capture pour suivre la souris
+function updateCaptureBubblePosition(event) {
+    if (captureBubble) {
+        // Place la bulle un peu en dessous de la souris pour qu'elle ne la cache pas
+        captureBubble.style.left = "".concat(event.pageX + 15, "px");
+        captureBubble.style.top = "".concat(event.pageY + 15, "px");
+    }
+}
+// Fonction pour enlever la bulle de capture et arrêter de suivre la souris
+function removeCaptureBubble() {
+    if (captureBubble) {
+        captureBubble.remove();
+        captureBubble = null;
+    }
+    document.removeEventListener("mousemove", updateCaptureBubblePosition);
+}
+// Faire bouger la bulle avec la souris
+function moveLensBubble(event) {
+    if (lensBubble) {
+        lensBubble.style.left = "".concat(event.clientX - 25, "px");
+        lensBubble.style.top = "".concat(event.clientY - 25, "px");
+    }
+}
+// Préparer la sélection (désactiver la bulle et activer la sélection après le deuxième clic)
+function initiateSelection(event) {
+    startX = event.clientX;
+    startY = event.clientY;
+    createLensBubble();
+    // Désactiver la bulle et arrêter le suivi de la souris
+    /*   if (lensBubble) {
+        document.body.removeChild(lensBubble);
+        lensBubble = null;
+      }
+      document.removeEventListener('mousemove', moveLensBubble); */
+    // Activer la sélection
+    selectionEnabled = true;
+    document.body.classList.add('cursor-crosshair'); // Activer la croix
+    // Attendre un clic pour démarrer la sélection
+    document.addEventListener('mousedown', startSelection, { once: true });
+}
+// Démarrer la sélection après le deuxième clic
+/**
+ * Initiates the selection process for capturing a screen area.
+ * This function creates a selection box and sets up event listeners for resizing and finalizing the selection.
+ *
+ * @param event - The MouseEvent that triggered the selection start.
+ * @returns void
+ */
+function startSelection(event) {
+    if (!selectionEnabled)
+        return;
+    removeOverlay(); // Supprime l'overlay semi-transparent
+    console.log('Vous êtes en train de sélectionner une zone à capturer...'); //
+    startX = event.clientX;
+    startY = event.clientY;
+    // Créer la boîte de sélection
+    selectionBox = document.createElement('div');
+    selectionBox.style.position = 'fixed';
+    selectionBox.style.border = '2px dashed #007bff';
+    selectionBox.style.backgroundColor = 'rgba(0, 123, 255, 0.2)';
+    selectionBox.style.top = "".concat(startY, "px");
+    selectionBox.style.left = "".concat(startX, "px");
+    selectionBox.style.zIndex = '9999';
+    document.body.appendChild(selectionBox);
+    // Activer le redimensionnement de la sélection
+    document.addEventListener('mousemove', handleMouseMove);
+    document.addEventListener('mouseup', handleMouseUp, { once: true });
+}
+// Redimensionner la zone de sélection avec la souris
+function handleMouseMove(event) {
+    if (!selectionBox)
+        return;
+    var width = event.clientX - startX;
+    var height = event.clientY - startY;
+    selectionBox.style.width = "".concat(Math.abs(width), "px");
+    selectionBox.style.height = "".concat(Math.abs(height), "px");
+    selectionBox.style.left = "".concat(width < 0 ? event.clientX : startX, "px");
+    selectionBox.style.top = "".concat(height < 0 ? event.clientY : startY, "px");
+}
+// Terminer la sélection et capturer
+function handleMouseUp() {
+    if (!selectionBox)
+        return;
+    // Obtenir les dimensions exactes de la zone sélectionnée avec getBoundingClientRect
+    var rect = selectionBox.getBoundingClientRect();
+    // Appliquer le ratio de mise à l'échelle
+    var scale = window.devicePixelRatio;
+    var adjustedX = (rect.left + window.scrollX) * scale;
+    var adjustedY = (rect.top + window.scrollY) * scale;
+    var adjustedWidth = rect.width * scale;
+    var adjustedHeight = rect.height * scale;
+    // Supprimer la boîte de sélection temporaire
+    document.body.removeChild(selectionBox);
+    selectionBox = null;
+    // Capture de la zone ajustée
+    captureSelectedArea(adjustedX, adjustedY, adjustedWidth, adjustedHeight);
+    disableSelectionMode(); // Désactiver le mode de sélection
+}
+function openFeedbackWithEmojiSelection(screenshot, action, extraData, initialStep) {
+    var feedbackContainer = document.createElement('div');
+    feedbackContainer.id = 'feedback-container';
+    feedbackContainer.style.position = 'fixed';
+    feedbackContainer.style.top = '0';
+    feedbackContainer.style.left = '0';
+    feedbackContainer.style.width = '100vw';
+    feedbackContainer.style.height = '100vh';
+    feedbackContainer.style.zIndex = '10004';
+    document.body.appendChild(feedbackContainer);
+    var closeFeedback = function () {
+        feedbackContainer.remove();
+    };
+    var root = react_dom_client__WEBPACK_IMPORTED_MODULE_1__.createRoot(feedbackContainer);
+    root.render((0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(_components_captureFeedbackFlow_CaptureFeedbackFlow__WEBPACK_IMPORTED_MODULE_2__["default"], { screenshot: screenshot, action: action, onClose: closeFeedback, onCaptureClick: function (formData, selectedAction) {
+            closeFeedback();
+            enableLensMode();
+        }, selectedAction: action, initialFormData: (extraData === null || extraData === void 0 ? void 0 : extraData.initialFormData) || {
+            alertDescription: '',
+            sentiment: '😐',
+            tips: '',
+            isBlocked: 'no',
+            screenshot: null,
+        }, initialStep: initialStep || 'emoji' }));
+}
+// Fonction pour redimensionner et compresser l'image
+function resizeAndCompressImage(dataUrl, maxWidth, maxHeight, quality) {
+    return new Promise(function (resolve) {
+        var img = new Image();
+        img.onload = function () {
+            var canvas = document.createElement('canvas');
+            var ctx = canvas.getContext('2d');
+            if (!ctx)
+                return;
+            // Calcul des nouvelles dimensions tout en respectant le ratio d'aspect
+            var width = img.width, height = img.height;
+            if (width > maxWidth || height > maxHeight) {
+                var aspectRatio = width / height;
+                if (width > height) {
+                    width = maxWidth;
+                    height = maxWidth / aspectRatio;
+                }
+                else {
+                    height = maxHeight;
+                    width = maxHeight * aspectRatio;
+                }
+            }
+            canvas.width = width;
+            canvas.height = height;
+            ctx.drawImage(img, 0, 0, width, height);
+            // Convertir en Data URL avec compression
+            resolve(canvas.toDataURL('image/jpeg', quality)); // Qualité entre 0.0 et 1.0
+        };
+        img.src = dataUrl;
+    });
+}
+// Méthode de capture mise à jour
+function captureSelectedArea(x, y, width, height) {
+    var externalElements = document.querySelectorAll('img, iframe, video, [style*="background-image"]');
+    // Vérifier si la zone sélectionnée est trop petite ou inexistante
+    if (width < 5 || height < 5) {
+        console.log('Zone trop petite ou inexistante. Continuation sans capture.');
+        openFeedbackWithEmojiSelection(null, 'capture'); // Appeler le formulaire sans capture
+        return; // Arrêter l'exécution
+    }
+    // Masquer temporairement les éléments externes
+    externalElements.forEach(function (el) {
+        if (el instanceof HTMLElement) {
+            // el.style.display = 'none'; // Désactivé dans cet exemple
+        }
+    });
+    // Capture la page entière avec html2canvas
+    html2canvas__WEBPACK_IMPORTED_MODULE_3___default()(document.body, { useCORS: true, allowTaint: false, backgroundColor: null })
+        .then(function (canvas) {
+        // Rendre les éléments visibles après la capture
+        externalElements.forEach(function (el) {
+            if (el instanceof HTMLElement) {
+                // el.style.display = ''; // Désactivé dans cet exemple
+            }
+        });
+        // Créer un canvas temporaire pour recadrer la zone sélectionnée
+        var croppedCanvas = document.createElement('canvas');
+        croppedCanvas.width = width;
+        croppedCanvas.height = height;
+        var croppedCtx = croppedCanvas.getContext('2d');
+        if (croppedCtx) {
+            // Utiliser les coordonnées ajustées en fonction de la mise à l'échelle
+            croppedCtx.drawImage(canvas, x, // Position X ajustée
+            y, // Position Y ajustée
+            width, // Largeur ajustée
+            height, // Hauteur ajustée
+            0, // Position X dans le canvas de destination
+            0, // Position Y dans le canvas de destination
+            width, // Largeur dans le canvas de destination
+            height // Hauteur dans le canvas de destination
+            );
+            var croppedDataUrl = croppedCanvas.toDataURL('image/png');
+            // Redimensionner et compresser l'image capturée
+            resizeAndCompressImage(croppedDataUrl, 800, 800, 0.7) // Dimensions max et qualité
+                .then(function (compressedDataUrl) {
+                openFeedbackWithEmojiSelection(compressedDataUrl, 'capture'); // Appeler le formulaire de feedback
+            })
+                .catch(function (error) {
+                console.error('Erreur lors de la compression de l\'image:', error);
+            });
+        }
+    })
+        .catch(function (error) {
+        console.error('Erreur lors de la capture de la zone sélectionnée:', error);
+        openFeedbackWithEmojiSelection(null, 'capture'); // Continuer même en cas d'erreur
+    });
+}
+// Désactiver le mode sélection et réinitialiser les indicateurs
+function disableSelectionMode() {
+    selectionEnabled = false; // Désactiver la sélection
+    document.body.classList.remove('cursor-crosshair'); // Désactiver la croix
+    if (captureBubble) {
+        removeCaptureBubble();
+        //document.body.removeChild(lensBubble);
+        //lensBubble = null;
+    }
+    removeOverlay(); // Supprime l'overlay semi-transparent
+    removeCenteredText(); // Supprime le texte
+    document.removeEventListener('mousemove', moveLensBubble);
+}
+// Fonction pour afficher le flux de feedback avec sélection d'émoji et formulaire
+function openFeedbackForm(screenshot, action) {
+    // Créer un conteneur pour le feedback
+    var feedbackContainer = document.createElement('div');
+    feedbackContainer.style.position = 'fixed';
+    feedbackContainer.style.top = '0';
+    feedbackContainer.style.left = '0';
+    feedbackContainer.style.width = '100vw';
+    feedbackContainer.style.height = '100vh';
+    feedbackContainer.style.backgroundColor = 'rgba(0, 0, 0, 0.5)';
+    feedbackContainer.style.zIndex = '9999';
+    document.body.appendChild(feedbackContainer);
+    // Fonction pour fermer le formulaire de feedback et supprimer le conteneur
+    var closeFeedback = function () {
+        document.body.removeChild(feedbackContainer);
+    };
+    // Créer une racine React pour le formulaire de feedback
+    var root = react_dom_client__WEBPACK_IMPORTED_MODULE_1__.createRoot(feedbackContainer);
+    root.render((0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(_components_captureFeedbackFlow_CaptureFeedbackFlow__WEBPACK_IMPORTED_MODULE_2__["default"], { action: action, screenshot: screenshot, onClose: closeFeedback, onCaptureClick: function (formData, selectedAction) {
+            closeFeedback();
+            enableLensMode();
+            console.log('Action sélectionnée :', selectedAction);
+        }, selectedAction: action }));
+}
+// Affichage du menu flottant après trois clics
+function displayFloatingMenu(x, y) {
+    var currentURL = window.location.href;
+    // Vérifie si le site est bloqué
+    if ((0,_utils_blockAdultSites__WEBPACK_IMPORTED_MODULE_5__.shouldBlockUrl)(currentURL)) {
+        var containerId = "warning-container";
+        console.log("Site inapproprié détecté, application du flou...");
+        (0,_utils_blurAllInappropriateMedia__WEBPACK_IMPORTED_MODULE_7__.blurAllInappropriateMedia)(); // Flouter les médias
+        var container_1 = document.getElementById(containerId);
+        if (!container_1) {
+            container_1 = document.createElement("div");
+            container_1.id = containerId;
+            document.body.appendChild(container_1);
+        }
+        if (container_1) {
+            var root_1 = react_dom_client__WEBPACK_IMPORTED_MODULE_1__.createRoot(container_1);
+            // Affiche le popup
+            root_1.render((0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(_components_warning_Warning__WEBPACK_IMPORTED_MODULE_6__["default"], { onClose: function () {
+                    root_1.unmount();
+                    container_1 === null || container_1 === void 0 ? void 0 : container_1.remove(); // Supprime le popup lorsqu'il est fermé
+                    (0,_utils_unblurAllMedia__WEBPACK_IMPORTED_MODULE_8__.unblurAllMedia)(); // Déflouter les médias
+                }, onLoginSuccess: function () {
+                    console.log("Action après connexion réussie");
+                } }));
+            return; // Arrête l'exécution si le site est bloqué
+        }
+    }
+    // Logique pour afficher le menu flottant si le site n'est pas bloqué
+    if (menuOpen) {
+        console.log("Le menu flottant est déjà ouvert !");
+        return; // Si le menu est déjà ouvert, ne rien faire
+    }
+    menuOpen = true;
+    var menuContainer = document.createElement('div');
+    document.body.appendChild(menuContainer);
+    var closeMenu = function () {
+        console.log("Fermeture du menu...");
+        document.body.removeChild(menuContainer);
+        menuOpen = false;
+    };
+    var root = react_dom_client__WEBPACK_IMPORTED_MODULE_1__.createRoot(menuContainer);
+    root.render((0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(_components_DraggableFloatingMenu__WEBPACK_IMPORTED_MODULE_4__["default"], { x: x, y: y, onActionClick: function (action) {
+            if (action === 'capture') {
+                closeMenu();
+                enableLensMode(function (screenshot) {
+                    openFeedbackWithEmojiSelection(screenshot, 'capture', {
+                        initialFormData: undefined,
+                        initialStep: 'emoji', // Inclus correctement ici
+                    });
+                });
+            }
+            else if (action === 'cheart') {
+                closeMenu();
+                openFeedbackWithEmojiSelection(null, 'cheart', {
+                    initialFormData: undefined,
+                    initialStep: 'emoji', // Inclus correctement ici
+                });
+            }
+            else if (action === 'suggestion') {
+                closeMenu();
+                openFeedbackForm('', 'suggestion');
+                /*           openFeedbackWithEmojiSelection(null, 'suggestion', {
+                            initialFormData: undefined,
+                            initialStep: 'form', // Inclus correctement ici
+                          }); */
+            }
+        } }));
+}
+chrome.runtime.onMessage.addListener(function (message, sender, sendResponse) {
+    if (message.action === "showWarningPopup") {
+        // Créer un conteneur pour afficher le popup
+        var containerId = "warning-popup-container";
+        var container_2 = document.getElementById(containerId);
+        if (!container_2) {
+            container_2 = document.createElement("div");
+            container_2.id = containerId;
+            document.body.appendChild(container_2);
+        }
+        var root_2 = react_dom_client__WEBPACK_IMPORTED_MODULE_1__.createRoot(container_2);
+        // Afficher le popup d'avertissement
+        root_2.render((0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(_components_warning_Warning__WEBPACK_IMPORTED_MODULE_6__["default"], { onClose: function () {
+                root_2.unmount();
+                container_2 === null || container_2 === void 0 ? void 0 : container_2.remove(); // Supprime le popup du DOM
+            }, onLoginSuccess: function () {
+                console.log("Action après confirmation");
+            } }));
+        sendResponse({ success: true });
+    }
+});
+// Gestion du message envoyé par le background script
+chrome.runtime.onMessage.addListener(function (message, sender, sendResponse) {
+    console.log("Message reçu dans content.js :", message);
+    if (message.action === "showFloatingMenu") {
+        console.log("Affichage du menu flottant...");
+        displayFloatingMenu(window.innerWidth / 2, window.innerHeight / 2);
+        sendResponse({ success: true });
+    }
+    else {
+        console.log("Action non reconnue :", message.action);
+        sendResponse({ success: false });
+    }
+});
+// Détection des trois clics pour afficher le menu flottant
+function handleClick(event) {
+    if (menuOpen)
+        return;
+    clickCount++;
+    if (clickCount === 3) {
+        displayFloatingMenu(event.clientX, event.clientY);
+        clickCount = 0;
+        // Ajoutez un listener pour détecter la fermeture du menu
+        document.addEventListener('menuClosed', function () {
+            menuOpen = false; // Permet de réouvrir le menu après fermeture
+        });
+    }
+    // Remet à zéro `clickCount` après une seconde d'inactivité
+    setTimeout(function () {
+        clickCount = 0;
+    }, 1000);
+}
+// Écouteur d'événements pour les clics
+window.addEventListener('click', handleClick);
+
+
+/***/ }),
+
+/***/ "./src/hooks/useFlashMessage.tsx":
+/*!***************************************!*\
+  !*** ./src/hooks/useFlashMessage.tsx ***!
+  \***************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   useFlashMessage: () => (/* binding */ useFlashMessage)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+
+var useFlashMessage = function () {
+    var _a = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(null), flashMessage = _a[0], setFlashMessage = _a[1];
+    var showFlashMessage = (0,react__WEBPACK_IMPORTED_MODULE_0__.useCallback)(function (message, type, duration) {
+        if (duration === void 0) { duration = 5000; }
+        var id = Date.now(); // Identifiant unique basé sur l'heure
+        console.log('Setting FlashMessage:', { id: id, message: message, type: type, duration: duration });
+        setFlashMessage({ message: message, type: type, duration: duration });
+        setTimeout(function () {
+            console.log('Auto-closing FlashMessage');
+            setFlashMessage(null);
+        }, duration);
+    }, []);
+    return { flashMessage: flashMessage, showFlashMessage: showFlashMessage };
+};
+
+
+/***/ }),
+
 /***/ "./src/services/AuthService.ts":
 /*!*************************************!*\
   !*** ./src/services/AuthService.ts ***!
@@ -43537,14 +44300,13 @@ var Warning = function (_a) {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   getLoginTime: () => (/* binding */ getLoginTime),
+/* harmony export */   getValidToken: () => (/* binding */ getValidToken),
 /* harmony export */   isUserAuthenticated: () => (/* binding */ isUserAuthenticated),
 /* harmony export */   login: () => (/* binding */ login),
-/* harmony export */   logout: () => (/* binding */ logout),
-/* harmony export */   setLoginTime: () => (/* binding */ setLoginTime)
+/* harmony export */   logout: () => (/* binding */ logout)
 /* harmony export */ });
 /* harmony import */ var _utils_storageUtil__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../utils/storageUtil */ "./src/utils/storageUtil.ts");
-// authService.ts
+/* harmony import */ var _TokensServices__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./TokensServices */ "./src/services/TokensServices.ts");
 var __awaiter = (undefined && undefined.__awaiter) || function (thisArg, _arguments, P, generator) {
     function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
     return new (P || (P = Promise))(function (resolve, reject) {
@@ -43581,163 +44343,320 @@ var __generator = (undefined && undefined.__generator) || function (thisArg, bod
         if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
     }
 };
-/* import { getToken, setToken, removeToken } from '../utils/storageUtil';
+ // Mise à jour pour chrome.storage
 
-const API_URL = 'https://usearly-api.vercel.app/api/v1';
-
-// Vérifie si l'utilisateur est authentifié
-export function isUserAuthenticated(): boolean {
-  return !!getToken();
-}
-
-// Gère la connexion de l'utilisateur
-export async function login(email: string, password: string): Promise<boolean> {
+var API_URL = 'https://usearly-api.vercel.app/api/v1';
+// Fonction de connexion
+/* export async function login(email: string, password: string, rememberMe: boolean): Promise<boolean> {
   try {
     const response = await fetch(`${API_URL}/user/login`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ email, password }),
-      mode: 'cors', // Ajoute le mode CORS pour gérer les requêtes cross-origin
+      body: JSON.stringify({ email, password }), // Envoie l'indicateur "rememberMe"
     });
     const data = await response.json();
-    if (data.token) {
-      setToken(data.token);
+
+    if (response.ok && data.accessToken && data.refreshToken) {
+      console.log('Connexion réussie, stockage des tokens.', data);
+
+      // Stocke les tokens
+      setTokens(data.accessToken);
+
+      // Enregistrez les tokens en fonction de "Se souvenir de moi"
+      if (rememberMe) {
+        localStorage.setItem('accessToken', data.accessToken);
+        localStorage.setItem('refreshToken', data.refreshToken);
+      } else {
+        sessionStorage.setItem('accessToken', data.accessToken);
+        sessionStorage.setItem('refreshToken', data.refreshToken);
+      }
+
       return true;
     } else {
-      throw new Error('Authentification échouée');
+      console.error('Échec de la connexion :', data.message);
+      throw new Error(data.message || 'Authentification échouée.');
     }
   } catch (error) {
-    console.error('Erreur de connexion:', error);
+    console.error('Erreur lors de la connexion :', error);
     return false;
   }
-}
-
-// Gère la déconnexion de l'utilisateur
-export function logout() {
-  removeToken();
 } */
-// AuthService.ts
- // Mise à jour pour chrome.storage
-var API_URL = 'https://20d2-217-128-226-57.ngrok-free.app/api/v1';
-//const API_URL_DEV = 'https://5b91-217-128-226-57.ngrok-free.app/api/v1';
-function login(email, password) {
+function login(email, password, rememberMe) {
     return __awaiter(this, void 0, void 0, function () {
-        var response, data, error_1;
+        var response, errorData, data_1, data, error_1;
         return __generator(this, function (_a) {
             switch (_a.label) {
                 case 0:
                     _a.trys.push([0, 7, , 8]);
                     return [4 /*yield*/, fetch("".concat(API_URL, "/user/login"), {
                             method: 'POST',
-                            headers: { 'Content-Type': 'application/json', Origin: "chrome-extension://fjcggidednblenggahpkilfidbalhmad" },
-                            body: JSON.stringify({ email: email, password: password }),
+                            headers: {
+                                'Content-Type': 'application/json',
+                            },
+                            credentials: 'include',
+                            body: JSON.stringify({ email: email, password: password, rememberMe: rememberMe }),
                         })];
                 case 1:
                     response = _a.sent();
+                    if (!!response.ok) return [3 /*break*/, 3];
                     return [4 /*yield*/, response.json()];
                 case 2:
-                    data = _a.sent();
-                    if (!data.token) return [3 /*break*/, 5];
-                    console.log("data: ", data);
-                    return [4 /*yield*/, (0,_utils_storageUtil__WEBPACK_IMPORTED_MODULE_0__.setToken)(data.token)];
+                    errorData = _a.sent();
+                    throw new Error(errorData.message || 'Erreur inconnue');
                 case 3:
-                    _a.sent(); // Stocke le token avec chrome.storage
-                    return [4 /*yield*/, setLoginTime()];
+                    if (!response.ok) return [3 /*break*/, 5];
+                    return [4 /*yield*/, response.json()];
                 case 4:
-                    _a.sent(); // Stocke l'heure de connexion
+                    data_1 = _a.sent();
+                    (0,_utils_storageUtil__WEBPACK_IMPORTED_MODULE_0__.setTokens)(data_1.accessToken, data_1.refreshToken || null); // Ajout des tokens
+                    console.log("Connexion réussie. Tokens stockés :", data_1);
                     return [2 /*return*/, true];
-                case 5: throw new Error('Authentification échouée');
-                case 6: return [3 /*break*/, 8];
+                case 5: return [4 /*yield*/, response.json()];
+                case 6:
+                    data = _a.sent();
+                    console.log("Données reçues :", data);
+                    if (data.accessToken) {
+                        (0,_utils_storageUtil__WEBPACK_IMPORTED_MODULE_0__.setTokens)(data.accessToken, data.refreshToken || null); // Stockez les tokens
+                        return [2 /*return*/, true]; // Connexion réussie
+                    }
+                    else {
+                        return [2 /*return*/, false]; // Aucun token reçu
+                    }
+                    return [3 /*break*/, 8];
                 case 7:
                     error_1 = _a.sent();
-                    console.error('Erreur de connexion:', error_1);
-                    return [2 /*return*/, false];
+                    console.error('Erreur lors de la connexion :', error_1);
+                    throw error_1; // Relancer l'erreur pour la gérer dans le composant
                 case 8: return [2 /*return*/];
             }
         });
     });
 }
-// Stocke l'heure de connexion
-function setLoginTime() {
-    return __awaiter(this, void 0, void 0, function () {
-        var currentTime;
-        return __generator(this, function (_a) {
-            currentTime = Date.now();
-            chrome.storage.local.set({ loginTime: currentTime });
-            return [2 /*return*/];
-        });
-    });
-}
-// Récupère l'heure de connexion
-function getLoginTime() {
-    return __awaiter(this, void 0, void 0, function () {
-        return __generator(this, function (_a) {
-            return [2 /*return*/, new Promise(function (resolve) {
-                    chrome.storage.local.get(['loginTime'], function (result) {
-                        resolve(result.loginTime || null);
-                    });
-                })];
-        });
-    });
-}
-// Vérifie si l'utilisateur est encore authentifié (déconnexion après 20 secondes pour le test)
+// Vérifie si l'utilisateur est encore authentifié
 function isUserAuthenticated() {
     return __awaiter(this, void 0, void 0, function () {
-        var _this = this;
+        var tokens, isValid, newAccessToken;
         return __generator(this, function (_a) {
-            return [2 /*return*/, new Promise(function (resolve) { return __awaiter(_this, void 0, void 0, function () {
-                    var _this = this;
-                    return __generator(this, function (_a) {
-                        chrome.runtime.sendMessage({ action: 'isAuthenticated' }, function (response) { return __awaiter(_this, void 0, void 0, function () {
-                            var loginTime, elapsedTime, FIVE_HOURS_IN_MS;
-                            var _a;
-                            return __generator(this, function (_b) {
-                                switch (_b.label) {
-                                    case 0:
-                                        if (!chrome.runtime.lastError) return [3 /*break*/, 1];
-                                        console.error("Erreur de communication avec le script de fond :", chrome.runtime.lastError.message);
-                                        resolve(false);
-                                        return [3 /*break*/, 3];
-                                    case 1: return [4 /*yield*/, getLoginTime()];
-                                    case 2:
-                                        loginTime = _b.sent();
-                                        if (loginTime) {
-                                            elapsedTime = Date.now() - loginTime;
-                                            FIVE_HOURS_IN_MS = 5 * 60 * 60 * 1000;
-                                            if (elapsedTime >= FIVE_HOURS_IN_MS) {
-                                                //console.log(`Temps écoulé ::: ${elapsedTime / 1000} secondes. Déconnexion.`);
-                                                logout(); // Déconnectez si 20 secondes sont écoulées
-                                                resolve(false);
-                                            }
-                                            else {
-                                                console.log("Temps restant avant d\u00E9connexion ::: ".concat((FIVE_HOURS_IN_MS - elapsedTime) / 1000, " secondes."));
-                                                resolve((_a = response === null || response === void 0 ? void 0 : response.isAuthenticated) !== null && _a !== void 0 ? _a : false);
-                                            }
-                                        }
-                                        else {
-                                            resolve(false); // Aucun login enregistré
-                                        }
-                                        _b.label = 3;
-                                    case 3: return [2 /*return*/];
-                                }
-                            });
-                        }); });
-                        return [2 /*return*/];
-                    });
-                }); })];
+            switch (_a.label) {
+                case 0: return [4 /*yield*/, (0,_utils_storageUtil__WEBPACK_IMPORTED_MODULE_0__.getTokens)()];
+                case 1:
+                    tokens = _a.sent();
+                    if (!tokens.accessToken) {
+                        console.log("Aucun accessToken trouvé. Redirection vers la connexion...");
+                        return [2 /*return*/, false]; // Aucun token : l'utilisateur n'est pas authentifié
+                    }
+                    return [4 /*yield*/, (0,_TokensServices__WEBPACK_IMPORTED_MODULE_1__.verifyAccessToken)(tokens.accessToken)];
+                case 2:
+                    isValid = _a.sent();
+                    if (isValid) {
+                        return [2 /*return*/, true]; // Token valide
+                    }
+                    if (!tokens.refreshToken) return [3 /*break*/, 6];
+                    console.log("Tentative de rafraîchissement du token d'accès.");
+                    return [4 /*yield*/, (0,_TokensServices__WEBPACK_IMPORTED_MODULE_1__.refreshAccessToken)()];
+                case 3:
+                    newAccessToken = _a.sent();
+                    if (!newAccessToken) return [3 /*break*/, 5];
+                    // Mettre à jour les tokens
+                    return [4 /*yield*/, (0,_utils_storageUtil__WEBPACK_IMPORTED_MODULE_0__.setTokens)(newAccessToken, tokens.refreshToken)];
+                case 4:
+                    // Mettre à jour les tokens
+                    _a.sent();
+                    return [2 /*return*/, true];
+                case 5:
+                    console.error("Échec du rafraîchissement du token. Déconnexion...");
+                    logout(); // Déconnecter si le refresh échoue
+                    return [2 /*return*/, false];
+                case 6:
+                    console.log("Aucun token valide. Redirection vers la connexion...");
+                    return [2 /*return*/, false]; // Aucun accessToken ni refreshToken valide
+            }
         });
     });
 }
 // Déconnecte l'utilisateur
 function logout() {
-    chrome.runtime.sendMessage({ action: "logout" }, function (response) {
-        if (response === null || response === void 0 ? void 0 : response.success) {
-            console.log("Déconnexion réussie");
-        }
+    return __awaiter(this, void 0, void 0, function () {
+        return __generator(this, function (_a) {
+            console.log('Déconnexion de l\'utilisateur.');
+            // Supprimez les tokens du stockage
+            (0,_utils_storageUtil__WEBPACK_IMPORTED_MODULE_0__.removeTokens)();
+            // Supprimez également l'indication "rememberMe" si elle existe
+            chrome.storage.local.remove(['rememberMe'], function () {
+                console.log('Indicateur "Se souvenir de moi" supprimé.');
+            });
+            return [2 /*return*/];
+        });
     });
-    // Supprime les informations de connexion
-    chrome.storage.local.remove(['authToken', 'loginTime'], function () {
-        console.log("Données utilisateur supprimées");
+}
+// Récupère un token valide (soit l'Access Token actuel, soit un nouveau)
+function getValidToken() {
+    return __awaiter(this, void 0, void 0, function () {
+        var tokens, isValid, newAccessToken, error_2;
+        return __generator(this, function (_a) {
+            switch (_a.label) {
+                case 0: return [4 /*yield*/, (0,_utils_storageUtil__WEBPACK_IMPORTED_MODULE_0__.getTokens)()];
+                case 1:
+                    tokens = _a.sent();
+                    if (!tokens.accessToken) return [3 /*break*/, 3];
+                    return [4 /*yield*/, (0,_TokensServices__WEBPACK_IMPORTED_MODULE_1__.verifyAccessToken)(tokens.accessToken)];
+                case 2:
+                    isValid = _a.sent();
+                    if (isValid) {
+                        return [2 /*return*/, tokens.accessToken];
+                    }
+                    _a.label = 3;
+                case 3:
+                    _a.trys.push([3, 5, , 6]);
+                    console.log('Tentative de rafraîchissement du token d\'accès.');
+                    return [4 /*yield*/, (0,_TokensServices__WEBPACK_IMPORTED_MODULE_1__.refreshAccessToken)()];
+                case 4:
+                    newAccessToken = _a.sent();
+                    if (newAccessToken) {
+                        (0,_utils_storageUtil__WEBPACK_IMPORTED_MODULE_0__.setTokens)(newAccessToken, tokens.refreshToken || null);
+                        return [2 /*return*/, newAccessToken];
+                    }
+                    console.log('Tentative de rafraîchissement du token d\'accès.', newAccessToken);
+                    return [3 /*break*/, 6];
+                case 5:
+                    error_2 = _a.sent();
+                    console.error('Erreur lors de l\'obtention d\'un token valide :', error_2);
+                    return [3 /*break*/, 6];
+                case 6: return [2 /*return*/, null];
+            }
+        });
+    });
+}
+
+
+/***/ }),
+
+/***/ "./src/services/TokensServices.ts":
+/*!****************************************!*\
+  !*** ./src/services/TokensServices.ts ***!
+  \****************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   refreshAccessToken: () => (/* binding */ refreshAccessToken),
+/* harmony export */   verifyAccessToken: () => (/* binding */ verifyAccessToken)
+/* harmony export */ });
+/* harmony import */ var _utils_storageUtil__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../utils/storageUtil */ "./src/utils/storageUtil.ts");
+var __awaiter = (undefined && undefined.__awaiter) || function (thisArg, _arguments, P, generator) {
+    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
+    return new (P || (P = Promise))(function (resolve, reject) {
+        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
+        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
+        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
+        step((generator = generator.apply(thisArg, _arguments || [])).next());
+    });
+};
+var __generator = (undefined && undefined.__generator) || function (thisArg, body) {
+    var _ = { label: 0, sent: function() { if (t[0] & 1) throw t[1]; return t[1]; }, trys: [], ops: [] }, f, y, t, g;
+    return g = { next: verb(0), "throw": verb(1), "return": verb(2) }, typeof Symbol === "function" && (g[Symbol.iterator] = function() { return this; }), g;
+    function verb(n) { return function (v) { return step([n, v]); }; }
+    function step(op) {
+        if (f) throw new TypeError("Generator is already executing.");
+        while (g && (g = 0, op[0] && (_ = 0)), _) try {
+            if (f = 1, y && (t = op[0] & 2 ? y["return"] : op[0] ? y["throw"] || ((t = y["return"]) && t.call(y), 0) : y.next) && !(t = t.call(y, op[1])).done) return t;
+            if (y = 0, t) op = [op[0] & 2, t.value];
+            switch (op[0]) {
+                case 0: case 1: t = op; break;
+                case 4: _.label++; return { value: op[1], done: false };
+                case 5: _.label++; y = op[1]; op = [0]; continue;
+                case 7: op = _.ops.pop(); _.trys.pop(); continue;
+                default:
+                    if (!(t = _.trys, t = t.length > 0 && t[t.length - 1]) && (op[0] === 6 || op[0] === 2)) { _ = 0; continue; }
+                    if (op[0] === 3 && (!t || (op[1] > t[0] && op[1] < t[3]))) { _.label = op[1]; break; }
+                    if (op[0] === 6 && _.label < t[1]) { _.label = t[1]; t = op; break; }
+                    if (t && _.label < t[2]) { _.label = t[2]; _.ops.push(op); break; }
+                    if (t[2]) _.ops.pop();
+                    _.trys.pop(); continue;
+            }
+            op = body.call(thisArg, _);
+        } catch (e) { op = [6, e]; y = 0; } finally { f = t = 0; }
+        if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
+    }
+};
+
+var API_URL = 'https://usearly-api.vercel.app/api/v1';
+// Fonction de vérification du token
+function verifyAccessToken(accessToken) {
+    return __awaiter(this, void 0, void 0, function () {
+        var response, error_1;
+        return __generator(this, function (_a) {
+            switch (_a.label) {
+                case 0:
+                    _a.trys.push([0, 2, , 3]);
+                    return [4 /*yield*/, fetch("".concat(API_URL, "/user/verify"), {
+                            method: 'POST',
+                            headers: {
+                                'Content-Type': 'application/json',
+                                Authorization: "Bearer ".concat(accessToken), // Vérifiez ici
+                            },
+                            mode: 'cors',
+                        })];
+                case 1:
+                    response = _a.sent();
+                    if (response.ok) {
+                        console.log("Token valide.");
+                        return [2 /*return*/, true];
+                    }
+                    else {
+                        console.error("Token non valide ou expiré.");
+                        return [2 /*return*/, false];
+                    }
+                    return [3 /*break*/, 3];
+                case 2:
+                    error_1 = _a.sent();
+                    console.error("Erreur lors de la vérification du token :", error_1);
+                    return [2 /*return*/, false];
+                case 3: return [2 /*return*/];
+            }
+        });
+    });
+}
+function refreshAccessToken() {
+    return __awaiter(this, void 0, void 0, function () {
+        var tokens, response, data, error_2;
+        return __generator(this, function (_a) {
+            switch (_a.label) {
+                case 0: return [4 /*yield*/, (0,_utils_storageUtil__WEBPACK_IMPORTED_MODULE_0__.getTokens)()];
+                case 1:
+                    tokens = _a.sent();
+                    if (!tokens.refreshToken) {
+                        console.error("Aucun refreshToken trouvé. Redirection vers la connexion.");
+                        return [2 /*return*/, null];
+                    }
+                    _a.label = 2;
+                case 2:
+                    _a.trys.push([2, 7, , 8]);
+                    return [4 /*yield*/, fetch("".concat(API_URL, "/user/refresh-token"), {
+                            method: 'POST',
+                            credentials: 'include',
+                            headers: { 'Content-Type': 'application/json' },
+                        })];
+                case 3:
+                    response = _a.sent();
+                    if (!response.ok) return [3 /*break*/, 5];
+                    return [4 /*yield*/, response.json()];
+                case 4:
+                    data = _a.sent();
+                    console.log("Token d'accès rafraîchi avec succès.");
+                    return [2 /*return*/, data.accessToken];
+                case 5:
+                    console.error("Échec lors du rafraîchissement du token.");
+                    return [2 /*return*/, null];
+                case 6: return [3 /*break*/, 8];
+                case 7:
+                    error_2 = _a.sent();
+                    console.error("Erreur lors de la requête de rafraîchissement :", error_2);
+                    return [2 /*return*/, null];
+                case 8: return [2 /*return*/];
+            }
+        });
     });
 }
 
@@ -43754,9 +44673,21 @@ function logout() {
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   createAlert: () => (/* binding */ createAlert),
-/* harmony export */   updateAlert: () => (/* binding */ updateAlert)
+/* harmony export */   createCoupdeCoeur: () => (/* binding */ createCoupdeCoeur),
+/* harmony export */   createSuggest: () => (/* binding */ createSuggest)
 /* harmony export */ });
 // apiService.ts
+var __assign = (undefined && undefined.__assign) || function () {
+    __assign = Object.assign || function(t) {
+        for (var s, i = 1, n = arguments.length; i < n; i++) {
+            s = arguments[i];
+            for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p))
+                t[p] = s[p];
+        }
+        return t;
+    };
+    return __assign.apply(this, arguments);
+};
 var __awaiter = (undefined && undefined.__awaiter) || function (thisArg, _arguments, P, generator) {
     function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
     return new (P || (P = Promise))(function (resolve, reject) {
@@ -43793,10 +44724,79 @@ var __generator = (undefined && undefined.__generator) || function (thisArg, bod
         if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
     }
 };
-var API_URL = 'https://20d2-217-128-226-57.ngrok-free.app/api/v1';
+//const API_URL = 'https://716f-2a01-cb08-512-d600-e406-7bbb-7bff-9fa0.ngrok-free.app/api/v1';
 var API_BASE_URL = 'https://usearly-api.vercel.app/api/v1';
-var url = "".concat(API_URL, "/user/alert/new");
-var url2 = "".concat(API_URL, "/test-cors");
+var URL_ALERT = "".concat(API_BASE_URL, "/user/alert/new");
+var URL_CDC = "".concat(API_BASE_URL, "/user/coupdecoeur/new");
+var URL_SUGGEST = "".concat(API_BASE_URL, "/user/suggestion/new");
+/**
+ * Effectue une requête POST pour créer une suggestion.
+ * @param data - Les données de l'alerte à envoyer au serveur.
+ * @param token - Le token d'authentification Bearer.
+ * @returns - La réponse JSON du serveur ou une erreur si la requête échoue.
+ */
+var createSuggest = function (data, token) { return __awaiter(void 0, void 0, void 0, function () {
+    var response, errorData, responseData;
+    return __generator(this, function (_a) {
+        switch (_a.label) {
+            case 0: return [4 /*yield*/, fetch(URL_SUGGEST, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        Origin: window.location.href,
+                        Authorization: "Bearer ".concat(token),
+                    },
+                    mode: 'cors',
+                    body: JSON.stringify(data),
+                })];
+            case 1:
+                response = _a.sent();
+                if (!!response.ok) return [3 /*break*/, 3];
+                return [4 /*yield*/, response.json()];
+            case 2:
+                errorData = _a.sent();
+                throw errorData; // Lance une erreur avec ApiError
+            case 3: return [4 /*yield*/, response.json()];
+            case 4:
+                responseData = _a.sent();
+                return [2 /*return*/, __assign(__assign({}, responseData), { status: response.status })];
+        }
+    });
+}); };
+/**
+ * Effectue une requête POST pour créer un coup de coeur.
+ * @param data - Les données du coup de coeur à envoyer au serveur.
+ * @param token - Le token d'authentification Bearer.
+ * @returns La réponse JSON du serveur ou une erreur si la requête échoue.
+ * */
+var createCoupdeCoeur = function (data, token) { return __awaiter(void 0, void 0, void 0, function () {
+    var response, errorData, responseData;
+    return __generator(this, function (_a) {
+        switch (_a.label) {
+            case 0: return [4 /*yield*/, fetch(URL_CDC, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        Origin: window.location.href,
+                        Authorization: "Bearer ".concat(token),
+                    },
+                    mode: 'cors',
+                    body: JSON.stringify(data),
+                })];
+            case 1:
+                response = _a.sent();
+                if (!!response.ok) return [3 /*break*/, 3];
+                return [4 /*yield*/, response.json()];
+            case 2:
+                errorData = _a.sent();
+                throw errorData; // Lance une erreur avec ApiError
+            case 3: return [4 /*yield*/, response.json()];
+            case 4:
+                responseData = _a.sent();
+                return [2 /*return*/, __assign(__assign({}, responseData), { status: response.status })];
+        }
+    });
+}); };
 /**
  * Effectue une requête POST pour créer un signalement.
  * @param alertData - Les données du signalement à envoyer au serveur.
@@ -43804,13 +44804,12 @@ var url2 = "".concat(API_URL, "/test-cors");
  * @returns La réponse JSON du serveur ou une erreur si la requête échoue.
  */
 var createAlert = function (alertData, token) { return __awaiter(void 0, void 0, void 0, function () {
-    var currentUrl, urlObj, response, errorData;
+    var currentUrl, response, result, errorData;
     return __generator(this, function (_a) {
         switch (_a.label) {
             case 0:
                 currentUrl = window.location.href;
-                urlObj = new URL(currentUrl);
-                return [4 /*yield*/, fetch(url, {
+                return [4 /*yield*/, fetch(URL_ALERT, {
                         method: 'POST',
                         headers: {
                             'Content-Type': 'application/json',
@@ -43822,52 +44821,15 @@ var createAlert = function (alertData, token) { return __awaiter(void 0, void 0,
                     })];
             case 1:
                 response = _a.sent();
-                if (!!response.ok) return [3 /*break*/, 3];
                 return [4 /*yield*/, response.json()];
             case 2:
+                result = _a.sent();
+                if (!!response.ok) return [3 /*break*/, 4];
+                return [4 /*yield*/, response.json()];
+            case 3:
                 errorData = _a.sent();
                 throw errorData; // Lance une erreur avec ApiError
-            case 3: return [4 /*yield*/, response.json()];
-            case 4: return [2 /*return*/, _a.sent()];
-        }
-    });
-}); };
-/**
- * Met à jour la catégorie d'un signalement.
- * @param category - La catégorie du signalement à mettre à jour.
- * @param token - Le token d'authentification Bearer.
- * @returns La réponse JSON du serveur ou une erreur si la requête échoue.
- */
-var updateAlert = function (category, token) { return __awaiter(void 0, void 0, void 0, function () {
-    var response, data, err_1;
-    return __generator(this, function (_a) {
-        switch (_a.label) {
-            case 0:
-                _a.trys.push([0, 3, , 4]);
-                return [4 /*yield*/, fetch("".concat(API_URL, "/user/update-category"), {
-                        method: "PUT",
-                        headers: {
-                            "Content-Type": "application/json",
-                            Origin: "chrome-extension://fjcggidednblenggahpkilfidbalhmad",
-                            Authorization: "Bearer ".concat(token),
-                        },
-                        mode: 'cors',
-                        body: JSON.stringify({ category: category }),
-                    })];
-            case 1:
-                response = _a.sent();
-                return [4 /*yield*/, response.json()];
-            case 2:
-                data = _a.sent();
-                if (!response.ok) {
-                    return [2 /*return*/, { success: false, error: data.error || "Erreur inconnue." }];
-                }
-                return [2 /*return*/, { success: true, message: data.message }];
-            case 3:
-                err_1 = _a.sent();
-                console.error("Erreur lors de la requête :", err_1);
-                return [2 /*return*/, { success: false, error: "Erreur réseau. Veuillez réessayer." }];
-            case 4: return [2 /*return*/];
+            case 4: return [2 /*return*/, __assign(__assign({}, result), { status: response.status })];
         }
     });
 }); };
@@ -44027,6 +44989,55 @@ function blurAllInappropriateMedia() {
 
 /***/ }),
 
+/***/ "./src/utils/emojiUtils.ts":
+/*!*********************************!*\
+  !*** ./src/utils/emojiUtils.ts ***!
+  \*********************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   emojiSentiments: () => (/* binding */ emojiSentiments),
+/* harmony export */   getEmojisForAction: () => (/* binding */ getEmojisForAction),
+/* harmony export */   getTitleForEmoji: () => (/* binding */ getTitleForEmoji),
+/* harmony export */   heartEmojis: () => (/* binding */ heartEmojis)
+/* harmony export */ });
+var emojiSentiments = [
+    { emoji: '😐', title: "Qu'est-ce qui pourrait être amélioré ?" },
+    { emoji: '😤', title: "Qu'est-ce qui vous agace ?" },
+    { emoji: '😡', title: "Qu'est-ce qui vous met en colère ?" },
+    { emoji: '🤔', title: "Quel problème rencontrez-vous ?" },
+    { emoji: '😭', title: "Qu’est-ce qui vous déçoit ?" },
+    { emoji: '😖', title: "Qu’est-ce qui vous frustre ?" },
+    { emoji: '😵', title: "Qu’est-ce qui vous choque ?" },
+    { emoji: '🤣', title: "Qu’est-ce qui vous fait marrer ?" },
+];
+// Définition des émojis pour l’action `cheart`
+var heartEmojis = [
+    { emoji: '👏', title: "Qu’est-ce que vous applaudissez ?" },
+    { emoji: '👍', title: "Qu’est-ce que vous aimez ?" },
+    { emoji: '❤️', title: "Qu’est-ce que vous adorez ?" },
+    { emoji: '🤩', title: "Qu’est-ce qui vous impressionne ?" },
+    { emoji: '🤣', title: "Qu’est-ce qui rend joyeux ?" },
+];
+// Fonction pour obtenir les émojis selon l’action
+var getEmojisForAction = function (action) {
+    if (action === 'cheart') {
+        return heartEmojis;
+    }
+    return emojiSentiments;
+};
+// Fonction pour obtenir le titre d’un emoji
+var getTitleForEmoji = function (emoji, action) {
+    var emojis = getEmojisForAction(action); // Obtenir les émojis pour l'action
+    var match = emojis.find(function (item) { return item.emoji === emoji; });
+    return (match === null || match === void 0 ? void 0 : match.title) || "Donnez votre avis";
+};
+
+
+/***/ }),
+
 /***/ "./src/utils/isApiError.ts":
 /*!*********************************!*\
   !*** ./src/utils/isApiError.ts ***!
@@ -44054,29 +45065,105 @@ function isApiError(err) {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   getToken: () => (/* binding */ getToken),
-/* harmony export */   removeToken: () => (/* binding */ removeToken),
-/* harmony export */   setToken: () => (/* binding */ setToken)
+/* harmony export */   getTokens: () => (/* binding */ getTokens),
+/* harmony export */   removeTokens: () => (/* binding */ removeTokens),
+/* harmony export */   setLoginTime: () => (/* binding */ setLoginTime),
+/* harmony export */   setTokens: () => (/* binding */ setTokens)
 /* harmony export */ });
-// Enregistrement du token
-function setToken(token) {
-    chrome.storage.local.set({ token: token }, function () {
-        console.log("Token enregistré dans chrome.storage");
+var __awaiter = (undefined && undefined.__awaiter) || function (thisArg, _arguments, P, generator) {
+    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
+    return new (P || (P = Promise))(function (resolve, reject) {
+        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
+        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
+        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
+        step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
-}
-// Récupération du token
-function getToken() {
-    return new Promise(function (resolve) {
-        chrome.storage.local.get(["token"], function (result) {
-            console.log("Token récupéré depuis le stockage:", result.token);
-            resolve(result.token || null);
+};
+var __generator = (undefined && undefined.__generator) || function (thisArg, body) {
+    var _ = { label: 0, sent: function() { if (t[0] & 1) throw t[1]; return t[1]; }, trys: [], ops: [] }, f, y, t, g;
+    return g = { next: verb(0), "throw": verb(1), "return": verb(2) }, typeof Symbol === "function" && (g[Symbol.iterator] = function() { return this; }), g;
+    function verb(n) { return function (v) { return step([n, v]); }; }
+    function step(op) {
+        if (f) throw new TypeError("Generator is already executing.");
+        while (g && (g = 0, op[0] && (_ = 0)), _) try {
+            if (f = 1, y && (t = op[0] & 2 ? y["return"] : op[0] ? y["throw"] || ((t = y["return"]) && t.call(y), 0) : y.next) && !(t = t.call(y, op[1])).done) return t;
+            if (y = 0, t) op = [op[0] & 2, t.value];
+            switch (op[0]) {
+                case 0: case 1: t = op; break;
+                case 4: _.label++; return { value: op[1], done: false };
+                case 5: _.label++; y = op[1]; op = [0]; continue;
+                case 7: op = _.ops.pop(); _.trys.pop(); continue;
+                default:
+                    if (!(t = _.trys, t = t.length > 0 && t[t.length - 1]) && (op[0] === 6 || op[0] === 2)) { _ = 0; continue; }
+                    if (op[0] === 3 && (!t || (op[1] > t[0] && op[1] < t[3]))) { _.label = op[1]; break; }
+                    if (op[0] === 6 && _.label < t[1]) { _.label = t[1]; t = op; break; }
+                    if (t && _.label < t[2]) { _.label = t[2]; _.ops.push(op); break; }
+                    if (t[2]) _.ops.pop();
+                    _.trys.pop(); continue;
+            }
+            op = body.call(thisArg, _);
+        } catch (e) { op = [6, e]; y = 0; } finally { f = t = 0; }
+        if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
+    }
+};
+// Enregistrement des tokens
+function setTokens(accessToken, refreshToken) {
+    chrome.storage.local.set({ accessToken: accessToken, refreshToken: refreshToken }, function () {
+        console.log("Tokens enregistrés dans chrome.storage :", {
+            accessToken: accessToken,
+            refreshToken: refreshToken,
         });
     });
 }
-// Suppression du token
-function removeToken() {
-    chrome.storage.local.remove("token", function () {
-        console.log("Token supprimé de chrome.storage");
+// Récupération des tokens
+/* export function getTokens(): Promise<{ accessToken: string | null; refreshToken: string | null }> {
+  return new Promise((resolve) => {
+    chrome.storage.local.get(["accessToken", "refreshToken"], (result) => {
+      console.log("Tokens récupérés depuis le stockage:", result);
+      resolve({
+        accessToken: result.accessToken || null,
+        refreshToken: result.refreshToken || null,
+      });
+    });
+  });
+} */
+/*   export function getTokens(): { accessToken: string | null; refreshToken: string | null } {
+    const accessToken = localStorage.getItem('accessToken') || sessionStorage.getItem('accessToken');
+    const refreshToken = localStorage.getItem('refreshToken') || sessionStorage.getItem('refreshToken');
+    return { accessToken, refreshToken };
+  } */
+function getTokens() {
+    return __awaiter(this, void 0, void 0, function () {
+        return __generator(this, function (_a) {
+            return [2 /*return*/, new Promise(function (resolve) {
+                    chrome.storage.local.get(["accessToken", "refreshToken"], function (result) {
+                        console.log("Tokens récupérés depuis chrome.storage :", result);
+                        resolve({
+                            accessToken: result.accessToken || null,
+                            refreshToken: result.refreshToken || null,
+                        });
+                    });
+                })];
+        });
+    });
+}
+// Suppression des tokens
+function removeTokens() {
+    chrome.storage.local.remove(["accessToken", "refreshToken"], function () {
+        console.log("Tokens supprimés de chrome.storage");
+    });
+}
+// Stocke l'heure de connexion
+function setLoginTime() {
+    return __awaiter(this, void 0, void 0, function () {
+        var currentTime;
+        return __generator(this, function (_a) {
+            currentTime = Date.now();
+            chrome.storage.local.set({ loginTime: currentTime }, function () {
+                console.log("Heure de connexion enregistrée :", currentTime);
+            });
+            return [2 /*return*/];
+        });
     });
 }
 
@@ -44200,475 +45287,12 @@ function unblurAllMedia() {
 /******/ 	})();
 /******/ 	
 /************************************************************************/
-var __webpack_exports__ = {};
-// This entry needs to be wrapped in an IIFE because it needs to be in strict mode.
-(() => {
-"use strict";
-/*!***************************************!*\
-  !*** ./src/content/ContentScript.tsx ***!
-  \***************************************/
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
-/* harmony import */ var react_dom_client__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-dom/client */ "./node_modules/react-dom/client.js");
-/* harmony import */ var _components_captureFeedbackFlow_CaptureFeedbackFlow__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../components/captureFeedbackFlow/CaptureFeedbackFlow */ "./src/components/captureFeedbackFlow/CaptureFeedbackFlow.tsx");
-/* harmony import */ var html2canvas__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! html2canvas */ "./node_modules/html2canvas/dist/html2canvas.js");
-/* harmony import */ var html2canvas__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(html2canvas__WEBPACK_IMPORTED_MODULE_3__);
-/* harmony import */ var _components_DraggableFloatingMenu__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../components/DraggableFloatingMenu */ "./src/components/DraggableFloatingMenu.tsx");
-/* harmony import */ var _utils_blockAdultSites__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../utils/blockAdultSites */ "./src/utils/blockAdultSites.ts");
-/* harmony import */ var _components_warning_Warning__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../components/warning/Warning */ "./src/components/warning/Warning.tsx");
-/* harmony import */ var _utils_blurAllInappropriateMedia__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../utils/blurAllInappropriateMedia */ "./src/utils/blurAllInappropriateMedia.ts");
-/* harmony import */ var _utils_unblurAllMedia__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../utils/unblurAllMedia */ "./src/utils/unblurAllMedia.ts");
-
-
-
-
-
-
-
-
-
-var clickCount = 0;
-var startX = 0;
-var startY = 0;
-var selectionBox = null;
-var lensBubble = null;
-var selectionEnabled = false; // Indicateur pour activer la sélection après le deuxième clic
-var menuOpen = false;
-var centeredText = null;
-var overlay = null;
-// Élément bulle avec icône pour le mode capture
-var captureBubble = null;
-// Activer le mode Google Lens avec la bulle (premier clic)
-function enableLensMode() {
-    console.log("Enable Lens Mode called");
-    createLensBubble(); // Afficher la bulle avec l'icône de caméra
-    createCenteredText(); // Affiche le texte centré
-    createOverlay(); // Ajoute l'overlay semi-transparent
-    // Suivre le curseur avec la bulle sans activer la sélection
-    document.addEventListener('mousemove', moveLensBubble);
-    // Préparer pour un clic dans la bulle pour démarrer la sélection
-    document.addEventListener('click', initiateSelection, { once: true });
-}
-function createCenteredText() {
-    if (!centeredText) {
-        centeredText = document.createElement("div");
-        centeredText.style.position = "fixed";
-        centeredText.style.top = "100px"; // Positionné en haut de la page
-        centeredText.style.left = "50%"; // Centré horizontalement
-        centeredText.style.transform = "translateX(-50%)"; // Correction pour centrer
-        centeredText.style.padding = "10px 20px";
-        centeredText.style.backgroundColor = "rgba(5, 10, 21, 0.79)";
-        centeredText.style.color = "#fff";
-        centeredText.style.borderRadius = "53px";
-        centeredText.style.fontSize = "16px";
-        //centeredText.style.fontWeight = "400";
-        centeredText.style.boxShadow = "0px 0px 37.7px 0px rgba(0, 0, 0, 0.25)";
-        centeredText.style.zIndex = "10002";
-        centeredText.style.pointerEvents = "none"; // Empêche les interactions
-        // Contenu avec icône SVG
-        centeredText.innerHTML = "\n    <div class=\"d-flex\">\n    <div class=\"app-photo\">\n        <svg xmlns=\"http://www.w3.org/2000/svg\" width=\"18\" height=\"18\" viewBox=\"0 0 18 18\" fill=\"none\">\n          <path d=\"M1 5V3C1 2.46957 1.21071 1.96086 1.58579 1.58579C1.96086 1.21071 2.46957 1 3 1H5M1 13V15C1 15.5304 1.21071 16.0391 1.58579 16.4142C1.96086 16.7893 2.46957 17 3 17H5M13 1H15C15.5304 1 16.0391 1.21071 16.4142 1.58579C16.7893 1.96086 17 2.46957 17 3V5M13 17H15C15.5304 17 16.0391 16.7893 16.4142 16.4142C16.7893 16.0391 17 15.5304 17 15V13M6 9C6 9.79565 6.31607 10.5587 6.87868 11.1213C7.44129 11.6839 8.20435 12 9 12C9.79565 12 10.5587 11.6839 11.1213 11.1213C11.6839 10.5587 12 9.79565 12 9C12 8.20435 11.6839 7.44129 11.1213 6.87868C10.5587 6.31607 9.79565 6 9 6C8.20435 6 7.44129 6.31607 6.87868 6.87868C6.31607 7.44129 6 8.20435 6 9Z\" stroke=\"white\" stroke-opacity=\"0.8\" stroke-width=\"1.4\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/>\n        </svg>\n    </div>\n        <span class=\"txt-problem\">S\u00E9lectionnez la zone du probl\u00E8me</span>\n    </div>\n      ";
-        document.body.appendChild(centeredText);
-    }
-}
-function removeCenteredText() {
-    if (centeredText) {
-        centeredText.remove();
-        centeredText = null;
-    }
-}
-function createOverlay() {
-    if (!overlay) {
-        overlay = document.createElement("div");
-        overlay.className = "bck";
-        overlay.style.position = "fixed";
-        overlay.style.top = "0";
-        overlay.style.left = "0";
-        overlay.style.width = "100%";
-        overlay.style.height = "100%";
-        overlay.style.backgroundColor = "rgba(0, 0, 0, 0.3)"; // Couleur semi-transparente
-        overlay.style.zIndex = "10000";
-        overlay.style.pointerEvents = "none"; // Empêche les interactions avec l'overlay
-        document.body.appendChild(overlay);
-    }
-}
-function removeOverlay() {
-    if (overlay) {
-        overlay.remove();
-        overlay = null;
-    }
-}
-// Créer et afficher la bulle avec la caméra pour suivre la souris
-function createLensBubble() {
-    if (!captureBubble) {
-        captureBubble = document.createElement("div");
-        captureBubble.className = "capture-bubble"; // Classe CSS pour appliquer le style principal
-        // Ajouter le SVG directement dans la bulle
-        captureBubble.innerHTML = "\n      <svg xmlns=\"http://www.w3.org/2000/svg\" width=\"61\" height=\"62\" viewBox=\"0 0 61 62\" fill=\"none\">\n          <g filter=\"url(#filter0_d_397_1906)\">\n          <path d=\"M30 7C42.1503 7 52 16.8497 52 29L52 29.5C52 41.3741 42.3741 51 30.5 51C18.6259 51 9 41.3741 9 29.5L9 7L30 7Z\" fill=\"url(#paint0_linear_397_1906)\"/>\n          <path d=\"M30 8C41.598 8 51 17.402 51 29L51 29.5C51 40.8218 41.8218 50 30.5 50C19.1782 50 10 40.8218 10 29.5L10 8L30 8Z\" stroke=\"white\" stroke-width=\"2\"/>\n          </g>\n          <path d=\"M34 21L36 21C36.5304 21 37.0391 21.2107 37.4142 21.5858C37.7893 21.9609 38 22.4696 38 23L38 25M26 21L24 21C23.4696 21 22.9609 21.2107 22.5858 21.5858C22.2107 21.9609 22 22.4696 22 23L22 25M38 33L38 35C38 35.5304 37.7893 36.0391 37.4142 36.4142C37.0391 36.7893 36.5304 37 36 37L34 37M22 33L22 35C22 35.5304 22.2107 36.0391 22.5858 36.4142C22.9609 36.7893 23.4696 37 24 37L26 37M30 26C29.2044 26 28.4413 26.3161 27.8787 26.8787C27.3161 27.4413 27 28.2044 27 29C27 29.7956 27.3161 30.5587 27.8787 31.1213C28.4413 31.6839 29.2044 32 30 32C30.7956 32 31.5587 31.6839 32.1213 31.1213C32.6839 30.5587 33 29.7956 33 29C33 28.2044 32.6839 27.4413 32.1213 26.8787C31.5587 26.3161 30.7956 26 30 26Z\" stroke=\"white\" stroke-opacity=\"0.8\" stroke-width=\"1.4\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/>\n          <g filter=\"url(#filter1_d_397_1906)\">\n          <path d=\"M30 7C42.1503 7 52 16.8497 52 29L52 29.5C52 41.3741 42.3741 51 30.5 51V51C18.6259 51 9 41.3741 9 29.5L9 9C9 7.89543 9.89543 7 11 7L30 7Z\" fill=\"url(#paint1_linear_397_1906)\"/>\n          <path d=\"M51 29L51 29.5C51 40.8218 41.8218 50 30.5 50C19.1782 50 10 40.8218 10 29.5L10 9C10 8.44771 10.4477 8 11 8L30 8C41.598 8 51 17.402 51 29Z\" stroke=\"white\" stroke-width=\"2\"/>\n          </g>\n          <path d=\"M32.4831 21H36.6628V31.8122C36.6628 33.0618 36.3554 34.1504 35.7405 35.078C35.1257 36.0002 34.2683 36.715 33.1684 37.2224C32.0685 37.7244 30.7909 37.9754 29.3356 37.9754C27.8634 37.9754 26.5774 37.7244 25.4774 37.2224C24.3775 36.715 23.523 36.0002 22.9138 35.078C22.3046 34.1504 22 33.0618 22 31.8122V21H26.1882V31.4603C26.1882 32.0387 26.3179 32.5543 26.5774 33.0072C26.8425 33.4601 27.2119 33.8148 27.6857 34.0713C28.1595 34.3277 28.7095 34.4559 29.3356 34.4559C29.9617 34.4559 30.5089 34.3277 30.977 34.0713C31.4508 33.8148 31.8203 33.4601 32.0854 33.0072C32.3505 32.5543 32.4831 32.0387 32.4831 31.4603V21Z\" fill=\"white\"/>\n          <path d=\"M40.8002 38C40.191 38 39.6692 37.7926 39.2349 37.3779C38.8062 36.9632 38.5947 36.4612 38.6003 35.8719C38.5947 35.2935 38.8062 34.7997 39.2349 34.3905C39.6692 33.9758 40.191 33.7684 40.8002 33.7684C41.3755 33.7684 41.8832 33.9758 42.3231 34.3905C42.7687 34.7997 42.9944 35.2935 43 35.8719C42.9944 36.2648 42.8872 36.6222 42.6785 36.9441C42.4754 37.2661 42.2075 37.5225 41.8747 37.7135C41.5475 37.9045 41.1894 38 40.8002 38Z\" fill=\"white\"/>\n          <defs>\n          <filter id=\"filter0_d_397_1906\" x=\"0.8\" y=\"0.8\" width=\"59.4\" height=\"60.4\" filterUnits=\"userSpaceOnUse\" color-interpolation-filters=\"sRGB\">\n          <feFlood flood-opacity=\"0\" result=\"BackgroundImageFix\"/>\n          <feColorMatrix in=\"SourceAlpha\" type=\"matrix\" values=\"0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0\" result=\"hardAlpha\"/>\n          <feOffset dy=\"2\"/>\n          <feGaussianBlur stdDeviation=\"4.1\"/>\n          <feComposite in2=\"hardAlpha\" operator=\"out\"/>\n          <feColorMatrix type=\"matrix\" values=\"0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.25 0\"/>\n          <feBlend mode=\"normal\" in2=\"BackgroundImageFix\" result=\"effect1_dropShadow_397_1906\"/>\n          <feBlend mode=\"normal\" in=\"SourceGraphic\" in2=\"effect1_dropShadow_397_1906\" result=\"shape\"/>\n          </filter>\n          <filter id=\"filter1_d_397_1906\" x=\"0.8\" y=\"0.8\" width=\"59.4\" height=\"60.4\" filterUnits=\"userSpaceOnUse\" color-interpolation-filters=\"sRGB\">\n          <feFlood flood-opacity=\"0\" result=\"BackgroundImageFix\"/>\n          <feColorMatrix in=\"SourceAlpha\" type=\"matrix\" values=\"0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0\" result=\"hardAlpha\"/>\n          <feOffset dy=\"2\"/>\n          <feGaussianBlur stdDeviation=\"4.1\"/>\n          <feComposite in2=\"hardAlpha\" operator=\"out\"/>\n          <feColorMatrix type=\"matrix\" values=\"0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.25 0\"/>\n          <feBlend mode=\"normal\" in2=\"BackgroundImageFix\" result=\"effect1_dropShadow_397_1906\"/>\n          <feBlend mode=\"normal\" in=\"SourceGraphic\" in2=\"effect1_dropShadow_397_1906\" result=\"shape\"/>\n          </filter>\n          <linearGradient id=\"paint0_linear_397_1906\" x1=\"9\" y1=\"-0.652177\" x2=\"53.2784\" y2=\"57.3575\" gradientUnits=\"userSpaceOnUse\">\n          <stop stop-color=\"#5A13A5\"/>\n          <stop offset=\"1\" stop-color=\"#FE2190\"/>\n          </linearGradient>\n          <linearGradient id=\"paint1_linear_397_1906\" x1=\"9\" y1=\"-0.652177\" x2=\"53.2784\" y2=\"57.3575\" gradientUnits=\"userSpaceOnUse\">\n          <stop stop-color=\"#5A13A5\"/>\n          <stop offset=\"1\" stop-color=\"#FE2190\"/>\n          </linearGradient>\n          </defs>\n</svg>\n    ";
-        document.body.appendChild(captureBubble);
-        document.addEventListener("mousemove", updateCaptureBubblePosition); // Suivre le mouvement de la souris
-    }
-}
-// Mettre à jour la position de la bulle de capture pour suivre la souris
-function updateCaptureBubblePosition(event) {
-    if (captureBubble) {
-        // Place la bulle un peu en dessous de la souris pour qu'elle ne la cache pas
-        captureBubble.style.left = "".concat(event.pageX + 15, "px");
-        captureBubble.style.top = "".concat(event.pageY + 15, "px");
-    }
-}
-// Fonction pour enlever la bulle de capture et arrêter de suivre la souris
-function removeCaptureBubble() {
-    if (captureBubble) {
-        captureBubble.remove();
-        captureBubble = null;
-    }
-    document.removeEventListener("mousemove", updateCaptureBubblePosition);
-}
-// Faire bouger la bulle avec la souris
-function moveLensBubble(event) {
-    if (lensBubble) {
-        lensBubble.style.left = "".concat(event.clientX - 25, "px");
-        lensBubble.style.top = "".concat(event.clientY - 25, "px");
-    }
-}
-// Préparer la sélection (désactiver la bulle et activer la sélection après le deuxième clic)
-function initiateSelection(event) {
-    startX = event.clientX;
-    startY = event.clientY;
-    createLensBubble();
-    // Désactiver la bulle et arrêter le suivi de la souris
-    /*   if (lensBubble) {
-        document.body.removeChild(lensBubble);
-        lensBubble = null;
-      }
-      document.removeEventListener('mousemove', moveLensBubble); */
-    // Activer la sélection
-    selectionEnabled = true;
-    document.body.classList.add('cursor-crosshair'); // Activer la croix
-    // Attendre un clic pour démarrer la sélection
-    document.addEventListener('mousedown', startSelection, { once: true });
-}
-// Démarrer la sélection après le deuxième clic
-function startSelection(event) {
-    if (!selectionEnabled)
-        return;
-    removeOverlay(); // Supprime l'overlay semi-transparent
-    startX = event.clientX;
-    startY = event.clientY;
-    // Créer la boîte de sélection
-    selectionBox = document.createElement('div');
-    selectionBox.style.position = 'fixed';
-    selectionBox.style.border = '2px dashed #007bff';
-    selectionBox.style.backgroundColor = 'rgba(0, 123, 255, 0.2)';
-    selectionBox.style.top = "".concat(startY, "px");
-    selectionBox.style.left = "".concat(startX, "px");
-    selectionBox.style.zIndex = '9999';
-    document.body.appendChild(selectionBox);
-    // Activer le redimensionnement de la sélection
-    document.addEventListener('mousemove', handleMouseMove);
-    document.addEventListener('mouseup', handleMouseUp, { once: true });
-}
-// Redimensionner la zone de sélection avec la souris
-function handleMouseMove(event) {
-    if (!selectionBox)
-        return;
-    var width = event.clientX - startX;
-    var height = event.clientY - startY;
-    selectionBox.style.width = "".concat(Math.abs(width), "px");
-    selectionBox.style.height = "".concat(Math.abs(height), "px");
-    selectionBox.style.left = "".concat(width < 0 ? event.clientX : startX, "px");
-    selectionBox.style.top = "".concat(height < 0 ? event.clientY : startY, "px");
-}
-// Terminer la sélection et capturer
-function handleMouseUp() {
-    if (!selectionBox)
-        return;
-    // Obtenir les dimensions exactes de la zone sélectionnée avec getBoundingClientRect
-    var rect = selectionBox.getBoundingClientRect();
-    // Appliquer le ratio de mise à l'échelle
-    var scale = window.devicePixelRatio;
-    var adjustedX = (rect.left + window.scrollX) * scale;
-    var adjustedY = (rect.top + window.scrollY) * scale;
-    var adjustedWidth = rect.width * scale;
-    var adjustedHeight = rect.height * scale;
-    // Supprimer la boîte de sélection temporaire
-    document.body.removeChild(selectionBox);
-    selectionBox = null;
-    // Capture de la zone ajustée
-    captureSelectedArea(adjustedX, adjustedY, adjustedWidth, adjustedHeight);
-    disableSelectionMode(); // Désactiver le mode de sélection
-}
-// Fonction pour ouvrir le flux de feedback avec la sélection d'émoji
-function openFeedbackWithEmojiSelection(screenshot, initialFormData) {
-    if (initialFormData === void 0) { initialFormData = {
-        alertDescription: '',
-        sentiment: '😐',
-        tips: '',
-        isBlocked: 'no',
-    }; }
-    // Vérifie si un conteneur existe déjà pour éviter les doublons
-    var existingContainer = document.querySelector('#feedback-container');
-    if (existingContainer) {
-        existingContainer.remove(); // Supprime tout conteneur existant
-    }
-    // Crée un nouveau conteneur pour le feedback
-    var feedbackContainer = document.createElement('div');
-    feedbackContainer.id = 'feedback-container';
-    feedbackContainer.style.position = 'fixed';
-    feedbackContainer.style.top = '0';
-    feedbackContainer.style.left = '0';
-    feedbackContainer.style.width = '100vw';
-    feedbackContainer.style.height = '100vh';
-    feedbackContainer.style.backgroundColor = 'rgba(0, 0, 0, 0.5)';
-    feedbackContainer.style.zIndex = '9999';
-    document.body.appendChild(feedbackContainer);
-    // Fonction pour fermer le feedback
-    var closeFeedback = function () {
-        var container = document.getElementById('feedback-container');
-        if (container) {
-            container.remove(); // Supprime le conteneur
-        }
-    };
-    // Créer une racine React pour le flux de feedback avec sélection d'émoji
-    var root = react_dom_client__WEBPACK_IMPORTED_MODULE_1__.createRoot(feedbackContainer);
-    root.render((0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(_components_captureFeedbackFlow_CaptureFeedbackFlow__WEBPACK_IMPORTED_MODULE_2__["default"], { screenshot: screenshot, onClose: closeFeedback, onCaptureClick: function () {
-            closeFeedback(); // Ferme le formulaire avant d'activer le mode sélection
-            enableLensMode(); // Activer le mode Google Lens avec la bulle
-        }, initialFormData: initialFormData }));
-}
-// Fonction appelée après une nouvelle capture
-function handleNewCapture(screenshot, formData) {
-    openFeedbackWithEmojiSelection(screenshot, formData);
-}
-// Fonction pour redimensionner et compresser l'image
-function resizeAndCompressImage(dataUrl, maxWidth, maxHeight, quality) {
-    return new Promise(function (resolve) {
-        var img = new Image();
-        img.onload = function () {
-            var canvas = document.createElement('canvas');
-            var ctx = canvas.getContext('2d');
-            if (!ctx)
-                return;
-            // Calcul des nouvelles dimensions tout en respectant le ratio d'aspect
-            var width = img.width, height = img.height;
-            if (width > maxWidth || height > maxHeight) {
-                var aspectRatio = width / height;
-                if (width > height) {
-                    width = maxWidth;
-                    height = maxWidth / aspectRatio;
-                }
-                else {
-                    height = maxHeight;
-                    width = maxHeight * aspectRatio;
-                }
-            }
-            canvas.width = width;
-            canvas.height = height;
-            ctx.drawImage(img, 0, 0, width, height);
-            // Convertir en Data URL avec compression
-            resolve(canvas.toDataURL('image/jpeg', quality)); // Qualité entre 0.0 et 1.0
-        };
-        img.src = dataUrl;
-    });
-}
-// Méthode de capture mise à jour
-function captureSelectedArea(x, y, width, height) {
-    var externalElements = document.querySelectorAll('img, iframe, video, [style*="background-image"]');
-    // Vérifier si la zone sélectionnée est trop petite ou inexistante
-    if (width < 5 || height < 5) {
-        console.log('Zone trop petite ou inexistante. Continuation sans capture.');
-        openFeedbackWithEmojiSelection(null); // Appeler le formulaire sans capture
-        return; // Arrêter l'exécution
-    }
-    // Masquer temporairement les éléments externes
-    externalElements.forEach(function (el) {
-        if (el instanceof HTMLElement) {
-            // el.style.display = 'none'; // Désactivé dans cet exemple
-        }
-    });
-    // Capture la page entière avec html2canvas
-    html2canvas__WEBPACK_IMPORTED_MODULE_3___default()(document.body, { useCORS: true, allowTaint: false, backgroundColor: null })
-        .then(function (canvas) {
-        // Rendre les éléments visibles après la capture
-        externalElements.forEach(function (el) {
-            if (el instanceof HTMLElement) {
-                // el.style.display = ''; // Désactivé dans cet exemple
-            }
-        });
-        // Créer un canvas temporaire pour recadrer la zone sélectionnée
-        var croppedCanvas = document.createElement('canvas');
-        croppedCanvas.width = width;
-        croppedCanvas.height = height;
-        var croppedCtx = croppedCanvas.getContext('2d');
-        if (croppedCtx) {
-            // Utiliser les coordonnées ajustées en fonction de la mise à l'échelle
-            croppedCtx.drawImage(canvas, x, // Position X ajustée
-            y, // Position Y ajustée
-            width, // Largeur ajustée
-            height, // Hauteur ajustée
-            0, // Position X dans le canvas de destination
-            0, // Position Y dans le canvas de destination
-            width, // Largeur dans le canvas de destination
-            height // Hauteur dans le canvas de destination
-            );
-            var croppedDataUrl = croppedCanvas.toDataURL('image/png');
-            // Redimensionner et compresser l'image capturée
-            resizeAndCompressImage(croppedDataUrl, 800, 800, 0.7) // Dimensions max et qualité
-                .then(function (compressedDataUrl) {
-                openFeedbackWithEmojiSelection(compressedDataUrl); // Appeler le formulaire de feedback
-            })
-                .catch(function (error) {
-                console.error('Erreur lors de la compression de l\'image:', error);
-            });
-        }
-    })
-        .catch(function (error) {
-        console.error('Erreur lors de la capture de la zone sélectionnée:', error);
-        openFeedbackWithEmojiSelection(null); // Continuer même en cas d'erreur
-    });
-}
-// Désactiver le mode sélection et réinitialiser les indicateurs
-function disableSelectionMode() {
-    selectionEnabled = false; // Désactiver la sélection
-    document.body.classList.remove('cursor-crosshair'); // Désactiver la croix
-    if (captureBubble) {
-        removeCaptureBubble();
-        //document.body.removeChild(lensBubble);
-        //lensBubble = null;
-    }
-    removeOverlay(); // Supprime l'overlay semi-transparent
-    removeCenteredText(); // Supprime le texte
-    document.removeEventListener('mousemove', moveLensBubble);
-}
-// Fonction pour afficher le flux de feedback avec sélection d'émoji et formulaire
-function openFeedbackForm(screenshot) {
-    // Créer un conteneur pour le feedback
-    var feedbackContainer = document.createElement('div');
-    feedbackContainer.style.position = 'fixed';
-    feedbackContainer.style.top = '0';
-    feedbackContainer.style.left = '0';
-    feedbackContainer.style.width = '100vw';
-    feedbackContainer.style.height = '100vh';
-    feedbackContainer.style.backgroundColor = 'rgba(0, 0, 0, 0.5)';
-    feedbackContainer.style.zIndex = '9999';
-    document.body.appendChild(feedbackContainer);
-    // Fonction pour fermer le formulaire de feedback et supprimer le conteneur
-    var closeFeedback = function () {
-        document.body.removeChild(feedbackContainer);
-    };
-    // Créer une racine React pour le formulaire de feedback
-    var root = react_dom_client__WEBPACK_IMPORTED_MODULE_1__.createRoot(feedbackContainer);
-    root.render((0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(_components_captureFeedbackFlow_CaptureFeedbackFlow__WEBPACK_IMPORTED_MODULE_2__["default"], { screenshot: screenshot, onClose: closeFeedback, onCaptureClick: function () {
-            closeFeedback(); // Ferme le formulaire avant d'activer le mode sélection
-            enableLensMode(); // Activer le mode Google Lens avec la bulle
-        } }));
-}
-// Affichage du menu flottant après trois clics
-function displayFloatingMenu(x, y) {
-    var currentURL = window.location.href;
-    // Vérifie si le site est bloqué
-    if ((0,_utils_blockAdultSites__WEBPACK_IMPORTED_MODULE_5__.shouldBlockUrl)(currentURL)) {
-        var containerId = "warning-container";
-        console.log("Site inapproprié détecté, application du flou...");
-        (0,_utils_blurAllInappropriateMedia__WEBPACK_IMPORTED_MODULE_7__.blurAllInappropriateMedia)(); // Flouter les médias
-        var container_1 = document.getElementById(containerId);
-        if (!container_1) {
-            container_1 = document.createElement("div");
-            container_1.id = containerId;
-            document.body.appendChild(container_1);
-        }
-        if (container_1) {
-            var root_1 = react_dom_client__WEBPACK_IMPORTED_MODULE_1__.createRoot(container_1);
-            // Affiche le popup
-            root_1.render((0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(_components_warning_Warning__WEBPACK_IMPORTED_MODULE_6__["default"], { onClose: function () {
-                    root_1.unmount();
-                    container_1 === null || container_1 === void 0 ? void 0 : container_1.remove(); // Supprime le popup lorsqu'il est fermé
-                    (0,_utils_unblurAllMedia__WEBPACK_IMPORTED_MODULE_8__.unblurAllMedia)(); // Déflouter les médias
-                }, onLoginSuccess: function () {
-                    console.log("Action après connexion réussie");
-                } }));
-            return; // Arrête l'exécution si le site est bloqué
-        }
-    }
-    // Logique pour afficher le menu flottant si le site n'est pas bloqué
-    if (menuOpen) {
-        console.log("Le menu flottant est déjà ouvert !");
-        return; // Si le menu est déjà ouvert, ne rien faire
-    }
-    menuOpen = true;
-    var menuContainer = document.createElement('div');
-    document.body.appendChild(menuContainer);
-    var closeMenu = function () {
-        console.log("Fermeture du menu...");
-        document.body.removeChild(menuContainer);
-        menuOpen = false;
-    };
-    var root = react_dom_client__WEBPACK_IMPORTED_MODULE_1__.createRoot(menuContainer);
-    root.render((0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(_components_DraggableFloatingMenu__WEBPACK_IMPORTED_MODULE_4__["default"], { x: x, y: y, onCommentClick: function () {
-            closeMenu();
-            openFeedbackForm('');
-        }, onCaptureClick: function () {
-            closeMenu();
-            enableLensMode(); // Activer le mode Google Lens avec la bulle
-        } }));
-}
-chrome.runtime.onMessage.addListener(function (message, sender, sendResponse) {
-    if (message.action === "showWarningPopup") {
-        // Créer un conteneur pour afficher le popup
-        var containerId = "warning-popup-container";
-        var container_2 = document.getElementById(containerId);
-        if (!container_2) {
-            container_2 = document.createElement("div");
-            container_2.id = containerId;
-            document.body.appendChild(container_2);
-        }
-        var root_2 = react_dom_client__WEBPACK_IMPORTED_MODULE_1__.createRoot(container_2);
-        // Afficher le popup d'avertissement
-        root_2.render((0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(_components_warning_Warning__WEBPACK_IMPORTED_MODULE_6__["default"], { onClose: function () {
-                root_2.unmount();
-                container_2 === null || container_2 === void 0 ? void 0 : container_2.remove(); // Supprime le popup du DOM
-            }, onLoginSuccess: function () {
-                console.log("Action après confirmation");
-            } }));
-        sendResponse({ success: true });
-    }
-});
-// Gestion du message envoyé par le background script
-chrome.runtime.onMessage.addListener(function (message, sender, sendResponse) {
-    console.log("Message reçu dans content.js :", message);
-    if (message.action === "showFloatingMenu") {
-        console.log("Affichage du menu flottant...");
-        displayFloatingMenu(window.innerWidth / 2, window.innerHeight / 2);
-        sendResponse({ success: true });
-    }
-    else {
-        console.log("Action non reconnue :", message.action);
-        sendResponse({ success: false });
-    }
-});
-// Détection des trois clics pour afficher le menu flottant
-function handleClick(event) {
-    if (menuOpen)
-        return;
-    clickCount++;
-    if (clickCount === 3) {
-        displayFloatingMenu(event.clientX, event.clientY);
-        clickCount = 0;
-        // Ajoutez un listener pour détecter la fermeture du menu
-        document.addEventListener('menuClosed', function () {
-            menuOpen = false; // Permet de réouvrir le menu après fermeture
-        });
-    }
-    // Remet à zéro `clickCount` après une seconde d'inactivité
-    setTimeout(function () {
-        clickCount = 0;
-    }, 1000);
-}
-// Écouteur d'événements pour les clics
-window.addEventListener('click', handleClick);
-
-})();
-
+/******/ 	
+/******/ 	// startup
+/******/ 	// Load entry module and return exports
+/******/ 	// This entry module is referenced by other modules so it can't be inlined
+/******/ 	var __webpack_exports__ = __webpack_require__("./src/content/ContentScript.tsx");
+/******/ 	
 /******/ })()
 ;
 //# sourceMappingURL=content.js.map
