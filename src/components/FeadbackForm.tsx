@@ -1,41 +1,59 @@
 import React, { useEffect, useState } from 'react';
-import { createAlert } from '../services/apiService';
-import { getToken } from '../utils/storageUtil';
+import { createAlert, createCoupdeCoeur, createSuggest } from '../services/apiService';
 import LoginForm from './LoginForm';
-import { isUserAuthenticated } from '../services/AuthService';
+import { getValidToken, isUserAuthenticated } from '../services/AuthService';
 import { Alert } from '../types/Alert';
 import PopupConfirm from './popupConfirm/PopupConfirm';
 import { isApiError } from '../utils/isApiError';
-import { initiateCapture } from '../utils/captureUtil';
+import { CoupdeCoeur } from '../types/CoupdeCoeur';
+import { Suggest } from '../types/Suggest';
+import { emojiSentiments, getTitleForEmoji, heartEmojis } from '../utils/emojiUtils';
+import SuggestConfirm from './popupConfirm/SuggestConfirm';
+import CoupdeCoeurConfirm from './popupConfirm/CoupdeCoeurConfirm';
+import FlashMessage from './flashMessage/FlashMessage';
 
 
 interface FeedbackFormProps {
-  screenshot: string | null; // Screenshot peut être une chaîne ou null
+  screenshot: string | null;
   onClose: () => void;
-  onCaptureClick: (formData: {
+  onCaptureClick: (
+    formData: {
+      alertDescription: string;
+      sentiment: string;
+      tips: string;
+      isBlocked: 'yes' | 'no';
+      screenshot: string | null;
+    },
+    action: string // Nouveau paramètre pour l'action
+  ) => void;
+  initialFormData?: {
     alertDescription: string;
     sentiment: string;
     tips: string;
     isBlocked: 'yes' | 'no';
-  }) => void; // Accepte les données actuelles
-  initialFormData?: {
-    alertDescription: string;
-    sentiment: string; // Emoji ou sentiment actuel
-    tips: string;
-    isBlocked: 'yes' | 'no'; // Indicateur si bloqué
+    screenshot: string | null;
   };
+  selectedAction: string; // Ajoutez selectedAction comme prop
 }
 
+
+const apiActions = {
+  default: async (data: any, token: string) => createAlert(data, token),
+  coupDeCoeur: async (data: CoupdeCoeur, token: string) => createCoupdeCoeur(data, token),
+  suggest: async (data: Suggest, token: string) => createSuggest(data, token),
+};
 
 const FeedbackForm: React.FC<FeedbackFormProps> = ({
   screenshot,
   onClose,
   onCaptureClick,
+  selectedAction,
   initialFormData = {
     alertDescription: '',
     sentiment: '😐',
     tips: '',
     isBlocked: 'no',
+    screenshot: null,
   },
 }) => {
   const [showLoginForm, setShowLoginForm] = useState(false);
@@ -56,14 +74,23 @@ const FeedbackForm: React.FC<FeedbackFormProps> = ({
   const [emojis, setEmojis] = useState<string>('');
   const [showConfirmation, setShowConfirmation] = useState(false); // État pour afficher la modal de confirmation
   const [errorMessages, setErrorMessages] = useState<string | null>(null); // Stocke les erreurs
+  const [isSubmitting, setIsSubmitting] = useState(false); // Indique si le formulaire est en cours de soumission
+  const [flashMessage, setFlashMessage] = useState<{
+    message: string;
+    type: 'success' | 'error' | 'info';
+    duration: number;
+  } | null>(null);
+  const [totalReports, setTotalReports] = useState<number>(0);
+  const [codeStatus, setCodeStatus] = useState<number>();
 
   const [response, setResponse] = useState<string | null>(null);
   const [error, setError] = useState<string | null>(null);
-
-
+  const [localAction, setLocalAction] = useState(selectedAction);
 
   useEffect(() => {
     const currentUrl = window.location.href;
+    setLocalAction(selectedAction); // Synchronise uniquement lors de l'initialisation
+
     setCapture(screenshot ?? '');
     try {
       const urlObj = new URL(currentUrl);
@@ -74,19 +101,23 @@ const FeedbackForm: React.FC<FeedbackFormProps> = ({
     } catch (error) {
       console.error('Erreur lors de la récupération du domaine:', error);
     }
-  }, [screenshot]);
+  }, [selectedAction]);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    //setIsLoading(true); // Indique que le processus est en cours
+    setIsSubmitting(true); // Indique que le processus est en cours
     setErrorMessages(null); // Réinitialise les erreurs
+    
+    const accessToken = await getValidToken(); // Récupère un token valide
+    //const isAuthenticated = await isUserAuthenticated();
+    console.log("access token :", accessToken); //
 
-    const isAuthenticated = await isUserAuthenticated();
-
-    if (!isAuthenticated) {
-      console.log("Veuillez-vous connecter...")
+ 
+    if (!accessToken) {
+      console.error('L’utilisateur n’est pas authentifié ou le token est invalide.');
+      setErrorMessages('Veuillez vous connecter pour soumettre ce formulaire.');
       setShowLoginForm(true); // Affiche le formulaire de connexion
-      //setIsLoading(false);
+      setIsSubmitting(false); // Réinitialise l'état de soumission
       return;
     }
 
@@ -101,22 +132,81 @@ const FeedbackForm: React.FC<FeedbackFormProps> = ({
       tips,
     };
 
-    const token = await getToken();
+/*     const token = await getToken();
     if (!token) {
       console.error('Erreur : le token est null ou undefined');
       setErrorMessages('Erreur : le token est null ou undefined');
       //setIsLoading(false);
       return;
-    }
+    } */
 
     try {
-      const result = await createAlert(alertData, token);
-      setResponse(`Signalement envoyé avec succès : ${JSON.stringify(result)}`);
-      setErrorMessages(null); // Efface les erreurs précédentes
-      setShowFeedbackForm(false);
-      setShowConfirmation(true); // Affiche la modal de confirmation
-      //setShowOverlay(true); // Active l'overlay
 
+      console.log('Action sélectionnée.... :', selectedAction);
+      console.log("access token :", accessToken);
+      let result; // = await createAlert(alertData, token); // Appelle une API spécifique pour "capture"
+      if (selectedAction === 'cheart') {
+        // Préparer les données pour `createCoupdeCoeur`
+        const coupDeCoeurData: CoupdeCoeur = {
+          marque: brandName,
+          description: alertDescription,
+          emplacement: bugLocation,
+          emoji: sentiment,
+        };
+        result = await apiActions.coupDeCoeur(coupDeCoeurData, accessToken);
+
+      } else if (selectedAction === 'capture') {
+        // Préparer les données pour `createAlert`
+        result = await apiActions.default(alertData, accessToken);
+
+      } else if (selectedAction === 'suggestion') {
+        const suggest: Suggest = {
+          marque: brandName,
+          description: alertDescription,
+          emplacement: bugLocation,
+        };
+        result = await apiActions.suggest(suggest, accessToken);
+        console.log('Réponse API (suggestion) avec statut :', result);
+      } else {
+        throw new Error('Action inconnue.');
+      }
+
+      // Gérer les réponses en fonction du code de statut
+      if (result.status === 201) {
+        // Signalement créé avec succès
+        console.log('Réponse API (suggestion) :', result);
+        setResponse(result.message || "Signalement créé avec succès.");
+        setErrorMessages(null);
+        setShowFeedbackForm(false);
+        setShowConfirmation(true); // Affiche la modal de confirmation
+        setFlashMessage({
+          message: result.message || 'Signalement créé avec succès.',
+          type: 'success',
+          duration: 10000,
+        });
+      } else if (result.status === 200) {
+        // Signalement déjà existant
+        setCodeStatus(result.status);
+        setResponse(result.message || "Un problème similaire a déjà été signalé."); // Affiche uniquement le message
+        setErrorMessages(result.message || "Un problème similaire a déjà été signalé.");
+        setTotalReports(result.totalReports); //
+        console.log('Total reports :', result.totalReports);
+        setShowFeedbackForm(false);
+        setShowConfirmation(true); // Pas de popup de confirmation
+        setFlashMessage({
+          message: result.message || 'Signalement déjà existant.',
+          type: 'info',
+          duration: 10000,
+        });
+      } else {
+        console.error('Code de statut inattendu:', result);
+        setFlashMessage({
+          message: 'Une erreur inattendue est survenue.',
+          type: 'error',
+          duration: 7000,
+        });
+        setErrorMessages('Une erreur inattendue est survenue.');
+      }
       // Réinitialise les champs du formulaire
       setBrandName('');
       setSitUrl(''); // Réinitialise le champ du site
@@ -138,7 +228,7 @@ const FeedbackForm: React.FC<FeedbackFormProps> = ({
         setErrorMessages('Une erreur inattendue est survenue.');
       }
     } finally {
-      setIsLoading(false); // Indique que la requête est terminée
+      setIsSubmitting(false);  // Indique que la requête est terminée
     }
   };
   const handleLoginSuccess = () => {
@@ -149,42 +239,14 @@ const FeedbackForm: React.FC<FeedbackFormProps> = ({
     }
   };
 
-  const handleCaptureClick = () => {
-    const currentFormData = {
-      alertDescription,
-      sentiment,
-      tips,
-      isBlocked,
-    };
-
-    console.log('Sauvegarde des données avant capture:', currentFormData);
-    onCaptureClick(currentFormData);
-  };
-  
-
-  // Map to get the title based on the feeling
-  const sentimentTitles = new Map<string, string>([
-    ['😐', "Qu'est-ce qui pourrait être amélioré ?"],
-    ['😤', "Qu'est-ce qui vous agace ?"],
-    ['😡', "Qu'est-ce qui vous met en colère ?"],
-    ['🤔', "Quel problème rencontrez-vous ?"],
-    ['😭', "Qu’est-ce qui vous déçois ?"],
-    ['😖', "Qu’est-ce qui vous frustre ?"],
-    ['😵', "Qu’est-ce qui vous choque ?"],
-    ['🤣', "Qu’est-ce qui vous vous fait marrer ?"],
-  ]);
-
-  const getTitle = () => sentimentTitles.get(sentiment) || "Donnez votre avis";
-
   // Function to toggle the emoji selector
   const toggleEmojiSelector = () => {
     setShowEmojiSelector(!showEmojiSelector);
   };
 
-  // Function to handle selection of a new emoji
-  const handleEmojiSelect = (emoji: string) => {
+  const handleEmojiSelect = (emoji: string): void => {
     setSentiment(emoji);
-    setShowEmojiSelector(false); // Hide the emoji selector after selection
+    console.log('emoji selected:', sentiment);
   };
 
 
@@ -195,24 +257,47 @@ const FeedbackForm: React.FC<FeedbackFormProps> = ({
       {/* Selected Emoji and selector (outside the form) */}
       {showFeedbackForm && (
         <div className='feedback-style'>
-          <div id={`${!capture ? 'select-emoji' : 'select-emoji-display-img'
-            }`} className='select-emoji'
-            onClick={toggleEmojiSelector}>
-            {sentiment}
-            {showEmojiSelector && (
-              <div className='blc-span-emojis'>
-                <span style={{ cursor: 'pointer' }} onClick={() => handleEmojiSelect('😐')}>😐</span>
-                <span style={{ cursor: 'pointer' }} onClick={() => handleEmojiSelect('😤')}>😤</span>
-                <span style={{ cursor: 'pointer' }} onClick={() => handleEmojiSelect('😡')}>😡</span>
-                <span style={{ cursor: 'pointer' }} onClick={() => handleEmojiSelect('🤔')}>🤔</span>
-                <span style={{ cursor: 'pointer' }} onClick={() => handleEmojiSelect('😭')}>😭</span>
-                <span style={{ cursor: 'pointer' }} onClick={() => handleEmojiSelect('😖')}>😖</span>
-                <span style={{ cursor: 'pointer' }} onClick={() => handleEmojiSelect('😵')}>😵</span>
-                <span style={{ cursor: 'pointer' }} onClick={() => handleEmojiSelect('🤣')}>🤣</span>
-              </div>
-            )}
-          </div>
-          <div className='close-button float-end' onClick={() => {
+          {selectedAction === 'suggestion' && (
+            <div className="emoji-waterdrop"></div>
+          )}
+
+          {selectedAction !== 'suggestion' && (
+            <div id={`${!capture ? 'select-emoji' : 'select-emoji-display-img'
+              }`} className='select-emoji'
+              onClick={toggleEmojiSelector}>
+              {showEmojiSelector && (
+                <div className='blc-span-emojis'>
+                  {/* heartEmojis */}
+                  {selectedAction === 'cheart' && (
+                    heartEmojis.map(({ emoji }) => (
+                      <span
+                        key={emoji}
+                        style={{ cursor: 'pointer', margin: '0 5px' }}
+                        onClick={() => handleEmojiSelect(emoji)}
+                      >
+                        {emoji}
+                      </span>
+                    ))
+                  )}
+
+                  {selectedAction !== 'cheart' && (
+                    emojiSentiments.map(({ emoji }) => (
+                      <span
+                        key={emoji}
+                        style={{ cursor: 'pointer', margin: '0 5px' }}
+                        onClick={() => handleEmojiSelect(emoji)}
+                      >
+                        {emoji}
+                      </span>
+                    ))
+                  )}
+                </div>
+              )}
+              {sentiment}
+            </div>
+          )}
+
+          <div className='close-button float-end closeForm' onClick={() => {
             setShowFeedbackForm(false);
             onClose();
           }}>
@@ -221,10 +306,24 @@ const FeedbackForm: React.FC<FeedbackFormProps> = ({
               <path d="M11.3376 10.4108L4.25034 3.50029" stroke="#D2D7E0" strokeWidth="1.4" strokeLinecap="round" />
             </svg>
           </div>
-          <button type="button" className="camera-button" onClick={handleCaptureClick}>
-            📸 Nouvelle capture
-          </button>
-
+          {selectedAction === 'capture' && (
+            <button className="camera-button"
+              type='button'
+              onClick={() => {
+                const currentFormData = {
+                  alertDescription,
+                  sentiment,
+                  tips,
+                  isBlocked,
+                  screenshot: capture, // Ajoutez la capture si elle existe
+                };
+                console.log('[FeedbackForm] Nouvelle capture déclenchée avec :', currentFormData, 'Action actuelle :', selectedAction);
+                // Passez toujours `selectedAction` pour ne pas changer d'action
+                onCaptureClick(currentFormData, selectedAction);
+              }}>
+              📸 Reprendre une capture
+            </button>
+          )}
           {/* Feedback form */}
           {errorMessages && (
             <div style={{ color: "red", marginTop: "10px" }}>
@@ -232,6 +331,15 @@ const FeedbackForm: React.FC<FeedbackFormProps> = ({
             </div>
           )}
           <div className="block-form">
+
+
+            {isSubmitting && (
+              <div className="loader-container">
+                <div className="loader"></div>
+                <span>Veuillez patienter...</span>
+              </div>
+            )}
+
             <form className='formStyle' onSubmit={handleSubmit}>
               {capture && (
                 <div className="image-preview">
@@ -246,7 +354,7 @@ const FeedbackForm: React.FC<FeedbackFormProps> = ({
                   onChange={(e) => setAlertDescription(e.target.value)}
                 />
                 <label htmlFor="name" className="floating-label">
-                  {getTitle()}
+                  {getTitleForEmoji(sentiment, selectedAction)}
                 </label>
               </div>
               <input type="hidden" value={brandName} onChange={(e) => setBrandName(e.target.value)} />
@@ -301,19 +409,56 @@ const FeedbackForm: React.FC<FeedbackFormProps> = ({
           </div>
         </div>
       )}
+      {/* Flash message */}
+      {flashMessage && (
+        <FlashMessage
+          message={flashMessage.message}
+          type={flashMessage.type}
+          duration={flashMessage.duration}
+          onClose={() => setFlashMessage(null)} // Supprime le message flash après sa fermeture
+        />
+
+      )}
 
       {/* Modal de confirmation */}
       {showConfirmation && (
-        <PopupConfirm onClose={() => {
-          setShowConfirmation(false);
-          onClose();
-        }} />
+        <>
+          {selectedAction === 'cheart' && (
+            <CoupdeCoeurConfirm
+              onClose={() => {
+                setShowConfirmation(false);
+                onClose();
+              }}
+            />
+          )}
+
+          {selectedAction === 'suggestion' && (
+            <SuggestConfirm
+              onClose={() => {
+                setShowConfirmation(false);
+                onClose();
+              }}
+            />
+          )}
+
+          {selectedAction !== 'cheart' && selectedAction !== 'suggestion' && (
+            <PopupConfirm
+              onClose={() => {
+                setShowConfirmation(false);
+                onClose();
+              }}
+              message={response}
+              userRank={totalReports}
+              statusCode={codeStatus}
+            />
+          )}
+        </>
       )}
 
       {showLoginForm && (
         <LoginForm
-          onClose={() => setShowLoginForm(false)}
           onLoginSuccess={handleLoginSuccess}
+          onClose={() => setShowLoginForm(false)}
         />
       )}
     </div>

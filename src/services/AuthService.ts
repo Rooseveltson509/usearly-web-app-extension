@@ -1,126 +1,157 @@
-// authService.ts
-
-/* import { getToken, setToken, removeToken } from '../utils/storageUtil';
+import { setTokens, removeTokens, setLoginTime, getTokens } from '../utils/storageUtil'; // Mise à jour pour chrome.storage
+import { refreshAccessToken, verifyAccessToken } from './TokensServices';
 
 const API_URL = 'https://usearly-api.vercel.app/api/v1';
 
-// Vérifie si l'utilisateur est authentifié
-export function isUserAuthenticated(): boolean {
-  return !!getToken();
-}
-
-// Gère la connexion de l'utilisateur
-export async function login(email: string, password: string): Promise<boolean> {
+// Fonction de connexion
+/* export async function login(email: string, password: string, rememberMe: boolean): Promise<boolean> {
   try {
     const response = await fetch(`${API_URL}/user/login`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ email, password }),
-      mode: 'cors', // Ajoute le mode CORS pour gérer les requêtes cross-origin
+      body: JSON.stringify({ email, password }), // Envoie l'indicateur "rememberMe"
     });
     const data = await response.json();
-    if (data.token) {
-      setToken(data.token);
-      return true;
-    } else {
-      throw new Error('Authentification échouée');
-    }
-  } catch (error) {
-    console.error('Erreur de connexion:', error);
-    return false;
-  }
-}
 
-// Gère la déconnexion de l'utilisateur
-export function logout() {
-  removeToken();
-} */
-// AuthService.ts
+    if (response.ok && data.accessToken && data.refreshToken) {
+      console.log('Connexion réussie, stockage des tokens.', data);
 
-import { setToken } from '../utils/storageUtil'; // Mise à jour pour chrome.storage
+      // Stocke les tokens
+      setTokens(data.accessToken);
 
-const API_URL = 'https://20d2-217-128-226-57.ngrok-free.app/api/v1';
-//const API_URL_DEV = 'https://5b91-217-128-226-57.ngrok-free.app/api/v1';
-
-
-export async function login(email: string, password: string): Promise<boolean> {
-  try {
-    const response = await fetch(`${API_URL}/user/login`, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json', Origin: "chrome-extension://fjcggidednblenggahpkilfidbalhmad" },
-      body: JSON.stringify({ email, password }),
-    });
-    const data = await response.json();
-    if (data.token) {
-      console.log("data: ", data);
-
-      setToken(data.token); // Stocke le token avec chrome.storage
-      await setLoginTime(); // Stocke l'heure de connexion
-      return true;
-    } else {
-      throw new Error('Authentification échouée');
-    }
-  } catch (error) {
-    console.error('Erreur de connexion:', error);
-    return false;
-  }
-}
-
-// Stocke l'heure de connexion
-export async function setLoginTime() {
-  const currentTime = Date.now();
-  chrome.storage.local.set({ loginTime: currentTime });
-}
-
-// Récupère l'heure de connexion
-export async function getLoginTime(): Promise<number | null> {
-  return new Promise((resolve) => {
-    chrome.storage.local.get(['loginTime'], (result) => {
-      resolve(result.loginTime || null);
-    });
-  });
-}
-
-// Vérifie si l'utilisateur est encore authentifié (déconnexion après 20 secondes pour le test)
-export async function isUserAuthenticated(): Promise<boolean> {
-  return new Promise(async (resolve) => {
-    chrome.runtime.sendMessage({ action: 'isAuthenticated' }, async (response) => {
-      if (chrome.runtime.lastError) {
-        console.error("Erreur de communication avec le script de fond :", chrome.runtime.lastError.message);
-        resolve(false);
+      // Enregistrez les tokens en fonction de "Se souvenir de moi"
+      if (rememberMe) {
+        localStorage.setItem('accessToken', data.accessToken);
+        localStorage.setItem('refreshToken', data.refreshToken);
       } else {
-        const loginTime = await getLoginTime();
-        if (loginTime) {
-          const elapsedTime = Date.now() - loginTime;
-          //const FIVE_HOURS_IN_MS = 20 * 1000; // 20 secondes pour le test
-          const FIVE_HOURS_IN_MS = 5 * 60 * 60 * 1000;
-
-          if (elapsedTime >= FIVE_HOURS_IN_MS) {
-            //console.log(`Temps écoulé ::: ${elapsedTime / 1000} secondes. Déconnexion.`);
-            logout(); // Déconnectez si 20 secondes sont écoulées
-            resolve(false);
-          } else {
-            console.log(`Temps restant avant déconnexion ::: ${(FIVE_HOURS_IN_MS - elapsedTime) / 1000} secondes.`);
-            resolve(response?.isAuthenticated ?? false);
-          }
-        } else {
-          resolve(false); // Aucun login enregistré
-        }
+        sessionStorage.setItem('accessToken', data.accessToken);
+        sessionStorage.setItem('refreshToken', data.refreshToken);
       }
-    });
-  });
+
+      return true;
+    } else {
+      console.error('Échec de la connexion :', data.message);
+      throw new Error(data.message || 'Authentification échouée.');
+    }
+  } catch (error) {
+    console.error('Erreur lors de la connexion :', error);
+    return false;
+  }
+} */
+
+  export async function login(email: string, password: string, rememberMe: boolean): Promise<boolean> {
+    try {
+      const response = await fetch(`${API_URL}/user/login`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        credentials: 'include', // Permet d'envoyer et de recevoir les cookies
+        body: JSON.stringify({ email, password, rememberMe }),
+      });
+  
+      if (!response.ok) {
+        // Si le code HTTP n'est pas dans la plage 200-299, lever une erreur
+        const errorData = await response.json();
+        throw new Error(errorData.message || 'Erreur inconnue');
+      }
+      if (response.ok) {
+        const data = await response.json();
+        setTokens(data.accessToken, data.refreshToken || null); // Ajout des tokens
+        console.log("Connexion réussie. Tokens stockés :", data);
+        return true;
+      }
+      
+      const data = await response.json();
+      console.log("Données reçues :", data);
+  
+      if (data.accessToken) {
+        setTokens(data.accessToken, data.refreshToken || null); // Stockez les tokens
+        return true; // Connexion réussie
+      } else {
+        return false; // Aucun token reçu
+      }
+    } catch (error) {
+      console.error('Erreur lors de la connexion :', error);
+      throw error; // Relancer l'erreur pour la gérer dans le composant
+    }
+  }
+  
+
+  
+// Vérifie si l'utilisateur est encore authentifié
+export async function isUserAuthenticated(): Promise<boolean> {
+  const tokens = await getTokens();
+
+  if (!tokens.accessToken) {
+    console.log("Aucun accessToken trouvé. Redirection vers la connexion...");
+    return false; // Aucun token : l'utilisateur n'est pas authentifié
+  }
+
+  // Vérifie si l'Access Token est valide
+  const isValid = await verifyAccessToken(tokens.accessToken);
+  if (isValid) {
+    return true; // Token valide
+  }
+
+  // Si l'Access Token est invalide, tente de rafraîchir le token
+  if (tokens.refreshToken) {
+    console.log("Tentative de rafraîchissement du token d'accès.");
+    const newAccessToken = await refreshAccessToken();
+
+    if (newAccessToken) {
+      // Mettre à jour les tokens
+      await setTokens(newAccessToken, tokens.refreshToken);
+      return true;
+    } else {
+      console.error("Échec du rafraîchissement du token. Déconnexion...");
+      logout(); // Déconnecter si le refresh échoue
+      return false;
+    }
+  }
+
+  console.log("Aucun token valide. Redirection vers la connexion...");
+  return false; // Aucun accessToken ni refreshToken valide
 }
 
 // Déconnecte l'utilisateur
-export function logout() {
-  chrome.runtime.sendMessage({ action: "logout" }, (response) => {
-    if (response?.success) {
-      console.log("Déconnexion réussie");
-    }
-  });
+export async function logout() {
+  console.log('Déconnexion de l\'utilisateur.');
 
-  // Supprime les informations de connexion
-  chrome.storage.local.remove(['authToken', 'loginTime'], () => {
-    console.log("Données utilisateur supprimées");
+  // Supprimez les tokens du stockage
+  removeTokens();
+
+  // Supprimez également l'indication "rememberMe" si elle existe
+  chrome.storage.local.remove(['rememberMe'], () => {
+    console.log('Indicateur "Se souvenir de moi" supprimé.');
   });
 }
+
+// Récupère un token valide (soit l'Access Token actuel, soit un nouveau)
+export async function getValidToken(): Promise<string | null> {
+  const tokens = await getTokens();
+
+  if (tokens.accessToken) {
+    const isValid = await verifyAccessToken(tokens.accessToken);
+    if (isValid) {
+      return tokens.accessToken;
+    }
+  }
+
+  // Si l'Access Token n'est pas valide, tentez de le rafraîchir
+  try {
+    console.log('Tentative de rafraîchissement du token d\'accès.');
+    const newAccessToken = await refreshAccessToken();
+
+    if (newAccessToken) {
+     setTokens(newAccessToken, tokens.refreshToken || null);
+      return newAccessToken;
+    }
+    console.log('Tentative de rafraîchissement du token d\'accès.', newAccessToken);
+  } catch (error) {
+    console.error('Erreur lors de l\'obtention d\'un token valide :', error);
+  }
+
+  return null;
+}
+
