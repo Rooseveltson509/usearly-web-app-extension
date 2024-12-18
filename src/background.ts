@@ -2,7 +2,7 @@ import { getTokens, removeTokens, setTokens } from './utils/storageUtil';
 import { shouldBlockUrl } from "./utils/blockAdultSites";
 
 const API_URL = 'https://usearly-api.vercel.app/api/v1';
-const FIVE_HOURS_IN_MS = 5 * 60 * 60 * 1000;
+const FIVE_HOURS_IN_MS = 24 * 60 * 60 * 1000;
 
 
 
@@ -48,7 +48,7 @@ function handleLogout() {
 }
 
 // Vérifie périodiquement si 5 heures se sont écoulées depuis la connexion
-/* setInterval(async () => {
+setInterval(async () => {
     chrome.storage.local.get(['loginTime'], (result) => {
         const loginTime = result.loginTime || null;
 
@@ -60,7 +60,7 @@ function handleLogout() {
             }
         }
     });
-}, 300000);  */// Vérifie toutes les 5 minutes
+}, 300000); // Vérifie toutes les 5 minutes
 
 
 chrome.action.onClicked.addListener((tab) => {
@@ -131,7 +131,7 @@ chrome.runtime.onMessage.addListener(
                             console.log("data: ", data);
                             clearTimeout(timeout); // Annule le timeout si la réponse arrive
                             if (data.token && data.refreshToken) {
-                                setTokens(data.token, data.refreshToken);
+                                setTokens(data.token);
                                 chrome.storage.local.set({ loginTime: Date.now() }); // Enregistre l'heure de connexion
                                 console.log("Connexion réussie. Tokens stockés.");
                                 sendResponse({ success: true });

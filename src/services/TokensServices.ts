@@ -28,7 +28,7 @@ export async function verifyAccessToken(accessToken: string): Promise<boolean> {
   }
   
   
-  export async function refreshAccessToken(): Promise<string | null> {
+/*   export async function refreshAccessToken(): Promise<string | null> {
     const tokens = await getTokens();
   
     if (!tokens.refreshToken) {
@@ -56,6 +56,6 @@ export async function verifyAccessToken(accessToken: string): Promise<boolean> {
       return null;
     }
   }
-  
+   */
   
   
