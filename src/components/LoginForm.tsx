@@ -26,7 +26,7 @@ const LoginForm: React.FC<LoginFormProps> = ({ onClose, onLoginSuccess }) => {
     setIsSubmitting(true);
   
     try {
-      const success = await login(email, password, rememberMe);
+      const success = await login(email, password);
       console.log('Résultat du login :', success);
   
       if (success) {

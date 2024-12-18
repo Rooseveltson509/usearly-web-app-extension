@@ -1,5 +1,5 @@
 import { setTokens, removeTokens, setLoginTime, getTokens } from '../utils/storageUtil'; // Mise à jour pour chrome.storage
-import { refreshAccessToken, verifyAccessToken } from './TokensServices';
+import { verifyAccessToken } from './TokensServices';
 
 const API_URL = 'https://usearly-api.vercel.app/api/v1';
 
@@ -39,43 +39,35 @@ const API_URL = 'https://usearly-api.vercel.app/api/v1';
   }
 } */
 
-  export async function login(email: string, password: string, rememberMe: boolean): Promise<boolean> {
+  export async function login(email: string, password: string): Promise<boolean> {
     try {
       const response = await fetch(`${API_URL}/user/login`, {
         method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        credentials: 'include', // Permet d'envoyer et de recevoir les cookies
-        body: JSON.stringify({ email, password, rememberMe }),
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email, password }),
       });
   
       if (!response.ok) {
-        // Si le code HTTP n'est pas dans la plage 200-299, lever une erreur
-        const errorData = await response.json();
-        throw new Error(errorData.message || 'Erreur inconnue');
+        console.error("Échec de la connexion :", response.statusText);
+        return false;
       }
-      if (response.ok) {
-        const data = await response.json();
-        setTokens(data.accessToken, data.refreshToken || null); // Ajout des tokens
-        console.log("Connexion réussie. Tokens stockés :", data);
-        return true;
-      }
-      
+  
       const data = await response.json();
-      console.log("Données reçues :", data);
   
       if (data.accessToken) {
-        setTokens(data.accessToken, data.refreshToken || null); // Stockez les tokens
-        return true; // Connexion réussie
-      } else {
-        return false; // Aucun token reçu
+        setTokens(data.accessToken); // Stockez uniquement accessToken
+        console.log("Connexion réussie. Token stocké.");
+        return true;
       }
+  
+      console.error("Aucun accessToken reçu.");
+      return false;
     } catch (error) {
-      console.error('Erreur lors de la connexion :', error);
-      throw error; // Relancer l'erreur pour la gérer dans le composant
+      console.error("Erreur lors de la connexion :", error);
+      return false;
     }
   }
+  
   
 
   
@@ -92,22 +84,6 @@ export async function isUserAuthenticated(): Promise<boolean> {
   const isValid = await verifyAccessToken(tokens.accessToken);
   if (isValid) {
     return true; // Token valide
-  }
-
-  // Si l'Access Token est invalide, tente de rafraîchir le token
-  if (tokens.refreshToken) {
-    console.log("Tentative de rafraîchissement du token d'accès.");
-    const newAccessToken = await refreshAccessToken();
-
-    if (newAccessToken) {
-      // Mettre à jour les tokens
-      await setTokens(newAccessToken, tokens.refreshToken);
-      return true;
-    } else {
-      console.error("Échec du rafraîchissement du token. Déconnexion...");
-      logout(); // Déconnecter si le refresh échoue
-      return false;
-    }
   }
 
   console.log("Aucun token valide. Redirection vers la connexion...");
@@ -131,27 +107,12 @@ export async function logout() {
 export async function getValidToken(): Promise<string | null> {
   const tokens = await getTokens();
 
+  // Vérifie si l'accessToken existe
   if (tokens.accessToken) {
-    const isValid = await verifyAccessToken(tokens.accessToken);
-    if (isValid) {
-      return tokens.accessToken;
-    }
+    return tokens.accessToken;
   }
 
-  // Si l'Access Token n'est pas valide, tentez de le rafraîchir
-  try {
-    console.log('Tentative de rafraîchissement du token d\'accès.');
-    const newAccessToken = await refreshAccessToken();
-
-    if (newAccessToken) {
-     setTokens(newAccessToken, tokens.refreshToken || null);
-      return newAccessToken;
-    }
-    console.log('Tentative de rafraîchissement du token d\'accès.', newAccessToken);
-  } catch (error) {
-    console.error('Erreur lors de l\'obtention d\'un token valide :', error);
-  }
-
+  console.warn("Aucun accessToken valide trouvé.");
   return null;
 }
 

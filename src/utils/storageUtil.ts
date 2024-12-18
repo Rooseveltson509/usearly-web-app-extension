@@ -1,5 +1,5 @@
 // Enregistrement des tokens
-export function setTokens(accessToken: string, refreshToken: string | null) {
+/* export function setTokens(accessToken: string, refreshToken: string | null) {
   chrome.storage.local.set({ accessToken, refreshToken }, () => {
     console.log("Tokens enregistrés dans chrome.storage :", {
       accessToken,
@@ -7,7 +7,7 @@ export function setTokens(accessToken: string, refreshToken: string | null) {
     });
   });
 }
-
+ */
 
 
 
@@ -29,7 +29,7 @@ export function setTokens(accessToken: string, refreshToken: string | null) {
     return { accessToken, refreshToken };
   } */
 
-    export async function getTokens(): Promise<{ accessToken: string | null; refreshToken: string | null }> {
+/*     export async function getTokens(): Promise<{ accessToken: string | null; refreshToken: string | null }> {
       return new Promise((resolve) => {
         chrome.storage.local.get(["accessToken", "refreshToken"], (result) => {
           console.log("Tokens récupérés depuis chrome.storage :", result);
@@ -39,12 +39,21 @@ export function setTokens(accessToken: string, refreshToken: string | null) {
           });
         });
       });
-    }
-    
-    
-  
-  
-  
+    } */
+export function setTokens(accessToken: string) {
+  chrome.storage.local.set({ accessToken }, () => {
+    console.log("AccessToken enregistré dans chrome.storage");
+  });
+}
+
+export async function getTokens(): Promise<{ accessToken: string | null }> {
+  return new Promise((resolve) => {
+    chrome.storage.local.get(['accessToken'], (result) => {
+      resolve({ accessToken: result.accessToken || null });
+    });
+  });
+}
+
 
 // Suppression des tokens
 export function removeTokens() {

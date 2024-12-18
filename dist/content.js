@@ -42925,27 +42925,25 @@ var FeedbackForm = function (_a) {
     var _d = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)(true), showFeedbackForm = _d[0], setShowFeedbackForm = _d[1]; // Affiche le formulaire initialement
     var _e = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)(null), pendingAction = _e[0], setPendingAction = _e[1];
     var _f = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)(false), showEmojiSelector = _f[0], setShowEmojiSelector = _f[1];
-    var _g = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)(false), isLoading = _g[0], setIsLoading = _g[1]; // Indique si la requête est en cours
-    var _h = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)(false), showOverlay = _h[0], setShowOverlay = _h[1]; // Contrôle l'affichage de l'overlay
-    var _j = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)(initialFormData.alertDescription), alertDescription = _j[0], setAlertDescription = _j[1];
-    var _k = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)(initialFormData.sentiment), sentiment = _k[0], setSentiment = _k[1];
-    var _l = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)(initialFormData.tips), tips = _l[0], setTips = _l[1];
-    var _m = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)(initialFormData.isBlocked), isBlocked = _m[0], setBlocking = _m[1];
-    var _o = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)(screenshot), capture = _o[0], setCapture = _o[1];
+    var _g = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)(initialFormData.alertDescription), alertDescription = _g[0], setAlertDescription = _g[1];
+    var _h = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)(initialFormData.sentiment), sentiment = _h[0], setSentiment = _h[1];
+    var _j = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)(initialFormData.tips), tips = _j[0], setTips = _j[1];
+    var _k = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)(initialFormData.isBlocked), isBlocked = _k[0], setBlocking = _k[1];
+    var _l = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)(screenshot), capture = _l[0], setCapture = _l[1];
     // alert data
-    var _p = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)(''), brandName = _p[0], setBrandName = _p[1];
-    var _q = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)(''), siteUrl = _q[0], setSitUrl = _q[1];
-    var _r = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)(''), bugLocation = _r[0], setBugLocation = _r[1];
-    var _s = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)(''), emojis = _s[0], setEmojis = _s[1];
-    var _t = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)(false), showConfirmation = _t[0], setShowConfirmation = _t[1]; // État pour afficher la modal de confirmation
-    var _u = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)(null), errorMessages = _u[0], setErrorMessages = _u[1]; // Stocke les erreurs
-    var _v = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)(false), isSubmitting = _v[0], setIsSubmitting = _v[1]; // Indique si le formulaire est en cours de soumission
-    var _w = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)(null), flashMessage = _w[0], setFlashMessage = _w[1];
-    var _x = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)(0), totalReports = _x[0], setTotalReports = _x[1];
-    var _y = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)(), codeStatus = _y[0], setCodeStatus = _y[1];
-    var _z = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)(null), response = _z[0], setResponse = _z[1];
-    var _0 = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)(null), error = _0[0], setError = _0[1];
-    var _1 = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)(selectedAction), localAction = _1[0], setLocalAction = _1[1];
+    var _m = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)(''), brandName = _m[0], setBrandName = _m[1];
+    var _o = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)(''), siteUrl = _o[0], setSitUrl = _o[1];
+    var _p = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)(''), bugLocation = _p[0], setBugLocation = _p[1];
+    var _q = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)(''), emojis = _q[0], setEmojis = _q[1];
+    var _r = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)(false), showConfirmation = _r[0], setShowConfirmation = _r[1]; // État pour afficher la modal de confirmation
+    var _s = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)(null), errorMessages = _s[0], setErrorMessages = _s[1]; // Stocke les erreurs
+    var _t = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)(false), isSubmitting = _t[0], setIsSubmitting = _t[1]; // Indique si le formulaire est en cours de soumission
+    var _u = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)(null), flashMessage = _u[0], setFlashMessage = _u[1];
+    var _v = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)(0), totalReports = _v[0], setTotalReports = _v[1];
+    var _w = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)(), codeStatus = _w[0], setCodeStatus = _w[1];
+    var _x = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)(null), response = _x[0], setResponse = _x[1];
+    var _y = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)(null), error = _y[0], setError = _y[1];
+    var _z = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)(selectedAction), localAction = _z[0], setLocalAction = _z[1];
     (0,react__WEBPACK_IMPORTED_MODULE_1__.useEffect)(function () {
         var currentUrl = window.location.href;
         setLocalAction(selectedAction); // Synchronise uniquement lors de l'initialisation
@@ -43238,7 +43236,7 @@ var LoginForm = function (_a) {
                     _a.label = 1;
                 case 1:
                     _a.trys.push([1, 3, 4, 5]);
-                    return [4 /*yield*/, (0,_services_AuthService__WEBPACK_IMPORTED_MODULE_2__.login)(email, password, rememberMe)];
+                    return [4 /*yield*/, (0,_services_AuthService__WEBPACK_IMPORTED_MODULE_2__.login)(email, password)];
                 case 2:
                     success = _a.sent();
                     console.log('Résultat du login :', success);
@@ -44381,53 +44379,39 @@ var API_URL = 'https://usearly-api.vercel.app/api/v1';
     return false;
   }
 } */
-function login(email, password, rememberMe) {
+function login(email, password) {
     return __awaiter(this, void 0, void 0, function () {
-        var response, errorData, data_1, data, error_1;
+        var response, data, error_1;
         return __generator(this, function (_a) {
             switch (_a.label) {
                 case 0:
-                    _a.trys.push([0, 7, , 8]);
+                    _a.trys.push([0, 3, , 4]);
                     return [4 /*yield*/, fetch("".concat(API_URL, "/user/login"), {
                             method: 'POST',
-                            headers: {
-                                'Content-Type': 'application/json',
-                            },
-                            credentials: 'include',
-                            body: JSON.stringify({ email: email, password: password, rememberMe: rememberMe }),
+                            headers: { 'Content-Type': 'application/json' },
+                            body: JSON.stringify({ email: email, password: password }),
                         })];
                 case 1:
                     response = _a.sent();
-                    if (!!response.ok) return [3 /*break*/, 3];
+                    if (!response.ok) {
+                        console.error("Échec de la connexion :", response.statusText);
+                        return [2 /*return*/, false];
+                    }
                     return [4 /*yield*/, response.json()];
                 case 2:
-                    errorData = _a.sent();
-                    throw new Error(errorData.message || 'Erreur inconnue');
-                case 3:
-                    if (!response.ok) return [3 /*break*/, 5];
-                    return [4 /*yield*/, response.json()];
-                case 4:
-                    data_1 = _a.sent();
-                    (0,_utils_storageUtil__WEBPACK_IMPORTED_MODULE_0__.setTokens)(data_1.accessToken, data_1.refreshToken || null); // Ajout des tokens
-                    console.log("Connexion réussie. Tokens stockés :", data_1);
-                    return [2 /*return*/, true];
-                case 5: return [4 /*yield*/, response.json()];
-                case 6:
                     data = _a.sent();
-                    console.log("Données reçues :", data);
                     if (data.accessToken) {
-                        (0,_utils_storageUtil__WEBPACK_IMPORTED_MODULE_0__.setTokens)(data.accessToken, data.refreshToken || null); // Stockez les tokens
-                        return [2 /*return*/, true]; // Connexion réussie
+                        (0,_utils_storageUtil__WEBPACK_IMPORTED_MODULE_0__.setTokens)(data.accessToken); // Stockez uniquement accessToken
+                        console.log("Connexion réussie. Token stocké.");
+                        return [2 /*return*/, true];
                     }
-                    else {
-                        return [2 /*return*/, false]; // Aucun token reçu
-                    }
-                    return [3 /*break*/, 8];
-                case 7:
+                    console.error("Aucun accessToken reçu.");
+                    return [2 /*return*/, false];
+                case 3:
                     error_1 = _a.sent();
-                    console.error('Erreur lors de la connexion :', error_1);
-                    throw error_1; // Relancer l'erreur pour la gérer dans le composant
-                case 8: return [2 /*return*/];
+                    console.error("Erreur lors de la connexion :", error_1);
+                    return [2 /*return*/, false];
+                case 4: return [2 /*return*/];
             }
         });
     });
@@ -44435,7 +44419,7 @@ function login(email, password, rememberMe) {
 // Vérifie si l'utilisateur est encore authentifié
 function isUserAuthenticated() {
     return __awaiter(this, void 0, void 0, function () {
-        var tokens, isValid, newAccessToken;
+        var tokens, isValid;
         return __generator(this, function (_a) {
             switch (_a.label) {
                 case 0: return [4 /*yield*/, (0,_utils_storageUtil__WEBPACK_IMPORTED_MODULE_0__.getTokens)()];
@@ -44451,23 +44435,6 @@ function isUserAuthenticated() {
                     if (isValid) {
                         return [2 /*return*/, true]; // Token valide
                     }
-                    if (!tokens.refreshToken) return [3 /*break*/, 6];
-                    console.log("Tentative de rafraîchissement du token d'accès.");
-                    return [4 /*yield*/, (0,_TokensServices__WEBPACK_IMPORTED_MODULE_1__.refreshAccessToken)()];
-                case 3:
-                    newAccessToken = _a.sent();
-                    if (!newAccessToken) return [3 /*break*/, 5];
-                    // Mettre à jour les tokens
-                    return [4 /*yield*/, (0,_utils_storageUtil__WEBPACK_IMPORTED_MODULE_0__.setTokens)(newAccessToken, tokens.refreshToken)];
-                case 4:
-                    // Mettre à jour les tokens
-                    _a.sent();
-                    return [2 /*return*/, true];
-                case 5:
-                    console.error("Échec du rafraîchissement du token. Déconnexion...");
-                    logout(); // Déconnecter si le refresh échoue
-                    return [2 /*return*/, false];
-                case 6:
                     console.log("Aucun token valide. Redirection vers la connexion...");
                     return [2 /*return*/, false]; // Aucun accessToken ni refreshToken valide
             }
@@ -44492,37 +44459,18 @@ function logout() {
 // Récupère un token valide (soit l'Access Token actuel, soit un nouveau)
 function getValidToken() {
     return __awaiter(this, void 0, void 0, function () {
-        var tokens, isValid, newAccessToken, error_2;
+        var tokens;
         return __generator(this, function (_a) {
             switch (_a.label) {
                 case 0: return [4 /*yield*/, (0,_utils_storageUtil__WEBPACK_IMPORTED_MODULE_0__.getTokens)()];
                 case 1:
                     tokens = _a.sent();
-                    if (!tokens.accessToken) return [3 /*break*/, 3];
-                    return [4 /*yield*/, (0,_TokensServices__WEBPACK_IMPORTED_MODULE_1__.verifyAccessToken)(tokens.accessToken)];
-                case 2:
-                    isValid = _a.sent();
-                    if (isValid) {
+                    // Vérifie si l'accessToken existe
+                    if (tokens.accessToken) {
                         return [2 /*return*/, tokens.accessToken];
                     }
-                    _a.label = 3;
-                case 3:
-                    _a.trys.push([3, 5, , 6]);
-                    console.log('Tentative de rafraîchissement du token d\'accès.');
-                    return [4 /*yield*/, (0,_TokensServices__WEBPACK_IMPORTED_MODULE_1__.refreshAccessToken)()];
-                case 4:
-                    newAccessToken = _a.sent();
-                    if (newAccessToken) {
-                        (0,_utils_storageUtil__WEBPACK_IMPORTED_MODULE_0__.setTokens)(newAccessToken, tokens.refreshToken || null);
-                        return [2 /*return*/, newAccessToken];
-                    }
-                    console.log('Tentative de rafraîchissement du token d\'accès.', newAccessToken);
-                    return [3 /*break*/, 6];
-                case 5:
-                    error_2 = _a.sent();
-                    console.error('Erreur lors de l\'obtention d\'un token valide :', error_2);
-                    return [3 /*break*/, 6];
-                case 6: return [2 /*return*/, null];
+                    console.warn("Aucun accessToken valide trouvé.");
+                    return [2 /*return*/, null];
             }
         });
     });
@@ -44540,10 +44488,8 @@ function getValidToken() {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   refreshAccessToken: () => (/* binding */ refreshAccessToken),
 /* harmony export */   verifyAccessToken: () => (/* binding */ verifyAccessToken)
 /* harmony export */ });
-/* harmony import */ var _utils_storageUtil__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../utils/storageUtil */ "./src/utils/storageUtil.ts");
 var __awaiter = (undefined && undefined.__awaiter) || function (thisArg, _arguments, P, generator) {
     function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
     return new (P || (P = Promise))(function (resolve, reject) {
@@ -44580,7 +44526,6 @@ var __generator = (undefined && undefined.__generator) || function (thisArg, bod
         if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
     }
 };
-
 var API_URL = 'https://usearly-api.vercel.app/api/v1';
 // Fonction de vérification du token
 function verifyAccessToken(accessToken) {
@@ -44618,47 +44563,35 @@ function verifyAccessToken(accessToken) {
         });
     });
 }
-function refreshAccessToken() {
-    return __awaiter(this, void 0, void 0, function () {
-        var tokens, response, data, error_2;
-        return __generator(this, function (_a) {
-            switch (_a.label) {
-                case 0: return [4 /*yield*/, (0,_utils_storageUtil__WEBPACK_IMPORTED_MODULE_0__.getTokens)()];
-                case 1:
-                    tokens = _a.sent();
-                    if (!tokens.refreshToken) {
-                        console.error("Aucun refreshToken trouvé. Redirection vers la connexion.");
-                        return [2 /*return*/, null];
-                    }
-                    _a.label = 2;
-                case 2:
-                    _a.trys.push([2, 7, , 8]);
-                    return [4 /*yield*/, fetch("".concat(API_URL, "/user/refresh-token"), {
-                            method: 'POST',
-                            credentials: 'include',
-                            headers: { 'Content-Type': 'application/json' },
-                        })];
-                case 3:
-                    response = _a.sent();
-                    if (!response.ok) return [3 /*break*/, 5];
-                    return [4 /*yield*/, response.json()];
-                case 4:
-                    data = _a.sent();
-                    console.log("Token d'accès rafraîchi avec succès.");
-                    return [2 /*return*/, data.accessToken];
-                case 5:
-                    console.error("Échec lors du rafraîchissement du token.");
-                    return [2 /*return*/, null];
-                case 6: return [3 /*break*/, 8];
-                case 7:
-                    error_2 = _a.sent();
-                    console.error("Erreur lors de la requête de rafraîchissement :", error_2);
-                    return [2 /*return*/, null];
-                case 8: return [2 /*return*/];
-            }
-        });
-    });
-}
+/*   export async function refreshAccessToken(): Promise<string | null> {
+    const tokens = await getTokens();
+  
+    if (!tokens.refreshToken) {
+      console.error("Aucun refreshToken trouvé. Redirection vers la connexion.");
+      return null;
+    }
+  
+    try {
+      const response = await fetch(`${API_URL}/user/refresh-token`, {
+        method: 'POST',
+        credentials: 'include', // Envoie les cookies pour le refresh
+        headers: { 'Content-Type': 'application/json' },
+      });
+  
+      if (response.ok) {
+        const data = await response.json();
+        console.log("Token d'accès rafraîchi avec succès.");
+        return data.accessToken;
+      } else {
+        console.error("Échec lors du rafraîchissement du token.");
+        return null;
+      }
+    } catch (error) {
+      console.error("Erreur lors de la requête de rafraîchissement :", error);
+      return null;
+    }
+  }
+   */
 
 
 /***/ }),
@@ -45070,6 +45003,16 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   setLoginTime: () => (/* binding */ setLoginTime),
 /* harmony export */   setTokens: () => (/* binding */ setTokens)
 /* harmony export */ });
+// Enregistrement des tokens
+/* export function setTokens(accessToken: string, refreshToken: string | null) {
+  chrome.storage.local.set({ accessToken, refreshToken }, () => {
+    console.log("Tokens enregistrés dans chrome.storage :", {
+      accessToken,
+      refreshToken,
+    });
+  });
+}
+ */
 var __awaiter = (undefined && undefined.__awaiter) || function (thisArg, _arguments, P, generator) {
     function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
     return new (P || (P = Promise))(function (resolve, reject) {
@@ -45106,15 +45049,6 @@ var __generator = (undefined && undefined.__generator) || function (thisArg, bod
         if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
     }
 };
-// Enregistrement des tokens
-function setTokens(accessToken, refreshToken) {
-    chrome.storage.local.set({ accessToken: accessToken, refreshToken: refreshToken }, function () {
-        console.log("Tokens enregistrés dans chrome.storage :", {
-            accessToken: accessToken,
-            refreshToken: refreshToken,
-        });
-    });
-}
 // Récupération des tokens
 /* export function getTokens(): Promise<{ accessToken: string | null; refreshToken: string | null }> {
   return new Promise((resolve) => {
@@ -45132,16 +45066,28 @@ function setTokens(accessToken, refreshToken) {
     const refreshToken = localStorage.getItem('refreshToken') || sessionStorage.getItem('refreshToken');
     return { accessToken, refreshToken };
   } */
+/*     export async function getTokens(): Promise<{ accessToken: string | null; refreshToken: string | null }> {
+      return new Promise((resolve) => {
+        chrome.storage.local.get(["accessToken", "refreshToken"], (result) => {
+          console.log("Tokens récupérés depuis chrome.storage :", result);
+          resolve({
+            accessToken: result.accessToken || null,
+            refreshToken: result.refreshToken || null,
+          });
+        });
+      });
+    } */
+function setTokens(accessToken) {
+    chrome.storage.local.set({ accessToken: accessToken }, function () {
+        console.log("AccessToken enregistré dans chrome.storage");
+    });
+}
 function getTokens() {
     return __awaiter(this, void 0, void 0, function () {
         return __generator(this, function (_a) {
             return [2 /*return*/, new Promise(function (resolve) {
-                    chrome.storage.local.get(["accessToken", "refreshToken"], function (result) {
-                        console.log("Tokens récupérés depuis chrome.storage :", result);
-                        resolve({
-                            accessToken: result.accessToken || null,
-                            refreshToken: result.refreshToken || null,
-                        });
+                    chrome.storage.local.get(['accessToken'], function (result) {
+                        resolve({ accessToken: result.accessToken || null });
                     });
                 })];
         });

@@ -60,8 +60,6 @@ const FeedbackForm: React.FC<FeedbackFormProps> = ({
   const [showFeedbackForm, setShowFeedbackForm] = useState(true); // Affiche le formulaire initialement
   const [pendingAction, setPendingAction] = useState<(() => void) | null>(null);
   const [showEmojiSelector, setShowEmojiSelector] = useState<boolean>(false);
-  const [isLoading, setIsLoading] = useState(false); // Indique si la requête est en cours
-  const [showOverlay, setShowOverlay] = useState<boolean>(false); // Contrôle l'affichage de l'overlay
   const [alertDescription, setAlertDescription] = useState(initialFormData.alertDescription);
   const [sentiment, setSentiment] = useState(initialFormData.sentiment);
   const [tips, setTips] = useState(initialFormData.tips);
@@ -131,14 +129,6 @@ const FeedbackForm: React.FC<FeedbackFormProps> = ({
       capture,
       tips,
     };
-
-/*     const token = await getToken();
-    if (!token) {
-      console.error('Erreur : le token est null ou undefined');
-      setErrorMessages('Erreur : le token est null ou undefined');
-      //setIsLoading(false);
-      return;
-    } */
 
     try {
 
