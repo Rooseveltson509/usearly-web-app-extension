@@ -42651,6 +42651,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_1__);
 /* harmony import */ var _LoginForm__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./LoginForm */ "./src/components/LoginForm.tsx");
 /* harmony import */ var _services_AuthService__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../services/AuthService */ "./src/services/AuthService.ts");
+/* harmony import */ var _utils_storageUtil__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../utils/storageUtil */ "./src/utils/storageUtil.ts");
 var __assign = (undefined && undefined.__assign) || function () {
     __assign = Object.assign || function(t) {
         for (var s, i = 1, n = arguments.length; i < n; i++) {
@@ -42702,6 +42703,7 @@ var __generator = (undefined && undefined.__generator) || function (thisArg, bod
 
 
 
+
 var DraggableFloatingMenu = function (_a) {
     var x = _a.x, y = _a.y, onActionClick = _a.onActionClick, onClose = _a.onClose;
     var _b = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)(false), showLoginForm = _b[0], setShowLoginForm = _b[1];
@@ -42734,14 +42736,15 @@ var DraggableFloatingMenu = function (_a) {
         setIsCaptureMode(false);
     };
     var handleButtonClick = function (action) { return __awaiter(void 0, void 0, void 0, function () {
-        var isAuthenticated;
+        var isAuthenticated, accessToken;
         return __generator(this, function (_a) {
             switch (_a.label) {
-                case 0: return [4 /*yield*/, (0,_services_AuthService__WEBPACK_IMPORTED_MODULE_3__.isUserAuthenticated)()];
+                case 0: return [4 /*yield*/, (0,_utils_storageUtil__WEBPACK_IMPORTED_MODULE_4__.getTokens)()];
                 case 1:
                     isAuthenticated = _a.sent();
-                    if (isAuthenticated) {
-                        console.log("isUserAuthenticated: ", isAuthenticated);
+                    accessToken = isAuthenticated.accessToken;
+                    if (accessToken) {
+                        console.log("isUserAuthenticated: ", accessToken);
                         action(); // Si l'utilisateur est connecté, exécute l'action
                     }
                     else {
@@ -42805,16 +42808,27 @@ var DraggableFloatingMenu = function (_a) {
         return null; // Retourner `null` au lieu de `false`
     return ((0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", __assign({ className: 'floating-menu my-extension-floating-menu', id: "close-floating-menu", onMouseDown: handleMouseDown, style: {
             position: "fixed",
-            /* left: `${position.x}px`,
-            top: `${position.y}px`, */
-            /*         width: '200px',
+            /* inset-inline-start: `${position.x}px`,
+            inset-block-start: `${position.y}px`, */
+            /*         inline-size: '200px',
                     padding: '10px',
                     backgroundColor: '#f0f0f0',
                     border: '1px solid #ccc',
                     borderRadius: '8px', */
             cursor: 'move',
             zIndex: 1000,
-        } }, { children: [(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", __assign({ className: "tooltip-container" }, { children: [(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("svg", __assign({ className: 'svg-icon', onClick: function () { return handleButtonClick(function () { return console.log('Action Commenter: '); }); }, id: "uIcon", width: "22", height: "18", viewBox: "0 0 22 18", fill: "none", xmlns: "http://www.w3.org/2000/svg" }, { children: [(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("path", { d: "M10.56 0H14.77V11.26C14.77 12.56 14.46 13.69 13.84 14.66C13.22 15.62 12.36 16.36 11.25 16.89C10.14 17.41 8.86 17.67 7.39 17.67C5.92 17.67 4.61 17.41 3.5 16.89C2.39 16.36 1.53 15.62 0.92 14.66C0.31 13.69 0 12.56 0 11.26V0H4.22V10.89C4.22 11.49 4.35 12.03 4.61 12.5C4.88 12.97 5.25 13.34 5.73 13.61C6.21 13.88 6.76 14.01 7.39 14.01C8.02 14.01 8.57 13.88 9.04 13.61C9.52 13.34 9.89 12.97 10.16 12.5C10.43 12.03 10.56 11.49 10.56 10.89V0Z", fill: "#D9D9D9" }), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("path", { d: "M18.9402 17.7C18.3302 17.7 17.8002 17.48 17.3602 17.05C16.9302 16.62 16.7202 16.1 16.7202 15.48C16.7202 14.88 16.9302 14.36 17.3602 13.94C17.8002 13.51 18.3202 13.29 18.9402 13.29C19.5202 13.29 20.0302 13.51 20.4702 13.94C20.9202 14.37 21.1502 14.88 21.1502 15.48C21.1502 15.89 21.0402 16.26 20.8302 16.6C20.6302 16.94 20.3602 17.2 20.0202 17.4C19.6902 17.6 19.3302 17.7 18.9402 17.7Z", fill: "#D9D9D9" })] })), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", __assign({ className: "tooltip-text", id: 'u' }, { children: ["Feedback", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("span", { className: "tooltip-arrow" })] }))] })), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", __assign({ className: "tooltip-container" }, { children: [(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("svg", __assign({ className: 'svg-icon', onClick: function () { return onActionClick('capture'); }, id: "commentIcon", width: "26", height: "26", viewBox: "0 0 26 26", fill: "none", xmlns: "http://www.w3.org/2000/svg" }, { children: (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("path", { d: "M13 5.86C13.26 5.86 13.51 5.96 13.69 6.15C13.87 6.33 13.98 6.58 13.98 6.84V14.96C13.98 15.22 13.88 15.47 13.69 15.65C13.51 15.83 13.26 15.94 13 15.94C12.74 15.94 12.49 15.84 12.31 15.65C12.13 15.47 12.02 15.22 12.02 14.96V6.84C12.02 6.58 12.12 6.33 12.31 6.15C12.49 5.97 12.74 5.86 13 5.86ZM13 20.15C13.34 20.15 13.68 20.01 13.92 19.77C14.16 19.53 14.3 19.2 14.3 18.85C14.3 18.5 14.16 18.17 13.92 17.93C13.68 17.69 13.35 17.55 13 17.55C12.65 17.55 12.32 17.69 12.08 17.93C11.84 18.17 11.7 18.5 11.7 18.85C11.7 19.2 11.84 19.53 12.08 19.77C12.32 20.01 12.65 20.15 13 20.15ZM13 0.00999975C20.18 0.00999975 26 5.83 26 13.01C26 20.19 20.18 26.01 13 26.01C10.93 26.01 8.88 25.52 7.04 24.56L2.07 25.95C1.79 26.03 1.5 26.03 1.22 25.95C0.939997 25.88 0.69 25.73 0.48 25.53C0.28 25.33 0.129998 25.07 0.0599976 24.79C-0.0100024 24.51 -0.0100024 24.22 0.0599976 23.94L1.45 18.97C0.489997 17.13 0 15.08 0 13C0 5.82 5.82 0 13 0V0.00999975ZM13 1.96C10.07 1.96 7.26 3.12 5.19 5.2C3.12 7.27 1.95 10.08 1.95 13.01C1.95 14.92 2.43 16.76 3.34 18.39L3.54 18.74L2.09 23.92L7.27 22.47L7.62 22.67C9.09 23.49 10.74 23.96 12.42 24.05C14.11 24.14 15.79 23.84 17.34 23.17C18.89 22.51 20.27 21.49 21.37 20.22C22.47 18.94 23.26 17.43 23.69 15.79C24.11 14.16 24.16 12.45 23.82 10.8C23.48 9.15 22.77 7.59 21.74 6.26C20.71 4.93 19.38 3.85 17.87 3.1C16.36 2.36 14.69 1.97 13 1.97V1.96Z", fill: "#D9D9D9" }) })), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", __assign({ className: "tooltip-text", id: 'comment' }, { children: ["Signalement", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("span", { className: "tooltip-arrow" })] }))] })), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", __assign({ className: "tooltip-container" }, { children: [(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("svg", __assign({ className: 'svg-icon', onClick: function () { return onActionClick('cheart'); }, id: "heartIcon", width: "27", height: "24", viewBox: "0 0 27 24", fill: "none", xmlns: "http://www.w3.org/2000/svg" }, { children: (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("path", { d: "M26.41 4.81C26.01 3.86 25.44 3.01 24.7 2.29C23.21 0.820001 21.24 0.0100021 19.13 0.0100021C17.05 0.0100021 15.08 0.810003 13.58 2.28L13.51 2.35L13.44 2.28C11.95 0.810003 9.98 0 7.87 0C5.79 0 3.82 0.800002 2.33 2.26C1.59 2.98 1.02 3.83 0.610001 4.78C0.210001 5.73 0.01 6.74 0 7.77C0 8.8 0.199998 9.81 0.599998 10.76C0.999998 11.71 1.57 12.56 2.3 13.28L12.87 23.72C13.04 23.89 13.26 23.98 13.5 23.98C13.74 23.98 13.96 23.89 14.13 23.72L24.68 13.32C25.42 12.6 25.99 11.76 26.39 10.8C26.79 9.85 26.99 8.85 27 7.81C27 6.78 26.8 5.77 26.4 4.82L26.41 4.81ZM7.88 1.79C9.49 1.79 11.02 2.42 12.17 3.55L12.87 4.25C13.22 4.59 13.78 4.59 14.13 4.25L14.83 3.56C15.99 2.43 17.51 1.81 19.13 1.81C20.75 1.81 22.27 2.44 23.43 3.58C23.99 4.13 24.43 4.78 24.74 5.51C25.05 6.24 25.2 7.01 25.2 7.8C25.2 8.59 25.04 9.36 24.73 10.09C24.42 10.82 23.98 11.47 23.41 12.02L13.49 21.8L3.55 11.98C2.99 11.43 2.55 10.78 2.24 10.05C1.93 9.32 1.78 8.55 1.78 7.76C1.78 6.97 1.94 6.2 2.25 5.47C2.56 4.74 3 4.09 3.56 3.54C4.72 2.41 6.24 1.79 7.85 1.79", fill: "#D9D9D9" }) })), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", __assign({ className: "tooltip-text", id: 'heartI' }, { children: ["Coup de coeur", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("span", { className: "tooltip-arrow" })] }))] })), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("div", { children: (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", __assign({ className: "tooltip-container" }, { children: [(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("svg", __assign({ className: 'svg-icon', onClick: function () { return onActionClick('suggestion'); }, id: "magicIcon", width: "29", height: "29", viewBox: "0 0 29 29", fill: "none", xmlns: "http://www.w3.org/2000/svg" }, { children: (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("path", { d: "M28.6025 12.0643L25.7325 7.74426L27.1625 2.72426C27.2525 2.41426 27.1625 2.07426 26.9325 1.84426C26.7025 1.61426 26.3625 1.52426 26.0525 1.61426L21.0625 3.07426L16.7325 0.154257C16.4625 -0.0257434 16.1125 -0.0557434 15.8225 0.104257C15.5325 0.254257 15.3425 0.554257 15.3325 0.874257L15.1825 6.09426L11.0825 9.31426C10.8225 9.51426 10.7025 9.84426 10.7525 10.1643C10.8025 10.4843 11.0225 10.7543 11.3325 10.8643L15.1725 12.2443C15.1725 12.2443 15.1225 12.2843 15.0925 12.3043L0.2625 27.2243C-0.0875 27.5743 -0.0875 28.1443 0.2625 28.4943C0.4325 28.6743 0.6625 28.7543 0.8925 28.7543C1.1225 28.7543 1.3525 28.6643 1.5225 28.4943L16.3625 13.5943C16.4225 13.5343 16.4625 13.4743 16.5025 13.4043L18.0025 17.5443C18.0625 17.6943 18.1525 17.8243 18.2725 17.9343C18.3925 18.0343 18.5425 18.1043 18.7025 18.1243C18.7525 18.1243 18.7925 18.1343 18.8425 18.1343C18.9825 18.1343 19.1125 18.1043 19.2325 18.0443C19.3525 17.9843 19.4625 17.8943 19.5425 17.7843L22.7225 13.6543L27.8625 13.4743C28.1925 13.4643 28.4825 13.2743 28.6325 12.9843C28.7825 12.6943 28.7525 12.3443 28.5725 12.0743L28.6025 12.0643ZM22.2625 11.8643C21.9925 11.8643 21.7525 12.0043 21.5825 12.2143L19.1325 15.3943L17.7625 11.6243C17.6725 11.3743 17.4725 11.1743 17.2225 11.0843L13.4625 9.72426L16.6125 7.25426C16.8225 7.09426 16.9425 6.84426 16.9525 6.57426L17.0725 2.56426L20.3925 4.80426C20.5025 4.87426 20.6225 4.92426 20.7525 4.94426C20.8825 4.96426 21.0125 4.95426 21.1425 4.92426L24.9825 3.79426L23.8825 7.65426C23.8425 7.78426 23.8425 7.91426 23.8625 8.04426C23.8825 8.17426 23.9325 8.29426 24.0025 8.40426L26.2525 11.7243L22.2525 11.8643H22.2625Z", fill: "#D9D9D9" }) })), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", __assign({ className: "tooltip-text", id: 'magicI' }, { children: ["Suggestion", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("span", { className: "tooltip-arrow" })] }))] })) }), showLoginForm && ((0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(_LoginForm__WEBPACK_IMPORTED_MODULE_2__["default"], { onClose: function () { return setShowLoginForm(false); }, onLoginSuccess: handleLoginSuccess })), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("button", __assign({ onClick: handleLogout }, { children: "Logout" })), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("div", __assign({ className: 'close-button', onClick: handleCloseMenu }, { children: (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("svg", __assign({ xmlns: "http://www.w3.org/2000/svg", width: "15", height: "14", viewBox: "0 0 15 14", fill: "none" }, { children: [(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("path", { d: "M11.2502 3.49982L4.25024 10.4998", stroke: "#D2D7E0", strokeWidth: "1.4", strokeLinecap: "round" }), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("path", { d: "M11.3376 10.4108L4.25034 3.50029", stroke: "#D2D7E0", strokeWidth: "1.4", strokeLinecap: "round" })] })) }))] })));
+        } }, { children: [(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", __assign({ className: "tooltip-container" }, { children: [(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("svg", __assign({ className: 'svg-icon', onClick: function () { return handleButtonClick(function () { return console.log('Action Commenter: '); }); }, id: "uIcon", width: "22", height: "18", viewBox: "0 0 22 18", fill: "none", xmlns: "http://www.w3.org/2000/svg" }, { children: [(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("path", { d: "M10.56 0H14.77V11.26C14.77 12.56 14.46 13.69 13.84 14.66C13.22 15.62 12.36 16.36 11.25 16.89C10.14 17.41 8.86 17.67 7.39 17.67C5.92 17.67 4.61 17.41 3.5 16.89C2.39 16.36 1.53 15.62 0.92 14.66C0.31 13.69 0 12.56 0 11.26V0H4.22V10.89C4.22 11.49 4.35 12.03 4.61 12.5C4.88 12.97 5.25 13.34 5.73 13.61C6.21 13.88 6.76 14.01 7.39 14.01C8.02 14.01 8.57 13.88 9.04 13.61C9.52 13.34 9.89 12.97 10.16 12.5C10.43 12.03 10.56 11.49 10.56 10.89V0Z", fill: "#D9D9D9" }), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("path", { d: "M18.9402 17.7C18.3302 17.7 17.8002 17.48 17.3602 17.05C16.9302 16.62 16.7202 16.1 16.7202 15.48C16.7202 14.88 16.9302 14.36 17.3602 13.94C17.8002 13.51 18.3202 13.29 18.9402 13.29C19.5202 13.29 20.0302 13.51 20.4702 13.94C20.9202 14.37 21.1502 14.88 21.1502 15.48C21.1502 15.89 21.0402 16.26 20.8302 16.6C20.6302 16.94 20.3602 17.2 20.0202 17.4C19.6902 17.6 19.3302 17.7 18.9402 17.7Z", fill: "#D9D9D9" })] })), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", __assign({ className: "tooltip-text", id: 'u' }, { children: ["Feedback", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("span", { className: "tooltip-arrow" })] }))] })), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", __assign({ className: "tooltip-container" }, { children: [(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("svg", __assign({ className: 'svg-icon', onClick: function () { return onActionClick('capture'); }, id: "commentIcon", width: "26", height: "26", viewBox: "0 0 26 26", fill: "none", xmlns: "http://www.w3.org/2000/svg" }, { children: (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("path", { d: "M13 5.86C13.26 5.86 13.51 5.96 13.69 6.15C13.87 6.33 13.98 6.58 13.98 6.84V14.96C13.98 15.22 13.88 15.47 13.69 15.65C13.51 15.83 13.26 15.94 13 15.94C12.74 15.94 12.49 15.84 12.31 15.65C12.13 15.47 12.02 15.22 12.02 14.96V6.84C12.02 6.58 12.12 6.33 12.31 6.15C12.49 5.97 12.74 5.86 13 5.86ZM13 20.15C13.34 20.15 13.68 20.01 13.92 19.77C14.16 19.53 14.3 19.2 14.3 18.85C14.3 18.5 14.16 18.17 13.92 17.93C13.68 17.69 13.35 17.55 13 17.55C12.65 17.55 12.32 17.69 12.08 17.93C11.84 18.17 11.7 18.5 11.7 18.85C11.7 19.2 11.84 19.53 12.08 19.77C12.32 20.01 12.65 20.15 13 20.15ZM13 0.00999975C20.18 0.00999975 26 5.83 26 13.01C26 20.19 20.18 26.01 13 26.01C10.93 26.01 8.88 25.52 7.04 24.56L2.07 25.95C1.79 26.03 1.5 26.03 1.22 25.95C0.939997 25.88 0.69 25.73 0.48 25.53C0.28 25.33 0.129998 25.07 0.0599976 24.79C-0.0100024 24.51 -0.0100024 24.22 0.0599976 23.94L1.45 18.97C0.489997 17.13 0 15.08 0 13C0 5.82 5.82 0 13 0V0.00999975ZM13 1.96C10.07 1.96 7.26 3.12 5.19 5.2C3.12 7.27 1.95 10.08 1.95 13.01C1.95 14.92 2.43 16.76 3.34 18.39L3.54 18.74L2.09 23.92L7.27 22.47L7.62 22.67C9.09 23.49 10.74 23.96 12.42 24.05C14.11 24.14 15.79 23.84 17.34 23.17C18.89 22.51 20.27 21.49 21.37 20.22C22.47 18.94 23.26 17.43 23.69 15.79C24.11 14.16 24.16 12.45 23.82 10.8C23.48 9.15 22.77 7.59 21.74 6.26C20.71 4.93 19.38 3.85 17.87 3.1C16.36 2.36 14.69 1.97 13 1.97V1.96Z", fill: "#D9D9D9" }) })), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", __assign({ className: "tooltip-text", id: 'comment' }, { children: ["Signalement", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("span", { className: "tooltip-arrow" })] }))] })), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", __assign({ className: "tooltip-container" }, { children: [(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("svg", __assign({ className: 'svg-icon', onClick: function () { return onActionClick('cheart'); }, id: "heartIcon", width: "27", height: "24", viewBox: "0 0 27 24", fill: "none", xmlns: "http://www.w3.org/2000/svg" }, { children: (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("path", { d: "M26.41 4.81C26.01 3.86 25.44 3.01 24.7 2.29C23.21 0.820001 21.24 0.0100021 19.13 0.0100021C17.05 0.0100021 15.08 0.810003 13.58 2.28L13.51 2.35L13.44 2.28C11.95 0.810003 9.98 0 7.87 0C5.79 0 3.82 0.800002 2.33 2.26C1.59 2.98 1.02 3.83 0.610001 4.78C0.210001 5.73 0.01 6.74 0 7.77C0 8.8 0.199998 9.81 0.599998 10.76C0.999998 11.71 1.57 12.56 2.3 13.28L12.87 23.72C13.04 23.89 13.26 23.98 13.5 23.98C13.74 23.98 13.96 23.89 14.13 23.72L24.68 13.32C25.42 12.6 25.99 11.76 26.39 10.8C26.79 9.85 26.99 8.85 27 7.81C27 6.78 26.8 5.77 26.4 4.82L26.41 4.81ZM7.88 1.79C9.49 1.79 11.02 2.42 12.17 3.55L12.87 4.25C13.22 4.59 13.78 4.59 14.13 4.25L14.83 3.56C15.99 2.43 17.51 1.81 19.13 1.81C20.75 1.81 22.27 2.44 23.43 3.58C23.99 4.13 24.43 4.78 24.74 5.51C25.05 6.24 25.2 7.01 25.2 7.8C25.2 8.59 25.04 9.36 24.73 10.09C24.42 10.82 23.98 11.47 23.41 12.02L13.49 21.8L3.55 11.98C2.99 11.43 2.55 10.78 2.24 10.05C1.93 9.32 1.78 8.55 1.78 7.76C1.78 6.97 1.94 6.2 2.25 5.47C2.56 4.74 3 4.09 3.56 3.54C4.72 2.41 6.24 1.79 7.85 1.79", fill: "#D9D9D9" }) })), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", __assign({ className: "tooltip-text", id: 'heartI' }, { children: ["Coup de coeur", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("span", { className: "tooltip-arrow" })] }))] })), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("button", __assign({ onClick: function () { return __awaiter(void 0, void 0, void 0, function () {
+                    var tokens;
+                    return __generator(this, function (_a) {
+                        switch (_a.label) {
+                            case 0: return [4 /*yield*/, (0,_utils_storageUtil__WEBPACK_IMPORTED_MODULE_4__.getTokens)()];
+                            case 1:
+                                tokens = _a.sent();
+                                console.log("Tokens actuels dans chrome.storage :", tokens);
+                                return [2 /*return*/];
+                        }
+                    });
+                }); } }, { children: "Afficher le token" })), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("div", { children: (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", __assign({ className: "tooltip-container" }, { children: [(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("svg", __assign({ className: 'svg-icon', onClick: function () { return onActionClick('suggestion'); }, id: "magicIcon", width: "29", height: "29", viewBox: "0 0 29 29", fill: "none", xmlns: "http://www.w3.org/2000/svg" }, { children: (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("path", { d: "M28.6025 12.0643L25.7325 7.74426L27.1625 2.72426C27.2525 2.41426 27.1625 2.07426 26.9325 1.84426C26.7025 1.61426 26.3625 1.52426 26.0525 1.61426L21.0625 3.07426L16.7325 0.154257C16.4625 -0.0257434 16.1125 -0.0557434 15.8225 0.104257C15.5325 0.254257 15.3425 0.554257 15.3325 0.874257L15.1825 6.09426L11.0825 9.31426C10.8225 9.51426 10.7025 9.84426 10.7525 10.1643C10.8025 10.4843 11.0225 10.7543 11.3325 10.8643L15.1725 12.2443C15.1725 12.2443 15.1225 12.2843 15.0925 12.3043L0.2625 27.2243C-0.0875 27.5743 -0.0875 28.1443 0.2625 28.4943C0.4325 28.6743 0.6625 28.7543 0.8925 28.7543C1.1225 28.7543 1.3525 28.6643 1.5225 28.4943L16.3625 13.5943C16.4225 13.5343 16.4625 13.4743 16.5025 13.4043L18.0025 17.5443C18.0625 17.6943 18.1525 17.8243 18.2725 17.9343C18.3925 18.0343 18.5425 18.1043 18.7025 18.1243C18.7525 18.1243 18.7925 18.1343 18.8425 18.1343C18.9825 18.1343 19.1125 18.1043 19.2325 18.0443C19.3525 17.9843 19.4625 17.8943 19.5425 17.7843L22.7225 13.6543L27.8625 13.4743C28.1925 13.4643 28.4825 13.2743 28.6325 12.9843C28.7825 12.6943 28.7525 12.3443 28.5725 12.0743L28.6025 12.0643ZM22.2625 11.8643C21.9925 11.8643 21.7525 12.0043 21.5825 12.2143L19.1325 15.3943L17.7625 11.6243C17.6725 11.3743 17.4725 11.1743 17.2225 11.0843L13.4625 9.72426L16.6125 7.25426C16.8225 7.09426 16.9425 6.84426 16.9525 6.57426L17.0725 2.56426L20.3925 4.80426C20.5025 4.87426 20.6225 4.92426 20.7525 4.94426C20.8825 4.96426 21.0125 4.95426 21.1425 4.92426L24.9825 3.79426L23.8825 7.65426C23.8425 7.78426 23.8425 7.91426 23.8625 8.04426C23.8825 8.17426 23.9325 8.29426 24.0025 8.40426L26.2525 11.7243L22.2525 11.8643H22.2625Z", fill: "#D9D9D9" }) })), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", __assign({ className: "tooltip-text", id: 'magicI' }, { children: ["Suggestion", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("span", { className: "tooltip-arrow" })] }))] })) }), showLoginForm && ((0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(_LoginForm__WEBPACK_IMPORTED_MODULE_2__["default"], { onClose: function () { return setShowLoginForm(false); }, onLoginSuccess: handleLoginSuccess })), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("button", __assign({ onClick: handleLogout }, { children: "Logout" })), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("div", __assign({ className: 'close-button', onClick: handleCloseMenu }, { children: (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("svg", __assign({ xmlns: "http://www.w3.org/2000/svg", width: "15", height: "14", viewBox: "0 0 15 14", fill: "none" }, { children: [(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("path", { d: "M11.2502 3.49982L4.25024 10.4998", stroke: "#D2D7E0", strokeWidth: "1.4", strokeLinecap: "round" }), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("path", { d: "M11.3376 10.4108L4.25034 3.50029", stroke: "#D2D7E0", strokeWidth: "1.4", strokeLinecap: "round" })] })) }))] })));
 };
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (DraggableFloatingMenu);
 
@@ -42837,13 +42851,12 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_1__);
 /* harmony import */ var _services_apiService__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../services/apiService */ "./src/services/apiService.ts");
 /* harmony import */ var _LoginForm__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./LoginForm */ "./src/components/LoginForm.tsx");
-/* harmony import */ var _services_AuthService__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../services/AuthService */ "./src/services/AuthService.ts");
-/* harmony import */ var _popupConfirm_PopupConfirm__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./popupConfirm/PopupConfirm */ "./src/components/popupConfirm/PopupConfirm.tsx");
-/* harmony import */ var _utils_isApiError__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../utils/isApiError */ "./src/utils/isApiError.ts");
-/* harmony import */ var _utils_emojiUtils__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../utils/emojiUtils */ "./src/utils/emojiUtils.ts");
-/* harmony import */ var _popupConfirm_SuggestConfirm__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./popupConfirm/SuggestConfirm */ "./src/components/popupConfirm/SuggestConfirm.tsx");
-/* harmony import */ var _popupConfirm_CoupdeCoeurConfirm__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./popupConfirm/CoupdeCoeurConfirm */ "./src/components/popupConfirm/CoupdeCoeurConfirm.tsx");
-/* harmony import */ var _flashMessage_FlashMessage__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./flashMessage/FlashMessage */ "./src/components/flashMessage/FlashMessage.tsx");
+/* harmony import */ var _popupConfirm_PopupConfirm__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./popupConfirm/PopupConfirm */ "./src/components/popupConfirm/PopupConfirm.tsx");
+/* harmony import */ var _utils_emojiUtils__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../utils/emojiUtils */ "./src/utils/emojiUtils.ts");
+/* harmony import */ var _popupConfirm_SuggestConfirm__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./popupConfirm/SuggestConfirm */ "./src/components/popupConfirm/SuggestConfirm.tsx");
+/* harmony import */ var _popupConfirm_CoupdeCoeurConfirm__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./popupConfirm/CoupdeCoeurConfirm */ "./src/components/popupConfirm/CoupdeCoeurConfirm.tsx");
+/* harmony import */ var _flashMessage_FlashMessage__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./flashMessage/FlashMessage */ "./src/components/flashMessage/FlashMessage.tsx");
+/* harmony import */ var _utils_storageUtil__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ../utils/storageUtil */ "./src/utils/storageUtil.ts");
 var __assign = (undefined && undefined.__assign) || function () {
     __assign = Object.assign || function(t) {
         for (var s, i = 1, n = arguments.length; i < n; i++) {
@@ -42901,7 +42914,6 @@ var __generator = (undefined && undefined.__generator) || function (thisArg, bod
 
 
 
-
 var apiActions = {
     default: function (data, token) { return __awaiter(void 0, void 0, void 0, function () { return __generator(this, function (_a) {
         return [2 /*return*/, (0,_services_apiService__WEBPACK_IMPORTED_MODULE_2__.createAlert)(data, token)];
@@ -42942,8 +42954,7 @@ var FeedbackForm = function (_a) {
     var _v = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)(0), totalReports = _v[0], setTotalReports = _v[1];
     var _w = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)(), codeStatus = _w[0], setCodeStatus = _w[1];
     var _x = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)(null), response = _x[0], setResponse = _x[1];
-    var _y = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)(null), error = _y[0], setError = _y[1];
-    var _z = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)(selectedAction), localAction = _z[0], setLocalAction = _z[1];
+    var _y = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)(selectedAction), localAction = _y[0], setLocalAction = _y[1];
     (0,react__WEBPACK_IMPORTED_MODULE_1__.useEffect)(function () {
         var currentUrl = window.location.href;
         setLocalAction(selectedAction); // Synchronise uniquement lors de l'initialisation
@@ -42960,24 +42971,31 @@ var FeedbackForm = function (_a) {
         }
     }, [selectedAction]);
     var handleSubmit = function (e) { return __awaiter(void 0, void 0, void 0, function () {
-        var accessToken, alertData, result, coupDeCoeurData, suggest, err_1;
+        var tokens, accessToken, alertData, result, coupDeCoeurData, suggest, err_1;
         return __generator(this, function (_a) {
             switch (_a.label) {
                 case 0:
                     e.preventDefault();
                     setIsSubmitting(true); // Indique que le processus est en cours
                     setErrorMessages(null); // Réinitialise les erreurs
-                    return [4 /*yield*/, (0,_services_AuthService__WEBPACK_IMPORTED_MODULE_4__.getValidToken)()];
+                    _a.label = 1;
                 case 1:
-                    accessToken = _a.sent();
+                    _a.trys.push([1, 10, 11, 12]);
+                    return [4 /*yield*/, (0,_utils_storageUtil__WEBPACK_IMPORTED_MODULE_9__.getTokens)()];
+                case 2:
+                    tokens = _a.sent();
+                    accessToken = tokens.accessToken;
+                    // Vérifie si l'utilisateur est authentifié
                     //const isAuthenticated = await isUserAuthenticated();
-                    console.log("access token :", accessToken); //
                     if (!accessToken) {
-                        console.error('L’utilisateur n’est pas authentifié ou le token est invalide.');
-                        setErrorMessages('Veuillez vous connecter pour soumettre ce formulaire.');
+                        console.error("L'utilisateur n'est pas authentifié ou le token est invalide.");
+                        setErrorMessages("Veuillez vous connecter pour soumettre ce formulaire.");
                         setShowLoginForm(true); // Affiche le formulaire de connexion
-                        setIsSubmitting(false); // Réinitialise l'état de soumission
+                        setIsSubmitting(false);
                         return [2 /*return*/];
+                    }
+                    if (!accessToken) {
+                        throw new Error("Erreur : aucun token valide trouvé après authentification.");
                     }
                     alertData = {
                         marque: brandName,
@@ -42989,13 +43007,9 @@ var FeedbackForm = function (_a) {
                         capture: capture,
                         tips: tips,
                     };
-                    _a.label = 2;
-                case 2:
-                    _a.trys.push([2, 10, 11, 12]);
-                    console.log('Action sélectionnée.... :', selectedAction);
-                    console.log("access token :", accessToken);
                     result = void 0;
-                    if (!(selectedAction === 'cheart')) return [3 /*break*/, 4];
+                    console.log("Action sélectionnée :", selectedAction);
+                    if (!(selectedAction === "cheart")) return [3 /*break*/, 4];
                     coupDeCoeurData = {
                         marque: brandName,
                         description: alertDescription,
@@ -43007,14 +43021,13 @@ var FeedbackForm = function (_a) {
                     result = _a.sent();
                     return [3 /*break*/, 9];
                 case 4:
-                    if (!(selectedAction === 'capture')) return [3 /*break*/, 6];
+                    if (!(selectedAction === "capture")) return [3 /*break*/, 6];
                     return [4 /*yield*/, apiActions.default(alertData, accessToken)];
                 case 5:
-                    // Préparer les données pour `createAlert`
                     result = _a.sent();
                     return [3 /*break*/, 9];
                 case 6:
-                    if (!(selectedAction === 'suggestion')) return [3 /*break*/, 8];
+                    if (!(selectedAction === "suggestion")) return [3 /*break*/, 8];
                     suggest = {
                         marque: brandName,
                         description: alertDescription,
@@ -43023,72 +43036,63 @@ var FeedbackForm = function (_a) {
                     return [4 /*yield*/, apiActions.suggest(suggest, accessToken)];
                 case 7:
                     result = _a.sent();
-                    console.log('Réponse API (suggestion) avec statut :', result);
                     return [3 /*break*/, 9];
-                case 8: throw new Error('Action inconnue.');
+                case 8: throw new Error("Action inconnue.");
                 case 9:
-                    // Gérer les réponses en fonction du code de statut
+                    // Gestion des réponses en fonction du statut
                     if (result.status === 201) {
-                        // Signalement créé avec succès
-                        console.log('Réponse API (suggestion) :', result);
+                        console.log("Réponse API :", result);
                         setResponse(result.message || "Signalement créé avec succès.");
                         setErrorMessages(null);
                         setShowFeedbackForm(false);
                         setShowConfirmation(true); // Affiche la modal de confirmation
                         setFlashMessage({
-                            message: result.message || 'Signalement créé avec succès.',
-                            type: 'success',
+                            message: result.message || "Signalement créé avec succès.",
+                            type: "success",
                             duration: 10000,
                         });
                     }
                     else if (result.status === 200) {
-                        // Signalement déjà existant
+                        console.log("Un problème similaire a déjà été signalé.");
                         setCodeStatus(result.status);
-                        setResponse(result.message || "Un problème similaire a déjà été signalé."); // Affiche uniquement le message
-                        setErrorMessages(result.message || "Un problème similaire a déjà été signalé.");
-                        setTotalReports(result.totalReports); //
-                        console.log('Total reports :', result.totalReports);
+                        setResponse(result.message || "Un problème similaire a déjà été signalé.");
+                        setErrorMessages(null);
+                        setTotalReports(result.totalReports || 1); // Mettez à jour le total des signalements
                         setShowFeedbackForm(false);
-                        setShowConfirmation(true); // Pas de popup de confirmation
+                        setShowConfirmation(true);
                         setFlashMessage({
-                            message: result.message || 'Signalement déjà existant.',
-                            type: 'info',
-                            duration: 10000,
+                            message: result.message || "Signalement déjà existant.",
+                            type: "info",
+                            duration: 7000,
                         });
                     }
                     else {
-                        console.error('Code de statut inattendu:', result);
-                        setFlashMessage({
-                            message: 'Une erreur inattendue est survenue.',
-                            type: 'error',
-                            duration: 7000,
-                        });
-                        setErrorMessages('Une erreur inattendue est survenue.');
+                        throw new Error("Code de statut inattendu : ".concat(result.status));
                     }
-                    // Réinitialise les champs du formulaire
-                    setBrandName('');
-                    setSitUrl(''); // Réinitialise le champ du site
-                    setBlocking('no');
-                    setAlertDescription('');
-                    setBugLocation('');
-                    setEmojis('');
-                    setCapture('');
-                    setTips('');
+                    // Réinitialise les champs du formulaire après succès
+                    setBrandName("");
+                    setSitUrl("");
+                    setBlocking("no");
+                    setAlertDescription("");
+                    setBugLocation("");
+                    setEmojis("");
+                    setCapture("");
+                    setTips("");
                     return [3 /*break*/, 12];
                 case 10:
                     err_1 = _a.sent();
-                    console.error('Erreur détectée :', err_1);
-                    console.log("erreur catcher:  ", error);
-                    if ((0,_utils_isApiError__WEBPACK_IMPORTED_MODULE_6__.isApiError)(err_1)) {
-                        setErrorMessages(typeof err_1.error === 'string' ? err_1.error : err_1.error.join(', '));
+                    console.error("Erreur détectée :", err_1);
+                    // Gestion des erreurs spécifiques
+                    if (err_1.message.includes("Un signalement similaire existe déjà")) {
+                        setErrorMessages("Un problème similaire a déjà été signalé.");
+                        setResponse("Un problème similaire a déjà été signalé.");
                     }
                     else {
-                        console.log('Une erreur inattendue est survenue.', err_1);
-                        setErrorMessages('Une erreur inattendue est survenue.');
+                        setErrorMessages(err_1.message || "Une erreur inattendue est survenue.");
                     }
                     return [3 /*break*/, 12];
                 case 11:
-                    setIsSubmitting(false); // Indique que la requête est terminée
+                    setIsSubmitting(false); // Réinitialise l'état de soumission
                     return [7 /*endfinally*/];
                 case 12: return [2 /*return*/];
             }
@@ -43109,10 +43113,10 @@ var FeedbackForm = function (_a) {
         setSentiment(emoji);
         console.log('emoji selected:', sentiment);
     };
-    return ((0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", __assign({ className: 'my-class' }, { children: [(showFeedbackForm || showConfirmation) && (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("div", { className: "overlay" }), showFeedbackForm && ((0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", __assign({ className: 'feedback-style' }, { children: [selectedAction === 'suggestion' && ((0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("div", { className: "emoji-waterdrop" })), selectedAction !== 'suggestion' && ((0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", __assign({ id: "".concat(!capture ? 'select-emoji' : 'select-emoji-display-img'), className: 'select-emoji', onClick: toggleEmojiSelector }, { children: [showEmojiSelector && ((0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", __assign({ className: 'blc-span-emojis' }, { children: [selectedAction === 'cheart' && (_utils_emojiUtils__WEBPACK_IMPORTED_MODULE_7__.heartEmojis.map(function (_a) {
+    return ((0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", __assign({ className: 'my-class' }, { children: [(showFeedbackForm || showConfirmation) && (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("div", { className: "overlay" }), showFeedbackForm && ((0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", __assign({ className: 'feedback-style' }, { children: [selectedAction === 'suggestion' && ((0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("div", { className: "emoji-waterdrop" })), selectedAction !== 'suggestion' && ((0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", __assign({ id: "".concat(!capture ? 'select-emoji' : 'select-emoji-display-img'), className: 'select-emoji', onClick: toggleEmojiSelector }, { children: [showEmojiSelector && ((0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", __assign({ className: 'blc-span-emojis' }, { children: [selectedAction === 'cheart' && (_utils_emojiUtils__WEBPACK_IMPORTED_MODULE_5__.heartEmojis.map(function (_a) {
                                         var emoji = _a.emoji;
                                         return ((0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("span", __assign({ style: { cursor: 'pointer', margin: '0 5px' }, onClick: function () { return handleEmojiSelect(emoji); } }, { children: emoji }), emoji));
-                                    })), selectedAction !== 'cheart' && (_utils_emojiUtils__WEBPACK_IMPORTED_MODULE_7__.emojiSentiments.map(function (_a) {
+                                    })), selectedAction !== 'cheart' && (_utils_emojiUtils__WEBPACK_IMPORTED_MODULE_5__.emojiSentiments.map(function (_a) {
                                         var emoji = _a.emoji;
                                         return ((0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("span", __assign({ style: { cursor: 'pointer', margin: '0 5px' }, onClick: function () { return handleEmojiSelect(emoji); } }, { children: emoji }), emoji));
                                     }))] }))), sentiment] }))), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("div", __assign({ className: 'close-button float-end closeForm', onClick: function () {
@@ -43129,13 +43133,13 @@ var FeedbackForm = function (_a) {
                             console.log('[FeedbackForm] Nouvelle capture déclenchée avec :', currentFormData, 'Action actuelle :', selectedAction);
                             // Passez toujours `selectedAction` pour ne pas changer d'action
                             onCaptureClick(currentFormData, selectedAction);
-                        } }, { children: "\uD83D\uDCF8 Reprendre une capture" }))), errorMessages && ((0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("div", __assign({ style: { color: "red", marginTop: "10px" } }, { children: errorMessages }))), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", __assign({ className: "block-form" }, { children: [isSubmitting && ((0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", __assign({ className: "loader-container" }, { children: [(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("div", { className: "loader" }), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("span", { children: "Veuillez patienter..." })] }))), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("form", __assign({ className: 'formStyle', onSubmit: handleSubmit }, { children: [capture && ((0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("div", __assign({ className: "image-preview" }, { children: (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("img", { className: 'img-preview', src: screenshot !== null && screenshot !== void 0 ? screenshot : "", alt: "screenshot" }) }))), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", __assign({ className: "input-container" }, { children: [(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("input", { className: "floating-input", placeholder: " ", value: alertDescription, onChange: function (e) { return setAlertDescription(e.target.value); } }), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("label", __assign({ htmlFor: "name", className: "floating-label" }, { children: (0,_utils_emojiUtils__WEBPACK_IMPORTED_MODULE_7__.getTitleForEmoji)(sentiment, selectedAction) }))] })), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("input", { type: "hidden", value: brandName, onChange: function (e) { return setBrandName(e.target.value); } }), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", __assign({ className: 'align-checkBtn' }, { children: [(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", __assign({ className: "checkBoxFeedback ".concat(alertDescription.trim() ? 'visible' : 'hidden') }, { children: [(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("input", { type: "checkbox", checked: isBlocked === 'yes', onChange: function (e) { return setBlocking(e.target.checked ? 'yes' : 'no'); }, style: { marginRight: '8px', width: '16px', height: '16px', accentColor: '#6a1b9a' } }), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("label", { children: "Je suis bloqu\u00E9" })] })), " ", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("button", __assign({ disabled: !alertDescription.trim(), type: "submit", className: "submit-button ".concat(!alertDescription.trim() ? 'feedbackSubmitDisabled' : 'feedbackSubmiEnabled'), id: "".concat(!capture ? 'feedbackSubmitDisabled' : 'feedbackSubmiEnabled') }, { children: !alertDescription.trim() ? ((0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("svg", __assign({ xmlns: "http://www.w3.org/2000/svg", width: "23", height: "23", viewBox: "0 0 23 23", fill: "none" }, { children: [(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("circle", { cx: "11.4771", cy: "11.2048", r: "11", transform: "rotate(90 11.4771 11.2048)", fill: "url(#paint0_linear_319_540)" }), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("path", { d: "M11.4001 6.20483L16.4771 11.312L11.4001 16.4191M15.7719 11.312L5.47705 11.312", stroke: "white", strokeWidth: "1.4", strokeLinecap: "round", strokeLinejoin: "round" }), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("defs", { children: (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("linearGradient", __assign({ id: "paint0_linear_319_540", x1: "-2.47644", y1: "35.6819", x2: "26.1437", y2: "0.204836", gradientUnits: "userSpaceOnUse" }, { children: [(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("stop", { offset: "0.22376", stopColor: "#908f91" }), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("stop", { offset: "0.613341", stopColor: "#9f9f9f" })] })) })] }))) : ((0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("svg", __assign({ xmlns: "http://www.w3.org/2000/svg", width: "23", height: "23", viewBox: "0 0 23 23", fill: "none" }, { children: [(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("circle", { cx: "11.4771", cy: "11.2048", r: "11", transform: "rotate(90 11.4771 11.2048)", fill: "url(#paint0_linear_319_540)" }), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("path", { d: "M11.4001 6.20483L16.4771 11.312L11.4001 16.4191M15.7719 11.312L5.47705 11.312", stroke: "white", strokeWidth: "1.4", strokeLinecap: "round", strokeLinejoin: "round" }), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("defs", { children: (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("linearGradient", __assign({ id: "paint0_linear_319_540", x1: "-2.47644", y1: "35.6819", x2: "26.1437", y2: "0.204836", gradientUnits: "userSpaceOnUse" }, { children: [(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("stop", { offset: "0.22376", stopColor: "#6E36A9" }), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("stop", { offset: "0.613341", stopColor: "#B033AE" })] })) })] }))) }))] }))] }))] }))] }))), flashMessage && ((0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(_flashMessage_FlashMessage__WEBPACK_IMPORTED_MODULE_10__["default"], { message: flashMessage.message, type: flashMessage.type, duration: flashMessage.duration, onClose: function () { return setFlashMessage(null); } })), showConfirmation && ((0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.Fragment, { children: [selectedAction === 'cheart' && ((0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(_popupConfirm_CoupdeCoeurConfirm__WEBPACK_IMPORTED_MODULE_9__["default"], { onClose: function () {
+                        } }, { children: "\uD83D\uDCF8 Reprendre une capture" }))), errorMessages && ((0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("div", __assign({ style: { color: "red", marginBlockStart: "10px" } }, { children: errorMessages }))), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", __assign({ className: "block-form" }, { children: [isSubmitting && ((0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", __assign({ className: "loader-container" }, { children: [(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("div", { className: "loader" }), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("span", { children: "Veuillez patienter..." })] }))), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("form", __assign({ className: 'formStyle', onSubmit: handleSubmit }, { children: [capture && ((0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("div", __assign({ className: "image-preview" }, { children: (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("img", { className: 'img-preview', src: screenshot !== null && screenshot !== void 0 ? screenshot : "", alt: "screenshot" }) }))), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", __assign({ className: "input-container" }, { children: [(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("input", { className: "floating-input", placeholder: " ", value: alertDescription, onChange: function (e) { return setAlertDescription(e.target.value); } }), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("label", __assign({ htmlFor: "name", className: "floating-label" }, { children: (0,_utils_emojiUtils__WEBPACK_IMPORTED_MODULE_5__.getTitleForEmoji)(sentiment, selectedAction) }))] })), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("input", { type: "hidden", value: brandName, onChange: function (e) { return setBrandName(e.target.value); } }), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", __assign({ className: 'align-checkBtn' }, { children: [(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", __assign({ className: "checkBoxFeedback ".concat(alertDescription.trim() ? 'visible' : 'hidden') }, { children: [(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("input", { type: "checkbox", checked: isBlocked === 'yes', onChange: function (e) { return setBlocking(e.target.checked ? 'yes' : 'no'); }, style: { marginInlineEnd: '8px', inlineSize: '16px', blockSize: '16px', accentColor: '#6a1b9a' } }), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("label", { children: "Je suis bloqu\u00E9" })] })), " ", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("button", __assign({ disabled: !alertDescription.trim(), type: "submit", className: "submit-button ".concat(!alertDescription.trim() ? 'feedbackSubmitDisabled' : 'feedbackSubmiEnabled'), id: "".concat(!capture ? 'feedbackSubmitDisabled' : 'feedbackSubmiEnabled') }, { children: !alertDescription.trim() ? ((0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("svg", __assign({ xmlns: "http://www.w3.org/2000/svg", width: "23", height: "23", viewBox: "0 0 23 23", fill: "none" }, { children: [(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("circle", { cx: "11.4771", cy: "11.2048", r: "11", transform: "rotate(90 11.4771 11.2048)", fill: "url(#paint0_linear_319_540)" }), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("path", { d: "M11.4001 6.20483L16.4771 11.312L11.4001 16.4191M15.7719 11.312L5.47705 11.312", stroke: "white", strokeWidth: "1.4", strokeLinecap: "round", strokeLinejoin: "round" }), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("defs", { children: (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("linearGradient", __assign({ id: "paint0_linear_319_540", x1: "-2.47644", y1: "35.6819", x2: "26.1437", y2: "0.204836", gradientUnits: "userSpaceOnUse" }, { children: [(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("stop", { offset: "0.22376", stopColor: "#908f91" }), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("stop", { offset: "0.613341", stopColor: "#9f9f9f" })] })) })] }))) : ((0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("svg", __assign({ xmlns: "http://www.w3.org/2000/svg", width: "23", height: "23", viewBox: "0 0 23 23", fill: "none" }, { children: [(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("circle", { cx: "11.4771", cy: "11.2048", r: "11", transform: "rotate(90 11.4771 11.2048)", fill: "url(#paint0_linear_319_540)" }), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("path", { d: "M11.4001 6.20483L16.4771 11.312L11.4001 16.4191M15.7719 11.312L5.47705 11.312", stroke: "white", strokeWidth: "1.4", strokeLinecap: "round", strokeLinejoin: "round" }), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("defs", { children: (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("linearGradient", __assign({ id: "paint0_linear_319_540", x1: "-2.47644", y1: "35.6819", x2: "26.1437", y2: "0.204836", gradientUnits: "userSpaceOnUse" }, { children: [(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("stop", { offset: "0.22376", stopColor: "#6E36A9" }), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("stop", { offset: "0.613341", stopColor: "#B033AE" })] })) })] }))) }))] }))] }))] }))] }))), flashMessage && ((0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(_flashMessage_FlashMessage__WEBPACK_IMPORTED_MODULE_8__["default"], { message: flashMessage.message, type: flashMessage.type, duration: flashMessage.duration, onClose: function () { return setFlashMessage(null); } })), showConfirmation && ((0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.Fragment, { children: [selectedAction === 'cheart' && ((0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(_popupConfirm_CoupdeCoeurConfirm__WEBPACK_IMPORTED_MODULE_7__["default"], { onClose: function () {
                             setShowConfirmation(false);
                             onClose();
-                        } })), selectedAction === 'suggestion' && ((0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(_popupConfirm_SuggestConfirm__WEBPACK_IMPORTED_MODULE_8__["default"], { onClose: function () {
+                        } })), selectedAction === 'suggestion' && ((0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(_popupConfirm_SuggestConfirm__WEBPACK_IMPORTED_MODULE_6__["default"], { onClose: function () {
                             setShowConfirmation(false);
                             onClose();
-                        } })), selectedAction !== 'cheart' && selectedAction !== 'suggestion' && ((0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(_popupConfirm_PopupConfirm__WEBPACK_IMPORTED_MODULE_5__["default"], { onClose: function () {
+                        } })), selectedAction !== 'cheart' && selectedAction !== 'suggestion' && ((0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(_popupConfirm_PopupConfirm__WEBPACK_IMPORTED_MODULE_4__["default"], { onClose: function () {
                             setShowConfirmation(false);
                             onClose();
                         }, message: response, userRank: totalReports, statusCode: codeStatus }))] })), showLoginForm && ((0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(_LoginForm__WEBPACK_IMPORTED_MODULE_3__["default"], { onLoginSuccess: handleLoginSuccess, onClose: function () { return setShowLoginForm(false); } }))] })));
@@ -43214,15 +43218,14 @@ var __generator = (undefined && undefined.__generator) || function (thisArg, bod
 
 
 
-var FLASH_DURATION = 5000; // Défini une durée par défaut
+var FLASH_DURATION = 3000; // Défini une durée par défaut
 var LoginForm = function (_a) {
     var onClose = _a.onClose, onLoginSuccess = _a.onLoginSuccess;
     var _b = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)(''), email = _b[0], setEmail = _b[1];
     var _c = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)(''), password = _c[0], setPassword = _c[1];
     var _d = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)(false), rememberMe = _d[0], setRememberMe = _d[1]; // Nouveau state pour "Se souvenir de moi"
-    var _e = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)(''), error = _e[0], setError = _e[1];
-    var _f = (0,_hooks_useFlashMessage__WEBPACK_IMPORTED_MODULE_4__.useFlashMessage)(), flashMessage = _f.flashMessage, showFlashMessage = _f.showFlashMessage;
-    var _g = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)(false), isSubmitting = _g[0], setIsSubmitting = _g[1]; // Indique si le formulaire est en cours de soumission
+    var _e = (0,_hooks_useFlashMessage__WEBPACK_IMPORTED_MODULE_4__.useFlashMessage)(), flashMessage = _e.flashMessage, showFlashMessage = _e.showFlashMessage;
+    var _f = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)(false), isSubmitting = _f[0], setIsSubmitting = _f[1]; // Indique si le formulaire est en cours de soumission
     (0,react__WEBPACK_IMPORTED_MODULE_1__.useEffect)(function () {
         console.log('État flashMessage mis à jour :', flashMessage);
     }, [flashMessage]);
@@ -43236,34 +43239,41 @@ var LoginForm = function (_a) {
                     _a.label = 1;
                 case 1:
                     _a.trys.push([1, 3, 4, 5]);
+                    console.log("Tentative de connexion avec l'email :", email);
                     return [4 /*yield*/, (0,_services_AuthService__WEBPACK_IMPORTED_MODULE_2__.login)(email, password)];
                 case 2:
                     success = _a.sent();
-                    console.log('Résultat du login :', success);
+                    console.log("Résultat du login :", success);
                     if (success) {
+                        // Affiche un message flash et exécute l'action de succès
                         showFlashMessage('Connexion réussie !', 'success', FLASH_DURATION);
+                        // Attendre la durée du flash avant d'exécuter une action (ex. redirection)
                         setTimeout(function () {
-                            onLoginSuccess(); // Redirection ou autre action
+                            console.log("Connexion réussie, exécution de onLoginSuccess()");
+                            onLoginSuccess();
                         }, FLASH_DURATION);
                     }
                     else {
+                        console.warn("Échec de la connexion, informations incorrectes.");
                         showFlashMessage('Nom d’utilisateur ou mot de passe incorrect.', 'error', FLASH_DURATION);
                     }
                     return [3 /*break*/, 5];
                 case 3:
                     error_1 = _a.sent();
-                    // Affiche un message d'erreur basé sur l'erreur levée
-                    console.error('Erreur de connexion :', error_1.message);
-                    showFlashMessage(error_1.message || 'Erreur de connexion.', 'error', FLASH_DURATION);
+                    // Gestion des erreurs réseau ou exceptions inattendues
+                    console.error("Erreur lors de la tentative de connexion :", error_1.message);
+                    showFlashMessage(error_1.message || 'Erreur de connexion. Veuillez réessayer.', 'error', FLASH_DURATION);
                     return [3 /*break*/, 5];
                 case 4:
+                    // Réinitialise l'état de soumission
                     setIsSubmitting(false);
+                    console.log("Fin du processus de connexion, isSubmitting réinitialisé.");
                     return [7 /*endfinally*/];
                 case 5: return [2 /*return*/];
             }
         });
     }); };
-    return ((0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", __assign({ className: 'my-class' }, { children: [(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("div", __assign({ className: "overlay" }, { children: (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", __assign({ className: "login-popup" }, { children: [(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("div", __assign({ className: "login-header" }, { children: (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("svg", __assign({ xmlns: "http://www.w3.org/2000/svg", className: 'login-logo', width: "80", height: "80", viewBox: "0 0 109 108", fill: "none" }, { children: [(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("g", __assign({ filter: "url(#filter0_d_329_887)" }, { children: (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("rect", { x: "34", y: "30", width: "41", height: "39.7188", rx: "4", fill: "url(#paint0_linear_329_887)" }) })), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("path", { d: "M57.4056 39.2617H63.0013V53.4176C63.0013 55.0535 62.5897 56.4788 61.7666 57.6932C60.9435 58.9006 59.7956 59.8364 58.3231 60.5008C56.8505 61.1581 55.1401 61.4867 53.1918 61.4867C51.2209 61.4867 49.4991 61.1581 48.0266 60.5008C46.5541 59.8364 45.41 58.9006 44.5944 57.6932C43.7789 56.4788 43.3711 55.0535 43.3711 53.4176V39.2617H48.9781V52.9568C48.9781 53.714 49.1518 54.3891 49.4991 54.9821C49.8541 55.575 50.3487 56.0394 50.983 56.3752C51.6173 56.7109 52.3536 56.8788 53.1918 56.8788C54.0301 56.8788 54.7626 56.7109 55.3893 56.3752C56.0237 56.0394 56.5183 55.575 56.8732 54.9821C57.2281 54.3891 57.4056 53.714 57.4056 52.9568V39.2617Z", fill: "white" }), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("path", { d: "M68.5403 61.5189C67.7247 61.5189 67.0262 61.2474 66.4447 60.7044C65.8708 60.1615 65.5876 59.5043 65.5952 58.7327C65.5876 57.9754 65.8708 57.3289 66.4447 56.7931C67.0262 56.2502 67.7247 55.9787 68.5403 55.9787C69.3105 55.9787 69.9902 56.2502 70.5792 56.7931C71.1758 57.3289 71.4778 57.9754 71.4854 58.7327C71.4778 59.2471 71.3343 59.715 71.0549 60.1365C70.7831 60.558 70.4244 60.8938 69.9789 61.1438C69.5409 61.3938 69.0613 61.5189 68.5403 61.5189Z", fill: "white" }), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("defs", { children: [(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("filter", __assign({ id: "filter0_d_329_887", x: "0", y: "0", width: "109", height: "107.719", filterUnits: "userSpaceOnUse", colorInterpolationFilters: "sRGB" }, { children: [(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("feFlood", { floodOpacity: "0", result: "BackgroundImageFix" }), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("feColorMatrix", { in: "SourceAlpha", type: "matrix", values: "0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0", result: "hardAlpha" }), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("feOffset", { dy: "4" }), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("feGaussianBlur", { stdDeviation: "17" }), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("feComposite", { in2: "hardAlpha", operator: "out" }), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("feColorMatrix", { type: "matrix", values: "0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.1 0" }), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("feBlend", { mode: "normal", in2: "BackgroundImageFix", result: "effect1_dropShadow_329_887" }), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("feBlend", { mode: "normal", in: "SourceGraphic", in2: "effect1_dropShadow_329_887", result: "shape" })] })), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("linearGradient", __assign({ id: "paint0_linear_329_887", x1: "26.8696", y1: "69.7187", x2: "80.5746", y2: "28.3654", gradientUnits: "userSpaceOnUse" }, { children: [(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("stop", { stopColor: "#5A13A5" }), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("stop", { offset: "1", stopColor: "#FE2190" })] }))] })] })) })), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("h3", __assign({ className: 'title-form' }, { children: "Connectez-vous !" })), error && (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("p", __assign({ style: { color: 'red' } }, { children: error })), isSubmitting && ((0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", __assign({ className: "loader-container" }, { children: [(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("div", { className: "loader" }), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("span", { children: "Veuillez patienter..." })] }))), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("form", __assign({ className: 'login-form', onSubmit: handleLogin, onClick: function (e) { return e.stopPropagation(); } }, { children: [(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("input", { type: "email", placeholder: "Adresse email", value: email, onChange: function (e) { return setEmail(e.target.value); }, required: true }), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", __assign({ className: "password-field" }, { children: [(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("input", { type: "password", value: password, onChange: function (e) { return setPassword(e.target.value); }, placeholder: "Mot de passe", required: true }), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("button", __assign({ type: "button", className: "toggle-password" }, { children: (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("svg", __assign({ xmlns: "http://www.w3.org/2000/svg", width: "24", height: "22", viewBox: "0 0 24 22", fill: "none" }, { children: (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("path", { d: "M4.00498 12.8237C4.81192 9.09561 8.18523 6.44669 11.9798 6.44669C15.7731 6.44669 19.1464 9.09561 19.9545 12.8237C19.9865 12.9716 20.0783 13.1013 20.2097 13.1841C20.341 13.2669 20.5012 13.2962 20.655 13.2654C20.8088 13.2346 20.9435 13.1463 21.0296 13.0199C21.1157 12.8935 21.1461 12.7394 21.1141 12.5915C20.1947 8.35114 16.3493 5.30835 11.9798 5.30835C7.61019 5.30835 3.76479 8.35114 2.84544 12.5915C2.81343 12.7394 2.84382 12.8935 2.92991 13.0199C3.016 13.1463 3.15076 13.2346 3.30452 13.2654C3.45828 13.2962 3.61847 13.2669 3.74983 13.1841C3.88119 13.1013 3.97297 12.9716 4.00498 12.8237ZM11.9679 8.72338C13.0662 8.72338 14.1196 9.14314 14.8962 9.89032C15.6728 10.6375 16.1091 11.6509 16.1091 12.7076C16.1091 13.7642 15.6728 14.7776 14.8962 15.5248C14.1196 16.272 13.0662 16.6918 11.9679 16.6918C10.8696 16.6918 9.81628 16.272 9.03965 15.5248C8.26302 14.7776 7.82672 13.7642 7.82672 12.7076C7.82672 11.6509 8.26302 10.6375 9.03965 9.89032C9.81628 9.14314 10.8696 8.72338 11.9679 8.72338Z", fill: "#6A707C" }) })) }))] })), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", __assign({ className: "remember-me" }, { children: [(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("input", { type: "checkbox", id: "remember", checked: rememberMe, onChange: function () { return setRememberMe(!rememberMe); } }), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("label", __assign({ htmlFor: "remember" }, { children: "Se souvenir de moi" })), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("a", __assign({ href: "#", className: "forgot-password" }, { children: "Mot de passe oubli\u00E9 ?" }))] })), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("button", __assign({ id: "login-button", type: "submit" }, { children: "Se connecter" }))] })), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("button", __assign({ onClick: onClose, className: "close-button-form", disabled: isSubmitting }, { children: "Fermer" }))] })) })), flashMessage && ((0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.Fragment, { children: [console.log('FlashMessage prêt à être affiché :', flashMessage), console.log('FlashMessage prêt à être affiché dans le DOM :', flashMessage), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(_flashMessage_FlashMessage__WEBPACK_IMPORTED_MODULE_3__["default"], { message: flashMessage.message, type: flashMessage.type, duration: flashMessage.duration, onClose: function () { return console.log('Message fermé'); } })] }))] })));
+    return ((0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", __assign({ className: 'my-class' }, { children: [(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("div", __assign({ className: "overlay" }, { children: (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", __assign({ className: "login-popup" }, { children: [(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("div", __assign({ className: "login-header" }, { children: (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("svg", __assign({ xmlns: "http://www.w3.org/2000/svg", className: 'login-logo', width: "80", height: "80", viewBox: "0 0 109 108", fill: "none" }, { children: [(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("g", __assign({ filter: "url(#filter0_d_329_887)" }, { children: (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("rect", { x: "34", y: "30", width: "41", height: "39.7188", rx: "4", fill: "url(#paint0_linear_329_887)" }) })), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("path", { d: "M57.4056 39.2617H63.0013V53.4176C63.0013 55.0535 62.5897 56.4788 61.7666 57.6932C60.9435 58.9006 59.7956 59.8364 58.3231 60.5008C56.8505 61.1581 55.1401 61.4867 53.1918 61.4867C51.2209 61.4867 49.4991 61.1581 48.0266 60.5008C46.5541 59.8364 45.41 58.9006 44.5944 57.6932C43.7789 56.4788 43.3711 55.0535 43.3711 53.4176V39.2617H48.9781V52.9568C48.9781 53.714 49.1518 54.3891 49.4991 54.9821C49.8541 55.575 50.3487 56.0394 50.983 56.3752C51.6173 56.7109 52.3536 56.8788 53.1918 56.8788C54.0301 56.8788 54.7626 56.7109 55.3893 56.3752C56.0237 56.0394 56.5183 55.575 56.8732 54.9821C57.2281 54.3891 57.4056 53.714 57.4056 52.9568V39.2617Z", fill: "white" }), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("path", { d: "M68.5403 61.5189C67.7247 61.5189 67.0262 61.2474 66.4447 60.7044C65.8708 60.1615 65.5876 59.5043 65.5952 58.7327C65.5876 57.9754 65.8708 57.3289 66.4447 56.7931C67.0262 56.2502 67.7247 55.9787 68.5403 55.9787C69.3105 55.9787 69.9902 56.2502 70.5792 56.7931C71.1758 57.3289 71.4778 57.9754 71.4854 58.7327C71.4778 59.2471 71.3343 59.715 71.0549 60.1365C70.7831 60.558 70.4244 60.8938 69.9789 61.1438C69.5409 61.3938 69.0613 61.5189 68.5403 61.5189Z", fill: "white" }), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("defs", { children: [(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("filter", __assign({ id: "filter0_d_329_887", x: "0", y: "0", width: "109", height: "107.719", filterUnits: "userSpaceOnUse", colorInterpolationFilters: "sRGB" }, { children: [(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("feFlood", { floodOpacity: "0", result: "BackgroundImageFix" }), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("feColorMatrix", { in: "SourceAlpha", type: "matrix", values: "0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0", result: "hardAlpha" }), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("feOffset", { dy: "4" }), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("feGaussianBlur", { stdDeviation: "17" }), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("feComposite", { in2: "hardAlpha", operator: "out" }), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("feColorMatrix", { type: "matrix", values: "0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.1 0" }), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("feBlend", { mode: "normal", in2: "BackgroundImageFix", result: "effect1_dropShadow_329_887" }), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("feBlend", { mode: "normal", in: "SourceGraphic", in2: "effect1_dropShadow_329_887", result: "shape" })] })), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("linearGradient", __assign({ id: "paint0_linear_329_887", x1: "26.8696", y1: "69.7187", x2: "80.5746", y2: "28.3654", gradientUnits: "userSpaceOnUse" }, { children: [(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("stop", { stopColor: "#5A13A5" }), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("stop", { offset: "1", stopColor: "#FE2190" })] }))] })] })) })), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("h3", __assign({ className: 'title-form' }, { children: "Connectez-vous !" })), isSubmitting && ((0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", __assign({ className: "loader-container" }, { children: [(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("div", { className: "loader" }), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("span", { children: "Veuillez patienter..." })] }))), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("form", __assign({ className: 'login-form', onSubmit: handleLogin, onClick: function (e) { return e.stopPropagation(); } }, { children: [(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("input", { type: "email", placeholder: "Adresse email", value: email, onChange: function (e) { return setEmail(e.target.value); }, required: true }), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", __assign({ className: "password-field" }, { children: [(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("input", { type: "password", value: password, onChange: function (e) { return setPassword(e.target.value); }, placeholder: "Mot de passe", required: true }), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("button", __assign({ type: "button", className: "toggle-password" }, { children: (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("svg", __assign({ xmlns: "http://www.w3.org/2000/svg", width: "24", height: "22", viewBox: "0 0 24 22", fill: "none" }, { children: (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("path", { d: "M4.00498 12.8237C4.81192 9.09561 8.18523 6.44669 11.9798 6.44669C15.7731 6.44669 19.1464 9.09561 19.9545 12.8237C19.9865 12.9716 20.0783 13.1013 20.2097 13.1841C20.341 13.2669 20.5012 13.2962 20.655 13.2654C20.8088 13.2346 20.9435 13.1463 21.0296 13.0199C21.1157 12.8935 21.1461 12.7394 21.1141 12.5915C20.1947 8.35114 16.3493 5.30835 11.9798 5.30835C7.61019 5.30835 3.76479 8.35114 2.84544 12.5915C2.81343 12.7394 2.84382 12.8935 2.92991 13.0199C3.016 13.1463 3.15076 13.2346 3.30452 13.2654C3.45828 13.2962 3.61847 13.2669 3.74983 13.1841C3.88119 13.1013 3.97297 12.9716 4.00498 12.8237ZM11.9679 8.72338C13.0662 8.72338 14.1196 9.14314 14.8962 9.89032C15.6728 10.6375 16.1091 11.6509 16.1091 12.7076C16.1091 13.7642 15.6728 14.7776 14.8962 15.5248C14.1196 16.272 13.0662 16.6918 11.9679 16.6918C10.8696 16.6918 9.81628 16.272 9.03965 15.5248C8.26302 14.7776 7.82672 13.7642 7.82672 12.7076C7.82672 11.6509 8.26302 10.6375 9.03965 9.89032C9.81628 9.14314 10.8696 8.72338 11.9679 8.72338Z", fill: "#6A707C" }) })) }))] })), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", __assign({ className: "remember-me" }, { children: [(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("input", { type: "checkbox", id: "remember", checked: rememberMe, onChange: function () { return setRememberMe(!rememberMe); } }), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("label", __assign({ htmlFor: "remember" }, { children: "Se souvenir de moi" })), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("a", __assign({ href: "#", className: "forgot-password" }, { children: "Mot de passe oubli\u00E9 ?" }))] })), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("button", __assign({ id: "login-button", type: "submit" }, { children: "Se connecter" }))] })), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("button", __assign({ onClick: onClose, className: "close-button-form", disabled: isSubmitting }, { children: "Fermer" }))] })) })), flashMessage && ((0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.Fragment, { children: [console.log('FlashMessage prêt à être affiché :', flashMessage), console.log('FlashMessage prêt à être affiché dans le DOM :', flashMessage), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(_flashMessage_FlashMessage__WEBPACK_IMPORTED_MODULE_3__["default"], { message: flashMessage.message, type: flashMessage.type, duration: flashMessage.duration, onClose: function () { return console.log('Message fermé'); } })] }))] })));
 };
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (LoginForm);
 
@@ -44253,6 +44263,14 @@ function handleClick(event) {
 }
 // Écouteur d'événements pour les clics
 window.addEventListener('click', handleClick);
+// Écoute les messages du background script
+chrome.runtime.onMessage.addListener(function (message, sender, sendResponse) {
+    if (message.type === "USER_LOGGED_OUT") {
+        console.log("Déconnexion détectée côté contenu.");
+        //alert("Vous avez été déconnecté automatiquement.");
+    }
+    sendResponse({ success: true });
+});
 
 
 /***/ }),
@@ -44298,13 +44316,13 @@ var useFlashMessage = function () {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   getLoginTime: () => (/* binding */ getLoginTime),
 /* harmony export */   getValidToken: () => (/* binding */ getValidToken),
 /* harmony export */   isUserAuthenticated: () => (/* binding */ isUserAuthenticated),
 /* harmony export */   login: () => (/* binding */ login),
 /* harmony export */   logout: () => (/* binding */ logout)
 /* harmony export */ });
 /* harmony import */ var _utils_storageUtil__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../utils/storageUtil */ "./src/utils/storageUtil.ts");
-/* harmony import */ var _TokensServices__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./TokensServices */ "./src/services/TokensServices.ts");
 var __awaiter = (undefined && undefined.__awaiter) || function (thisArg, _arguments, P, generator) {
     function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
     return new (P || (P = Promise))(function (resolve, reject) {
@@ -44342,8 +44360,7 @@ var __generator = (undefined && undefined.__generator) || function (thisArg, bod
     }
 };
  // Mise à jour pour chrome.storage
-
-var API_URL = 'https://usearly-api.vercel.app/api/v1';
+var API_URL = 'https://usearlyapi.fly.dev/api/v1';
 // Fonction de connexion
 /* export async function login(email: string, password: string, rememberMe: boolean): Promise<boolean> {
   try {
@@ -44394,22 +44411,32 @@ function login(email, password) {
                 case 1:
                     response = _a.sent();
                     if (!response.ok) {
-                        console.error("Échec de la connexion :", response.statusText);
+                        console.error("\u00C9chec de la connexion (".concat(response.status, "):"), response.statusText);
+                        // Optionnel : affiche un message utilisateur basé sur le code d'état HTTP
+                        if (response.status === 401) {
+                            //alert("Identifiants incorrects. Veuillez réessayer.");
+                        }
+                        else if (response.status >= 500) {
+                            //alert("Erreur serveur. Veuillez réessayer plus tard.");
+                        }
                         return [2 /*return*/, false];
                     }
                     return [4 /*yield*/, response.json()];
                 case 2:
                     data = _a.sent();
                     if (data.accessToken) {
-                        (0,_utils_storageUtil__WEBPACK_IMPORTED_MODULE_0__.setTokens)(data.accessToken); // Stockez uniquement accessToken
+                        (0,_utils_storageUtil__WEBPACK_IMPORTED_MODULE_0__.setTokens)(data.accessToken); // Stocke uniquement l'accessToken
                         console.log("Connexion réussie. Token stocké.");
+                        (0,_utils_storageUtil__WEBPACK_IMPORTED_MODULE_0__.setLoginTime)(); // Met à jour l'heure de connexion
                         return [2 /*return*/, true];
                     }
                     console.error("Aucun accessToken reçu.");
+                    alert("Une erreur inattendue est survenue. Veuillez réessayer.");
                     return [2 /*return*/, false];
                 case 3:
                     error_1 = _a.sent();
                     console.error("Erreur lors de la connexion :", error_1);
+                    alert("Impossible de se connecter. Veuillez vérifier votre connexion réseau.");
                     return [2 /*return*/, false];
                 case 4: return [2 /*return*/];
             }
@@ -44417,43 +44444,94 @@ function login(email, password) {
     });
 }
 // Vérifie si l'utilisateur est encore authentifié
+/* export async function isUserAuthenticated(): Promise<boolean> {
+  const tokens = await getTokens();
+  console.log("Vérification de l'authentification : token trouvé ?", tokens.accessToken);
+
+  if (!tokens.accessToken) {
+    console.log("Aucun accessToken trouvé. L'utilisateur est déconnecté.");
+    return false;
+  }
+
+  // Vérifiez si le token est valide
+  const isValid = await verifyAccessToken(tokens.accessToken);
+  if (!isValid) {
+    console.log("Token invalide. Suppression du token.");
+    removeTokens(); // Supprimez les tokens invalides
+    return false;
+  }
+
+  console.log("Utilisateur authentifié.");
+  return true;
+} */
 function isUserAuthenticated() {
     return __awaiter(this, void 0, void 0, function () {
-        var tokens, isValid;
+        var _this = this;
         return __generator(this, function (_a) {
-            switch (_a.label) {
-                case 0: return [4 /*yield*/, (0,_utils_storageUtil__WEBPACK_IMPORTED_MODULE_0__.getTokens)()];
-                case 1:
-                    tokens = _a.sent();
-                    if (!tokens.accessToken) {
-                        console.log("Aucun accessToken trouvé. Redirection vers la connexion...");
-                        return [2 /*return*/, false]; // Aucun token : l'utilisateur n'est pas authentifié
-                    }
-                    return [4 /*yield*/, (0,_TokensServices__WEBPACK_IMPORTED_MODULE_1__.verifyAccessToken)(tokens.accessToken)];
-                case 2:
-                    isValid = _a.sent();
-                    if (isValid) {
-                        return [2 /*return*/, true]; // Token valide
-                    }
-                    console.log("Aucun token valide. Redirection vers la connexion...");
-                    return [2 /*return*/, false]; // Aucun accessToken ni refreshToken valide
-            }
+            return [2 /*return*/, new Promise(function (resolve) { return __awaiter(_this, void 0, void 0, function () {
+                    var _this = this;
+                    return __generator(this, function (_a) {
+                        chrome.runtime.sendMessage({ action: 'isAuthenticated' }, function (response) { return __awaiter(_this, void 0, void 0, function () {
+                            var loginTime, elapsedTime, FIVE_HOURS_IN_MS;
+                            var _a;
+                            return __generator(this, function (_b) {
+                                switch (_b.label) {
+                                    case 0:
+                                        if (!chrome.runtime.lastError) return [3 /*break*/, 1];
+                                        console.error("Erreur de communication avec le script de fond :", chrome.runtime.lastError.message);
+                                        resolve(false);
+                                        return [3 /*break*/, 3];
+                                    case 1: return [4 /*yield*/, getLoginTime()];
+                                    case 2:
+                                        loginTime = _b.sent();
+                                        if (loginTime) {
+                                            elapsedTime = Date.now() - loginTime;
+                                            FIVE_HOURS_IN_MS = 20 * 1000;
+                                            //const FIVE_HOURS_IN_MS = 5 * 60 * 60 * 1000;
+                                            if (elapsedTime >= FIVE_HOURS_IN_MS) {
+                                                //console.log(`Temps écoulé ::: ${elapsedTime / 1000} secondes. Déconnexion.`);
+                                                logout(); // Déconnectez si 20 secondes sont écoulées
+                                                resolve(false);
+                                            }
+                                            else {
+                                                console.log("Temps restant avant d\u00E9connexion ::: ".concat((FIVE_HOURS_IN_MS - elapsedTime) / 1000, " secondes."));
+                                                resolve((_a = response === null || response === void 0 ? void 0 : response.isAuthenticated) !== null && _a !== void 0 ? _a : false);
+                                            }
+                                        }
+                                        else {
+                                            resolve(false); // Aucun login enregistré
+                                        }
+                                        _b.label = 3;
+                                    case 3: return [2 /*return*/];
+                                }
+                            });
+                        }); });
+                        return [2 /*return*/];
+                    });
+                }); })];
         });
     });
 }
-// Déconnecte l'utilisateur
-function logout() {
+// Récupère l'heure de connexion
+function getLoginTime() {
     return __awaiter(this, void 0, void 0, function () {
         return __generator(this, function (_a) {
-            console.log('Déconnexion de l\'utilisateur.');
-            // Supprimez les tokens du stockage
-            (0,_utils_storageUtil__WEBPACK_IMPORTED_MODULE_0__.removeTokens)();
-            // Supprimez également l'indication "rememberMe" si elle existe
-            chrome.storage.local.remove(['rememberMe'], function () {
-                console.log('Indicateur "Se souvenir de moi" supprimé.');
-            });
-            return [2 /*return*/];
+            return [2 /*return*/, new Promise(function (resolve) {
+                    chrome.storage.local.get(['loginTime'], function (result) {
+                        resolve(result.loginTime || null);
+                    });
+                })];
         });
+    });
+}
+function logout() {
+    chrome.storage.local.remove(["accessToken", "refreshToken", "loginTime"], function () {
+        if (chrome.runtime.lastError) {
+            console.error("Erreur lors de la déconnexion :", chrome.runtime.lastError.message);
+        }
+        else {
+            console.log("Déconnexion réussie, données supprimées.");
+        }
     });
 }
 // Récupère un token valide (soit l'Access Token actuel, soit un nouveau)
@@ -44475,123 +44553,6 @@ function getValidToken() {
         });
     });
 }
-
-
-/***/ }),
-
-/***/ "./src/services/TokensServices.ts":
-/*!****************************************!*\
-  !*** ./src/services/TokensServices.ts ***!
-  \****************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   verifyAccessToken: () => (/* binding */ verifyAccessToken)
-/* harmony export */ });
-var __awaiter = (undefined && undefined.__awaiter) || function (thisArg, _arguments, P, generator) {
-    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
-    return new (P || (P = Promise))(function (resolve, reject) {
-        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
-        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
-        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
-        step((generator = generator.apply(thisArg, _arguments || [])).next());
-    });
-};
-var __generator = (undefined && undefined.__generator) || function (thisArg, body) {
-    var _ = { label: 0, sent: function() { if (t[0] & 1) throw t[1]; return t[1]; }, trys: [], ops: [] }, f, y, t, g;
-    return g = { next: verb(0), "throw": verb(1), "return": verb(2) }, typeof Symbol === "function" && (g[Symbol.iterator] = function() { return this; }), g;
-    function verb(n) { return function (v) { return step([n, v]); }; }
-    function step(op) {
-        if (f) throw new TypeError("Generator is already executing.");
-        while (g && (g = 0, op[0] && (_ = 0)), _) try {
-            if (f = 1, y && (t = op[0] & 2 ? y["return"] : op[0] ? y["throw"] || ((t = y["return"]) && t.call(y), 0) : y.next) && !(t = t.call(y, op[1])).done) return t;
-            if (y = 0, t) op = [op[0] & 2, t.value];
-            switch (op[0]) {
-                case 0: case 1: t = op; break;
-                case 4: _.label++; return { value: op[1], done: false };
-                case 5: _.label++; y = op[1]; op = [0]; continue;
-                case 7: op = _.ops.pop(); _.trys.pop(); continue;
-                default:
-                    if (!(t = _.trys, t = t.length > 0 && t[t.length - 1]) && (op[0] === 6 || op[0] === 2)) { _ = 0; continue; }
-                    if (op[0] === 3 && (!t || (op[1] > t[0] && op[1] < t[3]))) { _.label = op[1]; break; }
-                    if (op[0] === 6 && _.label < t[1]) { _.label = t[1]; t = op; break; }
-                    if (t && _.label < t[2]) { _.label = t[2]; _.ops.push(op); break; }
-                    if (t[2]) _.ops.pop();
-                    _.trys.pop(); continue;
-            }
-            op = body.call(thisArg, _);
-        } catch (e) { op = [6, e]; y = 0; } finally { f = t = 0; }
-        if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
-    }
-};
-var API_URL = 'https://usearly-api.vercel.app/api/v1';
-// Fonction de vérification du token
-function verifyAccessToken(accessToken) {
-    return __awaiter(this, void 0, void 0, function () {
-        var response, error_1;
-        return __generator(this, function (_a) {
-            switch (_a.label) {
-                case 0:
-                    _a.trys.push([0, 2, , 3]);
-                    return [4 /*yield*/, fetch("".concat(API_URL, "/user/verify"), {
-                            method: 'POST',
-                            headers: {
-                                'Content-Type': 'application/json',
-                                Authorization: "Bearer ".concat(accessToken), // Vérifiez ici
-                            },
-                            mode: 'cors',
-                        })];
-                case 1:
-                    response = _a.sent();
-                    if (response.ok) {
-                        console.log("Token valide.");
-                        return [2 /*return*/, true];
-                    }
-                    else {
-                        console.error("Token non valide ou expiré.");
-                        return [2 /*return*/, false];
-                    }
-                    return [3 /*break*/, 3];
-                case 2:
-                    error_1 = _a.sent();
-                    console.error("Erreur lors de la vérification du token :", error_1);
-                    return [2 /*return*/, false];
-                case 3: return [2 /*return*/];
-            }
-        });
-    });
-}
-/*   export async function refreshAccessToken(): Promise<string | null> {
-    const tokens = await getTokens();
-  
-    if (!tokens.refreshToken) {
-      console.error("Aucun refreshToken trouvé. Redirection vers la connexion.");
-      return null;
-    }
-  
-    try {
-      const response = await fetch(`${API_URL}/user/refresh-token`, {
-        method: 'POST',
-        credentials: 'include', // Envoie les cookies pour le refresh
-        headers: { 'Content-Type': 'application/json' },
-      });
-  
-      if (response.ok) {
-        const data = await response.json();
-        console.log("Token d'accès rafraîchi avec succès.");
-        return data.accessToken;
-      } else {
-        console.error("Échec lors du rafraîchissement du token.");
-        return null;
-      }
-    } catch (error) {
-      console.error("Erreur lors de la requête de rafraîchissement :", error);
-      return null;
-    }
-  }
-   */
 
 
 /***/ }),
@@ -44657,8 +44618,7 @@ var __generator = (undefined && undefined.__generator) || function (thisArg, bod
         if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
     }
 };
-//const API_URL = 'https://716f-2a01-cb08-512-d600-e406-7bbb-7bff-9fa0.ngrok-free.app/api/v1';
-var API_BASE_URL = 'https://usearly-api.vercel.app/api/v1';
+var API_BASE_URL = 'https://usearlyapi.fly.dev/api/v1';
 var URL_ALERT = "".concat(API_BASE_URL, "/user/alert/new");
 var URL_CDC = "".concat(API_BASE_URL, "/user/coupdecoeur/new");
 var URL_SUGGEST = "".concat(API_BASE_URL, "/user/suggestion/new");
@@ -44737,32 +44697,27 @@ var createCoupdeCoeur = function (data, token) { return __awaiter(void 0, void 0
  * @returns La réponse JSON du serveur ou une erreur si la requête échoue.
  */
 var createAlert = function (alertData, token) { return __awaiter(void 0, void 0, void 0, function () {
-    var currentUrl, response, result, errorData;
-    return __generator(this, function (_a) {
-        switch (_a.label) {
-            case 0:
-                currentUrl = window.location.href;
-                return [4 /*yield*/, fetch(URL_ALERT, {
-                        method: 'POST',
-                        headers: {
-                            'Content-Type': 'application/json',
-                            Origin: currentUrl,
-                            Authorization: "Bearer ".concat(token),
-                        },
-                        mode: 'cors',
-                        body: JSON.stringify(alertData),
-                    })];
+    var response, result;
+    var _a;
+    return __generator(this, function (_b) {
+        switch (_b.label) {
+            case 0: return [4 /*yield*/, fetch(URL_ALERT, {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json",
+                        Authorization: "Bearer ".concat(token),
+                    },
+                    body: JSON.stringify(alertData),
+                })];
             case 1:
-                response = _a.sent();
+                response = _b.sent();
                 return [4 /*yield*/, response.json()];
             case 2:
-                result = _a.sent();
-                if (!!response.ok) return [3 /*break*/, 4];
-                return [4 /*yield*/, response.json()];
-            case 3:
-                errorData = _a.sent();
-                throw errorData; // Lance une erreur avec ApiError
-            case 4: return [2 /*return*/, __assign(__assign({}, result), { status: response.status })];
+                result = _b.sent();
+                if (!response.ok) {
+                    throw new Error(result.error || "Erreur serveur");
+                }
+                return [2 /*return*/, __assign(__assign({}, result), { isDuplicate: (_a = result.message) === null || _a === void 0 ? void 0 : _a.includes("déjà été signalé") })];
         }
     });
 }); };
@@ -44971,24 +44926,6 @@ var getTitleForEmoji = function (emoji, action) {
 
 /***/ }),
 
-/***/ "./src/utils/isApiError.ts":
-/*!*********************************!*\
-  !*** ./src/utils/isApiError.ts ***!
-  \*********************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   isApiError: () => (/* binding */ isApiError)
-/* harmony export */ });
-function isApiError(err) {
-    return typeof err === 'object' && err !== null && 'error' in err;
-}
-
-
-/***/ }),
-
 /***/ "./src/utils/storageUtil.ts":
 /*!**********************************!*\
   !*** ./src/utils/storageUtil.ts ***!
@@ -44999,6 +44936,7 @@ function isApiError(err) {
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   getTokens: () => (/* binding */ getTokens),
+/* harmony export */   isTokenExpired: () => (/* binding */ isTokenExpired),
 /* harmony export */   removeTokens: () => (/* binding */ removeTokens),
 /* harmony export */   setLoginTime: () => (/* binding */ setLoginTime),
 /* harmony export */   setTokens: () => (/* binding */ setTokens)
@@ -45077,38 +45015,77 @@ var __generator = (undefined && undefined.__generator) || function (thisArg, bod
         });
       });
     } */
+var TWENTY_FIVE_HOURS_IN_MS = 24 * 60 * 60 * 1000;
+var memoryCache = { accessToken: null };
+// Stocke l'accessToken
 function setTokens(accessToken) {
+    memoryCache.accessToken = accessToken; // Cache en mémoire
     chrome.storage.local.set({ accessToken: accessToken }, function () {
-        console.log("AccessToken enregistré dans chrome.storage");
+        console.log("AccessToken enregistré dans chrome.storage :", accessToken);
     });
 }
 function getTokens() {
     return __awaiter(this, void 0, void 0, function () {
         return __generator(this, function (_a) {
+            if (memoryCache.accessToken) {
+                console.log("AccessToken récupéré depuis le cache mémoire :", memoryCache.accessToken);
+                return [2 /*return*/, { accessToken: memoryCache.accessToken }];
+            }
             return [2 /*return*/, new Promise(function (resolve) {
                     chrome.storage.local.get(['accessToken'], function (result) {
+                        console.log("AccessToken récupéré depuis chrome.storage :", result.accessToken);
                         resolve({ accessToken: result.accessToken || null });
                     });
                 })];
         });
     });
 }
-// Suppression des tokens
+// Supprime les tokens
 function removeTokens() {
     chrome.storage.local.remove(["accessToken", "refreshToken"], function () {
-        console.log("Tokens supprimés de chrome.storage");
+        if (chrome.runtime.lastError) {
+            console.error("Erreur lors de la suppression des tokens :", chrome.runtime.lastError.message);
+        }
+        else {
+            console.log("Tokens supprimés de chrome.storage");
+        }
     });
 }
 // Stocke l'heure de connexion
 function setLoginTime() {
+    var currentTime = Date.now();
+    chrome.storage.local.set({ loginTime: currentTime }, function () {
+        if (chrome.runtime.lastError) {
+            console.error("Erreur lors de l'enregistrement de l'heure de connexion :", chrome.runtime.lastError.message);
+        }
+        else {
+            console.log("Heure de connexion enregistrée :", currentTime);
+        }
+    });
+}
+function isTokenExpired() {
     return __awaiter(this, void 0, void 0, function () {
-        var currentTime;
+        var accessToken, loginTime, currentTime, elapsedTime, tokenLifetime;
         return __generator(this, function (_a) {
-            currentTime = Date.now();
-            chrome.storage.local.set({ loginTime: currentTime }, function () {
-                console.log("Heure de connexion enregistrée :", currentTime);
-            });
-            return [2 /*return*/];
+            switch (_a.label) {
+                case 0: return [4 /*yield*/, getTokens()];
+                case 1:
+                    accessToken = (_a.sent()).accessToken;
+                    return [4 /*yield*/, new Promise(function (resolve) {
+                            chrome.storage.local.get(['loginTime'], function (result) {
+                                resolve({ loginTime: result.loginTime || null });
+                            });
+                        })];
+                case 2:
+                    loginTime = (_a.sent()).loginTime;
+                    if (!accessToken || !loginTime) {
+                        return [2 /*return*/, true]; // Pas de token ou pas d'heure de connexion
+                    }
+                    currentTime = Date.now();
+                    elapsedTime = currentTime - loginTime;
+                    tokenLifetime = 3600000;
+                    return [2 /*return*/, elapsedTime > tokenLifetime];
+            }
         });
     });
 }

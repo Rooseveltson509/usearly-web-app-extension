@@ -1,7 +1,7 @@
 import { setTokens, removeTokens, setLoginTime, getTokens } from '../utils/storageUtil'; // Mise à jour pour chrome.storage
 import { verifyAccessToken } from './TokensServices';
 
-const API_URL = 'https://usearly-api.vercel.app/api/v1';
+const API_URL = 'https://usearlyapi.fly.dev/api/v1';
 
 // Fonction de connexion
 /* export async function login(email: string, password: string, rememberMe: boolean): Promise<boolean> {
@@ -48,60 +48,109 @@ const API_URL = 'https://usearly-api.vercel.app/api/v1';
       });
   
       if (!response.ok) {
-        console.error("Échec de la connexion :", response.statusText);
+        console.error(`Échec de la connexion (${response.status}):`, response.statusText);
+  
+        // Optionnel : affiche un message utilisateur basé sur le code d'état HTTP
+        if (response.status === 401) {
+          //alert("Identifiants incorrects. Veuillez réessayer.");
+        } else if (response.status >= 500) {
+          //alert("Erreur serveur. Veuillez réessayer plus tard.");
+        }
         return false;
       }
   
       const data = await response.json();
   
       if (data.accessToken) {
-        setTokens(data.accessToken); // Stockez uniquement accessToken
+        setTokens(data.accessToken); // Stocke uniquement l'accessToken
         console.log("Connexion réussie. Token stocké.");
+        setLoginTime(); // Met à jour l'heure de connexion
         return true;
       }
   
       console.error("Aucun accessToken reçu.");
+      alert("Une erreur inattendue est survenue. Veuillez réessayer.");
       return false;
     } catch (error) {
       console.error("Erreur lors de la connexion :", error);
+      alert("Impossible de se connecter. Veuillez vérifier votre connexion réseau.");
       return false;
     }
   }
   
   
-
-  
 // Vérifie si l'utilisateur est encore authentifié
-export async function isUserAuthenticated(): Promise<boolean> {
+/* export async function isUserAuthenticated(): Promise<boolean> {
   const tokens = await getTokens();
+  console.log("Vérification de l'authentification : token trouvé ?", tokens.accessToken);
 
   if (!tokens.accessToken) {
-    console.log("Aucun accessToken trouvé. Redirection vers la connexion...");
-    return false; // Aucun token : l'utilisateur n'est pas authentifié
+    console.log("Aucun accessToken trouvé. L'utilisateur est déconnecté.");
+    return false;
   }
 
-  // Vérifie si l'Access Token est valide
+  // Vérifiez si le token est valide
   const isValid = await verifyAccessToken(tokens.accessToken);
-  if (isValid) {
-    return true; // Token valide
+  if (!isValid) {
+    console.log("Token invalide. Suppression du token.");
+    removeTokens(); // Supprimez les tokens invalides
+    return false;
   }
 
-  console.log("Aucun token valide. Redirection vers la connexion...");
-  return false; // Aucun accessToken ni refreshToken valide
-}
+  console.log("Utilisateur authentifié.");
+  return true;
+} */
 
-// Déconnecte l'utilisateur
-export async function logout() {
-  console.log('Déconnexion de l\'utilisateur.');
+  export async function isUserAuthenticated(): Promise<boolean> {
+    return new Promise(async (resolve) => {
+      chrome.runtime.sendMessage({ action: 'isAuthenticated' }, async (response) => {
+        if (chrome.runtime.lastError) {
+          console.error("Erreur de communication avec le script de fond :", chrome.runtime.lastError.message);
+          resolve(false);
+        } else {
+          const loginTime = await getLoginTime();
+          if (loginTime) {
+            const elapsedTime = Date.now() - loginTime;
+            const FIVE_HOURS_IN_MS = 20 * 1000; // 20 secondes pour le test
+            //const FIVE_HOURS_IN_MS = 5 * 60 * 60 * 1000;
+  
+            if (elapsedTime >= FIVE_HOURS_IN_MS) {
+              //console.log(`Temps écoulé ::: ${elapsedTime / 1000} secondes. Déconnexion.`);
+              logout(); // Déconnectez si 20 secondes sont écoulées
+              resolve(false);
+            } else {
+              console.log(`Temps restant avant déconnexion ::: ${(FIVE_HOURS_IN_MS - elapsedTime) / 1000} secondes.`);
+              resolve(response?.isAuthenticated ?? false);
+            }
+          } else {
+            resolve(false); // Aucun login enregistré
+          }
+        }
+      });
+    });
+  }
+  
 
-  // Supprimez les tokens du stockage
-  removeTokens();
-
-  // Supprimez également l'indication "rememberMe" si elle existe
-  chrome.storage.local.remove(['rememberMe'], () => {
-    console.log('Indicateur "Se souvenir de moi" supprimé.');
+// Récupère l'heure de connexion
+export async function getLoginTime(): Promise<number | null> {
+  return new Promise((resolve) => {
+    chrome.storage.local.get(['loginTime'], (result) => {
+      resolve(result.loginTime || null);
+    });
   });
 }
+
+
+export function logout(): void {
+  chrome.storage.local.remove(["accessToken", "refreshToken", "loginTime"], () => {
+    if (chrome.runtime.lastError) {
+      console.error("Erreur lors de la déconnexion :", chrome.runtime.lastError.message);
+    } else {
+      console.log("Déconnexion réussie, données supprimées.");
+    }
+  });
+}
+
 
 // Récupère un token valide (soit l'Access Token actuel, soit un nouveau)
 export async function getValidToken(): Promise<string | null> {

@@ -645,3 +645,14 @@ function handleClick(event: MouseEvent) {
 
 // Écouteur d'événements pour les clics
 window.addEventListener('click', handleClick);
+
+
+// Écoute les messages du background script
+chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
+  if (message.type === "USER_LOGGED_OUT") {
+    console.log("Déconnexion détectée côté contenu.");
+    //alert("Vous avez été déconnecté automatiquement.");
+  }
+
+  sendResponse({ success: true });
+});

@@ -428,17 +428,17 @@ i {
 .emoji-picker {
   display: flex;
   align-items: center;
-  margin-top: 10px;
+  margin-block-start: 10px;
 }
 
 .emoji-label {
   display: flex;
   align-items: center;
-  margin-right: 10px;
+  margin-inline-end: 10px;
 }
 
 .emoji-checkbox {
-  margin-right: 5px;
+  margin-inline-end: 5px;
 }
 
 .emoji-button {
@@ -1696,3 +1696,6 @@ i {
   border-radius: 5px;
   cursor: pointer;
 }
+
+
+/* ton style */

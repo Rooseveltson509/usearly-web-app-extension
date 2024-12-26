@@ -14,14 +14,14 @@ document.addEventListener('DOMContentLoaded', () => {
   link.setAttribute('href', chrome.runtime.getURL('contentStyles.css'));
 
   fetch(chrome.runtime.getURL('contentStyles.css'))
-  .then((response) => {
-    if (response.ok) {
-      console.log('Le fichier CSS est accessible.');
-    } else {
-      console.error('Erreur dans l’accès au fichier CSS.');
-    }
-  })
-  .catch((err) => console.error('Erreur réseau:', err));
+    .then((response) => {
+      if (response.ok) {
+        console.log('Le fichier CSS est accessible.');
+      } else {
+        console.error('Erreur dans l’accès au fichier CSS.');
+      }
+    })
+    .catch((err) => console.error('Erreur réseau:', err));
 
 
   // Ajoutez le <link> dans le Shadow DOM
@@ -30,6 +30,11 @@ document.addEventListener('DOMContentLoaded', () => {
   shadowRoot.innerHTML = `
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,100..900;1,100..900&display=swap');
+h3 {
+    font-size: 100px;
+    background: aqua;
+    font-family: 'Raleway', sans-serif;
+    }
 </style>
     <div class="example">Shadow DOM Ready!</div>
   `;

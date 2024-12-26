@@ -1,61 +1,68 @@
 import { getTokens } from "../utils/storageUtil";
 
-const API_URL = 'https://usearly-api.vercel.app/api/v1';
+const API_URL = 'https://usearlyapi.fly.dev/api/v1';
 
 // Fonction de vérification du token
 export async function verifyAccessToken(accessToken: string): Promise<boolean> {
-    try {
-      const response = await fetch(`${API_URL}/user/verify`, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          Authorization: `Bearer ${accessToken}`, // Vérifiez ici
-        },
-        mode: 'cors',
-      });
-  
-      if (response.ok) {
-        console.log("Token valide.");
-        return true;
-      } else {
-        console.error("Token non valide ou expiré.");
-        return false;
-      }
-    } catch (error) {
-      console.error("Erreur lors de la vérification du token :", error);
+  try {
+    const response = await fetch(`${API_URL}/user/verify`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${accessToken}`,
+      },
+    });
+
+    if (response.ok) {
+      console.log("AccessToken valide.");
+      return true;
+    } else if (response.status === 401) {
+      console.error("AccessToken expiré ou invalide.");
+      return false;
+    } else {
+      console.error("Erreur inattendue lors de la vérification du token :", response.status);
       return false;
     }
+  } catch (error) {
+    console.error("Erreur lors de la vérification du token :", error);
+    return false;
   }
-  
-  
-/*   export async function refreshAccessToken(): Promise<string | null> {
-    const tokens = await getTokens();
-  
-    if (!tokens.refreshToken) {
-      console.error("Aucun refreshToken trouvé. Redirection vers la connexion.");
-      return null;
-    }
-  
-    try {
-      const response = await fetch(`${API_URL}/user/refresh-token`, {
-        method: 'POST',
-        credentials: 'include', // Envoie les cookies pour le refresh
-        headers: { 'Content-Type': 'application/json' },
-      });
-  
-      if (response.ok) {
-        const data = await response.json();
-        console.log("Token d'accès rafraîchi avec succès.");
-        return data.accessToken;
-      } else {
-        console.error("Échec lors du rafraîchissement du token.");
-        return null;
-      }
-    } catch (error) {
-      console.error("Erreur lors de la requête de rafraîchissement :", error);
-      return null;
-    }
+}
+
+/*  
+export async function refreshTokens(): Promise<boolean> {
+  const { refreshToken } = await getTokens(); // Assurez-vous de le stocker dans le futur
+
+  if (!refreshToken) {
+    console.log("Aucun refreshToken disponible.");
+    return false;
   }
+
+  try {
+    const response = await fetch(`${API_URL}/user/refresh-token`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ refreshToken }),
+    });
+
+    if (!response.ok) {
+      console.error("Échec du renouvellement du token :", response.statusText);
+      return false;
+    }
+
+    const data = await response.json();
+    if (data.accessToken) {
+      setTokens(data.accessToken); // Met à jour l'accessToken
+      setLoginTime(); // Met à jour l'heure de connexion
+      return true;
+    }
+
+    return false;
+  } catch (error) {
+    console.error("Erreur lors du renouvellement du token :", error);
+    return false;
+  }
+}
+
    */
-  
-  
+

@@ -1,16 +1,15 @@
 import React, { useEffect, useState } from 'react';
 import { createAlert, createCoupdeCoeur, createSuggest } from '../services/apiService';
 import LoginForm from './LoginForm';
-import { getValidToken, isUserAuthenticated } from '../services/AuthService';
 import { Alert } from '../types/Alert';
 import PopupConfirm from './popupConfirm/PopupConfirm';
-import { isApiError } from '../utils/isApiError';
 import { CoupdeCoeur } from '../types/CoupdeCoeur';
 import { Suggest } from '../types/Suggest';
 import { emojiSentiments, getTitleForEmoji, heartEmojis } from '../utils/emojiUtils';
 import SuggestConfirm from './popupConfirm/SuggestConfirm';
 import CoupdeCoeurConfirm from './popupConfirm/CoupdeCoeurConfirm';
 import FlashMessage from './flashMessage/FlashMessage';
+import { getTokens } from '../utils/storageUtil';
 
 
 interface FeedbackFormProps {
@@ -82,7 +81,6 @@ const FeedbackForm: React.FC<FeedbackFormProps> = ({
   const [codeStatus, setCodeStatus] = useState<number>();
 
   const [response, setResponse] = useState<string | null>(null);
-  const [error, setError] = useState<string | null>(null);
   const [localAction, setLocalAction] = useState(selectedAction);
 
   useEffect(() => {
@@ -105,38 +103,41 @@ const FeedbackForm: React.FC<FeedbackFormProps> = ({
     e.preventDefault();
     setIsSubmitting(true); // Indique que le processus est en cours
     setErrorMessages(null); // Réinitialise les erreurs
-    
-    const accessToken = await getValidToken(); // Récupère un token valide
-    //const isAuthenticated = await isUserAuthenticated();
-    console.log("access token :", accessToken); //
-
- 
-    if (!accessToken) {
-      console.error('L’utilisateur n’est pas authentifié ou le token est invalide.');
-      setErrorMessages('Veuillez vous connecter pour soumettre ce formulaire.');
-      setShowLoginForm(true); // Affiche le formulaire de connexion
-      setIsSubmitting(false); // Réinitialise l'état de soumission
-      return;
-    }
-
-    const alertData: Alert = {
-      marque: brandName,
-      siteUrl: siteUrl,
-      blocking: isBlocked,
-      description: alertDescription,
-      bugLocation: bugLocation,
-      emojis: sentiment,
-      capture,
-      tips,
-    };
 
     try {
 
-      console.log('Action sélectionnée.... :', selectedAction);
-      console.log("access token :", accessToken);
-      let result; // = await createAlert(alertData, token); // Appelle une API spécifique pour "capture"
-      if (selectedAction === 'cheart') {
-        // Préparer les données pour `createCoupdeCoeur`
+      // Récupérez le token après vérification
+      const tokens = await getTokens();
+      const accessToken = tokens.accessToken;
+      // Vérifie si l'utilisateur est authentifié
+      //const isAuthenticated = await isUserAuthenticated();
+      if (!accessToken) {
+        console.error("L'utilisateur n'est pas authentifié ou le token est invalide.");
+        setErrorMessages("Veuillez vous connecter pour soumettre ce formulaire.");
+        setShowLoginForm(true); // Affiche le formulaire de connexion
+        setIsSubmitting(false);
+        return;
+      }
+
+      if (!accessToken) {
+        throw new Error("Erreur : aucun token valide trouvé après authentification.");
+      }
+
+      const alertData: Alert = {
+        marque: brandName,
+        siteUrl: siteUrl,
+        blocking: isBlocked,
+        description: alertDescription,
+        bugLocation: bugLocation,
+        emojis: sentiment,
+        capture,
+        tips,
+      };
+
+      let result;
+      console.log("Action sélectionnée :", selectedAction);
+
+      if (selectedAction === "cheart") {
         const coupDeCoeurData: CoupdeCoeur = {
           marque: brandName,
           description: alertDescription,
@@ -144,83 +145,72 @@ const FeedbackForm: React.FC<FeedbackFormProps> = ({
           emoji: sentiment,
         };
         result = await apiActions.coupDeCoeur(coupDeCoeurData, accessToken);
-
-      } else if (selectedAction === 'capture') {
-        // Préparer les données pour `createAlert`
+      } else if (selectedAction === "capture") {
         result = await apiActions.default(alertData, accessToken);
-
-      } else if (selectedAction === 'suggestion') {
+      } else if (selectedAction === "suggestion") {
         const suggest: Suggest = {
           marque: brandName,
           description: alertDescription,
           emplacement: bugLocation,
         };
         result = await apiActions.suggest(suggest, accessToken);
-        console.log('Réponse API (suggestion) avec statut :', result);
       } else {
-        throw new Error('Action inconnue.');
+        throw new Error("Action inconnue.");
       }
 
-      // Gérer les réponses en fonction du code de statut
+      // Gestion des réponses en fonction du statut
       if (result.status === 201) {
-        // Signalement créé avec succès
-        console.log('Réponse API (suggestion) :', result);
+        console.log("Réponse API :", result);
         setResponse(result.message || "Signalement créé avec succès.");
         setErrorMessages(null);
         setShowFeedbackForm(false);
         setShowConfirmation(true); // Affiche la modal de confirmation
         setFlashMessage({
-          message: result.message || 'Signalement créé avec succès.',
-          type: 'success',
+          message: result.message || "Signalement créé avec succès.",
+          type: "success",
           duration: 10000,
         });
       } else if (result.status === 200) {
-        // Signalement déjà existant
+        console.log("Un problème similaire a déjà été signalé.");
         setCodeStatus(result.status);
-        setResponse(result.message || "Un problème similaire a déjà été signalé."); // Affiche uniquement le message
-        setErrorMessages(result.message || "Un problème similaire a déjà été signalé.");
-        setTotalReports(result.totalReports); //
-        console.log('Total reports :', result.totalReports);
+        setResponse(result.message || "Un problème similaire a déjà été signalé.");
+        setErrorMessages(null);
+        setTotalReports(result.totalReports || 1); // Mettez à jour le total des signalements
         setShowFeedbackForm(false);
-        setShowConfirmation(true); // Pas de popup de confirmation
+        setShowConfirmation(true);
         setFlashMessage({
-          message: result.message || 'Signalement déjà existant.',
-          type: 'info',
-          duration: 10000,
-        });
-      } else {
-        console.error('Code de statut inattendu:', result);
-        setFlashMessage({
-          message: 'Une erreur inattendue est survenue.',
-          type: 'error',
+          message: result.message || "Signalement déjà existant.",
+          type: "info",
           duration: 7000,
         });
-        setErrorMessages('Une erreur inattendue est survenue.');
-      }
-      // Réinitialise les champs du formulaire
-      setBrandName('');
-      setSitUrl(''); // Réinitialise le champ du site
-      setBlocking('no');
-      setAlertDescription('');
-      setBugLocation('');
-      setEmojis('');
-      setCapture('');
-      setTips('');
-    } catch (err) {
-      console.error('Erreur détectée :', err);
-      console.log("erreur catcher:  ", error)
-
-      if (isApiError(err)) {
-        setErrorMessages(typeof err.error === 'string' ? err.error : err.error.join(', '));
-
       } else {
-        console.log('Une erreur inattendue est survenue.', err);
-        setErrorMessages('Une erreur inattendue est survenue.');
+        throw new Error(`Code de statut inattendu : ${result.status}`);
+      }
+
+      // Réinitialise les champs du formulaire après succès
+      setBrandName("");
+      setSitUrl("");
+      setBlocking("no");
+      setAlertDescription("");
+      setBugLocation("");
+      setEmojis("");
+      setCapture("");
+      setTips("");
+    } catch (err: any) {
+      console.error("Erreur détectée :", err);
+
+      // Gestion des erreurs spécifiques
+      if (err.message.includes("Un signalement similaire existe déjà")) {
+        setErrorMessages("Un problème similaire a déjà été signalé.");
+        setResponse("Un problème similaire a déjà été signalé.");
+      } else {
+        setErrorMessages(err.message || "Une erreur inattendue est survenue.");
       }
     } finally {
-      setIsSubmitting(false);  // Indique que la requête est terminée
+      setIsSubmitting(false); // Réinitialise l'état de soumission
     }
   };
+
   const handleLoginSuccess = () => {
     setShowLoginForm(false); // Ferme le formulaire de connexion
     if (pendingAction) {
@@ -316,7 +306,7 @@ const FeedbackForm: React.FC<FeedbackFormProps> = ({
           )}
           {/* Feedback form */}
           {errorMessages && (
-            <div style={{ color: "red", marginTop: "10px" }}>
+            <div style={{ color: "red", marginBlockStart: "10px" }}>
               {errorMessages}
             </div>
           )}
@@ -356,7 +346,7 @@ const FeedbackForm: React.FC<FeedbackFormProps> = ({
                       type="checkbox"
                       checked={isBlocked === 'yes'}
                       onChange={(e) => setBlocking(e.target.checked ? 'yes' : 'no')}
-                      style={{ marginRight: '8px', width: '16px', height: '16px', accentColor: '#6a1b9a' }}
+                      style={{ marginInlineEnd: '8px', inlineSize: '16px', blockSize: '16px', accentColor: '#6a1b9a' }}
                     />
                     <label>Je suis bloqué</label>
                   </div>
