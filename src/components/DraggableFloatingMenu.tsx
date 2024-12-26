@@ -2,12 +2,13 @@ import React, { useState, useEffect } from 'react';
 import LoginForm from './LoginForm';
 import { isUserAuthenticated, logout } from '../services/AuthService';
 import CaptureOverlay from './captureOverlay/CaptureOverlay';
+import { getTokens } from '../utils/storageUtil';
 
 interface FloatingMenuProps {
     x: number;
     y: number;
-/*     onCommentClick: () => void;
-    onCaptureClick: () => void; */
+    /*     onCommentClick: () => void;
+        onCaptureClick: () => void; */
     onActionClick: (action: string) => void; // Prop pour capturer les actions
     onClose?: () => void; // Optionnel pour fermer le menu
 }
@@ -51,9 +52,11 @@ const DraggableFloatingMenu: React.FC<FloatingMenuProps> = ({ x, y, onActionClic
     };
 
     const handleButtonClick = async (action: () => void) => {
-        const isAuthenticated = await isUserAuthenticated(); // Attendre que la promesse se résolve
-        if (isAuthenticated) {
-            console.log("isUserAuthenticated: ", isAuthenticated)
+        //const isAuthenticated = await isUserAuthenticated(); // Attendre que la promesse se résolve
+        const isAuthenticated = await getTokens();
+        const accessToken = isAuthenticated.accessToken;
+        if (accessToken) {
+            console.log("isUserAuthenticated: ", accessToken)
             action(); // Si l'utilisateur est connecté, exécute l'action
         } else {
             setPendingAction(() => action); // Enregistre l'action en attente
@@ -123,9 +126,9 @@ const DraggableFloatingMenu: React.FC<FloatingMenuProps> = ({ x, y, onActionClic
             onMouseDown={handleMouseDown}
             style={{
                 position: "fixed",
-                /* left: `${position.x}px`,
-                top: `${position.y}px`, */
-                /*         width: '200px',
+                /* inset-inline-start: `${position.x}px`,
+                inset-block-start: `${position.y}px`, */
+                /*         inline-size: '200px',
                         padding: '10px',
                         backgroundColor: '#f0f0f0',
                         border: '1px solid #ccc',
@@ -163,6 +166,11 @@ const DraggableFloatingMenu: React.FC<FloatingMenuProps> = ({ x, y, onActionClic
                     <span className="tooltip-arrow"></span>
                 </div>
             </div>
+            <button onClick={async () => {
+                const tokens = await getTokens();
+                console.log("Tokens actuels dans chrome.storage :", tokens);
+            }}>Afficher le token</button>
+
             <div>
                 <div className="tooltip-container">
                     <svg className='svg-icon' onClick={() => onActionClick('suggestion')} id="magicIcon" width="29" height="29" viewBox="0 0 29 29" fill="none" xmlns="http://www.w3.org/2000/svg">

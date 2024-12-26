@@ -4,8 +4,7 @@ import { Alert } from '../types/Alert';
 import { CoupdeCoeur } from '../types/CoupdeCoeur';
 import { Suggest } from '../types/Suggest';
 
-//const API_URL = 'https://716f-2a01-cb08-512-d600-e406-7bbb-7bff-9fa0.ngrok-free.app/api/v1';
-const API_BASE_URL = 'https://usearly-api.vercel.app/api/v1';
+const API_BASE_URL = 'https://usearlyapi.fly.dev/api/v1';
 
 export interface ApiResponse {
   success: boolean;
@@ -13,6 +12,7 @@ export interface ApiResponse {
   error?: string;
   status?: number;
   totalReports: number;
+  isDuplicate?: boolean; // Indicateur pour les doublons
 }
 
 const URL_ALERT = `${API_BASE_URL}/user/alert/new`;
@@ -78,12 +78,12 @@ export const createCoupdeCoeur = async (data: CoupdeCoeur, token: string): Promi
     throw errorData; // Lance une erreur avec ApiError
   }
 
-    // Parse la réponse et ajoute le statut HTTP
-    const responseData = await response.json();
-    return {
-      ...responseData,
-      status: response.status, // Ajoute le statut HTTP à l'objet renvoyé
-    };
+  // Parse la réponse et ajoute le statut HTTP
+  const responseData = await response.json();
+  return {
+    ...responseData,
+    status: response.status, // Ajoute le statut HTTP à l'objet renvoyé
+  };
 
 };
 
@@ -98,28 +98,23 @@ export const createAlert = async (
   alertData: Alert,
   token: string
 ): Promise<ApiResponse> => {
-  const currentUrl = window.location.href;
-  //const urlObj = new URL(currentUrl);
   const response = await fetch(URL_ALERT, {
-    method: 'POST',
+    method: "POST",
     headers: {
-      'Content-Type': 'application/json',
-      Origin: currentUrl,
+      "Content-Type": "application/json",
       Authorization: `Bearer ${token}`,
     },
-    mode: 'cors',
     body: JSON.stringify(alertData),
   });
 
   const result = await response.json();
 
   if (!response.ok) {
-    const errorData: ApiError = await response.json();
-    throw errorData; // Lance une erreur avec ApiError
+    throw new Error(result.error || "Erreur serveur");
   }
 
-    return {
+  return {
     ...result,
-    status: response.status, // Incluez le code de statut HTTP
+    isDuplicate: result.message?.includes("déjà été signalé"),
   };
 };

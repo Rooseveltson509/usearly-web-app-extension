@@ -1,8 +1,10 @@
-import { getTokens, removeTokens, setTokens } from './utils/storageUtil';
+import { getTokens, setTokens } from './utils/storageUtil';
 import { shouldBlockUrl } from "./utils/blockAdultSites";
+import { logout } from './services/AuthService';
 
-const API_URL = 'https://usearly-api.vercel.app/api/v1';
-const FIVE_HOURS_IN_MS = 24 * 60 * 60 * 1000;
+const API_URL = 'https://usearlyapi.fly.dev/api/v1';
+//const TWENTY_FIVE_HOURS_IN_MS = 20 * 1000; // 20 secondes pour le test
+//const TWENTY_FIVE_HOURS_IN_MS = 24 * 60 * 60 * 1000;
 
 
 
@@ -38,29 +40,51 @@ chrome.tabs.onUpdated.addListener((tabId, changeInfo, tab) => {
 
 
 
-// Fonction de déconnexion
-function handleLogout() {
-    console.log("Déconnexion automatique ou manuelle de l'utilisateur.");
-    removeTokens();
-    chrome.storage.local.remove(['authToken', 'loginTime'], () => {
-        console.log('Token et heure de connexion supprimés.');
+// Temps avant déconnexion automatique (en ms)
+const AUTO_LOGOUT_TIME = 20 * 1000; // 20 secondes pour les tests
+const CHECK_INTERVAL = 5000; // Vérifie toutes les 5 secondes
+
+// Fonction pour déconnecter automatiquement l'utilisateur
+function handleAutoLogout(): void {
+  console.log("Déconnexion automatique en cours...");
+  logout();
+
+  // Notification de déconnexion
+  chrome.notifications.create({
+    type: "basic",
+    iconUrl: "/assets/icons/logout-icon.png", // Chemin vers une icône d'extension
+    title: "Déconnexion",
+    message: "Vous avez été automatiquement déconnecté.",
+  });
+
+  // Envoi d'un message aux scripts de contenu pour gérer l'interface utilisateur
+  chrome.tabs.query({}, (tabs) => {
+    tabs.forEach((tab) => {
+      if (tab.id) {
+        chrome.tabs.sendMessage(tab.id, { type: "USER_LOGGED_OUT" });
+      }
     });
+  });
 }
 
-// Vérifie périodiquement si 5 heures se sont écoulées depuis la connexion
-setInterval(async () => {
-    chrome.storage.local.get(['loginTime'], (result) => {
-        const loginTime = result.loginTime || null;
+// Vérifie périodiquement si l'utilisateur doit être déconnecté
+setInterval(() => {
+  chrome.storage.local.get(["loginTime"], (result) => {
+    const loginTime = result.loginTime;
 
-        if (loginTime) {
-            const elapsedTime = Date.now() - loginTime;
-            console.log(`Temps écoulé : ${elapsedTime / 1000} secondes`);
-            if (elapsedTime >= FIVE_HOURS_IN_MS) {
-                handleLogout(); // Appelle la fonction de déconnexion
-            }
-        }
-    });
-}, 300000); // Vérifie toutes les 5 minutes
+    if (loginTime) {
+      const elapsedTime = Date.now() - loginTime;
+      console.log(`Temps écoulé : ${elapsedTime / 1000} secondes`);
+
+      if (elapsedTime >= AUTO_LOGOUT_TIME) {
+        handleAutoLogout();
+      }
+    } else {
+      console.log("Aucune donnée de connexion trouvée.");
+    }
+  });
+}, CHECK_INTERVAL);
+
 
 
 chrome.action.onClicked.addListener((tab) => {
@@ -130,8 +154,8 @@ chrome.runtime.onMessage.addListener(
                         .then((data) => {
                             console.log("data: ", data);
                             clearTimeout(timeout); // Annule le timeout si la réponse arrive
-                            if (data.token && data.refreshToken) {
-                                setTokens(data.token);
+                            if (data.accessToken) {
+                                setTokens(data.accessToken);
                                 chrome.storage.local.set({ loginTime: Date.now() }); // Enregistre l'heure de connexion
                                 console.log("Connexion réussie. Tokens stockés.");
                                 sendResponse({ success: true });
@@ -153,8 +177,8 @@ chrome.runtime.onMessage.addListener(
 
                 return true; // Retourner `true` pour les opérations asynchrones
 
-            case "logout":
-                handleLogout(); // Appelle la fonction de déconnexion
+            case "USER_LOGGED_OUT":
+                handleAutoLogout(); // Appelle la fonction de déconnexion
                 sendResponse({ success: true });
                 return false;
 

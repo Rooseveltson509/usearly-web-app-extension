@@ -7,13 +7,12 @@ interface LoginFormProps {
   onClose: () => void;
   onLoginSuccess: () => void;
 }
-const FLASH_DURATION = 5000; // Défini une durée par défaut
+const FLASH_DURATION = 3000; // Défini une durée par défaut
 
 const LoginForm: React.FC<LoginFormProps> = ({ onClose, onLoginSuccess }) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [rememberMe, setRememberMe] = useState(false); // Nouveau state pour "Se souvenir de moi"
-  const [error, setError] = useState('');
   const { flashMessage, showFlashMessage } = useFlashMessage();
   const [isSubmitting, setIsSubmitting] = useState(false); // Indique si le formulaire est en cours de soumission
 
@@ -26,27 +25,44 @@ const LoginForm: React.FC<LoginFormProps> = ({ onClose, onLoginSuccess }) => {
     setIsSubmitting(true);
   
     try {
+      console.log("Tentative de connexion avec l'email :", email);
+  
+      // Appel à la méthode `login` pour authentifier l'utilisateur
       const success = await login(email, password);
-      console.log('Résultat du login :', success);
+      console.log("Résultat du login :", success);
   
       if (success) {
+        // Affiche un message flash et exécute l'action de succès
         showFlashMessage('Connexion réussie !', 'success', FLASH_DURATION);
+  
+        // Attendre la durée du flash avant d'exécuter une action (ex. redirection)
         setTimeout(() => {
-          onLoginSuccess(); // Redirection ou autre action
+          console.log("Connexion réussie, exécution de onLoginSuccess()");
+          onLoginSuccess();
         }, FLASH_DURATION);
       } else {
-        showFlashMessage('Nom d’utilisateur ou mot de passe incorrect.', 'error', FLASH_DURATION);
+        console.warn("Échec de la connexion, informations incorrectes.");
+        showFlashMessage(
+          'Nom d’utilisateur ou mot de passe incorrect.',
+          'error',
+          FLASH_DURATION
+        );
       }
     } catch (error: any) {
-      // Affiche un message d'erreur basé sur l'erreur levée
-      console.error('Erreur de connexion :', error.message);
-      showFlashMessage(error.message || 'Erreur de connexion.', 'error', FLASH_DURATION);
+      // Gestion des erreurs réseau ou exceptions inattendues
+      console.error("Erreur lors de la tentative de connexion :", error.message);
+      showFlashMessage(
+        error.message || 'Erreur de connexion. Veuillez réessayer.',
+        'error',
+        FLASH_DURATION
+      );
     } finally {
+      // Réinitialise l'état de soumission
       setIsSubmitting(false);
+      console.log("Fin du processus de connexion, isSubmitting réinitialisé.");
     }
   };
   
-
   return (
     <div className='my-class'>
       <div className="overlay">
@@ -77,7 +93,6 @@ const LoginForm: React.FC<LoginFormProps> = ({ onClose, onLoginSuccess }) => {
             </svg>
           </div>
           <h3 className='title-form'>Connectez-vous !</h3>
-          {error && <p style={{ color: 'red' }}>{error}</p>}
           {isSubmitting && (
             <div className="loader-container">
               <div className="loader"></div>
