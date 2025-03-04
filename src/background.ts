@@ -41,7 +41,7 @@ chrome.tabs.onUpdated.addListener((tabId, changeInfo, tab) => {
 
 
 // Temps avant déconnexion automatique (en ms)
-const AUTO_LOGOUT_TIME = 20 * 1000; // 20 secondes pour les tests
+const AUTO_LOGOUT_TIME = 24 * 60 * 60 * 1000; // 24h
 const CHECK_INTERVAL = 5000; // Vérifie toutes les 5 secondes
 
 // Fonction pour déconnecter automatiquement l'utilisateur

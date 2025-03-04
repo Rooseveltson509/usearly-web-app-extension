@@ -309,12 +309,12 @@ i {
 
 .floating-menu {
   position: fixed;
-  right: 0;
-  top: 50%;
+  inset-inline-end: 0;
+  inset-block-start: 50%;
   background-color: #f0f0f0;
   padding: 10px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-  z-index: 1000;
+  z-index: 9999;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -378,8 +378,8 @@ i {
 
 #custom-menu {
   position: absolute;
-  top: 10px;
-  right: 10px;
+  inset-block-start: 10px;
+  inset-inline-end: 10px;
   background-color: white;
   border: 1px solid #ccc;
   padding: 5px;
@@ -686,6 +686,7 @@ i {
   cursor: pointer;
   float: inline-end;
   margin-block-start: -17px;
+  margin: 1px;
 }
 
 .close-button-form {

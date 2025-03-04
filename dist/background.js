@@ -54,42 +54,8 @@ var __generator = (undefined && undefined.__generator) || function (thisArg, bod
     }
 };
  // Mise à jour pour chrome.storage
-var API_URL = 'https://usearlyapi.fly.dev/api/v1';
-// Fonction de connexion
-/* export async function login(email: string, password: string, rememberMe: boolean): Promise<boolean> {
-  try {
-    const response = await fetch(`${API_URL}/user/login`, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ email, password }), // Envoie l'indicateur "rememberMe"
-    });
-    const data = await response.json();
-
-    if (response.ok && data.accessToken && data.refreshToken) {
-      console.log('Connexion réussie, stockage des tokens.', data);
-
-      // Stocke les tokens
-      setTokens(data.accessToken);
-
-      // Enregistrez les tokens en fonction de "Se souvenir de moi"
-      if (rememberMe) {
-        localStorage.setItem('accessToken', data.accessToken);
-        localStorage.setItem('refreshToken', data.refreshToken);
-      } else {
-        sessionStorage.setItem('accessToken', data.accessToken);
-        sessionStorage.setItem('refreshToken', data.refreshToken);
-      }
-
-      return true;
-    } else {
-      console.error('Échec de la connexion :', data.message);
-      throw new Error(data.message || 'Authentification échouée.');
-    }
-  } catch (error) {
-    console.error('Erreur lors de la connexion :', error);
-    return false;
-  }
-} */
+//const API_URL = 'https://usearlyapi.fly.dev/api/v1';
+var API_URL = 'http://localhost:3000/api/v1';
 function login(email, password) {
     return __awaiter(this, void 0, void 0, function () {
         var response, data, error_1;
@@ -137,27 +103,6 @@ function login(email, password) {
         });
     });
 }
-// Vérifie si l'utilisateur est encore authentifié
-/* export async function isUserAuthenticated(): Promise<boolean> {
-  const tokens = await getTokens();
-  console.log("Vérification de l'authentification : token trouvé ?", tokens.accessToken);
-
-  if (!tokens.accessToken) {
-    console.log("Aucun accessToken trouvé. L'utilisateur est déconnecté.");
-    return false;
-  }
-
-  // Vérifiez si le token est valide
-  const isValid = await verifyAccessToken(tokens.accessToken);
-  if (!isValid) {
-    console.log("Token invalide. Suppression du token.");
-    removeTokens(); // Supprimez les tokens invalides
-    return false;
-  }
-
-  console.log("Utilisateur authentifié.");
-  return true;
-} */
 function isUserAuthenticated() {
     return __awaiter(this, void 0, void 0, function () {
         var _this = this;
@@ -180,8 +125,8 @@ function isUserAuthenticated() {
                                         loginTime = _b.sent();
                                         if (loginTime) {
                                             elapsedTime = Date.now() - loginTime;
-                                            FIVE_HOURS_IN_MS = 20 * 1000;
-                                            //const FIVE_HOURS_IN_MS = 5 * 60 * 60 * 1000;
+                                            FIVE_HOURS_IN_MS = 24 * 60 * 60 * 1000;
+                                            //const FIVE_HOURS_IN_MS = 5 * 60 * 60 * 1000; 
                                             if (elapsedTime >= FIVE_HOURS_IN_MS) {
                                                 //console.log(`Temps écoulé ::: ${elapsedTime / 1000} secondes. Déconnexion.`);
                                                 logout(); // Déconnectez si 20 secondes sont écoulées
@@ -268,6 +213,7 @@ var forbiddenDomains = [
     "adult-content.com",
     "badsites.net",
     "pornhub.com",
+    "pornhub.com",
     "xvideos.com",
     "redtube.com",
     "xnxx.com",
@@ -275,12 +221,17 @@ var forbiddenDomains = [
     "brazzers.com",
     "adultfriendfinder.com",
     "livejasmin.com",
-    "airbnb.fr"
+    "airbnb.fr",
+    "fr.pornhub.com",
+    "nike.com",
+    "fr.pornhub",
 ];
 var forbiddenKeywords = [
     "porn",
     "violent",
     "xxx",
+    "porn+hardcor+violent",
+    "pornhub",
     "murder",
     "meurtre",
     "sexual",
@@ -295,7 +246,7 @@ var forbiddenKeywords = [
     "inappropriate",
     "nsfw",
     "sex",
-    "erotic"
+    "erotic",
 ];
 // https://www.airbnb.fr/rooms/52621429?adults=2&category_tag=Tag%3A4104&children=0&enable_m3_private_room=true&infants=0&pets=0&photo_id=1667039872&search_mode=flex_destinations_search&check_in=2025-01-03&check_out=2025-01-08&source_impression_id=p3_1732287557_P3IQ3z7DTBGIxxhx&previous_page_section_name=1000
 // Liste de mots-clés sensibles dans les URLs
@@ -311,7 +262,9 @@ function shouldBlockUrl(url) {
         // Extraire le domaine (hostname)
         var domain_1 = parsedUrl.hostname.toLowerCase();
         // Vérifier si le domaine est dans la liste interdite
-        if (forbiddenDomains.some(function (forbiddenDomain) { return domain_1.includes(forbiddenDomain); })) {
+        if (forbiddenDomains.some(function (forbiddenDomain) {
+            return domain_1.includes(forbiddenDomain);
+        })) {
             console.log("URL bloqu\u00E9e : Domaine interdit (".concat(domain_1, ")"));
             return true;
         }
@@ -620,7 +573,7 @@ chrome.tabs.onUpdated.addListener(function (tabId, changeInfo, tab) {
     }
 });
 // Temps avant déconnexion automatique (en ms)
-var AUTO_LOGOUT_TIME = 20 * 1000; // 20 secondes pour les tests
+var AUTO_LOGOUT_TIME = 24 * 60 * 60 * 1000; // 24h
 var CHECK_INTERVAL = 5000; // Vérifie toutes les 5 secondes
 // Fonction pour déconnecter automatiquement l'utilisateur
 function handleAutoLogout() {

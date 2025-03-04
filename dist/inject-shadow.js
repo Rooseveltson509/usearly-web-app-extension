@@ -1,4 +1,4 @@
-document.addEventListener('DOMContentLoaded', () => {
+/* document.addEventListener('DOMContentLoaded', () => {
 
   const container = document.createElement('div');
   container.id = 'u-extension-container';
@@ -36,8 +36,8 @@ h3 {
     font-family: 'Raleway', sans-serif;
     }
 </style>
-    <div class="example">Shadow DOM Ready!</div>
   `;
 
   console.log('ShadowRoot après DOMContentLoaded:', container.shadowRoot);
 });
+ */

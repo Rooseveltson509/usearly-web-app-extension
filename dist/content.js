@@ -42817,18 +42817,7 @@ var DraggableFloatingMenu = function (_a) {
                     borderRadius: '8px', */
             cursor: 'move',
             zIndex: 1000,
-        } }, { children: [(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", __assign({ className: "tooltip-container" }, { children: [(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("svg", __assign({ className: 'svg-icon', onClick: function () { return handleButtonClick(function () { return console.log('Action Commenter: '); }); }, id: "uIcon", width: "22", height: "18", viewBox: "0 0 22 18", fill: "none", xmlns: "http://www.w3.org/2000/svg" }, { children: [(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("path", { d: "M10.56 0H14.77V11.26C14.77 12.56 14.46 13.69 13.84 14.66C13.22 15.62 12.36 16.36 11.25 16.89C10.14 17.41 8.86 17.67 7.39 17.67C5.92 17.67 4.61 17.41 3.5 16.89C2.39 16.36 1.53 15.62 0.92 14.66C0.31 13.69 0 12.56 0 11.26V0H4.22V10.89C4.22 11.49 4.35 12.03 4.61 12.5C4.88 12.97 5.25 13.34 5.73 13.61C6.21 13.88 6.76 14.01 7.39 14.01C8.02 14.01 8.57 13.88 9.04 13.61C9.52 13.34 9.89 12.97 10.16 12.5C10.43 12.03 10.56 11.49 10.56 10.89V0Z", fill: "#D9D9D9" }), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("path", { d: "M18.9402 17.7C18.3302 17.7 17.8002 17.48 17.3602 17.05C16.9302 16.62 16.7202 16.1 16.7202 15.48C16.7202 14.88 16.9302 14.36 17.3602 13.94C17.8002 13.51 18.3202 13.29 18.9402 13.29C19.5202 13.29 20.0302 13.51 20.4702 13.94C20.9202 14.37 21.1502 14.88 21.1502 15.48C21.1502 15.89 21.0402 16.26 20.8302 16.6C20.6302 16.94 20.3602 17.2 20.0202 17.4C19.6902 17.6 19.3302 17.7 18.9402 17.7Z", fill: "#D9D9D9" })] })), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", __assign({ className: "tooltip-text", id: 'u' }, { children: ["Feedback", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("span", { className: "tooltip-arrow" })] }))] })), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", __assign({ className: "tooltip-container" }, { children: [(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("svg", __assign({ className: 'svg-icon', onClick: function () { return onActionClick('capture'); }, id: "commentIcon", width: "26", height: "26", viewBox: "0 0 26 26", fill: "none", xmlns: "http://www.w3.org/2000/svg" }, { children: (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("path", { d: "M13 5.86C13.26 5.86 13.51 5.96 13.69 6.15C13.87 6.33 13.98 6.58 13.98 6.84V14.96C13.98 15.22 13.88 15.47 13.69 15.65C13.51 15.83 13.26 15.94 13 15.94C12.74 15.94 12.49 15.84 12.31 15.65C12.13 15.47 12.02 15.22 12.02 14.96V6.84C12.02 6.58 12.12 6.33 12.31 6.15C12.49 5.97 12.74 5.86 13 5.86ZM13 20.15C13.34 20.15 13.68 20.01 13.92 19.77C14.16 19.53 14.3 19.2 14.3 18.85C14.3 18.5 14.16 18.17 13.92 17.93C13.68 17.69 13.35 17.55 13 17.55C12.65 17.55 12.32 17.69 12.08 17.93C11.84 18.17 11.7 18.5 11.7 18.85C11.7 19.2 11.84 19.53 12.08 19.77C12.32 20.01 12.65 20.15 13 20.15ZM13 0.00999975C20.18 0.00999975 26 5.83 26 13.01C26 20.19 20.18 26.01 13 26.01C10.93 26.01 8.88 25.52 7.04 24.56L2.07 25.95C1.79 26.03 1.5 26.03 1.22 25.95C0.939997 25.88 0.69 25.73 0.48 25.53C0.28 25.33 0.129998 25.07 0.0599976 24.79C-0.0100024 24.51 -0.0100024 24.22 0.0599976 23.94L1.45 18.97C0.489997 17.13 0 15.08 0 13C0 5.82 5.82 0 13 0V0.00999975ZM13 1.96C10.07 1.96 7.26 3.12 5.19 5.2C3.12 7.27 1.95 10.08 1.95 13.01C1.95 14.92 2.43 16.76 3.34 18.39L3.54 18.74L2.09 23.92L7.27 22.47L7.62 22.67C9.09 23.49 10.74 23.96 12.42 24.05C14.11 24.14 15.79 23.84 17.34 23.17C18.89 22.51 20.27 21.49 21.37 20.22C22.47 18.94 23.26 17.43 23.69 15.79C24.11 14.16 24.16 12.45 23.82 10.8C23.48 9.15 22.77 7.59 21.74 6.26C20.71 4.93 19.38 3.85 17.87 3.1C16.36 2.36 14.69 1.97 13 1.97V1.96Z", fill: "#D9D9D9" }) })), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", __assign({ className: "tooltip-text", id: 'comment' }, { children: ["Signalement", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("span", { className: "tooltip-arrow" })] }))] })), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", __assign({ className: "tooltip-container" }, { children: [(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("svg", __assign({ className: 'svg-icon', onClick: function () { return onActionClick('cheart'); }, id: "heartIcon", width: "27", height: "24", viewBox: "0 0 27 24", fill: "none", xmlns: "http://www.w3.org/2000/svg" }, { children: (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("path", { d: "M26.41 4.81C26.01 3.86 25.44 3.01 24.7 2.29C23.21 0.820001 21.24 0.0100021 19.13 0.0100021C17.05 0.0100021 15.08 0.810003 13.58 2.28L13.51 2.35L13.44 2.28C11.95 0.810003 9.98 0 7.87 0C5.79 0 3.82 0.800002 2.33 2.26C1.59 2.98 1.02 3.83 0.610001 4.78C0.210001 5.73 0.01 6.74 0 7.77C0 8.8 0.199998 9.81 0.599998 10.76C0.999998 11.71 1.57 12.56 2.3 13.28L12.87 23.72C13.04 23.89 13.26 23.98 13.5 23.98C13.74 23.98 13.96 23.89 14.13 23.72L24.68 13.32C25.42 12.6 25.99 11.76 26.39 10.8C26.79 9.85 26.99 8.85 27 7.81C27 6.78 26.8 5.77 26.4 4.82L26.41 4.81ZM7.88 1.79C9.49 1.79 11.02 2.42 12.17 3.55L12.87 4.25C13.22 4.59 13.78 4.59 14.13 4.25L14.83 3.56C15.99 2.43 17.51 1.81 19.13 1.81C20.75 1.81 22.27 2.44 23.43 3.58C23.99 4.13 24.43 4.78 24.74 5.51C25.05 6.24 25.2 7.01 25.2 7.8C25.2 8.59 25.04 9.36 24.73 10.09C24.42 10.82 23.98 11.47 23.41 12.02L13.49 21.8L3.55 11.98C2.99 11.43 2.55 10.78 2.24 10.05C1.93 9.32 1.78 8.55 1.78 7.76C1.78 6.97 1.94 6.2 2.25 5.47C2.56 4.74 3 4.09 3.56 3.54C4.72 2.41 6.24 1.79 7.85 1.79", fill: "#D9D9D9" }) })), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", __assign({ className: "tooltip-text", id: 'heartI' }, { children: ["Coup de coeur", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("span", { className: "tooltip-arrow" })] }))] })), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("button", __assign({ onClick: function () { return __awaiter(void 0, void 0, void 0, function () {
-                    var tokens;
-                    return __generator(this, function (_a) {
-                        switch (_a.label) {
-                            case 0: return [4 /*yield*/, (0,_utils_storageUtil__WEBPACK_IMPORTED_MODULE_4__.getTokens)()];
-                            case 1:
-                                tokens = _a.sent();
-                                console.log("Tokens actuels dans chrome.storage :", tokens);
-                                return [2 /*return*/];
-                        }
-                    });
-                }); } }, { children: "Afficher le token" })), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("div", { children: (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", __assign({ className: "tooltip-container" }, { children: [(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("svg", __assign({ className: 'svg-icon', onClick: function () { return onActionClick('suggestion'); }, id: "magicIcon", width: "29", height: "29", viewBox: "0 0 29 29", fill: "none", xmlns: "http://www.w3.org/2000/svg" }, { children: (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("path", { d: "M28.6025 12.0643L25.7325 7.74426L27.1625 2.72426C27.2525 2.41426 27.1625 2.07426 26.9325 1.84426C26.7025 1.61426 26.3625 1.52426 26.0525 1.61426L21.0625 3.07426L16.7325 0.154257C16.4625 -0.0257434 16.1125 -0.0557434 15.8225 0.104257C15.5325 0.254257 15.3425 0.554257 15.3325 0.874257L15.1825 6.09426L11.0825 9.31426C10.8225 9.51426 10.7025 9.84426 10.7525 10.1643C10.8025 10.4843 11.0225 10.7543 11.3325 10.8643L15.1725 12.2443C15.1725 12.2443 15.1225 12.2843 15.0925 12.3043L0.2625 27.2243C-0.0875 27.5743 -0.0875 28.1443 0.2625 28.4943C0.4325 28.6743 0.6625 28.7543 0.8925 28.7543C1.1225 28.7543 1.3525 28.6643 1.5225 28.4943L16.3625 13.5943C16.4225 13.5343 16.4625 13.4743 16.5025 13.4043L18.0025 17.5443C18.0625 17.6943 18.1525 17.8243 18.2725 17.9343C18.3925 18.0343 18.5425 18.1043 18.7025 18.1243C18.7525 18.1243 18.7925 18.1343 18.8425 18.1343C18.9825 18.1343 19.1125 18.1043 19.2325 18.0443C19.3525 17.9843 19.4625 17.8943 19.5425 17.7843L22.7225 13.6543L27.8625 13.4743C28.1925 13.4643 28.4825 13.2743 28.6325 12.9843C28.7825 12.6943 28.7525 12.3443 28.5725 12.0743L28.6025 12.0643ZM22.2625 11.8643C21.9925 11.8643 21.7525 12.0043 21.5825 12.2143L19.1325 15.3943L17.7625 11.6243C17.6725 11.3743 17.4725 11.1743 17.2225 11.0843L13.4625 9.72426L16.6125 7.25426C16.8225 7.09426 16.9425 6.84426 16.9525 6.57426L17.0725 2.56426L20.3925 4.80426C20.5025 4.87426 20.6225 4.92426 20.7525 4.94426C20.8825 4.96426 21.0125 4.95426 21.1425 4.92426L24.9825 3.79426L23.8825 7.65426C23.8425 7.78426 23.8425 7.91426 23.8625 8.04426C23.8825 8.17426 23.9325 8.29426 24.0025 8.40426L26.2525 11.7243L22.2525 11.8643H22.2625Z", fill: "#D9D9D9" }) })), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", __assign({ className: "tooltip-text", id: 'magicI' }, { children: ["Suggestion", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("span", { className: "tooltip-arrow" })] }))] })) }), showLoginForm && ((0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(_LoginForm__WEBPACK_IMPORTED_MODULE_2__["default"], { onClose: function () { return setShowLoginForm(false); }, onLoginSuccess: handleLoginSuccess })), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("button", __assign({ onClick: handleLogout }, { children: "Logout" })), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("div", __assign({ className: 'close-button', onClick: handleCloseMenu }, { children: (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("svg", __assign({ xmlns: "http://www.w3.org/2000/svg", width: "15", height: "14", viewBox: "0 0 15 14", fill: "none" }, { children: [(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("path", { d: "M11.2502 3.49982L4.25024 10.4998", stroke: "#D2D7E0", strokeWidth: "1.4", strokeLinecap: "round" }), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("path", { d: "M11.3376 10.4108L4.25034 3.50029", stroke: "#D2D7E0", strokeWidth: "1.4", strokeLinecap: "round" })] })) }))] })));
+        } }, { children: [(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", __assign({ className: "tooltip-container" }, { children: [(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("svg", __assign({ className: 'svg-icon', onClick: function () { return handleButtonClick(function () { return console.log('Action Commenter: '); }); }, id: "uIcon", width: "22", height: "18", viewBox: "0 0 22 18", fill: "none", xmlns: "http://www.w3.org/2000/svg" }, { children: [(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("path", { d: "M10.56 0H14.77V11.26C14.77 12.56 14.46 13.69 13.84 14.66C13.22 15.62 12.36 16.36 11.25 16.89C10.14 17.41 8.86 17.67 7.39 17.67C5.92 17.67 4.61 17.41 3.5 16.89C2.39 16.36 1.53 15.62 0.92 14.66C0.31 13.69 0 12.56 0 11.26V0H4.22V10.89C4.22 11.49 4.35 12.03 4.61 12.5C4.88 12.97 5.25 13.34 5.73 13.61C6.21 13.88 6.76 14.01 7.39 14.01C8.02 14.01 8.57 13.88 9.04 13.61C9.52 13.34 9.89 12.97 10.16 12.5C10.43 12.03 10.56 11.49 10.56 10.89V0Z", fill: "#D9D9D9" }), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("path", { d: "M18.9402 17.7C18.3302 17.7 17.8002 17.48 17.3602 17.05C16.9302 16.62 16.7202 16.1 16.7202 15.48C16.7202 14.88 16.9302 14.36 17.3602 13.94C17.8002 13.51 18.3202 13.29 18.9402 13.29C19.5202 13.29 20.0302 13.51 20.4702 13.94C20.9202 14.37 21.1502 14.88 21.1502 15.48C21.1502 15.89 21.0402 16.26 20.8302 16.6C20.6302 16.94 20.3602 17.2 20.0202 17.4C19.6902 17.6 19.3302 17.7 18.9402 17.7Z", fill: "#D9D9D9" })] })), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", __assign({ className: "tooltip-text", id: 'u' }, { children: ["Feedback", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("span", { className: "tooltip-arrow" })] }))] })), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", __assign({ className: "tooltip-container" }, { children: [(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("svg", __assign({ className: 'svg-icon', onClick: function () { return onActionClick('capture'); }, id: "commentIcon", width: "26", height: "26", viewBox: "0 0 26 26", fill: "none", xmlns: "http://www.w3.org/2000/svg" }, { children: (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("path", { d: "M13 5.86C13.26 5.86 13.51 5.96 13.69 6.15C13.87 6.33 13.98 6.58 13.98 6.84V14.96C13.98 15.22 13.88 15.47 13.69 15.65C13.51 15.83 13.26 15.94 13 15.94C12.74 15.94 12.49 15.84 12.31 15.65C12.13 15.47 12.02 15.22 12.02 14.96V6.84C12.02 6.58 12.12 6.33 12.31 6.15C12.49 5.97 12.74 5.86 13 5.86ZM13 20.15C13.34 20.15 13.68 20.01 13.92 19.77C14.16 19.53 14.3 19.2 14.3 18.85C14.3 18.5 14.16 18.17 13.92 17.93C13.68 17.69 13.35 17.55 13 17.55C12.65 17.55 12.32 17.69 12.08 17.93C11.84 18.17 11.7 18.5 11.7 18.85C11.7 19.2 11.84 19.53 12.08 19.77C12.32 20.01 12.65 20.15 13 20.15ZM13 0.00999975C20.18 0.00999975 26 5.83 26 13.01C26 20.19 20.18 26.01 13 26.01C10.93 26.01 8.88 25.52 7.04 24.56L2.07 25.95C1.79 26.03 1.5 26.03 1.22 25.95C0.939997 25.88 0.69 25.73 0.48 25.53C0.28 25.33 0.129998 25.07 0.0599976 24.79C-0.0100024 24.51 -0.0100024 24.22 0.0599976 23.94L1.45 18.97C0.489997 17.13 0 15.08 0 13C0 5.82 5.82 0 13 0V0.00999975ZM13 1.96C10.07 1.96 7.26 3.12 5.19 5.2C3.12 7.27 1.95 10.08 1.95 13.01C1.95 14.92 2.43 16.76 3.34 18.39L3.54 18.74L2.09 23.92L7.27 22.47L7.62 22.67C9.09 23.49 10.74 23.96 12.42 24.05C14.11 24.14 15.79 23.84 17.34 23.17C18.89 22.51 20.27 21.49 21.37 20.22C22.47 18.94 23.26 17.43 23.69 15.79C24.11 14.16 24.16 12.45 23.82 10.8C23.48 9.15 22.77 7.59 21.74 6.26C20.71 4.93 19.38 3.85 17.87 3.1C16.36 2.36 14.69 1.97 13 1.97V1.96Z", fill: "#D9D9D9" }) })), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", __assign({ className: "tooltip-text", id: 'comment' }, { children: ["Signalement", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("span", { className: "tooltip-arrow" })] }))] })), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", __assign({ className: "tooltip-container" }, { children: [(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("svg", __assign({ className: 'svg-icon', onClick: function () { return onActionClick('cheart'); }, id: "heartIcon", width: "27", height: "24", viewBox: "0 0 27 24", fill: "none", xmlns: "http://www.w3.org/2000/svg" }, { children: (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("path", { d: "M26.41 4.81C26.01 3.86 25.44 3.01 24.7 2.29C23.21 0.820001 21.24 0.0100021 19.13 0.0100021C17.05 0.0100021 15.08 0.810003 13.58 2.28L13.51 2.35L13.44 2.28C11.95 0.810003 9.98 0 7.87 0C5.79 0 3.82 0.800002 2.33 2.26C1.59 2.98 1.02 3.83 0.610001 4.78C0.210001 5.73 0.01 6.74 0 7.77C0 8.8 0.199998 9.81 0.599998 10.76C0.999998 11.71 1.57 12.56 2.3 13.28L12.87 23.72C13.04 23.89 13.26 23.98 13.5 23.98C13.74 23.98 13.96 23.89 14.13 23.72L24.68 13.32C25.42 12.6 25.99 11.76 26.39 10.8C26.79 9.85 26.99 8.85 27 7.81C27 6.78 26.8 5.77 26.4 4.82L26.41 4.81ZM7.88 1.79C9.49 1.79 11.02 2.42 12.17 3.55L12.87 4.25C13.22 4.59 13.78 4.59 14.13 4.25L14.83 3.56C15.99 2.43 17.51 1.81 19.13 1.81C20.75 1.81 22.27 2.44 23.43 3.58C23.99 4.13 24.43 4.78 24.74 5.51C25.05 6.24 25.2 7.01 25.2 7.8C25.2 8.59 25.04 9.36 24.73 10.09C24.42 10.82 23.98 11.47 23.41 12.02L13.49 21.8L3.55 11.98C2.99 11.43 2.55 10.78 2.24 10.05C1.93 9.32 1.78 8.55 1.78 7.76C1.78 6.97 1.94 6.2 2.25 5.47C2.56 4.74 3 4.09 3.56 3.54C4.72 2.41 6.24 1.79 7.85 1.79", fill: "#D9D9D9" }) })), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", __assign({ className: "tooltip-text", id: 'heartI' }, { children: ["Coup de coeur", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("span", { className: "tooltip-arrow" })] }))] })), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("div", { children: (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", __assign({ className: "tooltip-container" }, { children: [(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("svg", __assign({ className: 'svg-icon', onClick: function () { return onActionClick('suggestion'); }, id: "magicIcon", width: "29", height: "29", viewBox: "0 0 29 29", fill: "none", xmlns: "http://www.w3.org/2000/svg" }, { children: (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("path", { d: "M28.6025 12.0643L25.7325 7.74426L27.1625 2.72426C27.2525 2.41426 27.1625 2.07426 26.9325 1.84426C26.7025 1.61426 26.3625 1.52426 26.0525 1.61426L21.0625 3.07426L16.7325 0.154257C16.4625 -0.0257434 16.1125 -0.0557434 15.8225 0.104257C15.5325 0.254257 15.3425 0.554257 15.3325 0.874257L15.1825 6.09426L11.0825 9.31426C10.8225 9.51426 10.7025 9.84426 10.7525 10.1643C10.8025 10.4843 11.0225 10.7543 11.3325 10.8643L15.1725 12.2443C15.1725 12.2443 15.1225 12.2843 15.0925 12.3043L0.2625 27.2243C-0.0875 27.5743 -0.0875 28.1443 0.2625 28.4943C0.4325 28.6743 0.6625 28.7543 0.8925 28.7543C1.1225 28.7543 1.3525 28.6643 1.5225 28.4943L16.3625 13.5943C16.4225 13.5343 16.4625 13.4743 16.5025 13.4043L18.0025 17.5443C18.0625 17.6943 18.1525 17.8243 18.2725 17.9343C18.3925 18.0343 18.5425 18.1043 18.7025 18.1243C18.7525 18.1243 18.7925 18.1343 18.8425 18.1343C18.9825 18.1343 19.1125 18.1043 19.2325 18.0443C19.3525 17.9843 19.4625 17.8943 19.5425 17.7843L22.7225 13.6543L27.8625 13.4743C28.1925 13.4643 28.4825 13.2743 28.6325 12.9843C28.7825 12.6943 28.7525 12.3443 28.5725 12.0743L28.6025 12.0643ZM22.2625 11.8643C21.9925 11.8643 21.7525 12.0043 21.5825 12.2143L19.1325 15.3943L17.7625 11.6243C17.6725 11.3743 17.4725 11.1743 17.2225 11.0843L13.4625 9.72426L16.6125 7.25426C16.8225 7.09426 16.9425 6.84426 16.9525 6.57426L17.0725 2.56426L20.3925 4.80426C20.5025 4.87426 20.6225 4.92426 20.7525 4.94426C20.8825 4.96426 21.0125 4.95426 21.1425 4.92426L24.9825 3.79426L23.8825 7.65426C23.8425 7.78426 23.8425 7.91426 23.8625 8.04426C23.8825 8.17426 23.9325 8.29426 24.0025 8.40426L26.2525 11.7243L22.2525 11.8643H22.2625Z", fill: "#D9D9D9" }) })), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", __assign({ className: "tooltip-text", id: 'magicI' }, { children: ["Suggestion", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("span", { className: "tooltip-arrow" })] }))] })) }), showLoginForm && ((0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(_LoginForm__WEBPACK_IMPORTED_MODULE_2__["default"], { onClose: function () { return setShowLoginForm(false); }, onLoginSuccess: handleLoginSuccess })), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("div", __assign({ className: 'close-button', onClick: handleCloseMenu }, { children: (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("svg", __assign({ xmlns: "http://www.w3.org/2000/svg", width: "15", height: "14", viewBox: "0 0 15 14", fill: "none" }, { children: [(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("path", { d: "M11.2502 3.49982L4.25024 10.4998", stroke: "#D2D7E0", strokeWidth: "1.4", strokeLinecap: "round" }), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("path", { d: "M11.3376 10.4108L4.25034 3.50029", stroke: "#D2D7E0", strokeWidth: "1.4", strokeLinecap: "round" })] })) }))] })));
 };
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (DraggableFloatingMenu);
 
@@ -44360,42 +44349,8 @@ var __generator = (undefined && undefined.__generator) || function (thisArg, bod
     }
 };
  // Mise à jour pour chrome.storage
-var API_URL = 'https://usearlyapi.fly.dev/api/v1';
-// Fonction de connexion
-/* export async function login(email: string, password: string, rememberMe: boolean): Promise<boolean> {
-  try {
-    const response = await fetch(`${API_URL}/user/login`, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ email, password }), // Envoie l'indicateur "rememberMe"
-    });
-    const data = await response.json();
-
-    if (response.ok && data.accessToken && data.refreshToken) {
-      console.log('Connexion réussie, stockage des tokens.', data);
-
-      // Stocke les tokens
-      setTokens(data.accessToken);
-
-      // Enregistrez les tokens en fonction de "Se souvenir de moi"
-      if (rememberMe) {
-        localStorage.setItem('accessToken', data.accessToken);
-        localStorage.setItem('refreshToken', data.refreshToken);
-      } else {
-        sessionStorage.setItem('accessToken', data.accessToken);
-        sessionStorage.setItem('refreshToken', data.refreshToken);
-      }
-
-      return true;
-    } else {
-      console.error('Échec de la connexion :', data.message);
-      throw new Error(data.message || 'Authentification échouée.');
-    }
-  } catch (error) {
-    console.error('Erreur lors de la connexion :', error);
-    return false;
-  }
-} */
+//const API_URL = 'https://usearlyapi.fly.dev/api/v1';
+var API_URL = 'http://localhost:3000/api/v1';
 function login(email, password) {
     return __awaiter(this, void 0, void 0, function () {
         var response, data, error_1;
@@ -44443,27 +44398,6 @@ function login(email, password) {
         });
     });
 }
-// Vérifie si l'utilisateur est encore authentifié
-/* export async function isUserAuthenticated(): Promise<boolean> {
-  const tokens = await getTokens();
-  console.log("Vérification de l'authentification : token trouvé ?", tokens.accessToken);
-
-  if (!tokens.accessToken) {
-    console.log("Aucun accessToken trouvé. L'utilisateur est déconnecté.");
-    return false;
-  }
-
-  // Vérifiez si le token est valide
-  const isValid = await verifyAccessToken(tokens.accessToken);
-  if (!isValid) {
-    console.log("Token invalide. Suppression du token.");
-    removeTokens(); // Supprimez les tokens invalides
-    return false;
-  }
-
-  console.log("Utilisateur authentifié.");
-  return true;
-} */
 function isUserAuthenticated() {
     return __awaiter(this, void 0, void 0, function () {
         var _this = this;
@@ -44486,8 +44420,8 @@ function isUserAuthenticated() {
                                         loginTime = _b.sent();
                                         if (loginTime) {
                                             elapsedTime = Date.now() - loginTime;
-                                            FIVE_HOURS_IN_MS = 20 * 1000;
-                                            //const FIVE_HOURS_IN_MS = 5 * 60 * 60 * 1000;
+                                            FIVE_HOURS_IN_MS = 24 * 60 * 60 * 1000;
+                                            //const FIVE_HOURS_IN_MS = 5 * 60 * 60 * 1000; 
                                             if (elapsedTime >= FIVE_HOURS_IN_MS) {
                                                 //console.log(`Temps écoulé ::: ${elapsedTime / 1000} secondes. Déconnexion.`);
                                                 logout(); // Déconnectez si 20 secondes sont écoulées
@@ -44618,7 +44552,8 @@ var __generator = (undefined && undefined.__generator) || function (thisArg, bod
         if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
     }
 };
-var API_BASE_URL = 'https://usearlyapi.fly.dev/api/v1';
+//const API_BASE_URL = 'https://usearlyapi.fly.dev/api/v1';
+var API_BASE_URL = 'http://localhost:3000/api/v1';
 var URL_ALERT = "".concat(API_BASE_URL, "/user/alert/new");
 var URL_CDC = "".concat(API_BASE_URL, "/user/coupdecoeur/new");
 var URL_SUGGEST = "".concat(API_BASE_URL, "/user/suggestion/new");
@@ -44743,6 +44678,7 @@ var forbiddenDomains = [
     "adult-content.com",
     "badsites.net",
     "pornhub.com",
+    "pornhub.com",
     "xvideos.com",
     "redtube.com",
     "xnxx.com",
@@ -44750,12 +44686,17 @@ var forbiddenDomains = [
     "brazzers.com",
     "adultfriendfinder.com",
     "livejasmin.com",
-    "airbnb.fr"
+    "airbnb.fr",
+    "fr.pornhub.com",
+    "nike.com",
+    "fr.pornhub",
 ];
 var forbiddenKeywords = [
     "porn",
     "violent",
     "xxx",
+    "porn+hardcor+violent",
+    "pornhub",
     "murder",
     "meurtre",
     "sexual",
@@ -44770,7 +44711,7 @@ var forbiddenKeywords = [
     "inappropriate",
     "nsfw",
     "sex",
-    "erotic"
+    "erotic",
 ];
 // https://www.airbnb.fr/rooms/52621429?adults=2&category_tag=Tag%3A4104&children=0&enable_m3_private_room=true&infants=0&pets=0&photo_id=1667039872&search_mode=flex_destinations_search&check_in=2025-01-03&check_out=2025-01-08&source_impression_id=p3_1732287557_P3IQ3z7DTBGIxxhx&previous_page_section_name=1000
 // Liste de mots-clés sensibles dans les URLs
@@ -44786,7 +44727,9 @@ function shouldBlockUrl(url) {
         // Extraire le domaine (hostname)
         var domain_1 = parsedUrl.hostname.toLowerCase();
         // Vérifier si le domaine est dans la liste interdite
-        if (forbiddenDomains.some(function (forbiddenDomain) { return domain_1.includes(forbiddenDomain); })) {
+        if (forbiddenDomains.some(function (forbiddenDomain) {
+            return domain_1.includes(forbiddenDomain);
+        })) {
             console.log("URL bloqu\u00E9e : Domaine interdit (".concat(domain_1, ")"));
             return true;
         }
