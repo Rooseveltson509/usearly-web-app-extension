@@ -4,7 +4,9 @@ import { Alert } from '../types/Alert';
 import { CoupdeCoeur } from '../types/CoupdeCoeur';
 import { Suggest } from '../types/Suggest';
 
-const API_BASE_URL = 'https://usearlyapi.fly.dev/api/v1';
+//const API_BASE_URL = 'https://usearlyapi.fly.dev/api/v1';
+const API_BASE_URL = 'http://localhost:3000/api/v1';
+//http://localhost:3001/api/v1/
 
 export interface ApiResponse {
   success: boolean;

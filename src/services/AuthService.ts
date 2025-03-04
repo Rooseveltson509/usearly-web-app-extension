@@ -1,43 +1,7 @@
-import { setTokens, removeTokens, setLoginTime, getTokens } from '../utils/storageUtil'; // Mise à jour pour chrome.storage
-import { verifyAccessToken } from './TokensServices';
+import { setTokens, setLoginTime, getTokens } from '../utils/storageUtil'; // Mise à jour pour chrome.storage
 
-const API_URL = 'https://usearlyapi.fly.dev/api/v1';
-
-// Fonction de connexion
-/* export async function login(email: string, password: string, rememberMe: boolean): Promise<boolean> {
-  try {
-    const response = await fetch(`${API_URL}/user/login`, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ email, password }), // Envoie l'indicateur "rememberMe"
-    });
-    const data = await response.json();
-
-    if (response.ok && data.accessToken && data.refreshToken) {
-      console.log('Connexion réussie, stockage des tokens.', data);
-
-      // Stocke les tokens
-      setTokens(data.accessToken);
-
-      // Enregistrez les tokens en fonction de "Se souvenir de moi"
-      if (rememberMe) {
-        localStorage.setItem('accessToken', data.accessToken);
-        localStorage.setItem('refreshToken', data.refreshToken);
-      } else {
-        sessionStorage.setItem('accessToken', data.accessToken);
-        sessionStorage.setItem('refreshToken', data.refreshToken);
-      }
-
-      return true;
-    } else {
-      console.error('Échec de la connexion :', data.message);
-      throw new Error(data.message || 'Authentification échouée.');
-    }
-  } catch (error) {
-    console.error('Erreur lors de la connexion :', error);
-    return false;
-  }
-} */
+//const API_URL = 'https://usearlyapi.fly.dev/api/v1';
+const API_URL = 'http://localhost:3000/api/v1';
 
   export async function login(email: string, password: string): Promise<boolean> {
     try {
@@ -79,28 +43,6 @@ const API_URL = 'https://usearlyapi.fly.dev/api/v1';
   }
   
   
-// Vérifie si l'utilisateur est encore authentifié
-/* export async function isUserAuthenticated(): Promise<boolean> {
-  const tokens = await getTokens();
-  console.log("Vérification de l'authentification : token trouvé ?", tokens.accessToken);
-
-  if (!tokens.accessToken) {
-    console.log("Aucun accessToken trouvé. L'utilisateur est déconnecté.");
-    return false;
-  }
-
-  // Vérifiez si le token est valide
-  const isValid = await verifyAccessToken(tokens.accessToken);
-  if (!isValid) {
-    console.log("Token invalide. Suppression du token.");
-    removeTokens(); // Supprimez les tokens invalides
-    return false;
-  }
-
-  console.log("Utilisateur authentifié.");
-  return true;
-} */
-
   export async function isUserAuthenticated(): Promise<boolean> {
     return new Promise(async (resolve) => {
       chrome.runtime.sendMessage({ action: 'isAuthenticated' }, async (response) => {
@@ -111,8 +53,8 @@ const API_URL = 'https://usearlyapi.fly.dev/api/v1';
           const loginTime = await getLoginTime();
           if (loginTime) {
             const elapsedTime = Date.now() - loginTime;
-            const FIVE_HOURS_IN_MS = 20 * 1000; // 20 secondes pour le test
-            //const FIVE_HOURS_IN_MS = 5 * 60 * 60 * 1000;
+            const FIVE_HOURS_IN_MS = 24 * 60 * 60 * 1000; // 24 hours before the login time expires in milliseconds since the last.
+            //const FIVE_HOURS_IN_MS = 5 * 60 * 60 * 1000; 
   
             if (elapsedTime >= FIVE_HOURS_IN_MS) {
               //console.log(`Temps écoulé ::: ${elapsedTime / 1000} secondes. Déconnexion.`);
